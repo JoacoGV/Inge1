@@ -413,18 +413,11 @@ divideToFraccion: aFraccionDividend
 
 ^aFraccionDividend numerator / (self * aFraccionDividend denominator).! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'HAW 9/24/2018 08:47:50'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'AB 9/14/2023 11:41:17'!
 fibonacci
 
-	| one two |
-	
-	one := Entero with: 1.
-	two := Entero with: 2.
-	
-	self isNegative ifTrue: [self error: Entero negativeFibonacciErrorDescription ].	
-	(self isZero or: [self isOne]) ifTrue: [^one].
-	
-	^ (self - one) fibonacci + (self - two) fibonacci
+
+	^ self subclassResponsibility.
 		! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'HernanWilkinson 5/7/2016 21:00'!
@@ -442,10 +435,10 @@ multiplyToFraccion: aFraccionFirstMultiplier
 
 ^aFraccionFirstMultiplier multiplyToEntero:  self. ! !
 
-!Entero methodsFor: 'arithmetic operations' stamp: 'Joa 9/12/2023 18:51:14'!
+!Entero methodsFor: 'arithmetic operations' stamp: 'AB 9/14/2023 14:42:34'!
 subtractToEntero: anEnteroMinuend
 
-			^self class with: anEnteroMinuend integerValue - value.
+			^Entero with: anEnteroMinuend integerValue - value.
 ! !
 
 !Entero methodsFor: 'arithmetic operations' stamp: 'Joa 9/13/2023 17:51:07'!
@@ -454,10 +447,10 @@ subtractToFraccion: aFraccionMinuend
 			^aFraccionMinuend  + self negated.! !
 
 
-!Entero methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 21:01'!
+!Entero methodsFor: 'comparing' stamp: 'AB 9/14/2023 11:33:40'!
 = anObject
 
-	^(anObject isKindOf: self class) and: [ value = anObject integerValue ]! !
+	^ value = anObject integerValue.! !
 
 !Entero methodsFor: 'comparing' stamp: 'HernanWilkinson 5/7/2016 20:17'!
 hash
@@ -510,42 +503,14 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'Joa 9/13/2023 18:52:11'!
+!Entero class methodsFor: 'instance creation' stamp: 'AB 9/14/2023 14:00:59'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
-	aValue isZero  ifTrue: [^Cero with: aValue].
 	aValue < 0 ifTrue: [^EnteroNegativo with: aValue].
-	aValue >0 ifTrue: [^EnteroPositivo with: aValue ].! !
-
-
-!classDefinition: #Cero category: 'Numero-Exercise'!
-Entero subclass: #Cero
-	instanceVariableNames: ''
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Numero-Exercise'!
-
-!Cero methodsFor: 'as yet unclassified' stamp: 'Joa 9/13/2023 18:49:34'!
-initalizeWith: aValue 
-	
-	value := aValue.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Cero class' category: 'Numero-Exercise'!
-Cero class
-	instanceVariableNames: ''!
-
-!Cero class methodsFor: 'as yet unclassified' stamp: 'Joa 9/13/2023 18:48:25'!
-with: aValue 
-	
-	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
-	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
-
-	^self new initalizeWith: aValue.! !
+	^EnteroPositivo with: aValue .! !
 
 
 !classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
@@ -554,6 +519,12 @@ Entero subclass: #EnteroNegativo
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
+
+!EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 11:50:14'!
+fibonacci	
+	
+	self error: Entero negativeFibonacciErrorDescription
+! !
 
 !EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'Joa 9/13/2023 18:46:25'!
 initalizeWith: aValue 
@@ -565,6 +536,10 @@ initalizeWith: aValue
 !classDefinition: 'EnteroNegativo class' category: 'Numero-Exercise'!
 EnteroNegativo class
 	instanceVariableNames: ''!
+
+!EnteroNegativo class methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 11:54:16'!
+negativeFibonacciErrorDescription
+	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
 !EnteroNegativo class methodsFor: 'as yet unclassified' stamp: 'Joa 9/13/2023 18:44:15'!
 with: aValue 
@@ -582,6 +557,12 @@ Entero subclass: #EnteroPositivo
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
+!EnteroPositivo methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:24:50'!
+fibonacci
+
+	
+	^ self subclassResponsibility .! !
+
 !EnteroPositivo methodsFor: 'as yet unclassified' stamp: 'Joa 9/13/2023 18:46:34'!
 initalizeWith: aValue 
 	
@@ -593,12 +574,111 @@ initalizeWith: aValue
 EnteroPositivo class
 	instanceVariableNames: ''!
 
-!EnteroPositivo class methodsFor: 'as yet unclassified' stamp: 'Joa 9/13/2023 18:44:30'!
+!EnteroPositivo class methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:45:21'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	aValue =0 ifTrue: [^Cero with:aValue ].
+	aValue=1 ifTrue: [^Uno with:aValue ].
+	^EnterosMayoresAUno with:aValue .! !
+
+
+!classDefinition: #Cero category: 'Numero-Exercise'!
+EnteroPositivo subclass: #Cero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:21:16'!
+fibonacci
+	^Entero with: 1.
+! !
+
+!Cero methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:27:44'!
+initalizeWith: aValue 
 	
+	value := aValue.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Cero class' category: 'Numero-Exercise'!
+Cero class
+	instanceVariableNames: ''!
+
+!Cero class methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:23:15'!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	^self new initalizeWith: aValue! !
+
+
+!classDefinition: #EnterosMayoresAUno category: 'Numero-Exercise'!
+EnteroPositivo subclass: #EnterosMayoresAUno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!EnterosMayoresAUno methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:43:07'!
+fibonacci
+
+	| one two  |
+	
+	one := Entero with: 1.
+two := Entero with: 2.
+	
+	^ (self-one) fibonacci + (self-two) fibonacci! !
+
+!EnterosMayoresAUno methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:27:41'!
+initalizeWith: aValue 
+	
+	value := aValue.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'EnterosMayoresAUno class' category: 'Numero-Exercise'!
+EnterosMayoresAUno class
+	instanceVariableNames: ''!
+
+!EnterosMayoresAUno class methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:27:32'!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
+	^self new initalizeWith: aValue! !
+
+
+!classDefinition: #Uno category: 'Numero-Exercise'!
+EnteroPositivo subclass: #Uno
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Numero-Exercise'!
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:44:30'!
+fibonacci
+	^Entero with: 1.
+! !
+
+!Uno methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:44:38'!
+initalizeWith: aValue 
+	
+	value := aValue.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Uno class' category: 'Numero-Exercise'!
+Uno class
+	instanceVariableNames: ''!
+
+!Uno class methodsFor: 'as yet unclassified' stamp: 'AB 9/14/2023 14:44:47'!
+with: aValue 
+	
+	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
+	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	^self new initalizeWith: aValue! !
 
 
