@@ -152,8 +152,8 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:20:08'!
-initialice
+!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:49:28'!
+initialize
 	lenght  := 0.
 	elements  := OrderedCollection new.! !
 
@@ -184,10 +184,6 @@ top
 !classDefinition: 'OOStack class' category: 'Stack-Exercise'!
 OOStack class
 	instanceVariableNames: ''!
-
-!OOStack class methodsFor: 'error descriptions' stamp: 'Joa 9/14/2023 21:18:56'!
-new
-	^self basicNew initialice.! !
 
 !OOStack class methodsFor: 'error descriptions' stamp: 'NR 9/14/2023 08:12:21'!
 stackEmptyErrorDescription
