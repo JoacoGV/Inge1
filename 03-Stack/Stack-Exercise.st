@@ -139,45 +139,116 @@ test10CanNotTopWhenThereAreNoObjectsInTheStack
 
 !classDefinition: #SentenceFinderByPrefixTest category: 'Stack-Exercise'!
 TestCase subclass: #SentenceFinderByPrefixTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'stack senteceFinder'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefixTest methodsFor: 'setup' stamp: 'AB 9/17/2023 21:00:15'!
+setUp
+	stack := OOStack new.
+	
+	stack push: 'summer is here'. 
+	stack push: 'Winter is here'.
+	stack push: 'The winds of Winter'. 
+	stack push: 'something'. 
+	stack push: 'winter is coming'. 
+	stack push: 'winning is everything'. 
+	senteceFinder := 	SentenceFinderByPrefix new.! !
+
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:02:00'!
+test01EncuentraLaFraseQueCorrespondeAlPrefijoDado
+|sentencesFound|
+	sentencesFound :=senteceFinder findWithPrefix: 'sum' inStack: stack .
+	self assert: sentencesFound size = 1.
+	self assert:	(sentencesFound  first = 'summer is here').! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:02:34'!
+test02EncuentraLasFrasesQueCorrespondenAlPrefijoDado
+|sentencesFound|
+	sentencesFound :=senteceFinder findWithPrefix: 'win' inStack: stack .
+	self assert: sentencesFound size = 2.
+	self assert:	(sentencesFound  first = 'winning is everything').
+	self assert:	(sentencesFound  last = 'winter is coming').! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:03:08'!
+test03NoEncuentraNingunaFraseParaElPrefijoDado
+|sentencesFound|
+	sentencesFound :=senteceFinder findWithPrefix: 'Hola' inStack: stack .
+	self assert: sentencesFound isEmpty .
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:03:39'!
+test04NoEncuentraLaFrasePorElCaseSensitive
+|sentencesFound|
+	sentencesFound :=senteceFinder findWithPrefix: 'Some' inStack: stack .
+	self assert: sentencesFound isEmpty .
+	! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:04:01'!
+test05PrefijoInvalidoConEspacio
+	self
+		should: [ senteceFinder findWithPrefix: 'summer is' inStack: stack .]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix spacedPrefixErrorDescription ]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:04:11'!
+test06PrefijoVacio
+	self
+		should: [ senteceFinder findWithPrefix: '' inStack: stack .]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = SentenceFinderByPrefix prefixEmptyErrorDescription ]! !
+
+!SentenceFinderByPrefixTest methodsFor: 'tests' stamp: 'AB 9/17/2023 22:04:38'!
+test07SeMatieneElStackIgual
+	senteceFinder findWithPrefix: 'Wint' inStack: stack .
+	self assert: stack size = 6.
+	self assert: stack top = 'winning is everything'.! !
 
 
 !classDefinition: #OOStack category: 'Stack-Exercise'!
 Object subclass: #OOStack
-	instanceVariableNames: 'lenght elements'
+	instanceVariableNames: 'topmostElement size'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:49:28'!
-initialize
-	lenght  := 0.
-	elements  := OrderedCollection new.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:20:22'!
-isEmpty
-	^elements isEmpty.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:41:23'!
+!OOStack methodsFor: 'yy' stamp: 'AB 9/17/2023 12:05:43'!
 pop
-	elements isEmpty ifTrue: [^self error: self class stackEmptyErrorDescription ].
-	^elements removeLast.! !
+	|lastPushedObject|
+	lastPushedObject := topmostElement .
+	topmostElement := topmostElement previusElement.
+	size:=size-1.
+	^lastPushedObject value.! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:26:31'!
+!OOStack methodsFor: 'yy' stamp: 'AB 9/17/2023 12:10:18'!
 push: anElement
-	elements addLast: anElement .! !
+topmostElement := BodyStackNode with: anElement stackedOver:topmostElement .
+size:=size +1.
+	! !
 
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:29:22'!
-size
-	^elements size.! !
-
-!OOStack methodsFor: 'as yet unclassified' stamp: 'Joa 9/14/2023 21:42:21'!
+!OOStack methodsFor: 'yy' stamp: 'AB 9/17/2023 11:57:16'!
 top
-	elements isEmpty ifTrue: [^self error: self class stackEmptyErrorDescription ].
-	^elements last.! !
+
+	^topmostElement value.! !
+
+
+!OOStack methodsFor: 'testing' stamp: 'AB 9/17/2023 12:12:20'!
+isEmpty
+	^topmostElement class = BaseStackNode.! !
+
+!OOStack methodsFor: 'testing' stamp: 'AB 9/17/2023 11:39:39'!
+size
+	^size.! !
+
+
+!OOStack methodsFor: 'initialization' stamp: 'AB 9/17/2023 12:07:30'!
+initialize
+	size:=0.
+	topmostElement  := BaseStackNode new.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -197,3 +268,119 @@ Object subclass: #SentenceFinderByPrefix
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
+
+!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:17:31'!
+findWithPrefix:aPrefix inStack:aStack
+	| lista stackIterator |
+	stackIterator := 	StackIterator new.
+	aPrefix isEmpty ifTrue: [^self error: 	self class prefixEmptyErrorDescription ].
+	(aPrefix includesSubString: ' ' )ifTrue:[^self error: self class spacedPrefixErrorDescription ].
+	lista:=stackIterator getAllElementsIn:aStack thatVerifies:[:stackElement| stackElement beginsWith: aPrefix].
+
+	
+	^lista.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'SentenceFinderByPrefix class' category: 'Stack-Exercise'!
+SentenceFinderByPrefix class
+	instanceVariableNames: ''!
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:06:57'!
+prefixEmptyErrorDescription
+	
+	^ 'prefix is empty!!!!!!'! !
+
+!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:07:34'!
+spacedPrefixErrorDescription
+	
+	^ 'prefix have spaced!!!!!!'! !
+
+
+!classDefinition: #StackIterator category: 'Stack-Exercise'!
+Object subclass: #StackIterator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!StackIterator methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:22:29'!
+getAllElementsIn:aStack thatVerifies:aPredicate
+| stackAux topmostElementValue elementsThatVerifyCondition |
+stackAux := 	OOStack new.
+elementsThatVerifyCondition:= OrderedCollection new.
+	[aStack isEmpty] whileFalse:[  
+			topmostElementValue:= aStack pop.
+			(aPredicate value:topmostElementValue) ifTrue: [elementsThatVerifyCondition add:topmostElementValue].
+			stackAux push: topmostElementValue.
+			].
+ [stackAux isEmpty] whileFalse:[ 
+			topmostElementValue:= stackAux pop.
+			aStack push: topmostElementValue.
+			].
+		^elementsThatVerifyCondition! !
+
+
+!classDefinition: #StackNode category: 'Stack-Exercise'!
+Object subclass: #StackNode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!StackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:55:14'!
+previusElement
+	^self subclassResponsibility.! !
+
+!StackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:58:17'!
+value
+ 	^self subclassResponsibility.! !
+
+
+!classDefinition: #BaseStackNode category: 'Stack-Exercise'!
+StackNode subclass: #BaseStackNode
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!BaseStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 12:06:03'!
+previusElement
+	^self error: OOStack stackEmptyErrorDescription.! !
+
+!BaseStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 12:06:28'!
+value
+	^self error: OOStack  stackEmptyErrorDescription.! !
+
+
+!classDefinition: #BodyStackNode category: 'Stack-Exercise'!
+StackNode subclass: #BodyStackNode
+	instanceVariableNames: 'previus value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Stack-Exercise'!
+
+!BodyStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:49:27'!
+initalizeWith: anElement andPreviusNode:previusStackNode 
+	value:=anElement.
+	previus :=previusStackNode .
+	! !
+
+!BodyStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:56:47'!
+previusElement
+	^previus.! !
+
+!BodyStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:59:06'!
+value
+	^value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'BodyStackNode class' category: 'Stack-Exercise'!
+BodyStackNode class
+	instanceVariableNames: ''!
+
+!BodyStackNode class methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 12:09:49'!
+with:anElement stackedOver:previusStackNode
+
+	^self new initalizeWith: anElement andPreviusNode:previusStackNode .! !
