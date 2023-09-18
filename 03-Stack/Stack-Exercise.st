@@ -216,7 +216,7 @@ Object subclass: #OOStack
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!OOStack methodsFor: 'yy' stamp: 'AB 9/17/2023 12:05:43'!
+!OOStack methodsFor: 'modifying' stamp: 'AB 9/17/2023 12:05:43'!
 pop
 	|lastPushedObject|
 	lastPushedObject := topmostElement .
@@ -224,13 +224,13 @@ pop
 	size:=size-1.
 	^lastPushedObject value.! !
 
-!OOStack methodsFor: 'yy' stamp: 'AB 9/17/2023 12:10:18'!
+!OOStack methodsFor: 'modifying' stamp: 'AB 9/17/2023 12:10:18'!
 push: anElement
 topmostElement := BodyStackNode with: anElement stackedOver:topmostElement .
 size:=size +1.
 	! !
 
-!OOStack methodsFor: 'yy' stamp: 'AB 9/17/2023 11:57:16'!
+!OOStack methodsFor: 'modifying' stamp: 'AB 9/17/2023 11:57:16'!
 top
 
 	^topmostElement value.! !
@@ -269,7 +269,7 @@ Object subclass: #SentenceFinderByPrefix
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!SentenceFinderByPrefix methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:17:31'!
+!SentenceFinderByPrefix methodsFor: 'finders' stamp: 'AB 9/17/2023 21:17:31'!
 findWithPrefix:aPrefix inStack:aStack
 	| lista stackIterator |
 	stackIterator := 	StackIterator new.
@@ -286,12 +286,12 @@ findWithPrefix:aPrefix inStack:aStack
 SentenceFinderByPrefix class
 	instanceVariableNames: ''!
 
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:06:57'!
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'AB 9/17/2023 21:06:57'!
 prefixEmptyErrorDescription
 	
 	^ 'prefix is empty!!!!!!'! !
 
-!SentenceFinderByPrefix class methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:07:34'!
+!SentenceFinderByPrefix class methodsFor: 'error descriptions' stamp: 'AB 9/17/2023 21:07:34'!
 spacedPrefixErrorDescription
 	
 	^ 'prefix have spaced!!!!!!'! !
@@ -304,21 +304,35 @@ Object subclass: #StackIterator
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackIterator methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 21:22:29'!
-getAllElementsIn:aStack thatVerifies:aPredicate
-| stackAux topmostElementValue elementsThatVerifyCondition |
-stackAux := 	OOStack new.
-elementsThatVerifyCondition:= OrderedCollection new.
-	[aStack isEmpty] whileFalse:[  
-			topmostElementValue:= aStack pop.
-			(aPredicate value:topmostElementValue) ifTrue: [elementsThatVerifyCondition add:topmostElementValue].
+!StackIterator methodsFor: 'enumerating' stamp: 'Joa 9/18/2023 12:34:33'!
+getAllElementsIn: aStackToIterate thatVerifies:aPredicate
+
+	| stackAux elementsThatVerifyCondition |
+
+	stackAux := 	OOStack new.
+	elementsThatVerifyCondition:= OrderedCollection new.
+	
+	self  iterateThrough: aStackToIterate 
+	       	doing: [:aStackElement|
+				(aPredicate value: aStackElement ) ifTrue: [elementsThatVerifyCondition add: aStackElement ].
+				]
+		andKeepingValuesIn: stackAux.
+	
+	self    iterateThrough: stackAux 
+		 doing: [:aStackElement |]
+		 andKeepingValuesIn: aStackToIterate. 
+
+	^elementsThatVerifyCondition! !
+
+!StackIterator methodsFor: 'enumerating' stamp: 'Joa 9/18/2023 12:21:48'!
+iterateThrough: aStackToIterate doing: aBlock andKeepingValuesIn: stackAux
+	|topmostElementValue|	
+	
+	[aStackToIterate isEmpty] whileFalse:[  
+			topmostElementValue := aStackToIterate pop.
+			aBlock value: topmostElementValue.
 			stackAux push: topmostElementValue.
-			].
- [stackAux isEmpty] whileFalse:[ 
-			topmostElementValue:= stackAux pop.
-			aStack push: topmostElementValue.
-			].
-		^elementsThatVerifyCondition! !
+			].! !
 
 
 !classDefinition: #StackNode category: 'Stack-Exercise'!
@@ -328,11 +342,11 @@ Object subclass: #StackNode
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!StackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:55:14'!
+!StackNode methodsFor: 'accesing' stamp: 'AB 9/17/2023 11:55:14'!
 previusElement
 	^self subclassResponsibility.! !
 
-!StackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:58:17'!
+!StackNode methodsFor: 'accesing' stamp: 'AB 9/17/2023 11:58:17'!
 value
  	^self subclassResponsibility.! !
 
@@ -344,11 +358,11 @@ StackNode subclass: #BaseStackNode
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!BaseStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 12:06:03'!
+!BaseStackNode methodsFor: 'accesing' stamp: 'AB 9/17/2023 12:06:03'!
 previusElement
 	^self error: OOStack stackEmptyErrorDescription.! !
 
-!BaseStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 12:06:28'!
+!BaseStackNode methodsFor: 'accesing' stamp: 'AB 9/17/2023 12:06:28'!
 value
 	^self error: OOStack  stackEmptyErrorDescription.! !
 
@@ -360,19 +374,20 @@ StackNode subclass: #BodyStackNode
 	poolDictionaries: ''
 	category: 'Stack-Exercise'!
 
-!BodyStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:49:27'!
+!BodyStackNode methodsFor: 'accesing' stamp: 'AB 9/17/2023 11:56:47'!
+previusElement
+	^previus.! !
+
+!BodyStackNode methodsFor: 'accesing' stamp: 'AB 9/17/2023 11:59:06'!
+value
+	^value.! !
+
+
+!BodyStackNode methodsFor: 'initializing' stamp: 'AB 9/17/2023 11:49:27'!
 initalizeWith: anElement andPreviusNode:previusStackNode 
 	value:=anElement.
 	previus :=previusStackNode .
 	! !
-
-!BodyStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:56:47'!
-previusElement
-	^previus.! !
-
-!BodyStackNode methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 11:59:06'!
-value
-	^value.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -380,7 +395,7 @@ value
 BodyStackNode class
 	instanceVariableNames: ''!
 
-!BodyStackNode class methodsFor: 'as yet unclassified' stamp: 'AB 9/17/2023 12:09:49'!
+!BodyStackNode class methodsFor: 'instantiating' stamp: 'AB 9/17/2023 12:09:49'!
 with:anElement stackedOver:previusStackNode
 
 	^self new initalizeWith: anElement andPreviusNode:previusStackNode .! !
