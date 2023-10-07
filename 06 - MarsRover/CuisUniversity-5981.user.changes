@@ -5252,3 +5252,2336 @@ process: aCommand
 !MarsRover methodsFor: 'as yet unclassified' stamp: 'AB 10/5/2023 21:42:47' prior: 50657079!
 process: aCommand
 	aCommand  = 'f' ifTrue: [^position := position x @ (position y + 1)].! !
+
+----STARTUP---- (7 October 2023 15:31:41) as D:\Facu\Inge I\windows64\CuisUniversity-5981.image!
+
+
+----End fileIn of C:\Users\Joaco\Downloads\MarsRover.st----!
+
+!classDefinition: #MarsRover category: 'MarsRover' stamp: 'Joaco 10/7/2023 15:34:50'!
+Object subclass: #MarsRover
+	instanceVariableNames: 'position direction'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 15:38:16'!
+test03
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: #North.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).! !
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:38:18'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 15:40:37' prior: 50664783!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  position := position x @ (position y + 1)].
+! !
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:40:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:40:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 15:40:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:40:58'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 15:41:45'!
+test04
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: #North.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).! !
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 15:41:49'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 15:44:27' prior: 50664829!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:44:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 15:44:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:44:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 15:44:29'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 15:45:05'!
+test05
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: #North.
+	rover process: 'bb'.
+		
+	self assert: (rover isInPosition: (0@-2) pointingTo: #North).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:45:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:45:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 15:45:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:45:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 15:45:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:45:11'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 15:48:19' prior: 50664875!
+test05
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: #North.
+	rover process: 'l'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #West).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:48:20'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 15:49:01' prior: 50664856!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction := #West].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:49:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 15:49:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:49:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 15:49:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:49:06'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 15:50:12' prior: 50664898!
+test05
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: #North.
+	rover process: 'll'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:50:15'!
+FAILURE!
+
+----SNAPSHOT----(7 October 2023 15:50:36) CuisUniversity-5981.image priorSource: 10658339!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 15:52:58' prior: 50664909!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ 
+				direction = #North ifTrue:  [direction := #West].
+				direction = #West ifTrue: [direction := #South].
+			].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:52:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 15:52:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:52:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 15:52:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:52:59'!
+PASSED!
+
+Object subclass: #CardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #CardinalPoint category: 'MarsRover' stamp: 'Joaco 10/7/2023 15:53:33'!
+Object subclass: #CardinalPoint
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalPoint subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #North category: 'MarsRover' stamp: 'Joaco 10/7/2023 15:54:01'!
+CardinalPoint subclass: #North
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalPoint subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #West category: 'MarsRover' stamp: 'Joaco 10/7/2023 15:54:07'!
+CardinalPoint subclass: #West
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalPoint subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #South category: 'MarsRover' stamp: 'Joaco 10/7/2023 15:54:11'!
+CardinalPoint subclass: #South
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+CardinalPoint subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #East category: 'MarsRover' stamp: 'Joaco 10/7/2023 15:54:21'!
+CardinalPoint subclass: #East
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 15:55:51' prior: 50664946!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		].
+! !
+!CardinalPoint methodsFor: 'no messages' stamp: 'Joaco 10/7/2023 15:56:14'!
+toMyLeft
+	self subclassResponsibility.! !
+!North methodsFor: 'no messages' stamp: 'Joaco 10/7/2023 15:56:36' overrides: 50665037!
+toMyLeft
+	^West new.! !
+!West methodsFor: 'no messages' stamp: 'Joaco 10/7/2023 15:56:55' overrides: 50665037!
+toMyLeft
+	^South new.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:57:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 15:57:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 15:57:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 15:57:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:57:41'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 15:57:41'!
+ERROR!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 15:59:27' prior: 50664741!
+test01
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: ''.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: North new).! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 15:59:29'!
+FAILURE!
+
+^position = aPosition and: [ direction = aDirection ]!
+
+OrderedCollection new = OrderedCollection new!
+
+North new = North new!
+
+Object subclass: #CardinalPoint
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+
+!classDefinition: #CardinalPoint category: 'MarsRover' stamp: 'Joaco 10/7/2023 16:01:56'!
+Object subclass: #CardinalPoint
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MarsRover'!
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:02:24'!
+intialize
+	value := #North.! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:03:16' prior: 50665064!
+test01
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: ''.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:03:38' overrides: 16902254!
+value
+	^value.! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:04:08' overrides: 16902254!
+value
+	^value.! !
+
+!methodRemoval: North #value stamp: 'Joaco 10/7/2023 16:04:08'!
+value
+	^value.!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:04:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:04:22'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:04:47' prior: 50664773!
+isInPosition: aPosition pointingTo: aDirection 
+	^position = aPosition and: [ direction value = aDirection ].! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:04:50'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:05:03'!
+FAILURE!
+!North methodsFor: 'initialization' stamp: 'Joaco 10/7/2023 16:06:07' overrides: 16920235!
+initialize
+	value := #North.! !
+
+!methodRemoval: North #intialize stamp: 'Joaco 10/7/2023 16:06:07'!
+intialize
+	value := #North.!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:06:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:06:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:06:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:06:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:06:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:06:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:06:18'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:07:07'!
+PASSED!
+
+#North value!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:07:46' prior: 50664749!
+test02
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'f'.
+		
+	self assert: (rover isInPosition: (0@1) pointingTo: #North).! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:07:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:07:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:07:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:07:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:07:48'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:07:48'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:07:48'!
+ERROR!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:07:59' prior: 50664818!
+test03
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:08:08' prior: 50664845!
+test04
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:19' prior: 50665042 overrides: 50665037!
+toMyLeft
+	self subclassResponsibility.! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:20' prior: 50665046 overrides: 50665037!
+toMyLeft
+	self subclassResponsibility.! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:20' overrides: 50665037!
+toMyLeft
+	self subclassResponsibility.! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:20' overrides: 50665037!
+toMyLeft
+	self subclassResponsibility.! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:20' prior: 50665037!
+toMyLeft
+
+	self subclassResponsibility! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:39' prior: 50665200 overrides: 50665220!
+toMyLeft
+	^West new.! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:50' prior: 50665205 overrides: 50665220!
+toMyLeft
+	^South new.! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:10:17' overrides: 16920235!
+initialize
+	value := #East.! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:10:28' overrides: 16920235!
+initialize
+	value := #South.! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:10:38' overrides: 16920235!
+initialize
+	value := #West.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:10:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:10:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:10:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:10:47'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:10:47'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:10:47'!
+ERROR!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:11:20' prior: 50664932!
+test05
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'll'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:11:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:11:27'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:11:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:11:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:11:28'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:11:28'!
+PASSED!
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:12:29' prior: 50665210 overrides: 50665220!
+toMyLeft
+	^East new.! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:12:46' prior: 50665215 overrides: 50665220!
+toMyLeft
+	^North new.! !
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:12:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:12:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:12:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:12:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:12:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:12:56'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:14:23'!
+test06
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'r'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #East).! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:14:25'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:15:27' prior: 50665026!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := East new.]
+		].
+! !
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:15:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:15:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:15:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:15:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:15:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:15:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:15:34'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:15:41'!
+test07
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rr'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #East).! !
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:15:43'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:15:44'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:15:48' prior: 50665349!
+test07
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rr'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:15:52'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:16:45' prior: 50665319!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ]
+		].
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:16:47' prior: 50665388!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [		position := position x @ (position y + 1)].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:00'!
+toMyRight! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:05' overrides: 50665415!
+toMyRight! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:06' overrides: 50665415!
+toMyRight! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:06' overrides: 50665415!
+toMyRight! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:06' overrides: 50665415!
+toMyRight! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:06' prior: 50665415!
+toMyRight
+
+	self subclassResponsibility! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:34' prior: 50665431 overrides: 50665435!
+toMyRight
+	^South new.! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:43' prior: 50665419 overrides: 50665435!
+toMyRight
+	^East new.! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:53' prior: 50665427 overrides: 50665435!
+toMyRight
+	^West new.! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:18:12' prior: 50665423 overrides: 50665435!
+toMyRight
+	^North new.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:18:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:18:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:18:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:18:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:18:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:18:16'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:18:17'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:19:05'!
+test08
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).! !
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:19:06'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:20:34' prior: 50665402!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 direction xxxx].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:20:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:20:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:20:38'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:20:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:20:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:20:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:20:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:20:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:20:40'!
+ERROR!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:21:07'!
+xxxx
+! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:21:18' overrides: 50665520!
+xxxx
+! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:21:18' overrides: 50665520!
+xxxx
+! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:21:18' overrides: 50665520!
+xxxx
+! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:21:19' overrides: 50665520!
+xxxx
+! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:21:19' prior: 50665520!
+xxxx
+
+	self subclassResponsibility! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:07' prior: 50665486!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 direction xxxx: self ].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:21'!
+xxxx: aRover
+
+	self subclassResponsibility! !
+
+!methodRemoval: CardinalPoint #xxxx stamp: 'Joaco 10/7/2023 16:22:31'!
+xxxx
+
+	self subclassResponsibility!
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:40' overrides: 50665558!
+xxxx: aRover
+
+	self subclassResponsibility! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:40' overrides: 50665558!
+xxxx: aRover
+
+	self subclassResponsibility! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:40' overrides: 50665558!
+xxxx: aRover
+
+	self subclassResponsibility! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:40' overrides: 50665558!
+xxxx: aRover
+
+	self subclassResponsibility! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:22:40' prior: 50665558!
+xxxx: aRover
+
+	self subclassResponsibility! !
+
+!methodRemoval: East #xxxx stamp: 'Joaco 10/7/2023 16:22:43'!
+xxxx
+!
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:23:17' prior: 50665581 overrides: 50665586!
+xxxx: aRover
+
+	aRover movesFowardToTheEast.! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:23:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:23:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:23:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:23:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:23:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:23:23'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:23:23'!
+ERROR!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:23:24'!
+ERROR!
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:23:46' prior: 50665566 overrides: 50665586!
+xxxx: aRover
+
+	aRover movesFowardToTheNorth.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:23:50'!
+ERROR!
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:24:10'!
+movesFowardToTheNorth
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:24:51' prior: 50665628!
+movesFowardToTheNorth
+	position := position x @ (position y + 1).! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:24:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:24:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:25:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:25:02'!
+ERROR!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:25:02'!
+ERROR!
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:25:10'!
+movesFowardToTheEast
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:25:30' prior: 50665664!
+movesFowardToTheEast
+		position := (position x + 1) @ position y! !
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:25:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:25:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:25:39'!
+PASSED!
+
+!methodRemoval: North #xxxx stamp: 'Joaco 10/7/2023 16:25:47'!
+xxxx
+!
+
+!methodRemoval: South #xxxx stamp: 'Joaco 10/7/2023 16:25:53'!
+xxxx
+!
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:26:09' prior: 50665576 overrides: 50665586!
+xxxx: aRover
+
+	aRover movesFowardToTheSouth.! !
+
+!methodRemoval: West #xxxx stamp: 'Joaco 10/7/2023 16:26:14'!
+xxxx
+!
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:26:28' prior: 50665571 overrides: 50665586!
+xxxx: aRover
+
+	aRover movesFowardToTheWest.! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:27:13'!
+test09
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lf'.
+		
+	self assert: (rover isInPosition: (-1@0) pointingTo: #West).! !
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:27:14'!
+ERROR!
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:27:21'!
+movesFowardToTheWest
+	self shouldBeImplemented.! !
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:27:49' prior: 50665724!
+movesFowardToTheWest
+	position := (position x - 1) @ position y.! !
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:27:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:27:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:27:55'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:27:56'!
+PASSED!
+!MarsRover methodsFor: 'process-private' stamp: 'Joaco 10/7/2023 16:28:47'!
+movesFowardToTheSouth
+	position := position x @ (position y - 1).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:30:01'!
+test010
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lb'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #West).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:30:15'!
+test10
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lb'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #West).! !
+
+!methodRemoval: MarsRoverTest #test010 stamp: 'Joaco 10/7/2023 16:30:15'!
+test010
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lb'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #West).!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:30:20'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:36:02' prior: 50665545!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFoward:  position ].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:36:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:36:05'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:36:05'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:36:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:36:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:36:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:36:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:36:05'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:36:06'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:36:06'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:36:07'!
+ERROR!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:36:14'!
+nextPositionFoward: aPosition 
+	self shouldBeImplemented.! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:36:33' prior: 50665830!
+nextPositionFoward: aPosition 
+	self subclassResponsibility.! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:36:48'!
+ERROR!
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:36:56' overrides: 50665836!
+nextPositionFoward: aPosition 
+	self shouldBeImplemented.! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:37:46' prior: 50665844 overrides: 50665836!
+nextPositionFoward: aPosition 
+	^aPosition x @ ( aPosition y + 1)! !
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:37:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:37:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:37:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:37:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:37:53'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:37:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:37:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:37:54'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:37:54'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:37:54'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:37:54'!
+FAILURE!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:38:43'!
+nextPositionFowardFromPosition: aPosition 
+	self subclassResponsibility.! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:38:44' overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	^aPosition x @ ( aPosition y + 1)! !
+
+!methodRemoval: CardinalPoint #nextPositionFoward: stamp: 'Joaco 10/7/2023 16:38:44'!
+nextPositionFoward: aPosition 
+	self subclassResponsibility.!
+
+!methodRemoval: North #nextPositionFoward: stamp: 'Joaco 10/7/2023 16:38:44'!
+nextPositionFoward: aPosition 
+	^aPosition x @ ( aPosition y + 1)!
+
+!methodRemoval: CardinalPoint #xxxx: stamp: 'Joaco 10/7/2023 16:38:55'!
+xxxx: aRover
+
+	self subclassResponsibility!
+
+!methodRemoval: MarsRover #movesFowardToTheWest stamp: 'Joaco 10/7/2023 16:39:05'!
+movesFowardToTheWest
+	position := (position x - 1) @ position y.!
+
+!methodRemoval: MarsRover #movesFowardToTheSouth stamp: 'Joaco 10/7/2023 16:39:07'!
+movesFowardToTheSouth
+	position := position x @ (position y - 1).!
+
+!methodRemoval: MarsRover #movesFowardToTheNorth stamp: 'Joaco 10/7/2023 16:39:08'!
+movesFowardToTheNorth
+	position := position x @ (position y + 1).!
+
+!methodRemoval: MarsRover #movesFowardToTheEast stamp: 'Joaco 10/7/2023 16:39:10'!
+movesFowardToTheEast
+		position := (position x + 1) @ position y!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:39:21'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:39:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:39:21'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:39:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:39:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:39:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:39:22'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:39:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:39:22'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:39:22'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:39:24'!
+ERROR!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:39:55' prior: 50665790!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := position x @ (position y - 1)].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:40:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:40:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:40:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:40:01'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:40:01'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:40:06'!
+ERROR!
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:40:21' overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	self shouldBeImplemented.! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:41:11' prior: 50665993 overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	^aPosition + (1@0).! !
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:41:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:41:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:41:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:41:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:41:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:41:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:41:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:41:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:41:15'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:41:15'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:41:16'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:41:17'!
+ERROR!
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:41:22' overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	self shouldBeImplemented.! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:41:52' prior: 50666033 overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	^aPosition - (1@0).! !
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:42:04'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:42:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:42:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:42:05'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:42:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:42:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:42:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:42:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:42:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:42:06'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:42:06'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:42:07'!
+FAILURE!
+
+!methodRemoval: South #xxxx: stamp: 'Joaco 10/7/2023 16:42:21'!
+xxxx: aRover
+
+	aRover movesFowardToTheSouth.!
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:42:36' prior: 50665888 overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	^aPosition + (0@1)! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:03' overrides: 50665882!
+nextPositionFowardFromPosition: aPosition 
+	^aPosition - (0@1)
+	! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:31' prior: 50665952!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:43:38'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:43:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:43:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:43:39'!
+ERROR!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:43:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:43:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:43:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:43:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:43:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:43:40'!
+ERROR!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:43:42'!
+ERROR!
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:52'!
+nextPositionBackwardsFromPostion: aPosition 
+	self shouldBeImplemented.! !
+!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:58' prior: 50666130!
+nextPositionBackwardsFromPostion: aPosition 
+	self subclassResponsibility .! !
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:44:00'!
+ERROR!
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:44:05' overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	self shouldBeImplemented.! !
+!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:44:29' prior: 50666144 overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	^aPosition - (0@1).! !
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:44:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:44:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:44:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:44:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:44:32'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:44:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:44:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:44:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:44:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:44:33'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:44:33'!
+ERROR!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:44:33'!
+ERROR!
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:44:41' overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	self shouldBeImplemented.! !
+!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:45:30' prior: 50666184 overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	^aPosition + (1@0).! !
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:45:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:45:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:45:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:45:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:45:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:45:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:45:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:45:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:45:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:45:36'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:45:36'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:46:38'!
+test11
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rbrb'.
+		
+	self assert: (rover isInPosition: (-1@1) pointingTo: #South).! !
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:46:40'!
+ERROR!
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:46:46' overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	self shouldBeImplemented.! !
+!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:47:07' prior: 50666232 overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	^aPosition - (1@0).! !
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:47:09'!
+ERROR!
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:47:13' overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	self shouldBeImplemented.! !
+!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:47:44' prior: 50666246 overrides: 50666136!
+nextPositionBackwardsFromPostion: aPosition 
+	^aPosition + (0@1).! !
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:47:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:47:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:47:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:47:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:47:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:47:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:47:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:47:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:47:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:47:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:47:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:47:46'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:48:43'!
+test12
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: '?'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).! !
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:48:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:48:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:48:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:48:45'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:48:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:48:47'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:50:11' prior: 50666089!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		direction := direction toMyRight
+		].
+		
+		"JE Nos dimos cuenta que nos adelantamos, está tendría que haber sido la versión anterior."! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:50:13'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:50:13'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:50:13'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:50:13'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:50:14'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:50:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:50:14'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:50:14'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:50:14'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:50:14'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:50:14'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:50:15'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:50:39'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:50:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:50:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:50:39'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:50:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:50:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:50:40'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:50:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:50:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:50:40'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:50:41'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:50:41'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:50:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:50:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:50:46'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:50:46'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:50:46'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:50:47'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:50:49'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:31' prior: 50666326!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:53:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:53:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:53:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:53:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:53:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:53:11'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 16:54:00'!
+test13
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'frf?flf'.
+		
+	self assert: (rover isInPosition: (1@1) pointingTo: #East).! !
+
+!testRun: #MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 16:54:01'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:54:19' prior: 50666433!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		^self.
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 16:54:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 16:54:29'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:54:30'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 16:54:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 16:54:30'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 16:54:30'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 16:54:30'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 16:54:30'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 16:54:30'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 16:54:30'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 16:54:31'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 16:54:31'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 16:54:31'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:54:40'!
+FAILURE!
+
+direction nextPositionFowardFromPosition:  position!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 16:57:27'!
+FAILURE!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:01:51' prior: 50666487!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]) ifTrue: [^self.]
+		].
+! !
+
+!testRun: #MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 17:01:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 17:01:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 17:01:58'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 17:01:59'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 17:02:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 17:02:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 17:02:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 17:02:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 17:02:09'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 17:02:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 17:02:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 17:02:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 17:02:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 17:02:10'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 17:02:10'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:03:51' prior: 50666541!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]) ifTrue: [.]
+		].
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:04:08'!
+isValidRoverCommand: aCommand
+
+	^ ((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]) ifTrue: [.]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:04:08' prior: 50666625!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		self isValidRoverCommand: aCommand
+		].
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:05:10' prior: 50666652!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		(self isValidRoverCommand: aCommand) ifFalse: [^self].
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:06:14'!
+isInvalidRoverCommand: aCommand
+
+	^ ((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]) ifTrue: [.]! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:06:14' prior: 50666668!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		(self isInvalidRoverCommand: aCommand) ifFalse: [^self].
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!methodRemoval: MarsRover #isValidRoverCommand: stamp: 'Joaco 10/7/2023 17:06:14'!
+isValidRoverCommand: aCommand
+
+	^ ((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]) ifTrue: [.]!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:06:23' prior: 50666685!
+isInvalidRoverCommand: aCommand
+
+	^ ((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]).! !
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:06:32' prior: 50666693!
+process: aCommandList
+	
+	aCommandList do: [ :aCommand |  
+		(self isInvalidRoverCommand: aCommand) ifTrue: [^self].
+		aCommand = $f ifTrue: [	 position := direction nextPositionFowardFromPosition:  position ].
+		aCommand = $b ifTrue: [ position := direction nextPositionBackwardsFromPostion: position ].	
+		aCommand = $l ifTrue: [ direction :=  direction toMyLeft].
+		aCommand = $r ifTrue: [ direction := direction toMyRight ].
+		].
+! !
+
+!testRun: #MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 17:06:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 17:06:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 17:06:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 17:06:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 17:06:35'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 17:06:36'!
+PASSED!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:07:35'!
+test01ProcessEmptyCommandListDoesNothing
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: ''.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test01 stamp: 'Joaco 10/7/2023 17:07:35'!
+test01
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: ''.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:08:07'!
+test02processOneFowardCommandMovesTheRoverOnePositionFoward
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'f'.
+		
+	self assert: (rover isInPosition: (0@1) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test02 stamp: 'Joaco 10/7/2023 17:08:07'!
+test02
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'f'.
+		
+	self assert: (rover isInPosition: (0@1) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:08:49'!
+test03ProcessManyFowardCommandMoverRoverManyPositionsFoward
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test03 stamp: 'Joaco 10/7/2023 17:08:49'!
+test03
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:09:16'!
+test04ProcessOneBackwardsCommandMovesTheRoverOnaPositionBackwards
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test04 stamp: 'Joaco 10/7/2023 17:09:16'!
+test04
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:09:50'!
+test04ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test04ProcessOneBackwardsCommandMovesTheRoverOnaPositionBackwards stamp: 'Joaco 10/7/2023 17:09:50'!
+test04ProcessOneBackwardsCommandMovesTheRoverOnaPositionBackwards
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:09:59'!
+test03ProcessManyCommands
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test03ProcessManyFowardCommandMoverRoverManyPositionsFoward stamp: 'Joaco 10/7/2023 17:09:59'!
+test03ProcessManyFowardCommandMoverRoverManyPositionsFoward
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:11:44'!
+test04ProcessManyBackwardsFowardCommands
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test03ProcessManyCommands stamp: 'Joaco 10/7/2023 17:11:44'!
+test03ProcessManyCommands
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'ff'.
+		
+	self assert: (rover isInPosition: (0@2) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:11:56'!
+test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test04ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'Joaco 10/7/2023 17:11:56'!
+test04ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'b'.
+		
+	self assert: (rover isInPosition: (0@-1) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:12:28'!
+test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'l'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:13:03'!
+test06ProcessTwoLeftCommandRotatesTheRoverToTheLeftTwice
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'll'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+
+!methodRemoval: MarsRoverTest #test05 stamp: 'Joaco 10/7/2023 17:13:03'!
+test05
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'll'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:13:36'!
+test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'r'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #East).! !
+
+!methodRemoval: MarsRoverTest #test06 stamp: 'Joaco 10/7/2023 17:13:36'!
+test06
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'r'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #East).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:14:19'!
+test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rr'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+
+!methodRemoval: MarsRoverTest #test07 stamp: 'Joaco 10/7/2023 17:14:19'!
+test07
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rr'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:14:36'!
+test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'll'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+
+!methodRemoval: MarsRoverTest #test06ProcessTwoLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'Joaco 10/7/2023 17:14:37'!
+test06ProcessTwoLeftCommandRotatesTheRoverToTheLeftTwice
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'll'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #South).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:15:34'!
+test08ProcessRotationAndFowardCommandsMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).! !
+
+!methodRemoval: MarsRoverTest #test08 stamp: 'Joaco 10/7/2023 17:15:34'!
+test08
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:15:45'!
+test09ProcessRotationAndFowardCommandsMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).! !
+
+!methodRemoval: MarsRoverTest #test08ProcessRotationAndFowardCommandsMovesAndRotatesTheRover stamp: 'Joaco 10/7/2023 17:15:45'!
+test08ProcessRotationAndFowardCommandsMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:16:03'!
+test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).! !
+
+!methodRemoval: MarsRoverTest #test09ProcessRotationAndFowardCommandsMovesAndRotatesTheRover stamp: 'Joaco 10/7/2023 17:16:03'!
+test09ProcessRotationAndFowardCommandsMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rf'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #East).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:16:30'!
+test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lf'.
+		
+	self assert: (rover isInPosition: (-1@0) pointingTo: #West).! !
+
+!methodRemoval: MarsRoverTest #test09 stamp: 'Joaco 10/7/2023 17:16:30'!
+test09
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lf'.
+		
+	self assert: (rover isInPosition: (-1@0) pointingTo: #West).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:17:04'!
+test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lb'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #West).! !
+
+!methodRemoval: MarsRoverTest #test10 stamp: 'Joaco 10/7/2023 17:17:05'!
+test10
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'lb'.
+		
+	self assert: (rover isInPosition: (1@0) pointingTo: #West).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:18:04'!
+test12ProcessManyRotationAndMovementCommands
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rbrb'.
+		
+	self assert: (rover isInPosition: (-1@1) pointingTo: #South).! !
+
+!methodRemoval: MarsRoverTest #test11 stamp: 'Joaco 10/7/2023 17:18:05'!
+test11
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'rbrb'.
+		
+	self assert: (rover isInPosition: (-1@1) pointingTo: #South).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:18:23'!
+test12UnknownCommandDoesNothing
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: '?'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test12 stamp: 'Joaco 10/7/2023 17:18:23'!
+test12
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: '?'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:18:49'!
+test14UnknownCommandCutsCommandProcessing
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'frf?flf'.
+		
+	self assert: (rover isInPosition: (1@1) pointingTo: #East).! !
+
+!methodRemoval: MarsRoverTest #test13 stamp: 'Joaco 10/7/2023 17:18:49'!
+test13
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'frf?flf'.
+		
+	self assert: (rover isInPosition: (1@1) pointingTo: #East).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:18:55'!
+test13UnknownCommandDoesNothing
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: '?'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).! !
+
+!methodRemoval: MarsRoverTest #test12UnknownCommandDoesNothing stamp: 'Joaco 10/7/2023 17:18:55'!
+test12UnknownCommandDoesNothing
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: '?'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #North).!
+
+----QUIT----(7 October 2023 17:19:50) CuisUniversity-5981.image priorSource: 10665335!
