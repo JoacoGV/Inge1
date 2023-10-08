@@ -41,14 +41,14 @@ test04ProcessManyBackwardsFowardCommands
 		
 	self assert: (rover isInPosition: (0@2) pointingTo: #North).! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:12:28'!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/8/2023 12:39:39'!
 test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce
 	|rover|
 	
 	rover := MarsRover withPosition: (0@0) andDirection: North new.
 	rover process: 'l'.
 		
-	self assert: (rover isInPosition: (0@0) pointingTo: #South).! !
+	self assert: (rover isInPosition: (0@0) pointingTo: #West).! !
 
 !MarsRoverTest methodsFor: 'tests' stamp: 'Joaco 10/7/2023 17:14:36'!
 test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice
@@ -139,25 +139,25 @@ Object subclass: #CardinalPoint
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:58'!
+!CardinalPoint methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:43:58'!
 nextPositionBackwardsFromPostion: aPosition 
 	self subclassResponsibility .! !
 
-!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:38:43'!
+!CardinalPoint methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:38:43'!
 nextPositionFowardFromPosition: aPosition 
 	self subclassResponsibility.! !
 
-!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:20'!
+!CardinalPoint methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:09:20'!
 toMyLeft
 
 	self subclassResponsibility! !
 
-!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:06'!
+!CardinalPoint methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:17:06'!
 toMyRight
 
 	self subclassResponsibility! !
 
-!CardinalPoint methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:04:08'!
+!CardinalPoint methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:04:08'!
 value
 	^value.! !
 
@@ -169,30 +169,26 @@ CardinalPoint subclass: #East
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:10:17'!
-initialize
-	value := #East.! !
-
-!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:47:07'!
+!East methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:47:07'!
 nextPositionBackwardsFromPostion: aPosition 
 	^aPosition - (1@0).! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:41:11'!
+!East methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:41:11'!
 nextPositionFowardFromPosition: aPosition 
 	^aPosition + (1@0).! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:12:46'!
+!East methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:12:46'!
 toMyLeft
 	^North new.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:34'!
+!East methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:17:34'!
 toMyRight
 	^South new.! !
 
-!East methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:23:17'!
-xxxx: aRover
 
-	aRover movesFowardToTheEast.! !
+!East methodsFor: 'initialization' stamp: 'Joaco 10/7/2023 16:10:17'!
+initialize
+	value := #East.! !
 
 
 !classDefinition: #North category: 'MarsRover'!
@@ -202,26 +198,21 @@ CardinalPoint subclass: #North
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:44:29'!
+!North methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:44:29'!
 nextPositionBackwardsFromPostion: aPosition 
 	^aPosition - (0@1).! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:42:36'!
+!North methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:42:36'!
 nextPositionFowardFromPosition: aPosition 
 	^aPosition + (0@1)! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:39'!
+!North methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:09:39'!
 toMyLeft
 	^West new.! !
 
-!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:43'!
+!North methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:17:43'!
 toMyRight
 	^East new.! !
-
-!North methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:23:46'!
-xxxx: aRover
-
-	aRover movesFowardToTheNorth.! !
 
 
 !North methodsFor: 'initialization' stamp: 'Joaco 10/7/2023 16:06:07'!
@@ -236,24 +227,25 @@ CardinalPoint subclass: #South
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:10:28'!
+!South methodsFor: 'initialization' stamp: 'Joaco 10/7/2023 16:10:28'!
 initialize
 	value := #South.! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:47:44'!
+
+!South methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:47:44'!
 nextPositionBackwardsFromPostion: aPosition 
 	^aPosition + (0@1).! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:43:03'!
+!South methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:43:03'!
 nextPositionFowardFromPosition: aPosition 
 	^aPosition - (0@1)
 	! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:12:29'!
+!South methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:12:29'!
 toMyLeft
 	^East new.! !
 
-!South methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:17:53'!
+!South methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:17:53'!
 toMyRight
 	^West new.! !
 
@@ -265,30 +257,26 @@ CardinalPoint subclass: #West
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:10:38'!
+!West methodsFor: 'initialization' stamp: 'Joaco 10/7/2023 16:10:38'!
 initialize
 	value := #West.! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:45:30'!
+
+!West methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:45:30'!
 nextPositionBackwardsFromPostion: aPosition 
 	^aPosition + (1@0).! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:41:52'!
+!West methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:41:52'!
 nextPositionFowardFromPosition: aPosition 
 	^aPosition - (1@0).! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:09:50'!
+!West methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:09:50'!
 toMyLeft
 	^South new.! !
 
-!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:18:12'!
+!West methodsFor: 'accessing' stamp: 'Joaco 10/7/2023 16:18:12'!
 toMyRight
 	^North new.! !
-
-!West methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:26:28'!
-xxxx: aRover
-
-	aRover movesFowardToTheWest.! !
 
 
 !classDefinition: #MarsRover category: 'MarsRover'!
@@ -298,24 +286,17 @@ Object subclass: #MarsRover
 	poolDictionaries: ''
 	category: 'MarsRover'!
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AB 10/5/2023 20:36:24'!
-direction
-	^#North! !
-
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 16:04:47'!
+!MarsRover methodsFor: 'comparing' stamp: 'Joaco 10/7/2023 16:04:47'!
 isInPosition: aPosition pointingTo: aDirection 
 	^position = aPosition and: [ direction value = aDirection ].! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:06:23'!
+!MarsRover methodsFor: 'comparing' stamp: 'Joaco 10/7/2023 17:06:23'!
 isInvalidRoverCommand: aCommand
 
 	^ ((aCommand = $f) not and: [(aCommand = $b) not and: [(aCommand = $l) not and: [ (aCommand = $r) not]]]).! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'AB 10/5/2023 20:35:21'!
-position
-	^(0@0).! !
 
-!MarsRover methodsFor: 'as yet unclassified' stamp: 'Joaco 10/7/2023 17:06:32'!
+!MarsRover methodsFor: 'Procesing' stamp: 'Joaco 10/7/2023 17:06:32'!
 process: aCommandList
 	
 	aCommandList do: [ :aCommand |  

@@ -1,0 +1,483 @@
+
+
+----QUIT----(24 July 2023 16:04:14) CuisUniversity-5946.image priorSource: 5544423!
+
+----STARTUP---- (24 July 2023 16:04:15) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5946.image!
+
+
+----QUIT----(24 July 2023 16:04:15) CuisUniversity-5946.image priorSource: 10025065!
+
+----STARTUP---- (8 October 2023 12:37:28) as C:\Users\Antonela\Desktop\windows64\windows64\CuisUniversity-5946.image!
+
+
+----End fileIn of D:\Antonela\Descargas\MarsRover.st----!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:38:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:38:07'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:38:07'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:38:17'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:38:17'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:38:17'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:38:34'!
+FAILURE!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:38:34'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:38:34'!
+FAILURE!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/8/2023 12:39:39' prior: 50644996!
+test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce
+	|rover|
+	
+	rover := MarsRover withPosition: (0@0) andDirection: North new.
+	rover process: 'l'.
+		
+	self assert: (rover isInPosition: (0@0) pointingTo: #West).! !
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:39:44'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AB 10/8/2023 12:41:58' prior: 50645293!
+direction
+	^direction! !
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:42:00'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:42:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:42:01'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:42:01'!
+PASSED!
+!MarsRover methodsFor: 'as yet unclassified' stamp: 'AB 10/8/2023 12:42:16' prior: 50645311!
+position
+	^position .! !
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:42:18'!
+PASSED!
+
+!methodRemoval: North #xxxx: stamp: 'AB 10/8/2023 12:42:58'!
+xxxx: aRover
+
+	aRover movesFowardToTheNorth.!
+
+!methodRemoval: East #xxxx: stamp: 'AB 10/8/2023 12:43:01'!
+xxxx: aRover
+
+	aRover movesFowardToTheEast.!
+
+!methodRemoval: West #xxxx: stamp: 'AB 10/8/2023 12:43:04'!
+xxxx: aRover
+
+	aRover movesFowardToTheWest.!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:43:08'!
+PASSED!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:45:25'!
+PASSED!
+
+!methodRemoval: MarsRover #direction stamp: 'AB 10/8/2023 12:49:40'!
+direction
+	^direction!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:49:41'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:49:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:49:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:49:42'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:49:42'!
+PASSED!
+
+!methodRemoval: MarsRover #position stamp: 'AB 10/8/2023 12:49:49'!
+position
+	^position .!
+
+!testRun: #MarsRoverTest #test01ProcessEmptyCommandListDoesNothing stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test02processOneFowardCommandMovesTheRoverOnePositionFoward stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test03ProcessOneBackwardsCommandMovesTheRoverOnePositionBackwards stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test04ProcessManyBackwardsFowardCommands stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test05ProcessOneLeftCommandRotatesTheRoverToTheLeftOnce stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test06ProcessManyLeftCommandRotatesTheRoverToTheLeftTwice stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test07ProcessOneRightCommandRotatesTheRoverToTheRightOnce stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test08ProcessManyRightCommandRotatesTheRoverToTheLeftMany stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test09ProcessRightAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test10ProcessLeftAndFowardCommandsMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test11ProcessLeftAndBackwardsCommandMovesAndRotatesTheRover stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test12ProcessManyRotationAndMovementCommands stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test13UnknownCommandDoesNothing stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+!testRun: #MarsRoverTest #test14UnknownCommandCutsCommandProcessing stamp: 'AB 10/8/2023 12:49:51'!
+PASSED!
+
+----SNAPSHOT----(8 October 2023 12:50:57) CuisUniversity-5946.image priorSource: 10025288!
+
+----QUIT----(8 October 2023 12:51:01) CuisUniversity-5946.image priorSource: 10056665!
