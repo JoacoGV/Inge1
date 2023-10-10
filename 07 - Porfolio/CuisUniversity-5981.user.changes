@@ -1,0 +1,717 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (9 October 2023 20:25:54) as /home/clinux01/Documentos/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/clinux01/Portfolio-Ejercicio.st----!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:40:15'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:40:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:40:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:40:19'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:40:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:40:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:40:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:40:19'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:40:19'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:42:07'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:42:07'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:42:07'!
+FAILURE!
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:47:30' prior: 50650486!
+initializeFor: aValue
+
+	value := 0 - aValue.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:47:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:47:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:47:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:47:33'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:47:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:47:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:47:34'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:47:34'!
+FAILURE!
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:48:08' prior: 50650612!
+initializeFor: aValue
+
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:17' prior: 50650535!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:36' prior: 50650652!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction value.
+		
+		] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:51:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:51:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:51:39'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:51:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:51:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:51:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:51:39'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:51:39'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:52:29' prior: 50650660!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			]
+		
+		] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:52:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:52:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:52:33'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:52:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:52:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:52:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:52:33'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:52:33'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:56:54' prior: 50650699!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:56:59'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:57:08'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:57:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:57:08'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:58:28' prior: 50650740!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				^aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				^aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:58:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:58:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:58:32'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:58:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:58:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:58:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:58:32'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:58:32'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:59:23'!
+FAILURE!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50650784!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 20:59:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:59:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:59:45'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 20:59:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 20:59:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 20:59:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 20:59:45'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 20:59:45'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:00:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:00:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:00:25'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:00:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:00:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:00:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:00:25'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:00:25'!
+ERROR!
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:01:31' prior: 50650647!
+initializeFor: aValue
+
+	value := aValue negated.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:36' prior: 50650491 overrides: 50650420!
+value
+
+	^ value negated! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:41' prior: 50650905 overrides: 50650420!
+value
+
+	^ value negated.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:01:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:01:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:01:42'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:01:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:01:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:01:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:01:42'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:01:42'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32' prior: 50650829!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:01:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:01:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:01:57'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:01:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:01:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:01:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:01:57'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:01:57'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:02:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:02:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:02:08'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:02:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:02:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:02:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:02:08'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:02:08'!
+FAILURE!
+
+Withdraw for: 50!
+
+w := Withdraw for: 50!
+
+w := Withdraw for: 50!
+
+w value!
+
+50 negated!
+
+(Withdraw for: 50) value !
+
+(Withdraw for: 50) value !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:17:01' prior: 50650900!
+initializeFor: aValue
+
+	value := aValue.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:17:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:17:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:17:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:17:04'!
+FAILURE!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:17:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:17:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:17:04'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:17:04'!
+FAILURE!
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:17:20' prior: 50650909 overrides: 50650420!
+value
+
+	^ value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50650943!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:17:53' prior: 50651053!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ]ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:17:53'!
+PASSED!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:18:23' prior: 50651064!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ] ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:22:09' prior: 50651100!
+balance
+	
+	|balance| 
+	
+	balance := 0.
+	
+	transactions do: [ :aTransaction | 
+		balance := aTransaction xxxx: balance.
+		] .
+	
+	^balance! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:22:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:22:12'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:22:12'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:22:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:22:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:22:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:22:12'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:22:13'!
+ERROR!
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:30'!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:36' prior: 50651147!
+xxxx: balance 
+	self subclassResponsibility .! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:22:38'!
+ERROR!
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:46' overrides: 50651152!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:13' prior: 50651161 overrides: 50651152!
+xxxx: aBalance 
+	^aBalance +  value.! !
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:23:16'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:23:17'!
+ERROR!
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:21' overrides: 50651152!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:44' prior: 50651178 overrides: 50651152!
+xxxx: aBalance 
+	^aBalance - value.! !
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:23:46'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/9/2023 21:23:48'!
+PASSED!
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25'!
+processOn: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' overrides: 50651218!
+processOn: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' overrides: 50651218!
+processOn: aBalance 
+	^aBalance - value.! !
+
+!methodRemoval: AccountTransaction #xxxx: stamp: 'jgv 10/9/2023 21:27:25'!
+xxxx: balance 
+	self subclassResponsibility .!
+
+!methodRemoval: Deposit #xxxx: stamp: 'jgv 10/9/2023 21:27:25'!
+xxxx: aBalance 
+	^aBalance +  value.!
+
+!methodRemoval: Withdraw #xxxx: stamp: 'jgv 10/9/2023 21:27:25'!
+xxxx: aBalance 
+	^aBalance - value.!
+
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/9/2023 21:28:51'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'no messages' stamp: 'jgv 10/9/2023 21:29:04'!
+test01
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/9/2023 21:49:31'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:49:19' prior: 50651254!
+test01
+	|portfolio| 
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/9/2023 21:49:36'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:49:49'!
+balance
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/9/2023 21:50:05'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:01' prior: 50651273!
+balance
+	^ balance! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:22' prior: 50651285!
+balance
+	^ 0.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/9/2023 21:51:09'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:52:07'!
+test02
+	|portfolio|
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: ReceptiveAccount new.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:54:04' prior: 50651294!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	account register:  AccountTransaction new.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:41' prior: 50651300!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:45' prior: 50651308!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: account.! !
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/9/2023 21:55:47'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:57:46' prior: 50651316!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Withdraw  register: 50 on: account.
+		
+	portfolio add: account.! !
