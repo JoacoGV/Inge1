@@ -1,0 +1,2446 @@
+
+
+----STARTUP---- (11 October 2023 18:25:47) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-5981.image!
+
+
+----SNAPSHOT----(11 October 2023 18:25:59) CuisUniversity-Portfolio.image priorSource: 10197292!
+
+----STARTUP---- (11 October 2023 18:27:22) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio.image!
+
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:44'!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48'!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52'!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32'!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46'!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53'!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 200.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01'!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+! !
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' overrides: 16902254!
+value 
+
+	self subclassResponsibility ! !
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/17/2019 03:22:00'!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' overrides: 50651436!
+value
+
+	^ value! !
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46'!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' overrides: 50651436!
+value
+
+	^ value! !
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33'!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56' overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32'!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43'!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:47:30' prior: 50651511!
+initializeFor: aValue
+
+	value := 0 - aValue.! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:48:08' prior: 50651575!
+initializeFor: aValue
+
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:17' prior: 50651564!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:36' prior: 50651585!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction value.
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:52:29' prior: 50651593!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:56:54' prior: 50651602!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:58:28' prior: 50651612!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				^aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				^aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50651622!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:01:31' prior: 50651580!
+initializeFor: aValue
+
+	value := aValue negated.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:36' prior: 50651516 overrides: 50651436!
+value
+
+	^ value negated! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:41' prior: 50651649 overrides: 50651436!
+value
+
+	^ value negated.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32' prior: 50651633!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:17:01' prior: 50651644!
+initializeFor: aValue
+
+	value := aValue.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:17:20' prior: 50651653 overrides: 50651436!
+value
+
+	^ value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50651657!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:17:53' prior: 50651672!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ]ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:18:23' prior: 50651683!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ] ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:22:09' prior: 50651692!
+balance
+	
+	|balance| 
+	
+	balance := 0.
+	
+	transactions do: [ :aTransaction | 
+		balance := aTransaction xxxx: balance.
+		] .
+	
+	^balance! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:30'!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:36' prior: 50651709!
+xxxx: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:46' overrides: 50651714!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:13' prior: 50651719 overrides: 50651714!
+xxxx: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:21' overrides: 50651714!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:44' prior: 50651729 overrides: 50651714!
+xxxx: aBalance 
+	^aBalance - value.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25'!
+processOn: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' overrides: 50651738!
+processOn: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' overrides: 50651738!
+processOn: aBalance 
+	^aBalance - value.! !
+
+!methodRemoval: AccountTransaction #xxxx: stamp: 'jgv 10/11/2023 18:30:12'!
+xxxx: balance 
+	self subclassResponsibility .!
+
+!methodRemoval: Deposit #xxxx: stamp: 'jgv 10/11/2023 18:30:12'!
+xxxx: aBalance 
+	^aBalance +  value.!
+
+!methodRemoval: Withdraw #xxxx: stamp: 'jgv 10/11/2023 18:30:12'!
+xxxx: aBalance 
+	^aBalance - value.!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'no messages' stamp: 'jgv 10/9/2023 21:29:04'!
+test01
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:49:19' prior: 50651777!
+test01
+	|portfolio| 
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:49:49'!
+balance
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:12'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:01' prior: 50651794!
+balance
+	^ balance! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:22' prior: 50651806!
+balance
+	^ 0.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:52:07'!
+test02
+	|portfolio|
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: ReceptiveAccount new.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:54:04' prior: 50651813!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	account register:  AccountTransaction new.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:41' prior: 50651819!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:45' prior: 50651827!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: account.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:57:46' prior: 50651835!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Withdraw  register: 50 on: account.
+		
+	portfolio add: account.! !
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:44' prior: 50651348!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48' prior: 50651355!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52' prior: 50651364!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32' prior: 50651374!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46' prior: 50651384!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53' prior: 50651397!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 200.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01' prior: 50651409!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+! !
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' prior: 50651436 overrides: 16902254!
+value 
+
+	self subclassResponsibility ! !
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/17/2019 03:22:00' prior: 50651451!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45' prior: 50651473!
+initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' prior: 50651478 overrides: 50651951!
+value
+
+	^ value! !
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38' prior: 50651491!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46' prior: 50651663!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' prior: 50651668 overrides: 50651951!
+value
+
+	^ value! !
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33' prior: 50651529!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56' prior: 50651550 overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' prior: 50651555!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' prior: 50651560!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32' prior: 50651701!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43' prior: 50651569!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:47:30' prior: 50652027!
+initializeFor: aValue
+
+	value := 0 - aValue.! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:48:08' prior: 50652094!
+initializeFor: aValue
+
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:17' prior: 50652082!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:36' prior: 50652104!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction value.
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:52:29' prior: 50652112!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:56:54' prior: 50652121!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:58:28' prior: 50652131!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				^aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				^aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50652141!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:01:31' prior: 50652099!
+initializeFor: aValue
+
+	value := aValue negated.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:36' prior: 50652032 overrides: 50651951!
+value
+
+	^ value negated! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:41' prior: 50652168 overrides: 50651951!
+value
+
+	^ value negated.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32' prior: 50652152!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:17:01' prior: 50652163!
+initializeFor: aValue
+
+	value := aValue.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:17:20' prior: 50652172 overrides: 50651951!
+value
+
+	^ value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50652176!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:17:53' prior: 50652191!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ]ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:18:23' prior: 50652202!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ] ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:22:09' prior: 50652211!
+balance
+	
+	|balance| 
+	
+	balance := 0.
+	
+	transactions do: [ :aTransaction | 
+		balance := aTransaction xxxx: balance.
+		] .
+	
+	^balance! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:30'!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:36' prior: 50652228!
+xxxx: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:46' overrides: 50652233!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:13' prior: 50652238 overrides: 50652233!
+xxxx: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:21' overrides: 50652233!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:44' prior: 50652248 overrides: 50652233!
+xxxx: aBalance 
+	^aBalance - value.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' prior: 50651738!
+processOn: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' prior: 50651743 overrides: 50652258!
+processOn: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' prior: 50651748 overrides: 50652258!
+processOn: aBalance 
+	^aBalance - value.! !
+
+!methodRemoval: AccountTransaction #xxxx: stamp: 'jgv 10/11/2023 18:30:18'!
+xxxx: balance 
+	self subclassResponsibility .!
+
+!methodRemoval: Deposit #xxxx: stamp: 'jgv 10/11/2023 18:30:18'!
+xxxx: aBalance 
+	^aBalance +  value.!
+
+!methodRemoval: Withdraw #xxxx: stamp: 'jgv 10/11/2023 18:30:18'!
+xxxx: aBalance 
+	^aBalance - value.!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'no messages' stamp: 'jgv 10/9/2023 21:29:04' prior: 50651788!
+test01
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:49:19' prior: 50652299!
+test01
+	|portfolio| 
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:49:49' prior: 50651810!
+balance
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:18'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:01' prior: 50652316!
+balance
+	^ balance! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:22' prior: 50652328!
+balance
+	^ 0.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:52:07' prior: 50651843!
+test02
+	|portfolio|
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: ReceptiveAccount new.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:54:04' prior: 50652336!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	account register:  AccountTransaction new.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:41' prior: 50652342!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:45' prior: 50652350!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: account.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:57:46' prior: 50652358!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Withdraw  register: 50 on: account.
+		
+	portfolio add: account.! !
+
+!classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:44' prior: 50651861!
+test01ReceptiveAccountHaveZeroAsBalanceWhenCreated 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+
+	self assert: 0 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:48' prior: 50651869!
+test02DepositIncreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount  new.
+	Deposit register: 100 on: account.
+		
+	self assert: 100 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:13:52' prior: 50651878!
+test03WithdrawDecreasesBalanceOnTransactionValue 
+
+	| account |
+	
+	account := ReceptiveAccount new.
+	Deposit register: 100 on: account.
+	Withdraw register: 50 on: account.
+		
+	self assert: 50 equals: account balance.
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:32' prior: 50651888!
+test04WithdrawValueMustBePositive 
+
+	| account withdrawValue |
+	
+	account := ReceptiveAccount new.
+	withdrawValue := 50.
+	
+	self assert: withdrawValue equals: (Withdraw register: withdrawValue on: account) value
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'HAW 5/23/2019 15:20:46' prior: 50651898!
+test05ReceptiveAccountKnowsRegisteredTransactions 
+
+	| account deposit withdraw |
+	
+	account := ReceptiveAccount new.
+	deposit := Deposit register: 100 on: account.
+	withdraw := Withdraw register: 50 on: account.
+		
+	self assert: (account hasRegistered: deposit).
+	self assert: (account hasRegistered: withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 5/17/2021 17:29:53' prior: 50651911!
+test06ReceptiveAccountDoNotKnowNotRegisteredTransactions
+
+	| deposit withdraw account |
+	
+	account := ReceptiveAccount new.
+	deposit :=  Deposit for: 200.
+	withdraw := Withdraw for: 50.
+		
+	self deny: (account hasRegistered: deposit).
+	self deny: (account hasRegistered:withdraw).
+! !
+!ReceptiveAccountTest methodsFor: 'tests' stamp: 'NR 11/2/2020 17:14:01' prior: 50651923!
+test07AccountKnowsItsTransactions 
+
+	| account1 deposit1 |
+	
+	account1 := ReceptiveAccount new.
+	
+	deposit1 := Deposit register: 50 on: account1.
+		
+	self assert: 1 equals: account1 transactions size.
+	self assert: (account1 transactions includes: deposit1).
+! !
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!AccountTransaction methodsFor: 'value' stamp: 'HernanWilkinson 9/12/2011 12:25' prior: 50651951 overrides: 16902254!
+value 
+
+	self subclassResponsibility ! !
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+AccountTransaction class
+	instanceVariableNames: ''!
+
+!classDefinition: 'AccountTransaction class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+AccountTransaction class
+	instanceVariableNames: ''!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/17/2019 03:22:00' prior: 50651966!
+register: aValue on: account
+
+	| transaction |
+	
+	transaction := self for: aValue.
+	account register: transaction.
+		
+	^ transaction! !
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Deposit category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Deposit methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:45' prior: 50651989!
+initializeFor: aValue
+
+	value := aValue ! !
+!Deposit methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:38' prior: 50651994 overrides: 50652474!
+value
+
+	^ value! !
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Deposit class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Deposit class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Deposit class
+	instanceVariableNames: ''!
+!Deposit class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:38' prior: 50652007!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Withdraw category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Withdraw methodsFor: 'initialization' stamp: 'HernanWilkinson 7/13/2011 18:46' prior: 50652182!
+initializeFor: aValue
+
+	value := aValue ! !
+!Withdraw methodsFor: 'value' stamp: 'HernanWilkinson 7/13/2011 18:33' prior: 50652187 overrides: 50652474!
+value
+
+	^ value! !
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Withdraw class
+	instanceVariableNames: ''!
+
+!classDefinition: 'Withdraw class' category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Withdraw class
+	instanceVariableNames: ''!
+!Withdraw class methodsFor: 'instance creation' stamp: 'HernanWilkinson 7/13/2011 18:33' prior: 50652045!
+for: aValue
+
+	^ self new initializeFor: aValue ! !
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:19'!
+Object subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'NR 10/17/2019 15:06:56' prior: 50652067 overrides: 16920235!
+initialize
+
+	transactions := OrderedCollection new.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' prior: 50652072!
+register: aTransaction
+
+	transactions add: aTransaction 
+! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37' prior: 50652078!
+transactions 
+
+	^ transactions copy! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32' prior: 50652220!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'testing' stamp: 'NR 10/17/2019 03:28:43' prior: 50652088!
+hasRegistered: aTransaction
+
+	^ transactions includes: aTransaction 
+! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:47:30' prior: 50652550!
+initializeFor: aValue
+
+	value := 0 - aValue.! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 20:48:08' prior: 50652617!
+initializeFor: aValue
+
+	value := aValue.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:17' prior: 50652605!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:51:36' prior: 50652627!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction value.
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:52:29' prior: 50652635!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			]
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:56:54' prior: 50652644!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		aTransaction class = Withdraw ifTrue: [
+				aTransaction value negated.
+			 ].
+		aTransaction class = Deposit ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:58:28' prior: 50652654!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				^aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				^aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50652664!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:01:31' prior: 50652622!
+initializeFor: aValue
+
+	value := aValue negated.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:36' prior: 50652555 overrides: 50652474!
+value
+
+	^ value negated! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:01:41' prior: 50652691 overrides: 50652474!
+value
+
+	^ value negated.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/23/2019 15:19:32' prior: 50652675!
+balance
+
+	^transactions sum: [ :aTransaction | aTransaction value ] ifEmpty: [ 0 ]! !
+!Withdraw methodsFor: 'initialization' stamp: 'jgv 10/9/2023 21:17:01' prior: 50652686!
+initializeFor: aValue
+
+	value := aValue.! !
+!Withdraw methodsFor: 'value' stamp: 'jgv 10/9/2023 21:17:20' prior: 50652695 overrides: 50652474!
+value
+
+	^ value.! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 20:59:41' prior: 50652699!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ].
+		(aTransaction isKindOf: Deposit) ifTrue: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:17:53' prior: 50652714!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ]ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:18:23' prior: 50652725!
+balance
+
+	^transactions sum: [ :aTransaction | 
+		(aTransaction isKindOf: Withdraw ) ifTrue: [
+				aTransaction value negated.
+			 ] ifFalse: [
+				aTransaction value.
+			].
+		
+		] ifEmpty: [ 0 ]! !
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:22:09' prior: 50652734!
+balance
+	
+	|balance| 
+	
+	balance := 0.
+	
+	transactions do: [ :aTransaction | 
+		balance := aTransaction xxxx: balance.
+		] .
+	
+	^balance! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:30'!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:36' prior: 50652751!
+xxxx: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:22:46' overrides: 50652756!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:13' prior: 50652761 overrides: 50652756!
+xxxx: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:21' overrides: 50652756!
+xxxx: balance 
+	self shouldBeImplemented.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:23:44' prior: 50652771 overrides: 50652756!
+xxxx: aBalance 
+	^aBalance - value.! !
+!AccountTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' prior: 50652258!
+processOn: balance 
+	self subclassResponsibility .! !
+!Deposit methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' prior: 50652264 overrides: 50652781!
+processOn: aBalance 
+	^aBalance +  value.! !
+!Withdraw methodsFor: 'as yet unclassified' stamp: 'jgv 10/9/2023 21:27:25' prior: 50652269 overrides: 50652781!
+processOn: aBalance 
+	^aBalance - value.! !
+
+!methodRemoval: AccountTransaction #xxxx: stamp: 'jgv 10/11/2023 18:30:20'!
+xxxx: balance 
+	self subclassResponsibility .!
+
+!methodRemoval: Deposit #xxxx: stamp: 'jgv 10/11/2023 18:30:20'!
+xxxx: aBalance 
+	^aBalance +  value.!
+
+!methodRemoval: Withdraw #xxxx: stamp: 'jgv 10/11/2023 18:30:20'!
+xxxx: aBalance 
+	^aBalance - value.!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:20'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:20'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'no messages' stamp: 'jgv 10/9/2023 21:29:04' prior: 50652310!
+test01
+	! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:20'!
+Object subclass: #Portfolio
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:49:19' prior: 50652822!
+test01
+	|portfolio| 
+	
+	portfolio := Portfolio new.
+	
+	self assert: portfolio balance equals: 0.! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:49:49' prior: 50652332!
+balance
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:30:20'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:01' prior: 50652839!
+balance
+	^ balance! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:22' prior: 50652851!
+balance
+	^ 0.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:52:07' prior: 50652366!
+test02
+	|portfolio|
+	
+	portfolio := Portfolio new.
+	
+	portfolio add: ReceptiveAccount new.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:54:04' prior: 50652859!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	account register:  AccountTransaction new.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:41' prior: 50652865!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: 0! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:55:45' prior: 50652873!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	AccountTransaction register: 50 on: account.
+	
+	portfolio add: account.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:57:46' prior: 50652881!
+test02
+	|portfolio account|
+	
+	portfolio := Portfolio new.
+	
+	account := ReceptiveAccount new.
+	
+	Deposit register: 100 on: account.
+	Withdraw  register: 50 on: account.
+		
+	portfolio add: account.! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/11/2023 18:30:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:30:43'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:30:43'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/11/2023 18:30:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/11/2023 18:30:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/11/2023 18:30:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/11/2023 18:30:43'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/11/2023 18:31:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:31:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:31:23'!
+ERROR!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/11/2023 18:31:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/11/2023 18:31:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/11/2023 18:31:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/11/2023 18:31:23'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:31:26'!
+ERROR!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:31:53' prior: 50652743!
+balance
+	
+	|balance| 
+	
+	balance := 0.
+	
+	transactions do: [ :aTransaction | 
+		balance := aTransaction processOn: balance.
+		] .
+	
+	^balance! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/11/2023 18:31:56'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:35:48' prior: 50652889!
+test02
+	|portfolio anAccount anotherAccount|
+	
+	portfolio := Portfolio new.
+	
+	anAccount := ReceptiveAccount new.
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw  register: 50 on: anAccount.
+	
+	Deposit register: 200 on: anotherAccount.
+	 	
+	portfolio addAccount: anAccount.! !
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:35:50'!
+ERROR!
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/11/2023 18:36:00'!
+addAccount: anAccount 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:36:14'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/11/2023 18:36:12' prior: 50653005!
+addAccount: anAccount 
+	accounts add: anAccount. ! !
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:36:17'!
+ERROR!
+!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/11/2023 18:36:43' overrides: 16920235!
+initialize
+	accounts := OrderedCollection new.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:36:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:36:46'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:37:09' prior: 50652990!
+test02
+	|portfolio anAccount anotherAccount|
+	
+	portfolio := Portfolio new.
+	
+	anAccount := ReceptiveAccount new.
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw  register: 50 on: anAccount.
+	
+	Deposit register: 200 on: anotherAccount.
+	 	
+	portfolio addAccount: anAccount.
+	
+	self assert: 250 equals: portfolio balance.! !
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:37:11'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:38:03' prior: 50652855!
+balance
+	^ accounts sum:  [:anAccount | anAccount balance ] ifEmpty: 0.! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:38:10' prior: 50653050!
+balance
+	^ accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [^0].! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:38:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:38:11'!
+FAILURE!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:38:11'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:38:35' prior: 50653055!
+balance
+	^ accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [0].! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:38:37'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:38:37'!
+FAILURE!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:38:37'!
+FAILURE!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:38:58' prior: 50653033!
+test02
+	|portfolio anAccount anotherAccount|
+	
+	portfolio := Portfolio new.
+	
+	anAccount := ReceptiveAccount new.
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw  register: 50 on: anAccount.
+	
+	Deposit register: 200 on: anotherAccount.
+	 	
+	portfolio addAccount: anAccount.
+	portfolio addAccount: anotherAccount.
+	
+	self assert: 250 equals: portfolio balance.! !
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:39:00'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:39:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:39:04'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:39:10'!
+test03
+	|portfolio anAccount anotherAccount|
+	
+	portfolio := Portfolio new.
+	
+	anAccount := ReceptiveAccount new.
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw  register: 50 on: anAccount.
+	
+	Deposit register: 200 on: anotherAccount.
+	 	
+	portfolio addAccount: anAccount.
+	portfolio addAccount: anotherAccount.
+	
+	self assert: 250 equals: portfolio balance.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:39:40'!
+setup
+	! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:40:46' prior: 50653118!
+setup
+	|portfolio anAccount anotherAccount|
+	
+	portfolio := Portfolio new.
+	
+	anAccount := ReceptiveAccount new.
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw  register: 50 on: anAccount.
+	
+	Deposit register: 200 on: anotherAccount.! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:43:40'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:43:41'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:43:42'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:43:39' prior: 50653121!
+setup
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+	Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	Deposit register: 200 on: accountTwo.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:44:05' prior: 50652833!
+test01	
+	self assert: aPortfolio balance equals: 0.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:44:51' prior: 50653081!
+test02
+
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo .
+	
+	self assert: 250 equals: aPortfolio balance.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:45:25' prior: 50653103!
+test03	.
+	
+	self assert: 250 equals: aPortfolio balance.! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:46:26'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:46:25' prior: 50653157!
+setup
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+	accountThree := ReceptiveAccount new.
+	
+	Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	Deposit register: 200 on: accountTwo.
+	
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:46:59'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:46:57' prior: 50653180!
+test03	.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: 250 equals: aPortfolio balance.
+	! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:47:43' prior: 50653194!
+setup
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:48:04' prior: 50653218!
+test03	.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: 500 equals: aPortfolio balance.
+	! !
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:48:15'!
+ERROR!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:49:10'!
+Object subclass: #Portfolio
+	instanceVariableNames: 'balance accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'portfolios' stamp: 'jgv 10/11/2023 18:49:09'!
+addPortfolio: aPortfolio
+	portfolios add: aPortfolio.! !
+!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/11/2023 18:49:26' prior: 50653024 overrides: 16920235!
+initialize
+	accounts := OrderedCollection new.
+	portfolios  := OrderedCollection new.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:49:33'!
+ERROR!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:49:33'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:49:33'!
+ERROR!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:49:37'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:50:11' overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+
+!methodRemoval: PorfolioTest #setup stamp: 'jgv 10/11/2023 18:50:11'!
+setup
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:50:13'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:50:13'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:50:13'!
+FAILURE!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:50:13'!
+FAILURE!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:50:57' prior: 50653173!
+test02
+
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	self assert: 250 equals: aPortfolio balance.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:51:09' prior: 50653241!
+test03	.
+	
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: 500 equals: aPortfolio balance.
+	! !
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:51:11'!
+FAILURE!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:52:19' prior: 50653068!
+balance
+	^ accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [0] + (portfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0]).! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:52:23'!
+ERROR!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:52:23'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:52:23'!
+ERROR!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:52:30'!
+ERROR!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:52:44'!
+ERROR!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:52:44'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:52:44'!
+ERROR!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:52:46'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:53:02' prior: 50653339!
+balance
+	^ (accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [0])+ (portfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0]).! !
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:53:08' prior: 50653365!
+balance
+	^ (accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [0]) + (portfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0]).! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:53:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:53:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:53:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:53:12'!
+PASSED!
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/11/2023 18:57:23'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:57:20'!
+test04.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:57:39' prior: 50653399!
+test04.
+	
+	self deny: (aPortfolio hasRegistered: transactionOne).
+	! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:57:51' prior: 50653278 overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	transactionOne := Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/11/2023 18:58:05'!
+ERROR!
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/11/2023 18:58:23'!
+hasRegistered: aTransactionOne 
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/11/2023 18:58:34' prior: 50653430!
+hasRegistered: aTransactionOne 
+	^false.! !
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/11/2023 18:58:35'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/11/2023 18:58:35'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/11/2023 18:58:35'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/11/2023 18:58:35'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/11/2023 18:58:35'!
+PASSED!
+
+----QUIT----(11 October 2023 18:58:43) CuisUniversity-Portfolio.image priorSource: 10197502!
+
+----STARTUP---- (12 October 2023 16:17:11) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio.image!
+
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:18:03'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/12/2023 16:18:03'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/12/2023 16:18:03'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/12/2023 16:18:03'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:18:03'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:21:52'!
+test05
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:22:17' prior: 50653469!
+test05
+	aPortfolio addAccount: accountOne .
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/12/2023 16:22:48'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:22:47' prior: 50653474!
+test05
+	aPortfolio addAccount: accountOne .
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:23:17' prior: 50653410 overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	transactionOne := Deposit register: 100 on: accountOne.
+	Withdraw  register: 50 on: accountOne.
+	
+	transactionTwo := Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/12/2023 16:23:39'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo transactionThree'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:23:38' prior: 50653500 overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	transactionOne := Deposit register: 100 on: accountOne.
+	transactionTwo := Withdraw  register: 50 on: accountOne.
+	
+	transactionThree := Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:23:55' prior: 50653491!
+test05
+	aPortfolio addAccount: accountOne .
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:24:10' prior: 50653549!
+test05
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).! !
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:24:13'!
+FAILURE!
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:25:34' prior: 50653435!
+hasRegistered: aTransactionOne 
+	^accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransactionOne ].! !
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:25:39' prior: 50653573!
+hasRegistered: aTransaction 
+	^accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ].! !
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:25:45'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/12/2023 16:25:45'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/12/2023 16:25:45'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/12/2023 16:25:45'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:25:45'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:25:45'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:15'!
+test06
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/12/2023 16:26:32'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo transactionThree transactionFour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:31' prior: 50653600!
+test06
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).
+	self assert: (aPortfolio hasRegistered: transactionFour).! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:56' prior: 50653530 overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	transactionOne := Deposit register: 100 on: accountOne.
+	transactionTwo := Withdraw  register: 50 on: accountOne.
+	
+	transactionThree := Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	transactionFour := Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:27:31'!
+FAILURE!
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:28:41' prior: 50653580!
+hasRegistered: aTransaction 
+	^(accounts anySatisfy: [:anAccount | anAccount hasRegistered: aTransaction ]) or: [ portfolios anySatisfy: [:aPortfolio | aPortfolio hasRegistered: aTransaction ]].! !
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:29:23' prior: 50653661!
+hasRegistered: aTransaction 
+	^(accounts anySatisfy: [
+		:anAccount | anAccount hasRegistered: aTransaction 
+		]
+	) 
+	or: [
+		 portfolios anySatisfy: [
+			:aPortfolio | aPortfolio hasRegistered: aTransaction
+			 ]
+		].! !
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:29:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:29:38'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:36:27'!
+test07
+	self assert: (OrderedCollection new) equals: aPortfolio transactions.! !
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/12/2023 16:36:33'!
+ERROR!
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:36:49'!
+transactions
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:37:02' prior: 50653720!
+transactions
+	^ OrderedCollection new.! !
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/12/2023 16:37:04'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:39:38'!
+test08
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+
+	self assert: (OrderedCollection new) equals: aPortfolio transactions.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:41:36' prior: 50653748!
+test08
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+	
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/12/2023 16:41:54'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/12/2023 16:44:48'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/12/2023 16:44:48'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/12/2023 16:44:48'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/12/2023 16:46:00'!
+FAILURE!
+!Portfolio methodsFor: 'transactinos' stamp: 'jgv 10/12/2023 16:47:00' prior: 50653725!
+transactions
+	^ accounts inject: OrderedCollection new into:[:transactionCollection :anAccount | transactionCollection . anAccount transactions] .! !
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/12/2023 16:47:03'!
+FAILURE!
+
+----QUIT----(12 October 2023 16:48:55) CuisUniversity-Portfolio.image priorSource: 10297602!

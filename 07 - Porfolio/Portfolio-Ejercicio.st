@@ -1,30 +1,100 @@
 !classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #PorfolioTest
-	instanceVariableNames: ''
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo transactionThree transactionFour'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:49:19'!
-test01
-	|portfolio| 
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:56'!
+setUp
 	
-	portfolio := Portfolio new.
+	aPortfolio := Portfolio new.
 	
-	self assert: portfolio balance equals: 0.! !
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/9/2023 21:57:46'!
-test02
-	|portfolio account|
 	
-	portfolio := Portfolio new.
+	transactionOne := Deposit register: 100 on: accountOne.
+	transactionTwo := Withdraw  register: 50 on: accountOne.
 	
-	account := ReceptiveAccount new.
-	
-	Deposit register: 100 on: account.
-	Withdraw  register: 50 on: account.
+	transactionThree := Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
 		
-	portfolio add: account.! !
+	transactionFour := Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio addAccount: accountThree.! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:44:05'!
+test01	
+	self assert: aPortfolio balance equals: 0.! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:50:57'!
+test02
+
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	self assert: 250 equals: aPortfolio balance.! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:51:09'!
+test03	.
+	
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: 500 equals: aPortfolio balance.
+	! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:57:39'!
+test04.
+	
+	self deny: (aPortfolio hasRegistered: transactionOne).
+	! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:24:10'!
+test05
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:31'!
+test06
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+	
+	aPortfolio addPortfolio: anotherPortfolio.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).
+	self assert: (aPortfolio hasRegistered: transactionFour).! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:36:27'!
+test07
+	self assert: (OrderedCollection new) equals: aPortfolio transactions.! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:41:36'!
+test08
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+	
+	aPortfolio addAccount: accountOne.
+	aPortfolio addAccount: accountTwo.
+
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -224,14 +294,47 @@ for: aValue
 
 !classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
 Object subclass: #Portfolio
-	instanceVariableNames: 'balance'
+	instanceVariableNames: 'balance accounts portfolios'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:50:22'!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:53:08'!
 balance
-	^ 0.! !
+	^ (accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [0]) + (portfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0]).! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/11/2023 18:49:26'!
+initialize
+	accounts := OrderedCollection new.
+	portfolios  := OrderedCollection new.! !
+
+
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/11/2023 18:36:12'!
+addAccount: anAccount 
+	accounts add: anAccount. ! !
+
+
+!Portfolio methodsFor: 'portfolios' stamp: 'jgv 10/11/2023 18:49:09'!
+addPortfolio: aPortfolio
+	portfolios add: aPortfolio.! !
+
+
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/12/2023 16:29:23'!
+hasRegistered: aTransaction 
+	^(accounts anySatisfy: [
+		:anAccount | anAccount hasRegistered: aTransaction 
+		]
+	) 
+	or: [
+		 portfolios anySatisfy: [
+			:aPortfolio | aPortfolio hasRegistered: aTransaction
+			 ]
+		].! !
+
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/12/2023 16:47:00'!
+transactions
+	^ accounts inject: OrderedCollection new into:[:transactionCollection :anAccount | transactionCollection . anAccount transactions] .! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
@@ -259,7 +362,7 @@ transactions
 	^ transactions copy! !
 
 
-!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/9/2023 21:22:09'!
+!ReceptiveAccount methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:31:53'!
 balance
 	
 	|balance| 
@@ -267,7 +370,7 @@ balance
 	balance := 0.
 	
 	transactions do: [ :aTransaction | 
-		balance := aTransaction xxxx: balance.
+		balance := aTransaction processOn: balance.
 		] .
 	
 	^balance! !
