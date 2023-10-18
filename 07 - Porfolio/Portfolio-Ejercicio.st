@@ -30,20 +30,20 @@ setUp
 	
 	anotherPortfolio add: accountThree.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:44:05'!
-test01	
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:45:32'!
+test01AnEmptyPortfolioBalanceEqualsCero	
 	self assert: aPortfolio balance equals: 0.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:00:24'!
-test02
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:46:12'!
+test02APorfolioBalanceEqualsTheSumOfItsAccountsBalance
 
 	aPortfolio add: accountOne.
 	aPortfolio add: accountTwo.
 	
 	self assert: 250 equals: aPortfolio balance.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:00:46'!
-test03	.
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:46:48'!
+test03APortfolioBalanceEqualsToTheSumOfItsPortfoliosAndAccountsBalances	.
 	
 	aPortfolio add: accountOne.
 	aPortfolio add: accountTwo.
@@ -53,14 +53,14 @@ test03	.
 	self assert: 500 equals: aPortfolio balance.
 	! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:57:39'!
-test04.
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:47:07'!
+test04AnEmptyPorfolioHasNoRegisteredTransactions.
 	
 	self deny: (aPortfolio hasRegistered: transactionOne).
 	! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:01:31'!
-test05
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:47:38'!
+test05APortfolioHasAllItsAccountsTransactionsRegistered
 	aPortfolio add: accountOne.
 	aPortfolio add: accountTwo.
 	
@@ -68,8 +68,8 @@ test05
 	self assert: (aPortfolio hasRegistered: transactionTwo).
 	self assert: (aPortfolio hasRegistered: transactionThree).! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:01:44'!
-test06
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:48:00'!
+test06APortfolioHasAllItsPortfoliosAndAccountsTransactionsRegistered
 	aPortfolio add: accountOne.
 	aPortfolio add: accountTwo.
 	
@@ -80,12 +80,12 @@ test06
 	self assert: (aPortfolio hasRegistered: transactionThree).
 	self assert: (aPortfolio hasRegistered: transactionFour).! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:36:27'!
-test07
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:48:16'!
+test07AnEmptyPortfolioHasNoTransactions
 	self assert: (OrderedCollection new) equals: aPortfolio transactions.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:10:47'!
-test08
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:48:36'!
+test08APortfolioHasAllItsAccoustTransactions
 
 	| transactionCollection |
 	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
@@ -95,8 +95,8 @@ test08
 
 	self assert:  transactionCollection equals: aPortfolio transactions.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:23:49'!
-test09
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:48:54'!
+test09APortfolioHasAllItsPorfoliosAndAccountsTransactions
 
 	| transactionCollection |
 	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree with: transactionFour with: transactionFive.
@@ -108,8 +108,8 @@ test09
 
 	self assert:  transactionCollection equals: aPortfolio transactions.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:11'!
-test10
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:49:35'!
+test10CannotAddAnAlreadyIncludedAccount
 	aPortfolio add: accountOne. 
 	
 	self should: [ aPortfolio add: accountOne ]
@@ -118,8 +118,8 @@ test10
 			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
 		]! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:17'!
-test11
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:51:26'!
+test11CanNotAddAnAccountAlreadyIncludedInAnAlreadyIncludedPortfolio
 	
 	aPortfolio add: anotherPortfolio.
 	
@@ -129,8 +129,8 @@ test11
 			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
 		]! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:39'!
-test12
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:51:56'!
+test12CannotAddAPortfolioWithAlreadyAddedAccounts
 
 	aPortfolio add: accountOne.
 	
@@ -140,8 +140,8 @@ test12
 			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
 		]! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:07:35'!
-test13
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:53:18'!
+test13CanNotAddAnAccountIncludedInAPortfolioIncludingTheTargetPortfolio
 	|aThirdPortfolio|
 	
 	aPortfolio add: anotherPortfolio.
@@ -423,16 +423,9 @@ addTo: aPorfolio
 	includedInPortfolios add: aPorfolio.
 	aPorfolio addFinancialService: self.! !
 
-!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:35:05'!
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:43:34'!
 canNotAddFinancialService: aFinancialService
-	includedInPortfolios isEmpty ifFalse: [
-				^includedInPortfolios anySatisfy: [:parentPorfolio |
-						parentPorfolio 			canNotAddFinancialService: aFinancialService
-					].				
-			].
-	includedInPortfolios isEmpty ifTrue: [
-			^(aFinancialService includedIn: self)
-		].
+	^(self includesFinancialServiceInParentPortfolio: aFinancialService) or: [self includesFinancialServiceInChildPortfolio: aFinancialService].
 	! !
 
 !Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:58:09'!
@@ -444,6 +437,22 @@ includedIn: aPortfolio
 !Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:32:45'!
 includes: aFinancialService
 	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:43:17'!
+includesFinancialServiceInChildPortfolio: aFinancialService 
+		includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+		^false.! !
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:42:19'!
+includesFinancialServiceInParentPortfolio: aFinancialService 
+		includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canNotAddFinancialService: aFinancialService
+					].				
+			].
+		^false.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
