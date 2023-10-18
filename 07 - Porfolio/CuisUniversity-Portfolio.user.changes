@@ -2444,3 +2444,2451 @@ transactions
 FAILURE!
 
 ----QUIT----(12 October 2023 16:48:55) CuisUniversity-Portfolio.image priorSource: 10297602!
+
+----STARTUP---- (17 October 2023 17:37:12) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio.image!
+
+
+Object subclass: #FinancialService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #FinancialService category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:43:08'!
+Object subclass: #FinancialService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'balance accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:43:41'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'balance accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:43:54'!
+FinancialService subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!FinancialService methodsFor: 'balance' stamp: 'jgv 10/17/2023 17:45:42'!
+balance
+
+	self subclassResponsibility! !
+!FinancialService methodsFor: 'transactions' stamp: 'jgv 10/17/2023 17:46:31'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility! !
+!FinancialService methodsFor: 'transactions' stamp: 'jgv 10/17/2023 17:46:47'!
+transactions
+
+	self subclassResponsibility! !
+!FinancialService methodsFor: 'transactions' stamp: 'jgv 10/17/2023 17:47:04'!
+register: aTransaction
+
+	self subclassResponsibility! !
+
+!methodRemoval: FinancialService #register: stamp: 'jgv 10/17/2023 17:48:29'!
+register: aTransaction
+
+	self subclassResponsibility!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:50:19'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'accounts portfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:54:58'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'accounts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'finalcialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:55:48'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'finalcialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/17/2023 17:56:15'!
+add: aFinancialService
+	finalcialServices add: aFinancialService.! !
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'finanlcialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:56:30'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'finanlcialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 17:56:34'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/17/2023 17:56:45' prior: 50653908!
+add: aFinancialService
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #addAccount: stamp: 'jgv 10/17/2023 17:56:56'!
+addAccount: anAccount 
+	accounts add: anAccount. !
+
+!methodRemoval: Portfolio #addPortfolio: stamp: 'jgv 10/17/2023 17:57:01'!
+addPortfolio: aPortfolio
+	portfolios add: aPortfolio.!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 17:57:45' prior: 50653639 overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	transactionOne := Deposit register: 100 on: accountOne.
+	transactionTwo := Withdraw  register: 50 on: accountOne.
+	
+	transactionThree := Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	transactionFour := Deposit register: 500 on: accountThree.
+	Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio add: accountThree.! !
+!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/17/2023 17:59:06' prior: 50653263 overrides: 16920235!
+initialize
+	financialServices := OrderedCollection new.
+! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 17:59:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 17:59:19'!
+ERROR!
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/17/2023 18:00:08' prior: 50653373 overrides: 50653853!
+balance
+	^ financialServices sum: [:aFinancialService | aFinancialService balance] ifEmpty: [0].! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:00:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:00:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:00:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:00:14'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:00:24' prior: 50653321!
+test02
+
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	self assert: 250 equals: aPortfolio balance.! !
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:00:25'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:00:27'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:00:46' prior: 50653328!
+test03	.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	aPortfolio add: anotherPortfolio.
+	
+	self assert: 500 equals: aPortfolio balance.
+	! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:00:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:00:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:00:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:00:47'!
+ERROR!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:00:47'!
+ERROR!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:00:47'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:00:47'!
+ERROR!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:00:47'!
+ERROR!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:00:52'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/17/2023 18:01:22' prior: 50653670 overrides: 50653857!
+hasRegistered: aTransaction 
+	^financialServices anySatisfy: [
+		:aFinancialService | aFinancialService hasRegistered: aTransaction 
+		].! !
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:01:24'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:01:31' prior: 50653559!
+test05
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:01:32'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:01:32'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:01:32'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:01:32'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:01:32'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:01:32'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:01:32'!
+ERROR!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:01:32'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:01:44' prior: 50653624!
+test06
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	aPortfolio add: anotherPortfolio.
+	
+	self assert: (aPortfolio hasRegistered: transactionOne).
+	self assert: (aPortfolio hasRegistered: transactionTwo).
+	self assert: (aPortfolio hasRegistered: transactionThree).
+	self assert: (aPortfolio hasRegistered: transactionFour).! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:01:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:01:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:01:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:01:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:01:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:01:46'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:01:46'!
+ERROR!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:01:46'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:01:50'!
+ERROR!
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/17/2023 18:02:28' prior: 50653797 overrides: 50653862!
+transactions
+	^ financialServices inject: OrderedCollection new into:[:transactionCollection :aFinancialService | transactionCollection . aFinancialService transactions] .! !
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:02:30'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:02:39' prior: 50653756!
+test08
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:02:41'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:02:41'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:02:41'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:04:34'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:07:47'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:07:47'!
+FAILURE!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:09:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:09:11'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:09:11'!
+FAILURE!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:10:00' prior: 50654156!
+test08
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:10:01'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:10:03'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:10:10'!
+FAILURE!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:02:39' prior: 50654203!
+test08
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:10:47' prior: 50654220!
+test08
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:13:47'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:13:49'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:13:53'!
+FAILURE!
+
+aPortfolio transactions!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:15:59'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:17:05'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:17:05'!
+FAILURE!
+
+aFinancialService transactions!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:20:37'!
+FAILURE!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:20:47'!
+PASSED!
+
+(OrderedCollection with: 2 with: 3) . (OrderedCollection with: 2)!
+
+(OrderedCollection with: 2 with: 3) . (OrderedCollection with: 2).!
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/17/2023 18:22:01' prior: 50654145 overrides: 50653862!
+transactions
+	^ financialServices inject: OrderedCollection new into:[:transactionCollection :aFinancialService | transactionCollection , aFinancialService transactions] .! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:22:06'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:22:30'!
+test09
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	aPortfolio add: anotherPortfolio.
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio' stamp: 'jgv 10/17/2023 18:23:25'!
+TestCase subclass: #PorfolioTest
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo transactionThree transactionFour transactionFive'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:23:23' prior: 50653954 overrides: 16961394!
+setUp
+	
+	aPortfolio := Portfolio new.
+	
+	accountOne := ReceptiveAccount new.
+	
+	accountTwo := ReceptiveAccount new.
+	
+
+	
+	transactionOne := Deposit register: 100 on: accountOne.
+	transactionTwo := Withdraw  register: 50 on: accountOne.
+	
+	transactionThree := Deposit register: 200 on: accountTwo.
+
+	accountThree := ReceptiveAccount new.
+		
+	transactionFour := Deposit register: 500 on: accountThree.
+	transactionFive := Withdraw register: 250 on: accountThree.
+	
+	anotherPortfolio := Portfolio new.
+	
+	anotherPortfolio add: accountThree.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:23:49' prior: 50654297!
+test09
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree with: transactionFour with: transactionFive.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	aPortfolio add: anotherPortfolio.
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/17/2023 18:23:51'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:33:57'!
+test10
+	aPortfolio add: accountOne. 
+	
+	self should: [ aPortfolio add: accountOne ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccount
+		]! !
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/17/2023 18:34:03'!
+FAILURE!
+!Portfolio class methodsFor: 'no messages' stamp: 'jgv 10/17/2023 18:36:44'!
+canNotAddExisitingAccount
+	^'Cannot add an account that already exists in the portfolio'! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'jgv 10/17/2023 18:36:45' prior: 50654392!
+canNotAddExisitingAccount
+	^'Cannot add an account that already exists in the portfolio'.! !
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/17/2023 18:37:07'!
+FAILURE!
+
+----End fileIn of /home/kovix/Documents/Facu/Inge I/CUIS/linux64/Packages/TerseGuide.pck.st----!
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'jgv 10/17/2023 18:40:46'!
+canNotAddExisitingAccountErrorDescription
+	^'Cannot add an account that already exists in the portfolio'.! !
+
+!methodRemoval: Portfolio class #canNotAddExisitingAccount stamp: 'jgv 10/17/2023 18:40:46'!
+canNotAddExisitingAccount
+	^'Cannot add an account that already exists in the portfolio'.!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:41:02' prior: 50654380!
+test10
+	aPortfolio add: accountOne. 
+	
+	self should: [ aPortfolio add: accountOne ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccountErrorDescription.
+		]! !
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/17/2023 18:42:01' prior: 50653940!
+add: aFinancialService
+	(financialServices includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/17/2023 18:42:05'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:42:37'!
+test11
+	aPortfolio add: accountOne.
+	
+	aPortfolio add: aPortfolio.
+	
+	self should: [ aPortfolio add: accountOne ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccountErrorDescription.
+		]! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:45:04' prior: 50657381!
+test11
+	
+	aPortfolio add: anotherPortfolio.
+	
+	self should: [ aPortfolio add: accountThree]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccountErrorDescription.
+		]! !
+
+----SNAPSHOT----(17 October 2023 18:55:16) CuisUniversity-Portfolio.image priorSource: 10308993!
+
+----QUIT----(17 October 2023 18:55:28) CuisUniversity-Portfolio.image priorSource: 10424047!
+
+----STARTUP---- (18 October 2023 16:52:33) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio.image!
+
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/18/2023 16:59:35' prior: 50657349!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:00:17'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:00:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:00:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:00:17'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:00:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:00:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:00:17'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:00:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:00:17'!
+ERROR!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:00:17'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:00:17'!
+FAILURE!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:00:19'!
+ERROR!
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/18/2023 17:01:43' prior: 50657413!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		].
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:01:47'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:01:47'!
+FAILURE!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:01:47'!
+FAILURE!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:04:50' prior: 50657459!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService xxxxx: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:05:05'!
+hasFinancialService: aFinancialService
+
+	^ financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService xxxxx: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:05:05' prior: 50657508!
+add: aFinancialService
+	self hasFinancialService: aFinancialService.
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:06:02' prior: 50657527!
+hasFinancialService: aFinancialService
+
+	^ financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		]! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:06:09'!
+PASSED!
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:15:37' prior: 50657553!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService 
+			].
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			anotherFinancialService hasFinancialService: aFinancialService
+		].
+	].! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:15:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:15:40'!
+ERROR!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:15:40'!
+ERROR!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:15:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:15:40'!
+ERROR!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:15:40'!
+ERROR!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:15:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:15:40'!
+ERROR!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:15:40'!
+ERROR!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:15:40'!
+FAILURE!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:15:40'!
+FAILURE!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:15:43'!
+ERROR!
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:16:10' prior: 50657599!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				^anotherFinancialService = aFinancialService 
+			].
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			^anotherFinancialService hasFinancialService: aFinancialService
+		].
+	].! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:17:09' prior: 50657546!
+add: aFinancialService
+	(self hasFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:17:12'!
+PASSED!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:18:41'!
+hasFinancialService: aFinancialService
+	^self = aFinancialService.! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:19:12' prior: 50657642!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | anotherFinancialService hasFinancialService: aFinancialService	].! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:19:16'!
+PASSED!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:25:46' prior: 50657657!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #hasFinancialService: stamp: 'jgv 10/18/2023 17:25:54'!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | anotherFinancialService hasFinancialService: aFinancialService	].!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:26:10'!
+includedIn: aFinancialService
+	^self = aFinancialService.! !
+
+!methodRemoval: ReceptiveAccount #hasFinancialService: stamp: 'jgv 10/18/2023 17:26:10'!
+hasFinancialService: aFinancialService
+	^self = aFinancialService.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:26:18' prior: 50657749!
+includedIn: aPortfolio
+	^self = aPortfolio.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:31:57' prior: 50657733!
+add: aFinancialService
+	(financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:02'!
+keyword1: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:02' prior: 50657764!
+add: aFinancialService
+	(self keyword1: aFinancialService) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:20'!
+includes: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 17:32:20' prior: 50657783!
+add: aFinancialService
+	(self includes: aFinancialService) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #keyword1: stamp: 'jgv 10/18/2023 17:32:20'!
+keyword1: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:45' prior: 50657792!
+includes: aFinancialService
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:33:04' prior: 50657800!
+add: aFinancialService
+	(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:18'!
+includes: aPortfolio
+	^self = aPortfolio.! !
+
+!methodRemoval: ReceptiveAccount #includedIn: stamp: 'jgv 10/18/2023 17:33:18'!
+includedIn: aPortfolio
+	^self = aPortfolio.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:27' prior: 50657832!
+includes: aFinancialService
+	^self = aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:33:33'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:35:26'!
+test12
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccountErrorDescription.
+		]! !
+!Portfolio class methodsFor: 'errorDescriptions' stamp: 'jgv 10/18/2023 17:36:35'!
+canNotAddPortfolioWithRepeatedAccounts
+	^'No se puede agregar un portfolio que tenga cuentas repetidas'! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:36:54' prior: 50657871!
+test12
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddPortfolioWithRepeatedAccounts.
+		]! !
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:36:58'!
+FAILURE!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:43:20' prior: 50657824!
+add: aFinancialService
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				].
+		].
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:43:22'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:43:22'!
+FAILURE!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:43:22'!
+FAILURE!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:44:08' prior: 50657898!
+add: aFinancialService
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				]) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:44:11'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:44:11'!
+FAILURE!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:44:11'!
+FAILURE!
+
+----STARTUP---- (18 October 2023 17:44:52) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio.image!
+
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/18/2023 16:59:35' prior: 50657349!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/18/2023 17:01:43' prior: 50658000!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:04:50' prior: 50658018!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService xxxxx: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:05:05'!
+hasFinancialService: aFinancialService
+
+	^ financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService xxxxx: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:05:05' prior: 50658038!
+add: aFinancialService
+	self hasFinancialService: aFinancialService.
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:06:02' prior: 50658057!
+hasFinancialService: aFinancialService
+
+	^ financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		]! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:15:37' prior: 50658083!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService 
+			].
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			anotherFinancialService hasFinancialService: aFinancialService
+		].
+	].! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:16:10' prior: 50658103!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				^anotherFinancialService = aFinancialService 
+			].
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			^anotherFinancialService hasFinancialService: aFinancialService
+		].
+	].! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:17:09' prior: 50658076!
+add: aFinancialService
+	(self hasFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:18:41'!
+hasFinancialService: aFinancialService
+	^self = aFinancialService.! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:19:12' prior: 50658118!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | anotherFinancialService hasFinancialService: aFinancialService	].! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:25:46' prior: 50658133!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #hasFinancialService: stamp: 'jgv 10/18/2023 17:45:10'!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | anotherFinancialService hasFinancialService: aFinancialService	].!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:26:10'!
+includedIn: aFinancialService
+	^self = aFinancialService.! !
+
+!methodRemoval: ReceptiveAccount #hasFinancialService: stamp: 'jgv 10/18/2023 17:45:10'!
+hasFinancialService: aFinancialService
+	^self = aFinancialService.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:26:18' prior: 50658173!
+includedIn: aPortfolio
+	^self = aPortfolio.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:31:57' prior: 50658157!
+add: aFinancialService
+	(financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:02'!
+keyword1: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:02' prior: 50658188!
+add: aFinancialService
+	(self keyword1: aFinancialService) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:20'!
+includes: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 17:32:20' prior: 50658207!
+add: aFinancialService
+	(self includes: aFinancialService) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #keyword1: stamp: 'jgv 10/18/2023 17:45:10'!
+keyword1: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:45' prior: 50658216!
+includes: aFinancialService
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:33:04' prior: 50658224!
+add: aFinancialService
+	(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:18'!
+includes: aPortfolio
+	^self = aPortfolio.! !
+
+!methodRemoval: ReceptiveAccount #includedIn: stamp: 'jgv 10/18/2023 17:45:11'!
+includedIn: aPortfolio
+	^self = aPortfolio.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:27' prior: 50658256!
+includes: aFinancialService
+	^self = aFinancialService.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:35:26'!
+test12
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccountErrorDescription.
+		]! !
+!Portfolio class methodsFor: 'errorDescriptions' stamp: 'jgv 10/18/2023 17:36:35'!
+canNotAddPortfolioWithRepeatedAccounts
+	^'No se puede agregar un portfolio que tenga cuentas repetidas'! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:36:54' prior: 50658269!
+test12
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddPortfolioWithRepeatedAccounts.
+		]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:43:20' prior: 50658248!
+add: aFinancialService
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:44:08' prior: 50658294!
+add: aFinancialService
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				]) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/18/2023 16:59:35' prior: 50658311!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/18/2023 17:01:43' prior: 50658330!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:04:50' prior: 50658348!
+add: aFinancialService
+	financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService xxxxx: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:05:05'!
+hasFinancialService: aFinancialService
+
+	^ financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService xxxxx: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:05:05' prior: 50658368!
+add: aFinancialService
+	self hasFinancialService: aFinancialService.
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:06:02' prior: 50658387!
+hasFinancialService: aFinancialService
+
+	^ financialServices do: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription].
+			].
+		
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			(anotherFinancialService hasFinancialService: aFinancialService) ifTrue: [
+				 self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+			].
+		
+		]! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:15:37' prior: 50658413!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				anotherFinancialService = aFinancialService 
+			].
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			anotherFinancialService hasFinancialService: aFinancialService
+		].
+	].! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:16:10' prior: 50658433!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | 
+		(anotherFinancialService isKindOf: ReceptiveAccount) ifTrue: [
+				^anotherFinancialService = aFinancialService 
+			].
+		(anotherFinancialService isKindOf: Portfolio) ifTrue: [
+			^anotherFinancialService hasFinancialService: aFinancialService
+		].
+	].! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:17:09' prior: 50658406!
+add: aFinancialService
+	(self hasFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:18:41'!
+hasFinancialService: aFinancialService
+	^self = aFinancialService.! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:19:12' prior: 50658448!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | anotherFinancialService hasFinancialService: aFinancialService	].! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:25:46' prior: 50658463!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #hasFinancialService: stamp: 'jgv 10/18/2023 17:45:14'!
+hasFinancialService: aFinancialService
+
+	^ financialServices anySatisfy: [: anotherFinancialService | anotherFinancialService hasFinancialService: aFinancialService	].!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:26:10'!
+includedIn: aFinancialService
+	^self = aFinancialService.! !
+
+!methodRemoval: ReceptiveAccount #hasFinancialService: stamp: 'jgv 10/18/2023 17:45:14'!
+hasFinancialService: aFinancialService
+	^self = aFinancialService.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:26:18' prior: 50658503!
+includedIn: aPortfolio
+	^self = aPortfolio.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:31:57' prior: 50658487!
+add: aFinancialService
+	(financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:02'!
+keyword1: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:02' prior: 50658518!
+add: aFinancialService
+	(self keyword1: aFinancialService) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:20' prior: 50658240!
+includes: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 17:32:20' prior: 50658537!
+add: aFinancialService
+	(self includes: aFinancialService) 
+	ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+
+!methodRemoval: Portfolio #keyword1: stamp: 'jgv 10/18/2023 17:45:14'!
+keyword1: aFinancialService
+
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:32:45' prior: 50658546!
+includes: aFinancialService
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:33:04' prior: 50658554!
+add: aFinancialService
+	(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:18' prior: 50658265!
+includes: aPortfolio
+	^self = aPortfolio.! !
+
+!methodRemoval: ReceptiveAccount #includedIn: stamp: 'jgv 10/18/2023 17:45:14'!
+includedIn: aPortfolio
+	^self = aPortfolio.!
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:27' prior: 50658587!
+includes: aFinancialService
+	^self = aFinancialService.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:35:26' prior: 50658284!
+test12
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddExisitingAccountErrorDescription.
+		]! !
+!Portfolio class methodsFor: 'errorDescriptions' stamp: 'jgv 10/18/2023 17:36:35' prior: 50658278!
+canNotAddPortfolioWithRepeatedAccounts
+	^'No se puede agregar un portfolio que tenga cuentas repetidas'! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:36:54' prior: 50658601!
+test12
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddPortfolioWithRepeatedAccounts.
+		]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:43:20' prior: 50658578!
+add: aFinancialService
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:44:08' prior: 50658627!
+add: aFinancialService
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				]) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:46:00' prior: 50658617!
+test12
+
+	aPortfolio add: accountOne.
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddPortfolioWithRepeatedAccounts.
+		]! !
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:46:02'!
+PASSED!
+
+OrderedCollection new!
+
+(OrderedCollection new) anySatisfy: [:elem | elem = 1].!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:50:36' prior: 50658644!
+add: aFinancialService
+	aFinancialService includedIn: self.
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				]) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:53:15'!
+includedIn: aPortfolio.
+	(aPortfolio includes: self).
+! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:54:16' prior: 50658707!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].
+	(aFinancialService isKindOf: ReceptiveAccount) ifTrue: [	
+		(self includes: aFinancialService) ifTrue: [ self error: Portfolio canNotAddExisitingAccountErrorDescription ].
+		].
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				]) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio class methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 17:55:26'!
+canNotAddFinancialServiceErrorDescription
+	^'Cannot add financial service to this portfolio'.! !
+
+!methodRemoval: Portfolio class #canNotAddExisitingAccountErrorDescription stamp: 'jgv 10/18/2023 17:55:33'!
+canNotAddExisitingAccountErrorDescription
+	^'Cannot add an account that already exists in the portfolio'.!
+
+!methodRemoval: Portfolio class #canNotAddPortfolioWithRepeatedAccounts stamp: 'jgv 10/18/2023 17:55:41'!
+canNotAddPortfolioWithRepeatedAccounts
+	^'No se puede agregar un portfolio que tenga cuentas repetidas'!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:56:56' prior: 50658732!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].
+	
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(financialServices anySatisfy: [:registeredFinancialService |
+					aFinancialService includes: registeredFinancialService 
+				]) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:57:29'!
+includedIn: aPortfolio
+
+	^ financialServices anySatisfy: [:registeredFinancialService |
+					aPortfolio includes: registeredFinancialService 
+				]! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:57:29' prior: 50658775!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].
+	
+	(aFinancialService isKindOf: Portfolio) ifTrue: [
+			(self includedIn: aFinancialService) ifTrue: [ self error: Portfolio canNotAddPortfolioWithRepeatedAccounts ].
+		].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:57:44' prior: 50658800!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].
+	financialServices add: aFinancialService.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 17:58:09' prior: 50658792!
+includedIn: aPortfolio
+	^ financialServices anySatisfy: [:registeredFinancialService |
+					aPortfolio includes: registeredFinancialService 
+				]! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:58:55' prior: 50658727!
+includedIn: aPortfolio.
+	^aPortfolio includes: self.
+! !
+
+!testRun: #ReceptiveAccountTest #test01ReceptiveAccountHaveZeroAsBalanceWhenCreated stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test02DepositIncreasesBalanceOnTransactionValue stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test03WithdrawDecreasesBalanceOnTransactionValue stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test04WithdrawValueMustBePositive stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test05ReceptiveAccountKnowsRegisteredTransactions stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test06ReceptiveAccountDoNotKnowNotRegisteredTransactions stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #ReceptiveAccountTest #test07AccountKnowsItsTransactions stamp: 'jgv 10/18/2023 17:58:58'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:59:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:59:01'!
+ERROR!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:59:01'!
+ERROR!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:01'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:11' prior: 50657339!
+test10
+	aPortfolio add: accountOne. 
+	
+	self should: [ aPortfolio add: accountOne ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:59:12'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:59:12'!
+ERROR!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:12'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:17' prior: 50657392!
+test11
+	
+	aPortfolio add: anotherPortfolio.
+	
+	self should: [ aPortfolio add: accountThree]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:59:18'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:18'!
+ERROR!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:18'!
+ERROR!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:59:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:27'!
+ERROR!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:27'!
+ERROR!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:39' prior: 50658663!
+test12
+
+	aPortfolio add: accountOne.
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 17:59:40'!
+PASSED!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:02:54'!
+test13
+
+	aPortfolio add: anotherPortfolio.
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:07:35' prior: 50659041!
+test13
+	|aThirdPortfolio|
+	
+	aPortfolio add: anotherPortfolio.
+
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio add: accountTwo.
+	aThirdPortfolio add: anotherPortfolio.
+
+	
+	
+	self should: [ anotherPortfolio add: accountTwo ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!testRun: #PorfolioTest #test13 stamp: 'jgv 10/18/2023 18:07:37'!
+FAILURE!
+
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices includedInPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio' stamp: 'jgv 10/18/2023 18:08:41'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices includedInPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/18/2023 18:08:59' prior: 50653974 overrides: 16920235!
+initialize
+	financialServices := OrderedCollection new.
+	includedInPortfolios := OrderedCollection new.
+! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:10:03' prior: 50658815!
+add: aFinancialService
+	(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].
+	aFinancialService addTo: self.! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 18:10:29'!
+addTo: aPortfolio
+	aPortfolio add: self.
+! !
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 18:10:49' prior: 50659100!
+addTo: aPortfolio
+	aPortfolio addFinancialService: self.
+! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:11:50'!
+addTo: aPorfolio
+	includedInPortfolios add: aPorfolio.
+	aPorfolio addFinancialService: self.! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:12:42'!
+addFinancialService: aFinancialService
+	financialServices add: aFinancialService.! !
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 18:13:27'!
+PASSED!
+
+!testRun: #PorfolioTest #test13 stamp: 'jgv 10/18/2023 18:13:27'!
+FAILURE!
+
+!testRun: #PorfolioTest #test13 stamp: 'jgv 10/18/2023 18:13:27'!
+FAILURE!
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:22:20' prior: 50659092!
+add: aFinancialService
+	includedInPortfolios isEmpty ifTrue: [
+				includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			includes: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifFalse: [
+			(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	
+		].
+
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:24:07' prior: 50659155!
+add: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			includes: aFinancialService.
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	
+		].
+
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:24:40' prior: 50659171!
+add: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			includes: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	
+		].
+
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:28:30' prior: 50659187!
+add: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			xxxxx: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	
+		].
+
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'nil' stamp: 'jgv 10/18/2023 18:29:11'!
+xxxxx: aFinancialService
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:29:38' prior: 50659218!
+xxxxx: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			xxxxx: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			(aFinancialService includedIn: self) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	
+		].
+	! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:30:44' prior: 50659203!
+add: aFinancialService
+	self xxxxx: aFinancialService.
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:31:12' prior: 50659222!
+xxxxx: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				includedInPortfolios anySatisfy: [:parentPorfolio |
+						^parentPorfolio 			xxxxx: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:31:21' prior: 50659243!
+xxxxx: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			xxxxx: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:31:36' prior: 50659237!
+add: aFinancialService
+	(self xxxxx: aFinancialService) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	.
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:32:47'!
+canAddFinalcialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			xxxxx: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:32:47' prior: 50659267!
+add: aFinancialService
+	(self canAddFinalcialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	.
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:32:47' prior: 50659255!
+xxxxx: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinalcialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:32:47' prior: 50659275!
+canAddFinalcialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinalcialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+
+!methodRemoval: Portfolio #xxxxx: stamp: 'jgv 10/18/2023 18:32:47'!
+xxxxx: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinalcialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+
+!testRun: #PorfolioTest #test13 stamp: 'jgv 10/18/2023 18:33:01'!
+PASSED!
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:33:47'!
+canAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinalcialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:33:47' prior: 50659288!
+add: aFinancialService
+	(self canAddFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	.
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:33:47' prior: 50659310!
+canAddFinalcialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:33:47' prior: 50659365!
+canAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+
+!methodRemoval: Portfolio #canAddFinalcialService: stamp: 'jgv 10/18/2023 18:33:47'!
+canAddFinalcialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	!
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:34:54' prior: 50659400!
+canAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:35:05'!
+canNotAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:35:05' prior: 50659426!
+canAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canNotAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:35:05' prior: 50659378!
+add: aFinancialService
+	(self canNotAddFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	.
+	aFinancialService addTo: self.! !
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'jgv 10/18/2023 18:35:05' prior: 50659439!
+canNotAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canNotAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+
+!methodRemoval: Portfolio #canAddFinancialService: stamp: 'jgv 10/18/2023 18:35:05'!
+canAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canNotAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	!
+
+!testRun: #PorfolioTest #test01 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test02 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test03 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test04 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test05 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test06 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test07 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test08 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test09 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test10 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test11 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test12 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+!testRun: #PorfolioTest #test13 stamp: 'jgv 10/18/2023 18:35:10'!
+PASSED!
+
+----SNAPSHOT----(18 October 2023 18:36:16) CuisUniversity-Portfolio.image priorSource: 10424145!

@@ -1,11 +1,11 @@
 !classDefinition: #PorfolioTest category: 'Portfolio-Ejercicio'!
 TestCase subclass: #PorfolioTest
-	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo transactionThree transactionFour'
+	instanceVariableNames: 'aPortfolio accountOne accountTwo accountThree anotherPortfolio transactionOne transactionTwo transactionThree transactionFour transactionFive'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:56'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:23:23'!
 setUp
 	
 	aPortfolio := Portfolio new.
@@ -24,31 +24,31 @@ setUp
 	accountThree := ReceptiveAccount new.
 		
 	transactionFour := Deposit register: 500 on: accountThree.
-	Withdraw register: 250 on: accountThree.
+	transactionFive := Withdraw register: 250 on: accountThree.
 	
 	anotherPortfolio := Portfolio new.
 	
-	anotherPortfolio addAccount: accountThree.! !
+	anotherPortfolio add: accountThree.! !
 
 !PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:44:05'!
 test01	
 	self assert: aPortfolio balance equals: 0.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:50:57'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:00:24'!
 test02
 
-	aPortfolio addAccount: accountOne.
-	aPortfolio addAccount: accountTwo.
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
 	
 	self assert: 250 equals: aPortfolio balance.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/11/2023 18:51:09'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:00:46'!
 test03	.
 	
-	aPortfolio addAccount: accountOne.
-	aPortfolio addAccount: accountTwo.
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
 	
-	aPortfolio addPortfolio: anotherPortfolio.
+	aPortfolio add: anotherPortfolio.
 	
 	self assert: 500 equals: aPortfolio balance.
 	! !
@@ -59,21 +59,21 @@ test04.
 	self deny: (aPortfolio hasRegistered: transactionOne).
 	! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:24:10'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:01:31'!
 test05
-	aPortfolio addAccount: accountOne.
-	aPortfolio addAccount: accountTwo.
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
 	
 	self assert: (aPortfolio hasRegistered: transactionOne).
 	self assert: (aPortfolio hasRegistered: transactionTwo).
 	self assert: (aPortfolio hasRegistered: transactionThree).! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:26:31'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:01:44'!
 test06
-	aPortfolio addAccount: accountOne.
-	aPortfolio addAccount: accountTwo.
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
 	
-	aPortfolio addPortfolio: anotherPortfolio.
+	aPortfolio add: anotherPortfolio.
 	
 	self assert: (aPortfolio hasRegistered: transactionOne).
 	self assert: (aPortfolio hasRegistered: transactionTwo).
@@ -84,17 +84,79 @@ test06
 test07
 	self assert: (OrderedCollection new) equals: aPortfolio transactions.! !
 
-!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/12/2023 16:41:36'!
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:10:47'!
 test08
 
 	| transactionCollection |
 	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree.
 	
-	aPortfolio addAccount: accountOne.
-	aPortfolio addAccount: accountTwo.
-
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
 
 	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/17/2023 18:23:49'!
+test09
+
+	| transactionCollection |
+	transactionCollection := OrderedCollection with: transactionOne with: 	transactionTwo with: transactionThree with: transactionFour with: transactionFive.
+	
+	aPortfolio add: accountOne.
+	aPortfolio add: accountTwo.
+	
+	aPortfolio add: anotherPortfolio.
+
+	self assert:  transactionCollection equals: aPortfolio transactions.! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:11'!
+test10
+	aPortfolio add: accountOne. 
+	
+	self should: [ aPortfolio add: accountOne ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:17'!
+test11
+	
+	aPortfolio add: anotherPortfolio.
+	
+	self should: [ aPortfolio add: accountThree]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 17:59:39'!
+test12
+
+	aPortfolio add: accountOne.
+	
+	self should: [ aPortfolio add: aPortfolio]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
+
+!PorfolioTest methodsFor: 'tests' stamp: 'jgv 10/18/2023 18:07:35'!
+test13
+	|aThirdPortfolio|
+	
+	aPortfolio add: anotherPortfolio.
+
+	aThirdPortfolio := Portfolio new.
+	aThirdPortfolio add: accountTwo.
+	aThirdPortfolio add: anotherPortfolio.
+
+	
+	
+	self should: [ anotherPortfolio add: accountTwo ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Portfolio canNotAddFinancialServiceErrorDescription .
+		]! !
 
 
 !classDefinition: #ReceptiveAccountTest category: 'Portfolio-Ejercicio'!
@@ -292,53 +354,110 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
-Object subclass: #Portfolio
-	instanceVariableNames: 'balance accounts portfolios'
+!classDefinition: #FinancialService category: 'Portfolio-Ejercicio'!
+Object subclass: #FinancialService
+	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Ejercicio'!
 
-!Portfolio methodsFor: 'balance' stamp: 'jgv 10/11/2023 18:53:08'!
+!FinancialService methodsFor: 'balance' stamp: 'jgv 10/17/2023 17:45:42'!
 balance
-	^ (accounts sum:  [:anAccount | anAccount balance ] ifEmpty: [0]) + (portfolios sum: [:aPortfolio | aPortfolio balance] ifEmpty: [0]).! !
+
+	self subclassResponsibility! !
 
 
-!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/11/2023 18:49:26'!
+!FinancialService methodsFor: 'transactions' stamp: 'jgv 10/17/2023 17:46:31'!
+hasRegistered: aTransaction
+
+	self subclassResponsibility! !
+
+!FinancialService methodsFor: 'transactions' stamp: 'jgv 10/17/2023 17:46:47'!
+transactions
+
+	self subclassResponsibility! !
+
+
+!classDefinition: #Portfolio category: 'Portfolio-Ejercicio'!
+FinancialService subclass: #Portfolio
+	instanceVariableNames: 'financialServices includedInPortfolios'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Ejercicio'!
+
+!Portfolio methodsFor: 'balance' stamp: 'jgv 10/17/2023 18:00:08'!
+balance
+	^ financialServices sum: [:aFinancialService | aFinancialService balance] ifEmpty: [0].! !
+
+
+!Portfolio methodsFor: 'initialization' stamp: 'jgv 10/18/2023 18:08:59'!
 initialize
-	accounts := OrderedCollection new.
-	portfolios  := OrderedCollection new.! !
+	financialServices := OrderedCollection new.
+	includedInPortfolios := OrderedCollection new.
+! !
 
 
-!Portfolio methodsFor: 'accounts' stamp: 'jgv 10/11/2023 18:36:12'!
-addAccount: anAccount 
-	accounts add: anAccount. ! !
-
-
-!Portfolio methodsFor: 'portfolios' stamp: 'jgv 10/11/2023 18:49:09'!
-addPortfolio: aPortfolio
-	portfolios add: aPortfolio.! !
-
-
-!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/12/2023 16:29:23'!
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/17/2023 18:01:22'!
 hasRegistered: aTransaction 
-	^(accounts anySatisfy: [
-		:anAccount | anAccount hasRegistered: aTransaction 
-		]
-	) 
-	or: [
-		 portfolios anySatisfy: [
-			:aPortfolio | aPortfolio hasRegistered: aTransaction
-			 ]
+	^financialServices anySatisfy: [
+		:aFinancialService | aFinancialService hasRegistered: aTransaction 
 		].! !
 
-!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/12/2023 16:47:00'!
+!Portfolio methodsFor: 'transactions' stamp: 'jgv 10/17/2023 18:22:01'!
 transactions
-	^ accounts inject: OrderedCollection new into:[:transactionCollection :anAccount | transactionCollection . anAccount transactions] .! !
+	^ financialServices inject: OrderedCollection new into:[:transactionCollection :aFinancialService | transactionCollection , aFinancialService transactions] .! !
+
+
+!Portfolio methodsFor: 'financialServices' stamp: 'jgv 10/18/2023 18:35:05'!
+add: aFinancialService
+	(self canNotAddFinancialService: aFinancialService) ifTrue: [ self error: Portfolio canNotAddFinancialServiceErrorDescription ].	.
+	aFinancialService addTo: self.! !
+
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:12:42'!
+addFinancialService: aFinancialService
+	financialServices add: aFinancialService.! !
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:11:50'!
+addTo: aPorfolio
+	includedInPortfolios add: aPorfolio.
+	aPorfolio addFinancialService: self.! !
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 18:35:05'!
+canNotAddFinancialService: aFinancialService
+	includedInPortfolios isEmpty ifFalse: [
+				^includedInPortfolios anySatisfy: [:parentPorfolio |
+						parentPorfolio 			canNotAddFinancialService: aFinancialService
+					].				
+			].
+	includedInPortfolios isEmpty ifTrue: [
+			^(aFinancialService includedIn: self)
+		].
+	! !
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:58:09'!
+includedIn: aPortfolio
+	^ financialServices anySatisfy: [:registeredFinancialService |
+					aPortfolio includes: registeredFinancialService 
+				]! !
+
+!Portfolio methodsFor: 'financialServices-private' stamp: 'jgv 10/18/2023 17:32:45'!
+includes: aFinancialService
+	^ financialServices anySatisfy: [:registeredFinancialService | registeredFinancialService includes: aFinancialService]! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Portfolio class' category: 'Portfolio-Ejercicio'!
+Portfolio class
+	instanceVariableNames: ''!
+
+!Portfolio class methodsFor: 'errorDescriptions' stamp: 'jgv 10/18/2023 17:55:26'!
+canNotAddFinancialServiceErrorDescription
+	^'Cannot add financial service to this portfolio'.! !
 
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Ejercicio'!
-Object subclass: #ReceptiveAccount
+FinancialService subclass: #ReceptiveAccount
 	instanceVariableNames: 'transactions'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -381,3 +500,18 @@ hasRegistered: aTransaction
 
 	^ transactions includes: aTransaction 
 ! !
+
+
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 18:10:49'!
+addTo: aPortfolio
+	aPortfolio addFinancialService: self.
+! !
+
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:58:55'!
+includedIn: aPortfolio.
+	^aPortfolio includes: self.
+! !
+
+!ReceptiveAccount methodsFor: 'private' stamp: 'jgv 10/18/2023 17:33:27'!
+includes: aFinancialService
+	^self = aFinancialService.! !
