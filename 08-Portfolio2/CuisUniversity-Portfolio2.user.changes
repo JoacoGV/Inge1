@@ -1,0 +1,290 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (19 October 2023 21:10:45) as /home/clinux01/Documentos/Inge/linux64/CuisUniversity-5981.image!
+
+
+----QUIT----(19 October 2023 21:10:47) CuisUniversity-5981.image priorSource: 10197292!
+
+----STARTUP---- (19 October 2023 21:16:08) as /home/clinux01/Documentos/Inge/linux64/CuisUniversity-Portfolio2.image!
+
+
+----End fileIn of /home/clinux01/Documentos/Inge/linux64/Portfolio-Solucion.st----!
+
+AccountTransaction subclass: #Transference
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transference category: 'Portfolio-Solucion' stamp: 'Joaco 10/19/2023 21:18:15'!
+AccountTransaction subclass: #Transference
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transference stamp: 'Joaco 10/19/2023 21:18:34'!
+AccountTransaction subclass: #Transference
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferenceTest category: 'Portfolio-Solucion' stamp: 'Joaco 10/19/2023 21:18:51'!
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferenceTest methodsFor: 'no messages' stamp: 'Joaco 10/19/2023 21:23:13'!
+test01
+	|anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	anAccount transfer: 100 to: anotherAccount.
+	
+	self assert: anAccount balance equals: 0.
+	self assert: anotherAccount balance equals: 100.! !
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:23:25'!
+ERROR!
+!ReceptiveAccount methodsFor: 'transferences' stamp: 'Joaco 10/19/2023 21:23:40'!
+transfer: aRenameMe1 to: anotherAccount 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'transferences' stamp: 'Joaco 10/19/2023 21:23:54' prior: 50651097!
+transfer: aValue to: anotherAccount 
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'transferences' stamp: 'Joaco 10/19/2023 21:25:20' prior: 50651103!
+transfer: aValue to: anotherAccount 
+ 	Withdraw register: aValue on: self.
+	Deposit register: aValue on: anotherAccount ! !
+!ReceptiveAccount methodsFor: 'transferences' stamp: 'Joaco 10/19/2023 21:25:27' prior: 50651109!
+transfer: aValue to: anAccount 
+ 	Withdraw register: aValue on: self.
+	Deposit register: aValue on: anAccount ! !
+!ReceptiveAccount methodsFor: 'transferences' stamp: 'Joaco 10/19/2023 21:25:30' prior: 50651116!
+transfer: aValue to: anAccount 
+ 	Withdraw register: aValue on: self.
+	Deposit register: aValue on: anAccount.! !
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:25:31'!
+FAILURE!
+!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:25:56' prior: 50651083!
+test01
+	|anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount. 
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	anAccount transfer: 100 to: anotherAccount.
+	
+	self assert: anAccount balance equals: 0.
+	self assert: anotherAccount balance equals: 100.! !
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:25:59'!
+PASSED!
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:25:59'!
+PASSED!
+!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:27:48' prior: 50651133!
+test01
+	|anAccount anotherAccount|
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount. 
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	anAccount transfer: 100 to: anotherAccount.
+	
+	self assert: anAccount balance equals: 0.
+	self assert: anotherAccount balance equals: 100.! !
+!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:28:59' prior: 50651151!
+test01
+	|anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount. 
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	anAccount transfer: 100 to: anotherAccount.
+	
+	self assert: anAccount balance equals: 0.
+	self assert: anotherAccount balance equals: 100.! !
+!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:29:01' prior: 50651164!
+test01
+	|anAccount anotherAccount|
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount. 
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	anAccount transfer: 100 to: anotherAccount.
+	
+	self assert: anAccount balance equals: 0.
+	self assert: anotherAccount balance equals: 100.! !
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:29:28'!
+PASSED!
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:29:28'!
+PASSED!
+
+!classDefinition: #Transference category: 'Portfolio-Solucion' stamp: 'Joaco 10/19/2023 21:45:44'!
+AccountTransaction subclass: #Transference
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:45:24'!
+test02
+	|anAccount anotherAccount transference|
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount. 
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	transference := Transference register: 100 from: anAccount to: anotherAccount.
+	
+	self assert: (anAccount hasRegistered: transference).
+	self assert: (anotherAccount hasRegistered: transference).! !
+
+!testRun: #TransferenceTest #test02 stamp: 'Joaco 10/19/2023 21:45:51'!
+ERROR!
+!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:45:58'!
+register: aRenameMe1 from: anAccount to: anotherAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aRenameMe1 from: anAccount to: anotherAccount ! !
+!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:46:06' prior: 50651219!
+register: aValue from: anAccount to: anotherAccount 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeRegister: aValue from: anAccount to: anotherAccount ! !
+!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:49:10' prior: 50651230!
+register: aValue from: anAccount to: anotherAccount 
+	| transaction |
+	transaction := self for: aValue.
+	anAccount register: transaction.
+	anotherAccount register: transaction.! !
+
+!testRun: #TransferenceTest #test02 stamp: 'Joaco 10/19/2023 21:49:14'!
+ERROR!
+!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:49:21'!
+for: aValue 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aValue ! !
+
+AccountTransaction subclass: #Transference
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #Transference category: 'Portfolio-Solucion' stamp: 'Joaco 10/19/2023 21:49:51'!
+AccountTransaction subclass: #Transference
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: 'Transference class' category: 'Portfolio-Solucion' stamp: 'Joaco 10/19/2023 21:50:06'!
+Transference class
+	instanceVariableNames: 'value'!
+!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:50:03' prior: 50651252!
+for: aValue 
+	value := aValue.! !
+
+!testRun: #TransferenceTest #test02 stamp: 'Joaco 10/19/2023 21:50:13'!
+PASSED!
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:50:13'!
+PASSED!
+
+!testRun: #TransferenceTest #test02 stamp: 'Joaco 10/19/2023 21:50:13'!
+PASSED!
+!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:51:24' prior: 50651177!
+test01
+	|anAccount anotherAccount|
+	
+	anAccount := ReceptiveAccount new.
+	Deposit register: 100 on: anAccount. 
+	
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference register: 100 from: anAccount to: anotherAccount.
+	
+	self assert: anAccount balance equals: 0.
+	self assert: anotherAccount balance equals: 100.! !
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:51:27'!
+ERROR!
+!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:53:06' prior: 50651241!
+register: aValue from: anAccount to: anotherAccount 
+	| transaction |
+	transaction := self for: aValue.	
+	anAccount register: transaction.
+	anotherAccount register: transaction.
+	anAccount transfer: aValue to: anotherAccount. ! !
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:53:16'!
+ERROR!
+
+!testRun: #TransferenceTest #test02 stamp: 'Joaco 10/19/2023 21:53:16'!
+PASSED!
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:53:16'!
+ERROR!
+
+!testRun: #TransferenceTest #test01 stamp: 'Joaco 10/19/2023 21:53:37'!
+ERROR!
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:56:45'!
+register: aValue from: anAccount to: anotherAccount 
+	| transaction |
+	transaction := self for: aValue.	
+	anAccount register: transaction.
+	anotherAccount register: transaction.
+	anAccount transfer: aValue to: anotherAccount. ! !
+
+!methodRemoval: Transference class #register:from:to: stamp: 'Joaco 10/19/2023 21:56:45'!
+register: aValue from: anAccount to: anotherAccount 
+	| transaction |
+	transaction := self for: aValue.	
+	anAccount register: transaction.
+	anotherAccount register: transaction.
+	anAccount transfer: aValue to: anotherAccount. !
+!AccountTransaction class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:57:25' prior: 50651327!
+register: aValue from: anAccount to: anotherAccount 
+	| transaction |
+	
+	transaction := self for: aValue.	
+	anAccount register: transaction.
+	anotherAccount register: transaction.
+	anAccount transfer: aValue to: anotherAccount. ! !
+!Transference methodsFor: 'no messages' stamp: 'Joaco 10/19/2023 22:02:49' overrides: 50650950!
+affectBalance: aBalance
+
+	^aBalance - value ! !
+
+----QUIT----(19 October 2023 22:09:25) CuisUniversity-Portfolio2.image priorSource: 10197494!
