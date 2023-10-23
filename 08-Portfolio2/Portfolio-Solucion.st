@@ -305,6 +305,107 @@ test07AccountKnowsItsTransactions
 ! !
 
 
+!classDefinition: #ReportsTest category: 'Portfolio-Solucion'!
+TestCase subclass: #ReportsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:15:30'!
+test01
+	| aReport anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	aReport := Report new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (aReport accountSummary: anAccount).! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:16:40'!
+test02
+	| aReport anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	
+	aReport := Report new.
+	
+	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: (aReport accountSummary: anAccount).! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:34:02'!
+test03
+	| aReport anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	aReport := Report new.
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (aReport accountSummary: anAccount).
+	self assert: anotherAccountSumary equals: (aReport accountSummary: anotherAccount).! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 19:12:35'!
+test04
+	| aReport anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+	aReport := Report new.
+
+	self assert: 0 equals: (aReport accountTransferNet: anAccount).
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 19:14:36'!
+test05
+	| aReport anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	aReport := Report new.
+
+	self assert: -100 equals: (aReport accountTransferNet: anAccount).
+	self assert: 100 equals: (aReport  accountTransferNet: anotherAccount).
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 19:20:46'!
+test06
+	| aReport anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	Transference transfer: 150 from: anotherAccount  to: anAccount.
+	Transference transfer: 50 from: anAccount to: anotherAccount.
+	
+	aReport := Report new.
+
+	self assert: 0 equals: (aReport accountTransferNet: anAccount).
+	self assert: 0 equals: (aReport  accountTransferNet: anotherAccount).
+! !
+
+
 !classDefinition: #TransferenceTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferenceTest
 	instanceVariableNames: ''
@@ -312,33 +413,68 @@ TestCase subclass: #TransferenceTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:51:24'!
-test01
+!TransferenceTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:04:53'!
+test01TransferenceAffectBalanceCorrectlyInDepositantAndDepositedAccount
 	|anAccount anotherAccount|
 	
 	anAccount := ReceptiveAccount new.
-	Deposit register: 100 on: anAccount. 
-	
 	anotherAccount := ReceptiveAccount new.
 	
-	Transference register: 100 from: anAccount to: anotherAccount.
+	Deposit register: 100 on: anAccount.
+		
+	Transference transfer: 100 from: anAccount to: anotherAccount.
 	
 	self assert: anAccount balance equals: 0.
 	self assert: anotherAccount balance equals: 100.! !
 
-!TransferenceTest methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 21:45:24'!
-test02
-	|anAccount anotherAccount transference|
+!TransferenceTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:05:36'!
+test02TrasnferenceRegistersADepositInDepositedAccountAndAWithdrawInDepositantAccount
+	|anAccount anotherAccount transference deposit transferenceDeposit transferenceWithdraw|
 	
 	anAccount := ReceptiveAccount new.
-	Deposit register: 100 on: anAccount. 
-	
 	anotherAccount := ReceptiveAccount new.
 	
-	transference := Transference register: 100 from: anAccount to: anotherAccount.
+	deposit := Deposit register: 100 on: anAccount.
+		
+	transference := Transference transfer: 100 from: anAccount to: anotherAccount.
+		
+	transferenceDeposit := transference deposit. 
+	transferenceWithdraw := transference withdraw.
 	
-	self assert: (anAccount hasRegistered: transference).
-	self assert: (anotherAccount hasRegistered: transference).! !
+	self assert: (anAccount hasRegistered: transference withdraw).
+	self assert: (anotherAccount hasRegistered: transference deposit).
+	self assert: anAccount transactions equals: (OrderedCollection with: deposit with: transferenceWithdraw).
+	self assert: anotherAccount transactions equals: (OrderedCollection with: transferenceDeposit ).! !
+
+!TransferenceTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:06:16'!
+test03CanMakeOverdraftTransference
+	|anAccount anotherAccount|
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.		
+	
+	Transference transfer: 100 from: anAccount to: anotherAccount.
+	
+	self assert: anAccount balance equals: -100.
+	self assert: anotherAccount balance equals: 100.! !
+
+!TransferenceTest methodsFor: 'tests' stamp: 'jgv 10/22/2023 17:06:29'!
+test04CanNavigateTransferenceLegsCorrectly
+	|anAccount anotherAccount transference transferenceDeposit transferenceWithdraw|
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.		
+	
+	transference := Transference transfer: 100 from: anAccount to: anotherAccount.
+	
+	transferenceDeposit := transference deposit.
+	transferenceWithdraw := transference  withdraw.
+	
+	
+	self assert: transferenceDeposit transference equals: transference.
+	self assert: transferenceWithdraw transference equals: transference.
+	self assert: transferenceDeposit transferenceWithdraw equals: transferenceWithdraw.
+	self assert: transferenceWithdraw transferenceDeposit equals: transferenceDeposit.! !
 
 
 !classDefinition: #Account category: 'Portfolio-Solucion'!
@@ -539,6 +675,40 @@ addTransactionsTo: aCollectionOfTransactions
 
 	aCollectionOfTransactions addAll: transactions ! !
 
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/22/2023 19:44:51'!
+calculateTransferNet
+
+	| transferenceTransactions |
+	
+	transferenceTransactions :=  transactions select: [:transaction | (transaction isKindOf: TransferenceDeposit) or: [transaction isKindOf: TransferenceWithdraw ]].
+	
+	^transferenceTransactions sum: [:transaction | 
+		self xxxx: transaction.
+		] ifEmpty: [0].! !
+
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/22/2023 17:58:11'!
+generateSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+		(transaction isKindOf: Deposit) ifTrue: [
+				transactionsSummary add: 'Depósito por ', transaction value asString.
+			].
+		(transaction isKindOf: Withdraw ) ifTrue: [
+				transactionsSummary add: 'Extracción por ', transaction value asString .
+			].
+		(transaction isKindOf: TransferenceDeposit ) ifTrue: [
+				transactionsSummary add: 'Entrada por transferencia de ', transaction transference value asString.
+			].
+		(transaction isKindOf: TransferenceWithdraw ) ifTrue: [
+				transactionsSummary add: 'Salida por transferencia de ', transaction transference value asString.
+			].
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HernanWilkinson 7/13/2011 18:37'!
 register: aTransaction
 
@@ -577,10 +747,14 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'transferences' stamp: 'Joaco 10/19/2023 21:25:30'!
-transfer: aValue to: anAccount 
- 	Withdraw register: aValue on: self.
-	Deposit register: aValue on: anAccount.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'jgv 10/22/2023 19:44:29'!
+xxxx: aTransaction
+		(aTransaction isKindOf: TransferenceDeposit ) ifTrue: [
+				^aTransaction transference value.
+			].
+		^aTransaction transference value negated. 
+
+! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
@@ -606,15 +780,6 @@ affectBalance: aBalance
 !classDefinition: 'AccountTransaction class' category: 'Portfolio-Solucion'!
 AccountTransaction class
 	instanceVariableNames: ''!
-
-!AccountTransaction class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:57:25'!
-register: aValue from: anAccount to: anotherAccount 
-	| transaction |
-	
-	transaction := self for: aValue.	
-	anAccount register: transaction.
-	anotherAccount register: transaction.
-	anAccount transfer: aValue to: anotherAccount. ! !
 
 !AccountTransaction class methodsFor: 'instance creation' stamp: 'NR 10/21/2019 18:54:27'!
 register: aValue on: account
@@ -663,29 +828,6 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Transference category: 'Portfolio-Solucion'!
-AccountTransaction subclass: #Transference
-	instanceVariableNames: 'value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!Transference methodsFor: 'as yet unclassified' stamp: 'Joaco 10/19/2023 22:02:49'!
-affectBalance: aBalance
-
-	^aBalance - value ! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Transference class' category: 'Portfolio-Solucion'!
-Transference class
-	instanceVariableNames: 'value'!
-
-!Transference class methodsFor: 'instance creation' stamp: 'Joaco 10/19/2023 21:50:03'!
-for: aValue 
-	value := aValue.! !
-
-
 !classDefinition: #Withdraw category: 'Portfolio-Solucion'!
 AccountTransaction subclass: #Withdraw
 	instanceVariableNames: 'value'
@@ -720,3 +862,163 @@ Withdraw class
 for: aValue
 
 	^ self new initializeFor: aValue ! !
+
+
+!classDefinition: #Report category: 'Portfolio-Solucion'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Report methodsFor: 'reports' stamp: 'jgv 10/22/2023 17:23:29'!
+accountSummary: anAccount 
+	^anAccount generateSummary.! !
+
+!Report methodsFor: 'reports' stamp: 'jgv 10/22/2023 19:16:04'!
+accountTransferNet: anAccount 
+	^anAccount calculateTransferNet.! !
+
+
+!classDefinition: #Transference category: 'Portfolio-Solucion'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:54:35'!
+deposit
+	^transferenceDeposit.! !
+
+!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:52:56'!
+value
+	^value.! !
+
+!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:54:21'!
+withdraw
+	^transferenceWithdraw.! !
+
+
+!Transference methodsFor: 'initialization' stamp: 'jgv 10/22/2023 16:47:52'!
+initializeWithValue: aValue from: anAccount to: anotherAccount
+	value := aValue.
+	transferenceWithdraw :=  TransferenceWithdraw register: aValue on: anAccount  in: self. 
+	transferenceDeposit := TransferenceDeposit register: aValue on: anotherAccount in: self.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transference class' category: 'Portfolio-Solucion'!
+Transference class
+	instanceVariableNames: ''!
+
+!Transference class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:45:20'!
+transfer: aValue from: anAccount to: anotherAccount 
+		
+	^self new initializeWithValue: aValue from: anAccount to: anotherAccount.! !
+
+
+!classDefinition: #TransferenceTransaction category: 'Portfolio-Solucion'!
+Object subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferenceTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/22/2023 16:25:01'!
+affectBalance: aBalance
+
+	self subclassResponsibility.! !
+
+!TransferenceTransaction methodsFor: 'as yet unclassified' stamp: 'jgv 10/22/2023 16:55:42'!
+transference
+
+	self subclassResponsibility.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferenceTransaction class' category: 'Portfolio-Solucion'!
+TransferenceTransaction class
+	instanceVariableNames: ''!
+
+!TransferenceTransaction class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:36:21'!
+register: aValue on: anAccount in: aTransference
+	|transferenceTransaction|
+	
+	transferenceTransaction := self for: aTransference.
+	anAccount register: transferenceTransaction.
+	^transferenceTransaction.! !
+
+
+!classDefinition: #TransferenceDeposit category: 'Portfolio-Solucion'!
+TransferenceTransaction subclass: #TransferenceDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferenceDeposit methodsFor: 'initialization' stamp: 'jgv 10/22/2023 16:50:12'!
+initiliazeWithTransference: aTransference 
+	transference := aTransference.
+	! !
+
+
+!TransferenceDeposit methodsFor: 'balance' stamp: 'jgv 10/22/2023 16:53:21'!
+affectBalance: currentBalance 
+	^currentBalance + transference value.! !
+
+
+!TransferenceDeposit methodsFor: 'transference' stamp: 'jgv 10/22/2023 16:56:12'!
+transference
+	^transference.! !
+
+!TransferenceDeposit methodsFor: 'transference' stamp: 'jgv 10/22/2023 16:57:36'!
+transferenceWithdraw
+	^transference withdraw.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferenceDeposit class' category: 'Portfolio-Solucion'!
+TransferenceDeposit class
+	instanceVariableNames: ''!
+
+!TransferenceDeposit class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:37:06'!
+for: aTransference
+	^self new initiliazeWithTransference: aTransference.
+! !
+
+
+!classDefinition: #TransferenceWithdraw category: 'Portfolio-Solucion'!
+TransferenceTransaction subclass: #TransferenceWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferenceWithdraw methodsFor: 'initialization' stamp: 'jgv 10/22/2023 16:50:06'!
+initiliazeWithTransference: aTransference 
+	transference := aTransference.! !
+
+
+!TransferenceWithdraw methodsFor: 'balance' stamp: 'jgv 10/22/2023 16:51:10'!
+affectBalance: currentBalance 
+	^currentBalance - transference value.! !
+
+
+!TransferenceWithdraw methodsFor: 'transference' stamp: 'jgv 10/22/2023 16:56:29'!
+transference
+	^transference.! !
+
+!TransferenceWithdraw methodsFor: 'transference' stamp: 'jgv 10/22/2023 16:57:56'!
+transferenceDeposit
+	^transference deposit.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferenceWithdraw class' category: 'Portfolio-Solucion'!
+TransferenceWithdraw class
+	instanceVariableNames: ''!
+
+!TransferenceWithdraw class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:47:13'!
+for: aTransference
+	^self new initiliazeWithTransference: aTransference.! !
