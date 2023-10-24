@@ -2427,3 +2427,1260 @@ PASSED!
 PASSED!
 
 ----QUIT----(22 October 2023 19:46:07) CuisUniversity-Portfolio2.image priorSource: 10285860!
+
+----STARTUP---- (23 October 2023 19:43:35) as /home/clinux01/Escritorio/linux64/CuisUniversity-Portfolio2.image!
+
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:24:13' prior: 50652448!
+test01
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:24:17'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:24:36' prior: 50652465!
+test02
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: (anAccount generateSummary).! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:25:08' prior: 50652612!
+test03
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).! !
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:25:11'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:25:36'!
+test0X
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).! !
+
+!methodRemoval: ReportsTest #test03 stamp: 'jgv 10/23/2023 21:25:36'!
+test03
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:25:52'!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:25:53'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:26:03' prior: 50656736!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = 100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:26:05'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:26:13' prior: 50656748!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:26:14'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:26:54' prior: 50653090!
+test04
+	| anAccount anotherAcount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAcount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:27:31' prior: 50656790!
+test04
+	| anAccount anotherAcount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAcount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAcount.
+			
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:28:02' prior: 50656761!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:28:03'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:28:36' prior: 50656802!
+test04
+	| anAccount anotherAcount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAcount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAcount.
+			
+	self assert: (OrderedCollection with: 'Salida por transferencia de 25' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:28:37'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:28:50' prior: 50656828!
+test04
+	| anAccount anotherAcount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAcount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAcount.
+			
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:28:51'!
+FAILURE!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:28:51'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:28:51'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:29:06' prior: 50656815!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: (anAccount generateSummary).! !
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:29:11'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:29:35' prior: 50653132!
+test05
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAccount.
+			
+	self assert: (OrderedCollection with: 'Entrada por transferencia de 100' with: 'Balance = -100') equals: (anotherAccount generateSummary).! !
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:29:37'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:29:44' prior: 50656906!
+test05
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAccount.
+			
+	self assert: (OrderedCollection with: 'Entrada por transferencia de 100' with: 'Balance = 100') equals: (anotherAccount generateSummary).! !
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:29:45'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:29:53'!
+test07
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:31:14' prior: 50656953!
+test07
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).! !
+
+!methodRemoval: ReportsTest #test06 stamp: 'jgv 10/23/2023 21:31:29'!
+test06
+	| aReport anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	Transference transfer: 150 from: anotherAccount  to: anAccount.
+	Transference transfer: 50 from: anAccount to: anotherAccount.
+	
+	aReport := Report new.
+
+	self assert: 0 equals: (aReport accountTransferNet: anAccount).
+	self assert: 0 equals: (aReport  accountTransferNet: anotherAccount).
+!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:31:36'!
+test06
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).! !
+
+!methodRemoval: ReportsTest #test07 stamp: 'jgv 10/23/2023 21:31:36'!
+test07
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount generateSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount generateSummary).!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:32:40'!
+test07
+	| anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+
+	self assert: 0 equals: (anAccount calculateTransferNet).
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:33:08'!
+test08
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 0 equals:  anAccount calculateTransferNet.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:33:31' prior: 50656687!
+test0X
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 0 equals:  anAccount calculateTransferNet.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:33:51' prior: 50657077!
+test08
+	| anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: 	anAccount.
+		
+	self assert: 0 equals:  anAccount calculateTransferNet.
+! !
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:33:56'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:33:56'!
+FAILURE!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:33:56'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:34:18' prior: 50657088!
+test0X
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount calculateTransferNet.
+! !
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:34:19'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:34:32'!
+test09
+	| anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: 	anAccount.
+		
+	self assert: 0 equals:  anAccount calculateTransferNet.
+! !
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:34:34'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:34:44'!
+test10
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount calculateTransferNet.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:34:57'!
+test11
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount calculateTransferNet.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:35:41' prior: 50657210!
+test11
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount calculateTransferNet.
+! !
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test0X stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:35:43'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:36:50'!
+test12
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount calculateTransferNet.
+! !
+
+!methodRemoval: ReportsTest #test0X stamp: 'jgv 10/23/2023 21:36:50'!
+test0X
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount calculateTransferNet.
+!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:37:11'!
+test112
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount calculateTransferNet.
+! !
+
+!methodRemoval: ReportsTest #test11 stamp: 'jgv 10/23/2023 21:37:11'!
+test11
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount calculateTransferNet.
+!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:37:16'!
+test11
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount calculateTransferNet.
+! !
+
+!methodRemoval: ReportsTest #test12 stamp: 'jgv 10/23/2023 21:37:16'!
+test12
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount calculateTransferNet.
+!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:37:19'!
+test12
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount calculateTransferNet.
+! !
+
+!methodRemoval: ReportsTest #test112 stamp: 'jgv 10/23/2023 21:37:19'!
+test112
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount calculateTransferNet.
+!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/23/2023 21:37:22'!
+PASSED!
+
+!classRemoval: #Report stamp: 'jgv 10/23/2023 21:37:53'!
+Object subclass: #Report
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:37:57'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/23/2023 21:37:58'!
+PASSED!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/23/2023 21:50:16'!
+accountSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+		(transaction isKindOf: Deposit) ifTrue: [
+				transactionsSummary add: 'Depósito por ', transaction value asString.
+			].
+		(transaction isKindOf: Withdraw ) ifTrue: [
+				transactionsSummary add: 'Extracción por ', transaction value asString .
+			].
+		(transaction isKindOf: TransferenceDeposit ) ifTrue: [
+				transactionsSummary add: 'Entrada por transferencia de ', transaction transference value asString.
+			].
+		(transaction isKindOf: TransferenceWithdraw ) ifTrue: [
+				transactionsSummary add: 'Salida por transferencia de ', transaction transference value asString.
+			].
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:16' prior: 50656612!
+test01
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	self assert: (OrderedCollection with: 'Balance = 0') equals: (anAccount accountSummary).! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:16' prior: 50656843!
+test04
+	| anAccount anotherAcount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAcount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAcount.
+			
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100' with: 'Balance = -100') equals: (anAccount accountSummary).! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:16' prior: 50656922!
+test05
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAccount.
+			
+	self assert: (OrderedCollection with: 'Entrada por transferencia de 100' with: 'Balance = 100') equals: (anotherAccount accountSummary).! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:16' prior: 50656877!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: (anAccount accountSummary).! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:16' prior: 50657021!
+test06
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (anAccount accountSummary).
+	self assert: anotherAccountSumary equals: (anotherAccount accountSummary).! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:16' prior: 50656636!
+test02
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: (anAccount accountSummary).! !
+
+!methodRemoval: ReceptiveAccount #generateSummary stamp: 'jgv 10/23/2023 21:50:16'!
+generateSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+		(transaction isKindOf: Deposit) ifTrue: [
+				transactionsSummary add: 'Depósito por ', transaction value asString.
+			].
+		(transaction isKindOf: Withdraw ) ifTrue: [
+				transactionsSummary add: 'Extracción por ', transaction value asString .
+			].
+		(transaction isKindOf: TransferenceDeposit ) ifTrue: [
+				transactionsSummary add: 'Entrada por transferencia de ', transaction transference value asString.
+			].
+		(transaction isKindOf: TransferenceWithdraw ) ifTrue: [
+				transactionsSummary add: 'Salida por transferencia de ', transaction transference value asString.
+			].
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/23/2023 21:50:29'!
+PASSED!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/23/2023 21:50:49'!
+transferNet
+
+	| transferenceTransactions |
+	
+	transferenceTransactions :=  transactions select: [:transaction | (transaction isKindOf: TransferenceDeposit) or: [transaction isKindOf: TransferenceWithdraw ]].
+	
+	^transferenceTransactions sum: [:transaction | 
+		self xxxx: transaction.
+		] ifEmpty: [0].! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:49' prior: 50657200!
+test10
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount transferNet.
+! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:49' prior: 50657167!
+test09
+	| anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: 	anAccount.
+		
+	self assert: 0 equals:  anAccount transferNet.
+! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:49' prior: 50657310!
+test11
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: -100 equals:  anAccount transferNet.
+! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:49' prior: 50657099!
+test08
+	| anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: 	anAccount.
+		
+	self assert: 0 equals:  anAccount transferNet.
+! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:49' prior: 50657330!
+test12
+	| anAccount anotherAccount|
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  anotherAccount transferNet.
+! !
+!ReportsTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/23/2023 21:50:49' prior: 50657070!
+test07
+	| anAccount |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	
+
+	self assert: 0 equals: (anAccount transferNet).
+! !
+
+!methodRemoval: ReceptiveAccount #calculateTransferNet stamp: 'jgv 10/23/2023 21:50:49'!
+calculateTransferNet
+
+	| transferenceTransactions |
+	
+	transferenceTransactions :=  transactions select: [:transaction | (transaction isKindOf: TransferenceDeposit) or: [transaction isKindOf: TransferenceWithdraw ]].
+	
+	^transferenceTransactions sum: [:transaction | 
+		self xxxx: transaction.
+		] ifEmpty: [0].!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/23/2023 21:51:05'!
+PASSED!
+!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:53:12'!
+generateStringForSummary
+	self subclassResponsibility.! !
+!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:56:11' overrides: 50657701!
+generateStringForSummary
+	self subclassResponsibility.! !
+!Withdraw methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:56:11' overrides: 50657701!
+generateStringForSummary
+	self subclassResponsibility.! !
+!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:56:11' prior: 50657701!
+generateStringForSummary
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:57:02' prior: 50657706 overrides: 50657716!
+generateStringForSummary
+	^'Depósito por', value asString.! !
+!Withdraw methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:57:28' prior: 50657711 overrides: 50657716!
+generateStringForSummary
+	^'Extracción por ', value asString.! !
+!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:57:32' prior: 50657722 overrides: 50657716!
+generateStringForSummary
+	^'Depósito por ', value asString.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/23/2023 21:58:33' prior: 50657420!
+accountSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+		((transaction isKindOf: Deposit) or: [transaction isKindOf: Withdraw ]) ifTrue: [
+				transactionsSummary add: transaction generateStringForSummary.
+			].
+		(transaction isKindOf: TransferenceDeposit ) ifTrue: [
+				transactionsSummary add: 'Entrada por transferencia de ', transaction transference value asString.
+			].
+		(transaction isKindOf: TransferenceWithdraw ) ifTrue: [
+				transactionsSummary add: 'Salida por transferencia de ', transaction transference value asString.
+			].
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/23/2023 21:58:51'!
+PASSED!
+!TransferenceTransaction methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 22:00:20'!
+generateStringForSummary
+	self subclassResponsibility.! !
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 22:00:25' overrides: 50657792!
+generateStringForSummary
+	self subclassResponsibility.! !
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 22:00:25' overrides: 50657792!
+generateStringForSummary
+	self subclassResponsibility.! !
+!TransferenceTransaction methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 22:00:25' prior: 50657792!
+generateStringForSummary
+
+	self subclassResponsibility! !
+
+----QUIT----(23 October 2023 22:00:49) CuisUniversity-Portfolio2.image priorSource: 10398550!
