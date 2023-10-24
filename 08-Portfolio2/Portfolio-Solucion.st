@@ -312,11 +312,12 @@ TestCase subclass: #ReportsTest
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/24/2023 19:02:51'!
 test01
 	| anAccount |
 	anAccount := ReceptiveAccount new.
-	self assert: (OrderedCollection with: 'Balance = 0') equals: (anAccount accountSummary).! !
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: ((AccountSummaryGenerator forAccount: anAccount) generateReport ).! !
 
 !ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
 test02
@@ -728,26 +729,6 @@ initialize
 	transactions := OrderedCollection new.! !
 
 
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/23/2023 21:58:33'!
-accountSummary
-	|transactionsSummary|
-	
-	transactionsSummary := OrderedCollection new.
-		
-	transactions do: [:transaction | 
-		((transaction isKindOf: Deposit) or: [transaction isKindOf: Withdraw ]) ifTrue: [
-				transactionsSummary add: transaction generateStringForSummary.
-			].
-		(transaction isKindOf: TransferenceDeposit ) ifTrue: [
-				transactionsSummary add: 'Entrada por transferencia de ', transaction transference value asString.
-			].
-		(transaction isKindOf: TransferenceWithdraw ) ifTrue: [
-				transactionsSummary add: 'Salida por transferencia de ', transaction transference value asString.
-			].
-		].
-	transactionsSummary add: 'Balance = ', self balance asString.
-	^transactionsSummary.! !
-
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52'!
 addTransactionsTo: aCollectionOfTransactions
 
@@ -763,17 +744,6 @@ register: aTransaction
 transactions 
 
 	^ transactions copy! !
-
-!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/23/2023 21:50:49'!
-transferNet
-
-	| transferenceTransactions |
-	
-	transferenceTransactions :=  transactions select: [:transaction | (transaction isKindOf: TransferenceDeposit) or: [transaction isKindOf: TransferenceWithdraw ]].
-	
-	^transferenceTransactions sum: [:transaction | 
-		self xxxx: transaction.
-		] ifEmpty: [0].! !
 
 
 !ReceptiveAccount methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:24:46'!
@@ -802,18 +772,35 @@ addedTo: aPortfolio
 	! !
 
 
-!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'jgv 10/22/2023 19:44:29'!
-xxxx: aTransaction
-		(aTransaction isKindOf: TransferenceDeposit ) ifTrue: [
-				^aTransaction transference value.
-			].
-		^aTransaction transference value negated. 
+!ReceptiveAccount methodsFor: 'reports' stamp: 'jgv 10/24/2023 18:56:30'!
+generateTransactionsReportValuesForAReport: aReportGenerator
 
-! !
+	transactions do: [:transaction | 
+				transaction generateValueForReportGenerator: aReportGenerator.
+		].! !
+
+
+!classDefinition: #BankTransaction category: 'Portfolio-Solucion'!
+Object subclass: #BankTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!BankTransaction methodsFor: 'balance' stamp: 'jgv 10/24/2023 16:48:32'!
+affectBalance: aBalance
+
+	self subclassResponsibility! !
+
+
+!BankTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:49:45'!
+generateValueForReportGenerator: aReportGenerator
+
+	self subclassResponsibility! !
 
 
 !classDefinition: #AccountTransaction category: 'Portfolio-Solucion'!
-Object subclass: #AccountTransaction
+BankTransaction subclass: #AccountTransaction
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -825,16 +812,17 @@ value
 	self subclassResponsibility ! !
 
 
-!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:56:11'!
-generateStringForSummary
-
-	self subclassResponsibility! !
-
 
 !AccountTransaction methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:25:39'!
 affectBalance: aBalance
 
 	self subclassResponsibility ! !
+
+
+!AccountTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:50:04'!
+generateValueForReportGenerator: aReportGenerator
+
+	self subclassResponsibility! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -878,9 +866,9 @@ affectBalance: aBalance
 	^aBalance + value ! !
 
 
-!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:57:32'!
-generateStringForSummary
-	^'Depósito por ', value asString.! !
+!Deposit methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:50:48'!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForADeposit: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -919,9 +907,14 @@ affectBalance: aBalance
 	^aBalance - value! !
 
 
-!Withdraw methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 21:57:28'!
-generateStringForSummary
-	^'Extracción por ', value asString.! !
+!Withdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:27:51'!
+generateStringForSummary: anAccountSumaryGenerator.
+	^anAccountSumaryGenerator generateSummaryStringForWithdraw: self.! !
+
+
+!Withdraw methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:52:14'!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForAWithdraw: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -935,46 +928,8 @@ for: aValue
 	^ self new initializeFor: aValue ! !
 
 
-!classDefinition: #Transference category: 'Portfolio-Solucion'!
-Object subclass: #Transference
-	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'Portfolio-Solucion'!
-
-!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:54:35'!
-deposit
-	^transferenceDeposit.! !
-
-!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:52:56'!
-value
-	^value.! !
-
-!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:54:21'!
-withdraw
-	^transferenceWithdraw.! !
-
-
-!Transference methodsFor: 'initialization' stamp: 'jgv 10/22/2023 16:47:52'!
-initializeWithValue: aValue from: anAccount to: anotherAccount
-	value := aValue.
-	transferenceWithdraw :=  TransferenceWithdraw register: aValue on: anAccount  in: self. 
-	transferenceDeposit := TransferenceDeposit register: aValue on: anotherAccount in: self.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'Transference class' category: 'Portfolio-Solucion'!
-Transference class
-	instanceVariableNames: ''!
-
-!Transference class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:45:20'!
-transfer: aValue from: anAccount to: anotherAccount 
-		
-	^self new initializeWithValue: aValue from: anAccount to: anotherAccount.! !
-
-
 !classDefinition: #TransferenceTransaction category: 'Portfolio-Solucion'!
-Object subclass: #TransferenceTransaction
+BankTransaction subclass: #TransferenceTransaction
 	instanceVariableNames: 'transference'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -991,11 +946,22 @@ generateStringForSummary
 
 	self subclassResponsibility! !
 
+!TransferenceTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:04:10'!
+generateValueForTransferNet
+
+	self subclassResponsibility! !
+
 
 !TransferenceTransaction methodsFor: 'balance' stamp: 'jgv 10/22/2023 16:25:01'!
 affectBalance: aBalance
 
 	self subclassResponsibility.! !
+
+
+!TransferenceTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:55:27'!
+generateValueForReportGenerator: aReportGenerator
+
+	self subclassResponsibility! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1039,9 +1005,18 @@ transferenceWithdraw
 	^transference withdraw.! !
 
 
-!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 22:00:25'!
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 16:59:39'!
 generateStringForSummary
-	self subclassResponsibility.! !
+		^ 'Entrada por transferencia de ', transference value asString.! !
+
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:39:43'!
+generateValueForTransferNet: aTranferNetGenerator
+	^aTranferNetGenerator generateTransferValueForTransferenceDeposit: self.! !
+
+
+!TransferenceDeposit methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:56:35'!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForATransferenceDeposit: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1081,9 +1056,18 @@ transferenceDeposit
 	^transference deposit.! !
 
 
-!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/23/2023 22:00:25'!
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:00:14'!
 generateStringForSummary
-	self subclassResponsibility.! !
+	^'Salida por transferencia de ', transference value asString.! !
+
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:38:18'!
+generateValueForTransferNet: aTranferNetGenerator
+	^aTranferNetGenerator generateTransferValueForTransferenceWithdraw: self.! !
+
+
+!TransferenceWithdraw methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:57:09'!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForATransferenceWithdraw: self.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -1094,3 +1078,173 @@ TransferenceWithdraw class
 !TransferenceWithdraw class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:47:13'!
 for: aTransference
 	^self new initiliazeWithTransference: aTransference.! !
+
+
+!classDefinition: #ReportGenerator category: 'Portfolio-Solucion'!
+Object subclass: #ReportGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:46:00'!
+generateReport
+	self subclassResponsibility.! !
+
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:00:03'!
+generateReportValueForADeposit: aDeposit
+
+	self subclassResponsibility! !
+
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:57'!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+
+	self subclassResponsibility! !
+
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:53'!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+
+	self subclassResponsibility! !
+
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:44'!
+generateReportValueForAWithdraw: aWithdraw
+
+	self subclassResponsibility! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReportGenerator class' category: 'Portfolio-Solucion'!
+ReportGenerator class
+	instanceVariableNames: ''!
+
+!ReportGenerator class methodsFor: 'instance creation' stamp: 'jgv 10/24/2023 18:46:28'!
+forAccount: anAccount
+	^self new initializeWithAnAccount: anAccount. ! !
+
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion'!
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!AccountSummaryGenerator methodsFor: 'initialization' stamp: 'jgv 10/24/2023 18:47:16'!
+initializeWithAnAccount: anAccount
+	account := anAccount.
+	summary := OrderedCollection new.! !
+
+
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:59:24'!
+generateReport
+
+	account generateTransactionsReportValuesForAReport: self.
+	
+	summary 	add: 'Balance = ', account balance asString.
+	
+	^summary.
+	
+	
+	
+! !
+
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:21'!
+generateReportValueForADeposit: aDeposit
+	summary add: 'Depósito por ', aDeposit value asString.! !
+
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:35'!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	summary add: 'Entrada por transferencia de ', aTransferenceDeposit transference value asString.! !
+
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:43'!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	summary add: 'Salida por transferencia de ', aTransferenceWithdraw transference value asString.! !
+
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:51'!
+generateReportValueForAWithdraw: aWithdraw
+	summary add: 'Extracción por ', aWithdraw value asString.! !
+
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion'!
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!TransferNetGenerator methodsFor: 'initialization' stamp: 'jgv 10/24/2023 19:00:36'!
+initializeWithAnAccount: anAccount
+	account := anAccount.
+	net := 0.! !
+
+
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:02:08'!
+generateReport
+	
+	account generateTransactionsReportValuesForAReport: self
+	
+	^net.! !
+
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:00:59'!
+generateReportValueForADeposit: aDeposit
+	net + 0.! !
+
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:15'!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	net + aTransferenceDeposit transference value.! !
+
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:27'!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	net - aTransferenceWithdraw transference value.! !
+
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:33'!
+generateReportValueForAWithdraw: aWithdraw
+	net + 0.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TransferNetGenerator class' category: 'Portfolio-Solucion'!
+TransferNetGenerator class
+	instanceVariableNames: ''!
+
+!TransferNetGenerator class methodsFor: 'instance creation' stamp: 'jgv 10/24/2023 17:32:00'!
+transactions: aTransactions
+	^self new initializeTransactions: aTransactions! !
+
+
+!classDefinition: #Transference category: 'Portfolio-Solucion'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:54:35'!
+deposit
+	^transferenceDeposit.! !
+
+!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:52:56'!
+value
+	^value.! !
+
+!Transference methodsFor: 'observers' stamp: 'jgv 10/22/2023 16:54:21'!
+withdraw
+	^transferenceWithdraw.! !
+
+
+!Transference methodsFor: 'initialization' stamp: 'jgv 10/22/2023 16:47:52'!
+initializeWithValue: aValue from: anAccount to: anotherAccount
+	value := aValue.
+	transferenceWithdraw :=  TransferenceWithdraw register: aValue on: anAccount  in: self. 
+	transferenceDeposit := TransferenceDeposit register: aValue on: anotherAccount in: self.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'Transference class' category: 'Portfolio-Solucion'!
+Transference class
+	instanceVariableNames: ''!
+
+!Transference class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:45:20'!
+transfer: aValue from: anAccount to: anotherAccount 
+		
+	^self new initializeWithValue: aValue from: anAccount to: anotherAccount.! !

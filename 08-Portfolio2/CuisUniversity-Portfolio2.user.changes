@@ -3684,3 +3684,1291 @@ generateStringForSummary
 	self subclassResponsibility! !
 
 ----QUIT----(23 October 2023 22:00:49) CuisUniversity-Portfolio2.image priorSource: 10398550!
+
+----STARTUP---- (24 October 2023 16:43:23) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio2.image!
+
+
+Object subclass: #BankTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #BankTransaction category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 16:45:23'!
+Object subclass: #BankTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+BankTransaction subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+BankTransaction subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'
+	!
+
+Object subclass: #BankTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #BankTransaction category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 16:46:11'!
+Object subclass: #BankTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+BankTransaction subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferenceTransaction category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 16:46:21'!
+BankTransaction subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+BankTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountTransaction category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 16:48:20'!
+BankTransaction subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!BankTransaction methodsFor: 'balance' stamp: 'jgv 10/24/2023 16:48:32'!
+affectBalance: aBalance
+
+	self subclassResponsibility! !
+!BankTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 16:49:20'!
+generateStringForSummary
+
+	self subclassResponsibility! !
+
+!testRun: #PortfolioTest #test01BalanceOfPortfolioWithoutAccountsIsZero stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test02BalanceOfPortfolioWithAccountsIsSumOfAccountsBalance stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test03BalanceOfPortfolioIsCalculatedRecursivelyOnPortfolios stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test04PortfolioWithoutAccountsHasNoRegisteredTransaction stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test05PortfolioHasRegisteredItsAccountsTransactions stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test06PortfolioLooksForRegisteredTransactionsRecursively stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test07PortfolioHasNoTransactionWhenHasNoAccounts stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test08PortfolioTransactionsIncludesAllItsAccountsTransactions stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test09PortfolioTransactionsAreCalculatedRecursively stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test10PortfolioCanNotIncludeTheSameAccountMoreThanOnce stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test11PortfolioCanNotIncludeAccountOfItsPortfolios stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test12PortfolioCanNotIncludeItself stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test13ComposedPortfolioCanNotHaveParentPortfolioAccount stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test14ComposedPortfolioCanNotHaveAccountOfAnyRootParentRecursively stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #PortfolioTest #test15PortfolioCanNotIncludeAnyOfTheComposedAccountOfPortfolioToAdd stamp: 'jgv 10/24/2023 16:49:31'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 16:49:40'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 16:49:45'!
+PASSED!
+
+!testRun: #TransferenceTest #test01TransferenceAffectBalanceCorrectlyInDepositantAndDepositedAccount stamp: 'jgv 10/24/2023 16:49:47'!
+PASSED!
+
+!testRun: #TransferenceTest #test02TrasnferenceRegistersADepositInDepositedAccountAndAWithdrawInDepositantAccount stamp: 'jgv 10/24/2023 16:49:47'!
+PASSED!
+
+!testRun: #TransferenceTest #test03CanMakeOverdraftTransference stamp: 'jgv 10/24/2023 16:49:47'!
+PASSED!
+
+!testRun: #TransferenceTest #test04CanNavigateTransferenceLegsCorrectly stamp: 'jgv 10/24/2023 16:49:47'!
+PASSED!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 16:59:01'!
+generateStringForSummary: transaction
+
+	^ 'Entrada por transferencia de ', transaction transference value asString! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 16:59:01' prior: 50657739!
+accountSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+		((transaction isKindOf: Deposit) or: [transaction isKindOf: Withdraw ]) ifTrue: [
+				transactionsSummary add: transaction generateStringForSummary.
+			].
+		(transaction isKindOf: TransferenceDeposit ) ifTrue: [
+				transactionsSummary add: (self generateStringForSummary: transaction).
+			].
+		(transaction isKindOf: TransferenceWithdraw ) ifTrue: [
+				transactionsSummary add: 'Salida por transferencia de ', transaction transference value asString.
+			].
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+
+!methodRemoval: ReceptiveAccount #generateStringForSummary: stamp: 'jgv 10/24/2023 16:59:22'!
+generateStringForSummary: transaction
+
+	^ 'Entrada por transferencia de ', transaction transference value asString!
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 16:59:39' prior: 50657798 overrides: 50657810!
+generateStringForSummary
+		^ 'Entrada por transferencia de ', transference value asString.! !
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:00:14' prior: 50657804 overrides: 50657810!
+generateStringForSummary
+	^'Salida por transferencia de ', transference value asString.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 17:00:39' prior: 50658031!
+accountSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+			transaction generateStringForSummary.
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 17:00:56' prior: 50658076!
+accountSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: transaction generateStringForSummary.
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 17:00:59'!
+PASSED!
+!BankTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:29'!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!TransferenceTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:36' overrides: 50658128!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:36' overrides: 50658128!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!BankTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:36' prior: 50658128!
+generateValueForTransferNet
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:45' overrides: 50658140!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!Withdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:45' overrides: 50658140!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:02:45' prior: 50658140 overrides: 50658145!
+generateValueForTransferNet
+
+	self subclassResponsibility! !
+
+!methodRemoval: Deposit #generateValueForTransferNet stamp: 'jgv 10/24/2023 17:03:10'!
+generateValueForTransferNet.
+	self subclassResponsibility!
+
+!methodRemoval: Withdraw #generateValueForTransferNet stamp: 'jgv 10/24/2023 17:03:15'!
+generateValueForTransferNet.
+	self subclassResponsibility!
+!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:03:26' prior: 50658161 overrides: 50658145!
+generateValueForTransferNet
+
+	^0.! !
+!AccountTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:03:28' prior: 50658176 overrides: 50658145!
+generateValueForTransferNet
+	^0.! !
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:04:10' overrides: 50658134!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:04:10' overrides: 50658134!
+generateValueForTransferNet.
+	self subclassResponsibility! !
+!TransferenceTransaction methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:04:10' prior: 50658134 overrides: 50658145!
+generateValueForTransferNet
+
+	self subclassResponsibility! !
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:04:22' prior: 50658186 overrides: 50658198!
+generateValueForTransferNet.
+	^transference value.! !
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:04:34' prior: 50658192 overrides: 50658198!
+generateValueForTransferNet.
+	^transference value negated.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 17:05:26' prior: 50657588!
+transferNet
+
+	| transferenceTransactions |
+	
+	transferenceTransactions :=  transactions sum: [: transaction | transaction generateValueForTransferNet ] ifEmpty: [^0.]! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 17:05:40' prior: 50658215!
+transferNet
+
+	
+	^transactions sum: [: transaction | transaction generateValueForTransferNet ] ifEmpty: [^0.]! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 17:05:44' prior: 50658224!
+transferNet
+	
+	^transactions sum: [: transaction | transaction generateValueForTransferNet ] ifEmpty: [^0.]! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 17:05:48'!
+PASSED!
+
+!methodRemoval: ReceptiveAccount #xxxx: stamp: 'jgv 10/24/2023 17:05:53'!
+xxxx: aTransaction
+		(aTransaction isKindOf: TransferenceDeposit ) ifTrue: [
+				^aTransaction transference value.
+			].
+		^aTransaction transference value negated. 
+
+!
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 17:09:22'!
+Object subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'transactions account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummaryGenerator class methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:09:22'!
+account: anAccount transactions: aTransactions
+	^self new initializeAccount: anAccount transactions: aTransactions! !
+!AccountSummaryGenerator methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:09:22'!
+initializeAccount: anAccount transactions: aTransactions
+	transactions := aTransactions.
+	account := anAccount.! !
+!AccountSummaryGenerator methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:09:22'!
+generateSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: transaction generateStringForSummary.
+		].
+	transactionsSummary add: 'Balance = ', account balance asString.
+	^transactionsSummary.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:09:22' prior: 50658088!
+accountSummary
+	^(AccountSummaryGenerator account: self transactions: transactions) generateSummary! !
+!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:23:37'!
+generateStringForSummary: anAccountSumaryGenerator.
+	^anAccountSumaryGenerator generateSummaryStringForDeposit.! !
+!AccountSummaryGenerator methodsFor: 'transactionStringGenerators' stamp: 'jgv 10/24/2023 17:24:22'!
+generateSummaryStringForDeposit
+! !
+!AccountSummaryGenerator methodsFor: 'transactionStringGenerators' stamp: 'jgv 10/24/2023 17:25:12'!
+generateSummaryStringForDeposit: aDeposit
+	^'Depósito por ', aDeposit value asString.! !
+
+!methodRemoval: AccountSummaryGenerator #generateSummaryStringForDeposit: stamp: 'jgv 10/24/2023 17:25:16'!
+generateSummaryStringForDeposit: aDeposit
+	^'Depósito por ', aDeposit value asString.!
+!AccountSummaryGenerator methodsFor: 'transactionStringGenerators' stamp: 'jgv 10/24/2023 17:25:12'!
+generateSummaryStringForDeposit: aDeposit
+	^'Depósito por ', aDeposit value asString.! !
+
+!methodRemoval: AccountSummaryGenerator #generateSummaryStringForDeposit stamp: 'jgv 10/24/2023 17:25:54'!
+generateSummaryStringForDeposit
+!
+
+!methodRemoval: Deposit #generateStringForSummary stamp: 'jgv 10/24/2023 17:26:05'!
+generateStringForSummary
+	^'Depósito por ', value asString.!
+!Deposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:26:12' prior: 50658315!
+generateStringForSummary: anAccountSumaryGenerator.
+	^anAccountSumaryGenerator generateSummaryStringForDeposit: self.! !
+!Withdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:27:51'!
+generateStringForSummary: anAccountSumaryGenerator.
+	^anAccountSumaryGenerator generateSummaryStringForWithdraw: self.! !
+
+!methodRemoval: Withdraw #generateStringForSummary stamp: 'jgv 10/24/2023 17:27:56'!
+generateStringForSummary
+	^'Extracción por ', value asString.!
+!AccountSummaryGenerator methodsFor: 'transactionStringGenerators' stamp: 'jgv 10/24/2023 17:28:29'!
+generateSummaryStringForWithdraw: aWithdraw
+	^'Extracción por ', aWithdraw value asString.! !
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 17:32:00'!
+Object subclass: #TransferNetGenerator
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetGenerator class methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:32:00'!
+transactions: aTransactions
+	^self new initializeTransactions: aTransactions! !
+!TransferNetGenerator methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:32:00'!
+initializeTransactions: aTransactions
+	transactions := aTransactions.! !
+!TransferNetGenerator methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:32:00'!
+generateTransferNet
+	
+	^transactions sum: [: transaction | transaction generateValueForTransferNet ] ifEmpty: [^0.]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:32:00' prior: 50658231!
+transferNet
+	^(TransferNetGenerator transactions: transactions) generateTransferNet! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 17:33:46'!
+ERROR!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 17:33:46'!
+ERROR!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 17:33:46'!
+ERROR!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 17:33:46'!
+PASSED!
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:36:11'!
+generateValueForTransferNet: aTranferNetGenerator
+	^aTranferNetGenerator generateTransferValueForTrasnferenceDeposit: self.! !
+
+!methodRemoval: TransferenceDeposit #generateValueForTransferNet stamp: 'jgv 10/24/2023 17:36:18'!
+generateValueForTransferNet.
+	^transference value.!
+!TransferNetGenerator methodsFor: 'transactionsTransferNetValueGenerator' stamp: 'jgv 10/24/2023 17:37:17'!
+generateTransferValueForTrasnferenceDeposit: aTransferenceDeposit.
+	^ aTransferenceDeposit transference value.
+	! !
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:38:06'!
+generateValueForTransferNet: aTranferNetGenerator
+	^aTranferNetGenerator generateTransferValueForTrasnferenceWithdraw: self.! !
+!TransferenceWithdraw methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:38:18' prior: 50658461!
+generateValueForTransferNet: aTranferNetGenerator
+	^aTranferNetGenerator generateTransferValueForTransferenceWithdraw: self.! !
+
+!methodRemoval: TransferenceWithdraw #generateValueForTransferNet stamp: 'jgv 10/24/2023 17:38:27'!
+generateValueForTransferNet.
+	^transference value negated.!
+!TransferNetGenerator methodsFor: 'transactionsTransferNetValueGenerator' stamp: 'jgv 10/24/2023 17:38:58'!
+generateTransferValueForTransferenceWithdraw: aTransferenceWithdraw
+	^aTransferenceWithdraw transference value negated.! !
+!TransferNetGenerator methodsFor: 'transactionsTransferNetValueGenerator' stamp: 'jgv 10/24/2023 17:39:25'!
+generateTransferValueForTransferenceDeposit: aTransferenceDeposit.
+	^ aTransferenceDeposit transference value.
+	! !
+
+!methodRemoval: TransferNetGenerator #generateTransferValueForTrasnferenceDeposit: stamp: 'jgv 10/24/2023 17:39:25'!
+generateTransferValueForTrasnferenceDeposit: aTransferenceDeposit.
+	^ aTransferenceDeposit transference value.
+	!
+!TransferenceDeposit methodsFor: 'summaryString' stamp: 'jgv 10/24/2023 17:39:43' prior: 50658441!
+generateValueForTransferNet: aTranferNetGenerator
+	^aTranferNetGenerator generateTransferValueForTransferenceDeposit: self.! !
+
+Object subclass: #ReportGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 17:43:37'!
+Object subclass: #ReportGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 17:43:53'!
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'transactions account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 17:44:00'!
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'transactions account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportGenerator methodsFor: 'no messages' stamp: 'jgv 10/24/2023 17:46:00'!
+generateReport
+	self subclassResponsibility.! !
+!AccountSummaryGenerator methodsFor: 'evaluating' stamp: 'jgv 10/24/2023 17:46:40' overrides: 50658551!
+generateReport
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: transaction generateStringForSummary.
+		].
+	transactionsSummary add: 'Balance = ', account balance asString.
+	^transactionsSummary.! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:46:40' prior: 50658309!
+accountSummary
+	^(AccountSummaryGenerator account: self transactions: transactions) generateReport! !
+
+!methodRemoval: AccountSummaryGenerator #generateSummary stamp: 'jgv 10/24/2023 17:46:40'!
+generateSummary
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: transaction generateStringForSummary.
+		].
+	transactionsSummary add: 'Balance = ', account balance asString.
+	^transactionsSummary.!
+!TransferNetGenerator methodsFor: 'evaluating' stamp: 'jgv 10/24/2023 17:47:18' overrides: 50658551!
+generateReport
+	
+	^transactions sum: [: transaction | transaction generateValueForTransferNet ] ifEmpty: [^0.]! !
+!ReceptiveAccount methodsFor: 'as yet unclassified' stamp: 'jgv 10/24/2023 17:47:18' prior: 50658408!
+transferNet
+	^(TransferNetGenerator transactions: transactions) generateReport! !
+
+!methodRemoval: TransferNetGenerator #generateTransferNet stamp: 'jgv 10/24/2023 17:47:18'!
+generateTransferNet
+	
+	^transactions sum: [: transaction | transaction generateValueForTransferNet ] ifEmpty: [^0.]!
+!BankTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:49:20'!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+
+!methodRemoval: BankTransaction #generateValueForTransferNet stamp: 'jgv 10/24/2023 17:49:31'!
+generateValueForTransferNet
+
+	self subclassResponsibility!
+
+!methodRemoval: BankTransaction #generateStringForSummary stamp: 'jgv 10/24/2023 17:49:34'!
+generateStringForSummary
+
+	self subclassResponsibility!
+!TransferenceTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:49:45' overrides: 50658607!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+!AccountTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:49:45' overrides: 50658607!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+!BankTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:49:45' prior: 50658607!
+generateValueForReportGenerator: aReportGenerator
+
+	self subclassResponsibility! !
+
+!methodRemoval: AccountTransaction #generateValueForTransferNet stamp: 'jgv 10/24/2023 17:49:56'!
+generateValueForTransferNet
+	^0.!
+
+!methodRemoval: AccountTransaction #generateStringForSummary stamp: 'jgv 10/24/2023 17:50:00'!
+generateStringForSummary
+
+	self subclassResponsibility!
+!Deposit methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:50:04' overrides: 50658629!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+!Withdraw methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:50:04' overrides: 50658629!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+!AccountTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:50:04' prior: 50658629 overrides: 50658635!
+generateValueForReportGenerator: aReportGenerator
+
+	self subclassResponsibility! !
+!Deposit methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:50:48' prior: 50658650 overrides: 50658663!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForADeposit: self.! !
+
+!methodRemoval: Deposit #generateStringForSummary: stamp: 'jgv 10/24/2023 17:51:21'!
+generateStringForSummary: anAccountSumaryGenerator.
+	^anAccountSumaryGenerator generateSummaryStringForDeposit: self.!
+!Withdraw methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:52:14' prior: 50658656 overrides: 50658663!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForAWithdraw: self.! !
+!TransferenceDeposit methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:55:26' overrides: 50658623!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+!TransferenceWithdraw methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:55:26' overrides: 50658623!
+generateValueForReportGenerator: aReportGenerator
+	self subclassResponsibility.! !
+!TransferenceTransaction methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:55:27' prior: 50658623 overrides: 50658635!
+generateValueForReportGenerator: aReportGenerator
+
+	self subclassResponsibility! !
+!TransferenceDeposit methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:56:35' prior: 50658691 overrides: 50658704!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForATransferenceDeposit: self.! !
+!TransferenceWithdraw methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:57:09' prior: 50658697 overrides: 50658704!
+generateValueForReportGenerator: aReportGenerator
+	^aReportGenerator generateReportValueForATransferenceWithdraw: self.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:57:52'!
+generateReportValueForADeposit: aDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:02'!
+generateReportValueForAWithdraW: aDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:08'!
+generateReportValueForAWithdraw: aDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:15'!
+generateReportValueForATranferenceWithdraw: aDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:22'!
+generateReportValueForATranferenceDeposit: aDeposit
+	self subclassResponsibility.! !
+
+!methodRemoval: ReportGenerator #generateReportValueForAWithdraW: stamp: 'jgv 10/24/2023 17:58:24'!
+generateReportValueForAWithdraW: aDeposit
+	self subclassResponsibility.!
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:33' prior: 50658747!
+generateReportValueForATranferenceDeposit: aTransferenceDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:44' prior: 50658741!
+generateReportValueForATranferenceWithdraw: aWithdraw
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:58:53' prior: 50658766!
+generateReportValueForATranferenceWithdraw: aTransferenceWithdraw
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:01' prior: 50658736!
+generateReportValueForAWithdraw: aWithdraw
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:10'!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	self subclassResponsibility.! !
+
+!methodRemoval: ReportGenerator #generateReportValueForATranferenceDeposit: stamp: 'jgv 10/24/2023 17:59:10'!
+generateReportValueForATranferenceDeposit: aTransferenceDeposit
+	self subclassResponsibility.!
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:23'!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	self subclassResponsibility.! !
+
+!methodRemoval: ReportGenerator #generateReportValueForATranferenceWithdraw: stamp: 'jgv 10/24/2023 17:59:23'!
+generateReportValueForATranferenceWithdraw: aTransferenceWithdraw
+	self subclassResponsibility.!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:44' overrides: 50658779!
+generateReportValueForAWithdraw: aWithdraw
+	self subclassResponsibility.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:44' overrides: 50658779!
+generateReportValueForAWithdraw: aWithdraw
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:44' prior: 50658779!
+generateReportValueForAWithdraw: aWithdraw
+
+	self subclassResponsibility! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:53' overrides: 50658797!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	self subclassResponsibility.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:53' overrides: 50658797!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:53' prior: 50658797!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+
+	self subclassResponsibility! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:57' overrides: 50658784!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	self subclassResponsibility.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:57' overrides: 50658784!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 17:59:57' prior: 50658784!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+
+	self subclassResponsibility! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:00:03' overrides: 50658726!
+generateReportValueForADeposit: aDeposit
+	self subclassResponsibility.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:00:03' overrides: 50658726!
+generateReportValueForADeposit: aDeposit
+	self subclassResponsibility.! !
+!ReportGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:00:03' prior: 50658726!
+generateReportValueForADeposit: aDeposit
+
+	self subclassResponsibility! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:00:30' prior: 50658877 overrides: 50658883!
+generateReportValueForADeposit: aDeposit
+	^'Depósito por ', aDeposit value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:01:17' prior: 50658817 overrides: 50658823!
+generateReportValueForAWithdraw: aWithdraw
+	^'Extracción por ', aWithdraw value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:03:04' prior: 50658836 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+		^'Salida por transferencia de ', aTransferenceWithdraw value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:03:27' prior: 50658857 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	^'Entrada por transferencia de ', aTransferenceDeposit value asString.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:03:44' prior: 50658871 overrides: 50658883!
+generateReportValueForADeposit: aDeposit
+	^aDeposit value.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:04:24' prior: 50658922 overrides: 50658883!
+generateReportValueForADeposit: aDeposit
+	^0.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:04:37' prior: 50658850 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	^aTransferenceDeposit transference value.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:04:54' prior: 50658829 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	^aTransferenceWithdraw transference value.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:04:59' prior: 50658942 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	^aTransferenceWithdraw transference value negated ! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:05:00' prior: 50658950 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	^aTransferenceWithdraw transference value negated.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:05:10' prior: 50658811 overrides: 50658823!
+generateReportValueForAWithdraw: aWithdraw
+	^0.! !
+
+!methodRemoval: TransferNetGenerator #generateTransferValueForTransferenceDeposit: stamp: 'jgv 10/24/2023 18:05:17'!
+generateTransferValueForTransferenceDeposit: aTransferenceDeposit.
+	^ aTransferenceDeposit transference value.
+	!
+
+!methodRemoval: TransferNetGenerator #generateTransferValueForTransferenceWithdraw: stamp: 'jgv 10/24/2023 18:05:17'!
+generateTransferValueForTransferenceWithdraw: aTransferenceWithdraw
+	^aTransferenceWithdraw transference value negated.!
+
+!methodRemoval: AccountSummaryGenerator #generateSummaryStringForDeposit: stamp: 'jgv 10/24/2023 18:05:26'!
+generateSummaryStringForDeposit: aDeposit
+	^'Depósito por ', aDeposit value asString.!
+
+!methodRemoval: AccountSummaryGenerator #generateSummaryStringForWithdraw: stamp: 'jgv 10/24/2023 18:05:26'!
+generateSummaryStringForWithdraw: aWithdraw
+	^'Extracción por ', aWithdraw value asString.!
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 18:20:28'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 18:20:28'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 18:20:28'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 18:20:28'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 18:20:28'!
+ERROR!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 18:20:32'!
+ERROR!
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:22:09' prior: 50658556 overrides: 50658551!
+generateReport
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: (transaction generateValueForReportGenerator: self).
+		].
+	transactionsSummary add: 'Balance = ', account balance asString.
+	^transactionsSummary.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:22:33' prior: 50658588 overrides: 50658551!
+generateReport
+	
+	^transactions sum: [: transaction | transaction generateValueForReportGenerator:self ] ifEmpty: [^0.]! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 18:22:40'!
+FAILURE!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 18:22:40'!
+FAILURE!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 18:22:40'!
+FAILURE!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 18:22:40'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 18:22:46'!
+FAILURE!
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:23:57' prior: 50658904 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+		^'Salida por transferencia de ', aTransferenceWithdraw transference value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:24:10' prior: 50658913 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	^'Entrada por transferencia de ', aTransferenceDeposit transference value asString.! !
+
+!testRun: #ReportsTest #test01 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'jgv 10/24/2023 18:24:16'!
+PASSED!
+
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:35:55'!
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:36:02'!
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!AccountSummaryGenerator class methodsFor: 'instance creation' stamp: 'jgv 10/24/2023 18:36:26'!
+account: anAccount
+	^self new initializeWithAnAccount: anAccount. ! !
+
+!methodRemoval: AccountSummaryGenerator class #account:transactions: stamp: 'jgv 10/24/2023 18:36:31'!
+account: anAccount transactions: aTransactions
+	^self new initializeAccount: anAccount transactions: aTransactions!
+!AccountSummaryGenerator methodsFor: 'initialization' stamp: 'jgv 10/24/2023 18:37:18'!
+initializeWithAnAccount: anAccount
+	account := anAccount.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:39:18' prior: 50659029 overrides: 50658551!
+generateReport
+
+	^account accountSummary: self.! !
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 18:39:54'!
+accountSummary: aReportGenerator
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: (transaction generateValueForReportGenerator: self).
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+
+!methodRemoval: ReceptiveAccount #accountSummary stamp: 'jgv 10/24/2023 18:40:10'!
+accountSummary
+	^(AccountSummaryGenerator account: self transactions: transactions) generateReport!
+!ReceptiveAccount methodsFor: 'transactions' stamp: 'jgv 10/24/2023 18:44:26' prior: 50659176!
+accountSummary: aReportGenerator
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: (transaction generateValueForReportGenerator: aReportGenerator).
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.! !
+
+Object subclass: #ReportGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:45:46'!
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:45:50'!
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+Object subclass: #ReportGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #ReportGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:45:55'!
+Object subclass: #ReportGenerator
+	instanceVariableNames: 'account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportGenerator class methodsFor: 'instance creation' stamp: 'jgv 10/24/2023 18:46:12'!
+account: anAccount
+	^self new initializeWithAnAccount: anAccount. ! !
+
+!methodRemoval: AccountSummaryGenerator class #account: stamp: 'jgv 10/24/2023 18:46:13'!
+account: anAccount
+	^self new initializeWithAnAccount: anAccount. !
+!ReportGenerator class methodsFor: 'instance creation' stamp: 'jgv 10/24/2023 18:46:28'!
+forAccount: anAccount
+	^self new initializeWithAnAccount: anAccount. ! !
+
+!methodRemoval: ReportGenerator class #account: stamp: 'jgv 10/24/2023 18:46:28'!
+account: anAccount
+	^self new initializeWithAnAccount: anAccount. !
+
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:46:55'!
+ReportGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!methodRemoval: AccountSummaryGenerator #initializeAccount:transactions: stamp: 'jgv 10/24/2023 18:47:03'!
+initializeAccount: anAccount transactions: aTransactions
+	transactions := aTransactions.
+	account := anAccount.!
+!AccountSummaryGenerator methodsFor: 'initialization' stamp: 'jgv 10/24/2023 18:47:16' prior: 50659165!
+initializeWithAnAccount: anAccount
+	account := anAccount.
+	summary := OrderedCollection new.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:52:05' prior: 50659171 overrides: 50658551!
+generateReport
+
+	^account : self.
+	
+	
+	"
+	account genaratereport Report -> genera el valor del reporte para cada transaction
+								^report gennedereport 
+										
+		
+	"
+	
+	
+! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:55:43' prior: 50659300 overrides: 50658551!
+generateReport
+
+	account generateTransactionsReportValuesForAReport: self.
+	
+	summary 	
+	
+	
+	
+! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'jgv 10/24/2023 18:56:06'!
+generateTransactionsReportValuesForAReport: aReportGenerator
+! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'jgv 10/24/2023 18:56:30' prior: 50659316!
+generateTransactionsReportValuesForAReport: aReportGenerator
+
+	transactions do: [:transaction | 
+				transaction generateValueForReportGenerator: aReportGenerator.
+		].! !
+
+!methodRemoval: ReceptiveAccount #accountSummary: stamp: 'jgv 10/24/2023 18:56:37'!
+accountSummary: aReportGenerator
+	|transactionsSummary|
+	
+	transactionsSummary := OrderedCollection new.
+		
+	transactions do: [:transaction | 
+				transactionsSummary add: (transaction generateValueForReportGenerator: aReportGenerator).
+		].
+	transactionsSummary add: 'Balance = ', self balance asString.
+	^transactionsSummary.!
+
+!methodRemoval: ReceptiveAccount #generateTransactionsReportValuesForAReport: stamp: 'jgv 10/24/2023 18:56:45'!
+generateTransactionsReportValuesForAReport: aReportGenerator
+
+	transactions do: [:transaction | 
+				transaction generateValueForReportGenerator: aReportGenerator.
+		].!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'jgv 10/24/2023 18:56:30'!
+generateTransactionsReportValuesForAReport: aReportGenerator
+
+	transactions do: [:transaction | 
+				transaction generateValueForReportGenerator: aReportGenerator.
+		].! !
+
+!methodRemoval: ReceptiveAccount #transferNet stamp: 'jgv 10/24/2023 18:57:34'!
+transferNet
+	^(TransferNetGenerator transactions: transactions) generateReport!
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:21' prior: 50658890 overrides: 50658883!
+generateReportValueForADeposit: aDeposit
+	summary add: 'Depósito por ', aDeposit value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:35' prior: 50659090 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	summary add: 'Entrada por transferencia de ', aTransferenceDeposit transference value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:43' prior: 50659081 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	summary add: 'Salida por transferencia de ', aTransferenceWithdraw transference value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:58:51' prior: 50658897 overrides: 50658823!
+generateReportValueForAWithdraw: aWithdraw
+	summary add: 'Extracción por ', aWithdraw value asString.! !
+!AccountSummaryGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 18:59:24' prior: 50659310 overrides: 50658551!
+generateReport
+
+	account generateTransactionsReportValuesForAReport: self.
+	
+	summary 	add: 'Balance = ', account balance asString.
+	
+	^summary.
+	
+	
+	
+! !
+
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'Net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:59:36'!
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'Net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion' stamp: 'jgv 10/24/2023 18:59:40'!
+ReportGenerator subclass: #TransferNetGenerator
+	instanceVariableNames: 'net'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!TransferNetGenerator methodsFor: 'initialization' stamp: 'jgv 10/24/2023 19:00:36'!
+initializeWithAnAccount: anAccount
+	account := anAccount.
+	net := 0.! !
+
+!methodRemoval: TransferNetGenerator #initializeTransactions: stamp: 'jgv 10/24/2023 19:00:39'!
+initializeTransactions: aTransactions
+	transactions := aTransactions.!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:00:59' prior: 50658928 overrides: 50658883!
+generateReportValueForADeposit: aDeposit
+	net + 0.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:08' prior: 50658934 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	^net + aTransferenceDeposit transference value.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:15' prior: 50659454 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	net + aTransferenceDeposit transference value.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:27' prior: 50658958 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	net - aTransferenceWithdraw transference value.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:33' prior: 50658966 overrides: 50658823!
+generateReportValueForAWithdraw: aWithdraw
+	net + 0.! !
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:02:08' prior: 50659043 overrides: 50658551!
+generateReport
+	
+	account generateTransactionsReportValuesForAReport: self
+	
+	^net.! !
+!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/24/2023 19:02:51' prior: 50657449!
+test01
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: ((AccountSummaryGenerator forAccount: anAccount) generateReport ).! !
+
+----QUIT----(24 October 2023 19:03:14) CuisUniversity-Portfolio2.image priorSource: 10437241!
+
+----STARTUP---- (24 October 2023 19:09:10) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio2.image!
+
+
+----QUIT----(24 October 2023 19:09:20) CuisUniversity-Portfolio2.image priorSource: 10491135!
