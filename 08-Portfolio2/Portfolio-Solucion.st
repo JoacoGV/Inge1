@@ -319,7 +319,7 @@ test01
 	
 	self assert: (OrderedCollection with: 'Balance = 0') equals: ((AccountSummaryGenerator forAccount: anAccount) generateReport ).! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:13:28'!
 test02
 	| anAccount |
 	
@@ -327,9 +327,9 @@ test02
 	
 	Deposit register: 100 on: anAccount.
 		
-	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: (anAccount accountSummary).! !
+	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: ((AccountSummaryGenerator forAccount: anAccount) generateReport ).! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:13:33'!
 test03
 	| anAccount |
 	
@@ -337,9 +337,9 @@ test03
 	
 	Withdraw register: 100 on: anAccount.
 		
-	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: (anAccount accountSummary).! !
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: ((AccountSummaryGenerator forAccount: anAccount) generateReport ).! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:13:39'!
 test04
 	| anAccount anotherAcount |
 	
@@ -348,9 +348,9 @@ test04
 	
 	Transference transfer: 100 from: anAccount  to: anotherAcount.
 			
-	self assert: (OrderedCollection with: 'Salida por transferencia de 100' with: 'Balance = -100') equals: (anAccount accountSummary).! !
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100' with: 'Balance = -100') equals: ((AccountSummaryGenerator forAccount: anAccount) generateReport ).! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:14:06'!
 test05
 	| anAccount anotherAccount |
 	
@@ -359,9 +359,9 @@ test05
 	
 	Transference transfer: 100 from: anAccount  to: anotherAccount.
 			
-	self assert: (OrderedCollection with: 'Entrada por transferencia de 100' with: 'Balance = 100') equals: (anotherAccount accountSummary).! !
+	self assert: (OrderedCollection with: 'Entrada por transferencia de 100' with: 'Balance = 100') equals: ((AccountSummaryGenerator forAccount: anotherAccount ) generateReport ).! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:16'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:14:22'!
 test06
 	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
 	
@@ -379,10 +379,10 @@ test06
 	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
 	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
 
-	self assert: anAccountSumary equals: (anAccount accountSummary).
-	self assert: anotherAccountSumary equals: (anotherAccount accountSummary).! !
+	self assert: anAccountSumary equals: (AccountSummaryGenerator forAccount: anAccount) generateReport .
+	self assert: anotherAccountSumary equals: (AccountSummaryGenerator forAccount: anotherAccount ) generateReport .! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:49'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:15:05'!
 test07
 	| anAccount |
 	
@@ -391,10 +391,10 @@ test07
 	anAccount := ReceptiveAccount new.
 	
 
-	self assert: 0 equals: (anAccount transferNet).
+	self assert: 0 equals: (TransferNetGenerator forAccount: anAccount) generateReport .
 ! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:49'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:16:00'!
 test08
 	| anAccount |
 	
@@ -404,10 +404,10 @@ test08
 	
 	Deposit register: 100 on: 	anAccount.
 		
-	self assert: 0 equals:  anAccount transferNet.
+	self assert: 0 equals:  (TransferNetGenerator forAccount: anAccount) generateReport.
 ! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:49'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:16:05'!
 test09
 	| anAccount |
 	
@@ -417,10 +417,10 @@ test09
 	
 	Withdraw register: 100 on: 	anAccount.
 		
-	self assert: 0 equals:  anAccount transferNet.
+	self assert: 0 equals: (TransferNetGenerator forAccount: anAccount) generateReport.
 ! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:49'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:16:10'!
 test10
 	| anAccount anotherAccount|
 	
@@ -431,10 +431,10 @@ test10
 	
 	Transference transfer: 100  from: anAccount  to: anotherAccount.
 	
-	self assert: -100 equals:  anAccount transferNet.
+	self assert: -100 equals: (TransferNetGenerator forAccount: anAccount) generateReport.
 ! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:49'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:16:15'!
 test11
 	| anAccount anotherAccount|
 	
@@ -445,10 +445,10 @@ test11
 	
 	Transference transfer: 100  from: anAccount  to: anotherAccount.
 	
-	self assert: -100 equals:  anAccount transferNet.
+	self assert: -100 equals:  (TransferNetGenerator forAccount: anAccount) generateReport.
 ! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'jgv 10/23/2023 21:50:49'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:16:23'!
 test12
 	| anAccount anotherAccount|
 	
@@ -461,7 +461,32 @@ test12
 	Withdraw register: 100 on: 	anAccount.
 	Transference transfer: 100  from: anAccount  to: anotherAccount.
 	
-	self assert: 100 equals:  anotherAccount transferNet.
+	self assert: 100 equals:  (TransferNetGenerator forAccount: anotherAccount ) generateReport.
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:46:13'!
+test13
+	| aPortfolio |
+	
+	aPortfolio :=	 Portfolio new.
+	
+	self assert: OrderedCollection new equals:  (PortfolioSummaryGenerator forAccount:aPortfolio ) generateReport.
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:30:15'!
+test14
+	| aPortfolio anAccount anotherAccount|
+	
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount with: anotherAccount.
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	self assert: 100 equals:  (TransferNetGenerator forAccount: anotherAccount ) generateReport.
 ! !
 
 
@@ -682,6 +707,13 @@ assertCanAdd: accountToAdd
 
 	(self anyRootParentIsComposedBy: accountToAdd) ifTrue: [ self signalCanNotAddAccount ].
 ! !
+
+!Portfolio methodsFor: 'account management - private' stamp: 'AB 10/24/2023 20:41:44'!
+generateTransactionsReportValuesForAReport: aReportGenerator
+
+	accounts do: [:account | 
+				account generateValueForReportGenerator: aReportGenerator.
+		].! !
 
 !Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 11:48:34'!
 signalCanNotAddAccount
@@ -1121,9 +1153,46 @@ ReportGenerator class
 forAccount: anAccount
 	^self new initializeWithAnAccount: anAccount. ! !
 
+!ReportGenerator class methodsFor: 'instance creation' stamp: 'AB 10/24/2023 20:42:49'!
+forPortfolio: aPortfolio
+	^self new initializeWithAPortfolio: aPortfolio. ! !
+
+
+!classDefinition: #SummaryGenerator category: 'Portfolio-Solucion'!
+ReportGenerator subclass: #SummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:34:05'!
+generateReport
+
+	self subclassResponsibility! !
+
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:34:11'!
+generateReportValueForADeposit: aDeposit
+
+	self subclassResponsibility! !
+
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:34:22'!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+
+	self subclassResponsibility! !
+
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:34:26'!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+
+	self subclassResponsibility! !
+
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:34:33'!
+generateReportValueForAWithdraw: aWithdraw
+
+	self subclassResponsibility! !
+
 
 !classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion'!
-ReportGenerator subclass: #AccountSummaryGenerator
+SummaryGenerator subclass: #AccountSummaryGenerator
 	instanceVariableNames: 'summary'
 	classVariableNames: ''
 	poolDictionaries: ''
@@ -1165,6 +1234,32 @@ generateReportValueForAWithdraw: aWithdraw
 	summary add: 'Extracción por ', aWithdraw value asString.! !
 
 
+!classDefinition: #PortfolioSummaryGenerator category: 'Portfolio-Solucion'!
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: 'summary portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioSummaryGenerator methodsFor: 'as yet unclassified' stamp: 'AB 10/24/2023 20:40:53'!
+generateReport
+
+	portfolio generateTransactionsReportValuesForAReport: self.
+	
+	summary 	add: 'Balance = ', portfolio balance asString.
+	
+	^summary.
+	
+	
+	
+! !
+
+!PortfolioSummaryGenerator methodsFor: 'as yet unclassified' stamp: 'AB 10/24/2023 20:47:04'!
+initializeWithAPortfolio: aPorfolio
+	account := aPorfolio.
+	summary := OrderedCollection new.! !
+
+
 !classDefinition: #TransferNetGenerator category: 'Portfolio-Solucion'!
 ReportGenerator subclass: #TransferNetGenerator
 	instanceVariableNames: 'net'
@@ -1178,28 +1273,28 @@ initializeWithAnAccount: anAccount
 	net := 0.! !
 
 
-!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:02:08'!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:15:48'!
 generateReport
 	
-	account generateTransactionsReportValuesForAReport: self
+	account generateTransactionsReportValuesForAReport: self.
 	
 	^net.! !
 
-!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:00:59'!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:21:16'!
 generateReportValueForADeposit: aDeposit
-	net + 0.! !
+	net:=net + 0.! !
 
-!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:15'!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:21:20'!
 generateReportValueForATransferenceDeposit: aTransferenceDeposit
-	net + aTransferenceDeposit transference value.! !
+	net:=net + aTransferenceDeposit transference value.! !
 
-!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:27'!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:21:24'!
 generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
-	net - aTransferenceWithdraw transference value.! !
+	net:=net - aTransferenceWithdraw transference value.! !
 
-!TransferNetGenerator methodsFor: 'report generation' stamp: 'jgv 10/24/2023 19:01:33'!
+!TransferNetGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:21:27'!
 generateReportValueForAWithdraw: aWithdraw
-	net + 0.! !
+	net:=net + 0.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
