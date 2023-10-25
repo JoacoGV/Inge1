@@ -542,6 +542,62 @@ test18
 	self assert:  0 equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
 ! !
 
+!ReportsTest methodsFor: 'tests' stamp: 'Joaco 10/25/2023 17:55:20'!
+test19
+
+	| aPortfolio |
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia'.
+	
+	self assert: (OrderedCollection with: 'Portfolio de la familia') equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'Joaco 10/25/2023 18:27:10'!
+test20
+	| aPortfolio vinDieselAccount paulWalkerAccount|
+	
+	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
+	paulWalkerAccount  := ReceptiveAccount named: 'Cuenta de Paul Walker'.
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: paulWalkerAccount.
+
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Cuenta de Paul Walker')
+		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'Joaco 10/25/2023 18:45:38'!
+test21
+	| aPortfolio vinDieselAccount anotherPortfolio|
+	
+	
+	
+	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de hijos'.
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: anotherPortfolio.
+
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hijos')
+		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+! !
+
+!ReportsTest methodsFor: 'tests' stamp: 'Joaco 10/25/2023 18:52:31'!
+test22
+	| aPortfolio vinDieselAccount jordanaBrewsterAccount anotherPortfolio|
+	
+	
+	
+	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
+	jordanaBrewsterAccount := ReceptiveAccount named: 'Cuenta de Jordana Brewster'.
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de hijos' with: jordanaBrewsterAccount.
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: anotherPortfolio.
+
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hijos' with: String tab, String tab, 'Cuenta de Jordana Brewster')
+		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+! !
+
 
 !classDefinition: #TransferenceTest category: 'Portfolio-Solucion'!
 TestCase subclass: #TransferenceTest
@@ -657,7 +713,7 @@ addedTo: aPortfolio
 
 !classDefinition: #Portfolio category: 'Portfolio-Solucion'!
 Account subclass: #Portfolio
-	instanceVariableNames: 'accounts parents'
+	instanceVariableNames: 'accounts parents portfolioName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -702,6 +758,21 @@ initialize
 
 	accounts := OrderedCollection new.
 	parents := OrderedCollection new.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'Joaco 10/25/2023 18:00:59'!
+initializeNamed: aPortfolioName 
+	portfolioName := aPortfolioName.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'Joaco 10/25/2023 18:14:34'!
+initializeNamed: aPortfolioName with: anAccount
+	portfolioName := aPortfolioName.
+	accounts := OrderedCollection with: anAccount.! !
+
+!Portfolio methodsFor: 'initialization' stamp: 'Joaco 10/25/2023 18:29:01'!
+initializeNamed: aPortfolioName with: anAccount with: anotherAccount
+	portfolioName := aPortfolioName.
+	accounts := OrderedCollection with: anAccount with: anotherAccount.	
+! !
 
 
 !Portfolio methodsFor: 'balance' stamp: 'HAW 5/25/2019 11:19:36'!
@@ -748,6 +819,19 @@ isComposedBy: anAccount
 	^ self = anAccount or: [ accounts anySatisfy: [ :composedAccount | (composedAccount isComposedBy: anAccount) or: [ anAccount isComposedBy: composedAccount ]]]! !
 
 
+!Portfolio methodsFor: 'getters' stamp: 'Joaco 10/25/2023 18:04:39'!
+name
+	^portfolioName.! !
+
+!Portfolio methodsFor: 'getters' stamp: 'Joaco 10/25/2023 18:04:58'!
+portfolioName
+	^portfolioName.! !
+
+!Portfolio methodsFor: 'getters' stamp: 'Joaco 10/25/2023 18:04:54'!
+portfolioname
+	^portfolioName.! !
+
+
 !Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 12:17:31'!
 addRootParentsTo: rootParents
 
@@ -772,6 +856,20 @@ generateTransactionsReportValuesForAReport: aReportGenerator
 signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
+
+
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'Joaco 10/25/2023 18:44:33'!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ structureInfo add: String tab, account portfolioName]. 
+		].
+	
+	^structureInfo.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -799,10 +897,24 @@ with: anAccount with: anotherAccount
 		add: anotherAccount;
 		yourself! !
 
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'Joaco 10/25/2023 18:00:24'!
+named: aPortfolioName 
+
+	^self new initializeNamed: aPortfolioName.! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'Joaco 10/25/2023 18:12:38'!
+named: aPortfolioName with: anAccount 
+	^self new initializeNamed: aPortfolioName with: anAccount.! !
+
+!Portfolio class methodsFor: 'instance creation' stamp: 'Joaco 10/25/2023 18:28:06'!
+named: aPortfolioName with: anAccount with: anotherAccount 
+	^self new initializeNamed: aPortfolioName with: anAccount with: anotherAccount.! !
+
 
 !classDefinition: #ReceptiveAccount category: 'Portfolio-Solucion'!
 Account subclass: #ReceptiveAccount
-	instanceVariableNames: 'transactions'
+	instanceVariableNames: 'transactions receptiveAccountName'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Portfolio-Solucion'!
@@ -812,6 +924,10 @@ initialize
 
 	super initialize.
 	transactions := OrderedCollection new.! !
+
+!ReceptiveAccount methodsFor: 'initialization' stamp: 'Joaco 10/25/2023 18:12:08'!
+initializeNamed: aReceptiveAccountName 
+	receptiveAccountName := aReceptiveAccountName.! !
 
 
 !ReceptiveAccount methodsFor: 'transactions' stamp: 'HAW 5/25/2019 11:38:52'!
@@ -857,12 +973,27 @@ addedTo: aPortfolio
 	! !
 
 
+!ReceptiveAccount methodsFor: 'getters' stamp: 'Joaco 10/25/2023 18:24:06'!
+receptiveAccountName
+	^receptiveAccountName. ! !
+
+
 !ReceptiveAccount methodsFor: 'reports' stamp: 'jgv 10/24/2023 18:56:30'!
 generateTransactionsReportValuesForAReport: aReportGenerator
 
 	transactions do: [:transaction | 
 				transaction generateValueForReportGenerator: aReportGenerator.
 		].! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'ReceptiveAccount class' category: 'Portfolio-Solucion'!
+ReceptiveAccount class
+	instanceVariableNames: ''!
+
+!ReceptiveAccount class methodsFor: 'instance creation' stamp: 'Joaco 10/25/2023 18:11:57'!
+named: aReceptiveAccountName 
+	^self new initializeNamed: aReceptiveAccountName ! !
 
 
 !classDefinition: #BankTransaction category: 'Portfolio-Solucion'!
@@ -1163,6 +1294,34 @@ TransferenceWithdraw class
 !TransferenceWithdraw class methodsFor: 'instance creation' stamp: 'jgv 10/22/2023 16:47:13'!
 for: aTransference
 	^self new initiliazeWithTransference: aTransference.! !
+
+
+!classDefinition: #PortfolioStructureInfo category: 'Portfolio-Solucion'!
+Object subclass: #PortfolioStructureInfo
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!PortfolioStructureInfo methodsFor: 'initialization' stamp: 'Joaco 10/25/2023 18:01:44'!
+initializeForPortfolio: aPortfolio 
+	portfolio := aPortfolio.! !
+
+
+!PortfolioStructureInfo methodsFor: 'report generation' stamp: 'Joaco 10/25/2023 18:19:31'!
+generateReport
+	^portfolio generateStructureInfo.
+	! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'PortfolioStructureInfo class' category: 'Portfolio-Solucion'!
+PortfolioStructureInfo class
+	instanceVariableNames: ''!
+
+!PortfolioStructureInfo class methodsFor: 'instance creation' stamp: 'Joaco 10/25/2023 18:01:20'!
+forPortfolio: aPortfolio 
+	^self new initializeForPortfolio: aPortfolio.! !
 
 
 !classDefinition: #ReportGenerator category: 'Portfolio-Solucion'!
