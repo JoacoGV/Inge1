@@ -5829,3 +5829,1149 @@ ERROR!
 ----SNAPSHOT----(24 October 2023 20:48:08) CuisUniversity-Portfolio2.image priorSource: 10491358!
 
 ----SNAPSHOT----(24 October 2023 20:48:21) CuisUniversity-Portfolio2.image priorSource: 10516681!
+
+!methodRemoval: ReportGenerator class #forPortfolio: stamp: 'AB 10/24/2023 20:52:39'!
+forPortfolio: aPortfolio
+	^self new initializeWithAPortfolio: aPortfolio. !
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:52:46'!
+ERROR!
+!PortfolioSummaryGenerator methodsFor: 'as yet unclassified' stamp: 'AB 10/24/2023 20:53:17'!
+initializeWithAnAccount: anAccount
+	account := anAccount.
+	summary := OrderedCollection new.! !
+
+!methodRemoval: PortfolioSummaryGenerator #initializeWithAPortfolio: stamp: 'AB 10/24/2023 20:53:19'!
+initializeWithAPortfolio: aPorfolio
+	account := aPorfolio.
+	summary := OrderedCollection new.!
+
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: 'summary account'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: 'summary '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioSummaryGenerator category: 'Portfolio-Solucion' stamp: 'AB 10/24/2023 20:53:31'!
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioSummaryGenerator category: 'Portfolio-Solucion' stamp: 'AB 10/24/2023 20:53:45'!
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+SummaryGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #AccountSummaryGenerator category: 'Portfolio-Solucion' stamp: 'AB 10/24/2023 20:53:56'!
+SummaryGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+ReportGenerator subclass: #SummaryGenerator
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #SummaryGenerator category: 'Portfolio-Solucion' stamp: 'AB 10/24/2023 20:54:00'!
+ReportGenerator subclass: #SummaryGenerator
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!PortfolioSummaryGenerator methodsFor: 'as yet unclassified' stamp: 'AB 10/24/2023 20:54:13' prior: 50660098 overrides: 50660026!
+generateReport
+
+	account generateTransactionsReportValuesForAReport: self.
+	
+	summary 	add: 'Balance = ', account balance asString.
+	
+	^summary.
+	
+	
+	
+! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:54:16'!
+FAILURE!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:54:16'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:54:16'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:54:37' prior: 50660242!
+test13
+	| aPortfolio |
+	
+	aPortfolio :=	 Portfolio new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals:  (PortfolioSummaryGenerator forAccount:aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:54:39'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:56:08' prior: 50659956!
+test14
+	| aPortfolio anAccount anotherAccount|
+	
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount with: anotherAccount.
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	(OrderedCollection with: 'Balance = 0')
+	self assert: 100 equals:  (TransferNetGenerator forAccount: anotherAccount ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:56:25' prior: 50660469!
+test14
+	| aPortfolio anAccount anotherAccount|
+	
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount with: anotherAccount.
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	(OrderedCollection with: 'Balance = 0')
+	self assert: 100 equals:  (PortfolioSummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:56:46' prior: 50660487!
+test14
+	| aPortfolio anAccount anotherAccount|
+	
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount.
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	(OrderedCollection with: 'Balance = 0')
+	self assert: 100 equals:  (PortfolioSummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:56:55' prior: 50660505!
+test14
+	| aPortfolio anAccount anotherAccount|
+	
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount.
+	Deposit  register: 100 on: anAccount.	
+	(OrderedCollection with: 'Balance = 0')
+	self assert: 100 equals:  (PortfolioSummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:57:13' prior: 50660522!
+test14
+	| aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	
+	Deposit  register: 100 on: anAccount.	
+	
+	(OrderedCollection with: 'Balance = 0')
+	
+	self assert: 100 equals:  (PortfolioSummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 20:57:31' prior: 50660536!
+test14
+	| aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	
+	Deposit  register: 100 on: anAccount.	
+	
+	
+	self assert:  (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100')  equals:  (PortfolioSummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:57:34'!
+ERROR!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:57:44'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:57:44'!
+ERROR!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:57:44'!
+ERROR!
+!Portfolio methodsFor: 'account management - private' stamp: 'AB 10/24/2023 20:58:07' prior: 50660111!
+generateTransactionsReportValuesForAReport: aReportGenerator
+
+	accounts do: [:account | 
+				account generateTransactionsReportValuesForAReport: aReportGenerator.
+		].! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 20:58:17'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:58:17'!
+ERROR!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 20:58:17'!
+ERROR!
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:59:08' prior: 50660026 overrides: 50658551!
+generateReport
+
+	account generateTransactionsReportValuesForAReport: self.
+	
+	summary 	add: 'Balance = ', account balance asString.
+	
+	^summary.
+	
+	! !
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:59:36' prior: 50660031 overrides: 50658883!
+generateReportValueForADeposit: aDeposit
+	summary add: 'Depósito por ', aDeposit value asString.! !
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 20:59:51' prior: 50660037 overrides: 50658864!
+generateReportValueForATransferenceDeposit: aTransferenceDeposit
+	summary add: 'Entrada por transferencia de ', aTransferenceDeposit transference value asString.! !
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 21:00:00' prior: 50660044 overrides: 50658843!
+generateReportValueForATransferenceWithdraw: aTransferenceWithdraw
+	summary add: 'Salida por transferencia de ', aTransferenceWithdraw transference value asString.! !
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 21:00:11' prior: 50660051 overrides: 50658823!
+generateReportValueForAWithdraw: aWithdraw
+	summary add: 'Extracción por ', aWithdraw value asString.! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:00:29' prior: 50659490!
+test01
+	| anAccount |
+	anAccount := ReceptiveAccount new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals: ((SummaryGenerator forAccount: anAccount) generateReport ).! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:00:36' prior: 50659540!
+test02
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100') equals: ((SummaryGenerator forAccount: anAccount) generateReport ).! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:00:41' prior: 50659551!
+test03
+	| anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	Withdraw register: 100 on: anAccount.
+		
+	self assert: (OrderedCollection with: 'Extracción por 100' with: 'Balance = -100') equals: ((SummaryGenerator forAccount: anAccount) generateReport ).! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:00:46' prior: 50659562!
+test04
+	| anAccount anotherAcount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAcount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAcount.
+			
+	self assert: (OrderedCollection with: 'Salida por transferencia de 100' with: 'Balance = -100') equals: ((SummaryGenerator forAccount: anAccount) generateReport ).! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:00:50' prior: 50659576!
+test05
+	| anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100 from: anAccount  to: anotherAccount.
+			
+	self assert: (OrderedCollection with: 'Entrada por transferencia de 100' with: 'Balance = 100') equals: ((SummaryGenerator forAccount: anotherAccount ) generateReport ).! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:00:57' prior: 50659591!
+test06
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (SummaryGenerator forAccount: anAccount) generateReport .
+	self assert: anotherAccountSumary equals: (AccountSummaryGenerator forAccount: anotherAccount ) generateReport .! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:01:02' prior: 50660741!
+test06
+	| anAccount anAccountSumary anotherAccount anotherAccountSumary |
+	
+
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Deposit register: 100 on: anAccount.
+	Withdraw register: 50 on: anAccount.
+	
+	Transference transfer: 25 from: anAccount  to: anotherAccount. 
+	
+	
+	anAccountSumary	 := OrderedCollection with: 'Depósito por 100' with: 'Extracción por 50' with: 'Salida por transferencia de 25' with: 'Balance = 25'.
+	anotherAccountSumary := 	OrderedCollection with: 'Entrada por transferencia de 25' with: 'Balance = 25'.
+
+	self assert: anAccountSumary equals: (SummaryGenerator forAccount: anAccount) generateReport .
+	self assert: anotherAccountSumary equals: (SummaryGenerator forAccount: anotherAccount ) generateReport .! !
+
+!classRemoval: #AccountSummaryGenerator stamp: 'AB 10/24/2023 21:01:07'!
+SummaryGenerator subclass: #AccountSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:01:15' prior: 50660426!
+test13
+	| aPortfolio |
+	
+	aPortfolio :=	 Portfolio new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals:  (SummaryGenerator forAccount:aPortfolio ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:01:21' prior: 50660548!
+test14
+	| aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	
+	Deposit  register: 100 on: anAccount.	
+	
+	
+	self assert:  (OrderedCollection with: 'Depósito por 100' with: 'Balance = 100')  equals:  (SummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!classRemoval: #PortfolioSummaryGenerator stamp: 'AB 10/24/2023 21:01:26'!
+SummaryGenerator subclass: #PortfolioSummaryGenerator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:01:27'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:01:27'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:01:27'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:01:27'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:01:27'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:01:27'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:01:27'!
+ERROR!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:01:31'!
+ERROR!
+!SummaryGenerator methodsFor: 'report generation' stamp: 'AB 10/24/2023 21:04:28'!
+initializeWithAnAccount: anAccount
+account :=anAccount .
+summary :=OrderedCollection new.! !
+
+Object subclass: #NameOfSubclass
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #NameOfSubclass category: 'Portfolio-Solucion' stamp: 'AB 10/24/2023 21:04:35'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #NameOfSubclass stamp: 'AB 10/24/2023 21:04:45'!
+Object subclass: #NameOfSubclass
+	instanceVariableNames: 'summary'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:04:51'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:07:28'!
+test15
+	| aPortfolio anAccount anotherAccount|
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount with: anotherAccount.
+
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+
+	self assert:  (OrderedCollection with: 'Depósito por 100' with:'Extraccion por 100'with: 'Balance = 0')  equals:  (SummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:07:29'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:07:45' prior: 50660921!
+test15
+	| aPortfolio anAccount anotherAccount|
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount with: anotherAccount.
+
+	Deposit  register: 100 on: anAccount.	
+	Withdraw register: 100 on: 	anAccount.
+
+	self assert:  (OrderedCollection with: 'Depósito por 100' with:'Extracción por 100'with: 'Balance = 0')  equals:  (SummaryGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:07:47'!
+PASSED!
+
+----SNAPSHOT----(24 October 2023 21:09:04) CuisUniversity-Portfolio2.image priorSource: 10516780!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:09:27'!
+test16
+	| aPortfolio |
+	
+	aPortfolio :=	 Portfolio new.
+	
+	self assert: (OrderedCollection with: 'Balance = 0') equals:  (TransferNetGenerator forAccount:aPortfolio ) generateReport.
+! !
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:09:32' prior: 50660996!
+test16
+	| aPortfolio |
+	
+	aPortfolio :=	 Portfolio new.
+	
+	self assert: 0 equals:  (TransferNetGenerator forAccount:aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/24/2023 21:09:36'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:10:24'!
+test17
+	| aPortfolio anAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	
+	Deposit  register: 100 on: anAccount.	
+	
+	
+	self assert:  0equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:10:25'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:11:00' prior: 50661049!
+test17
+	| aPortfolio anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	
+	self assert:  100 equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:11:05'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:11:14' prior: 50661101!
+test17
+	| aPortfolio anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	
+	self assert:  0 equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:11:17'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:12:12'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:12:20' prior: 50661118!
+test17
+	| aPortfolio anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	aPortfolio :=	 Portfolio with: anAccount.
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	
+	self assert:  -100 equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:12:22'!
+FAILURE!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:13:12'!
+FAILURE!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:13:12'!
+FAILURE!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:13:50' prior: 50661215!
+test17
+	| aPortfolio anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount.
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+	
+	self assert:  -100 equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:13:51'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'AB 10/24/2023 21:14:18'!
+test18
+	| aPortfolio anAccount anotherAccount |
+	
+	anAccount := ReceptiveAccount new.
+	
+	
+	anAccount := ReceptiveAccount new.
+	anotherAccount := ReceptiveAccount new.
+	aPortfolio :=	 Portfolio with: anAccount with:anotherAccount .
+	Transference transfer: 100  from: anAccount  to: anotherAccount.
+	
+		
+	self assert:  0 equals:  (TransferNetGenerator forAccount: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/24/2023 21:14:19'!
+PASSED!
+
+----SNAPSHOT----(24 October 2023 21:14:23) CuisUniversity-Portfolio2.image priorSource: 10538964!
+
+----SNAPSHOT----(24 October 2023 21:14:29) CuisUniversity-Portfolio2.image priorSource: 10550389!
+
+----SNAPSHOT----(24 October 2023 21:14:54) CuisUniversity-Portfolio2.image priorSource: 10550488!
+
+----SNAPSHOT----(24 October 2023 21:14:56) CuisUniversity-Portfolio2.image priorSource: 10550587!
+
+----QUIT----(24 October 2023 21:14:58) CuisUniversity-Portfolio2.image priorSource: 10550686!
