@@ -858,15 +858,17 @@ signalCanNotAddAccount
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'as yet unclassified' stamp: 'Joaco 10/25/2023 18:44:33'!
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 23:11:58'!
 generateStructureInfo
-	|structureInfo|
+	|structureInfo |
 	
 	structureInfo := OrderedCollection with: portfolioName.
 	
 	accounts do: [: account |
 			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
-			(account isKindOf: Portfolio) ifTrue: [ structureInfo add: String tab, account portfolioName]. 
+			(account isKindOf: Portfolio) ifTrue: [ 
+				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
+				]. 
 		].
 	
 	^structureInfo.! !

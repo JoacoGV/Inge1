@@ -6975,3 +6975,983 @@ PASSED!
 ----SNAPSHOT----(24 October 2023 21:14:56) CuisUniversity-Portfolio2.image priorSource: 10550587!
 
 ----QUIT----(24 October 2023 21:14:58) CuisUniversity-Portfolio2.image priorSource: 10550686!
+
+----STARTUP---- (25 October 2023 22:33:07) as C:\Users\Antonela\Desktop\windows64\windows64\CuisUniversity-Portfolio2.image!
+
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:33:20'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AB 10/25/2023 22:34:54' prior: 50662707!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ structureInfo add: account generateStructureInfo ]. 
+		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:35:02'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:35:02'!
+FAILURE!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:35:02'!
+FAILURE!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:35:08'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AB 10/25/2023 22:35:52' prior: 50663030!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ structureInfo addAll: account generateStructureInfo ]. 
+		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:36:02'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:36:03'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:36:03'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:36:04'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:36:04'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:36:05'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:36:05'!
+FAILURE!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:36:05'!
+FAILURE!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:36:10'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AB 10/25/2023 22:38:08' prior: 50663097!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ structureInfo addAll: String tab,account generateStructureInfo ]. 
+		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:38:15'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:38:15'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:38:15'!
+ERROR!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:38:17'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AB 10/25/2023 22:41:15' prior: 50663164!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [account generateStructureInfo do:[:anotherAccount| structureInfo add:String tab, account receptiveAccountName] ]. 
+		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:41:18'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:41:18'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:41:18'!
+ERROR!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:41:20'!
+ERROR!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AB 10/25/2023 22:44:11' prior: 50663232!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account | structureInfo addAll:account generateStructureValue		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:44:22'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:44:22'!
+ERROR!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:44:22'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:44:22'!
+ERROR!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:44:24'!
+ERROR!
+!ReceptiveAccount methodsFor: 'reports' stamp: 'AB 10/25/2023 22:44:39'!
+generateStructureValue
+	self shouldBeImplemented.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'AB 10/25/2023 22:45:12' prior: 50663363!
+generateStructureValue
+		 ^String tab,  receptiveAccountName.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:45:15'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:45:15'!
+FAILURE!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:45:15'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:45:15'!
+ERROR!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:45:17'!
+FAILURE!
+!Portfolio methodsFor: 'as yet unclassified' stamp: 'AB 10/25/2023 22:45:41' prior: 50663301!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account | structureInfo add:account generateStructureValue		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:45:43'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:45:43'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:45:43'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:45:43'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:45:44'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:45:44'!
+ERROR!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:45:44'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:45:46'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 22:46:00'!
+generateStructureValue
+	self shouldBeImplemented.! !
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 22:48:25' prior: 50663487!
+generateStructureValue
+	|structureInfo|
+	structureInfo:= OrderedCollection new.
+
+	accounts generateStructureInfo do:[:account| structureInfo add:String tab, account generateStructureValue].! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:48:31'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:48:32'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:48:32'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:48:32'!
+ERROR!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:48:34'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 22:50:03' prior: 50663492!
+generateStructureValue
+	|structureInfo|
+	structureInfo:= OrderedCollection new.
+
+	(accounts generateStructureInfo) do:[:account| structureInfo add:String tab, account generateStructureValue].! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:50:05'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:50:05'!
+ERROR!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:50:05'!
+ERROR!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:50:07'!
+ERROR!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:50:16'!
+ERROR!
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 22:50:31' prior: 50663553!
+generateStructureValue
+	|structureInfo|
+	structureInfo:= OrderedCollection new.
+
+	accounts do:[:account| structureInfo add:String tab, account generateStructureValue].! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 22:50:32'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 22:50:33'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:50:33'!
+FAILURE!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 22:50:33'!
+FAILURE!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 22:50:34'!
+FAILURE!
+!Portfolio methodsFor: 'reports' stamp: 'Joaco 10/25/2023 18:44:33' prior: 50663426!
+generateStructureInfo
+	|structureInfo|
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ structureInfo add: String tab, account portfolioName]. 
+		].
+	
+	^structureInfo.! !
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 23:10:52' prior: 50663678!
+generateStructureInfo
+	|structureInfo |
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ 
+				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
+					
+				]. 
+		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 23:10:56'!
+PASSED!
+
+!methodRemoval: Portfolio #generateStructureValue stamp: 'AB 10/25/2023 23:11:18'!
+generateStructureValue
+	|structureInfo|
+	structureInfo:= OrderedCollection new.
+
+	accounts do:[:account| structureInfo add:String tab, account generateStructureValue].!
+
+!methodRemoval: ReceptiveAccount #generateStructureValue stamp: 'AB 10/25/2023 23:11:25'!
+generateStructureValue
+		 ^String tab,  receptiveAccountName.!
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 23:11:58' prior: 50663693!
+generateStructureInfo
+	|structureInfo |
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ 
+				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
+				]. 
+		].
+	
+	^structureInfo.! !
+
+!testRun: #ReportsTest #test01 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+!testRun: #ReportsTest #test22 stamp: 'AB 10/25/2023 23:12:06'!
+PASSED!
+
+----SNAPSHOT----(25 October 2023 23:15:07) CuisUniversity-Portfolio2.image priorSource: 10603807!
+
+----QUIT----(25 October 2023 23:15:22) CuisUniversity-Portfolio2.image priorSource: 10629984!
