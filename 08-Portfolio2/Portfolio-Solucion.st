@@ -581,7 +581,7 @@ test21
 		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
 ! !
 
-!ReportsTest methodsFor: 'tests' stamp: 'Joaco 10/25/2023 18:52:31'!
+!ReportsTest methodsFor: 'tests' stamp: 'Jgv 10/26/2023 15:40:41'!
 test22
 	| aPortfolio vinDieselAccount jordanaBrewsterAccount anotherPortfolio|
 	
@@ -590,11 +590,11 @@ test22
 	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
 	jordanaBrewsterAccount := ReceptiveAccount named: 'Cuenta de Jordana Brewster'.
 	
-	anotherPortfolio := Portfolio named: 'Portfolio de hijos' with: jordanaBrewsterAccount.
+	anotherPortfolio := Portfolio named: 'Portfolio de hermanos' with: jordanaBrewsterAccount.
 	
 	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: anotherPortfolio.
 
-	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hijos' with: String tab, String tab, 'Cuenta de Jordana Brewster')
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hermanos' with: String tab, String tab, 'Cuenta de Jordana Brewster')
 		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
 ! !
 
@@ -845,33 +845,36 @@ assertCanAdd: accountToAdd
 	(self anyRootParentIsComposedBy: accountToAdd) ifTrue: [ self signalCanNotAddAccount ].
 ! !
 
-!Portfolio methodsFor: 'account management - private' stamp: 'AB 10/24/2023 20:58:07'!
-generateTransactionsReportValuesForAReport: aReportGenerator
-
-	accounts do: [:account | 
-				account generateTransactionsReportValuesForAReport: aReportGenerator.
-		].! !
-
 !Portfolio methodsFor: 'account management - private' stamp: 'HAW 5/25/2019 11:48:34'!
 signalCanNotAddAccount
 	
 	self error: self class canNotAddAccountErrorMessage! !
 
 
-!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 23:11:58'!
+!Portfolio methodsFor: 'reports' stamp: 'Jgv 10/26/2023 16:00:53'!
 generateStructureInfo
 	|structureInfo |
 	
 	structureInfo := OrderedCollection with: portfolioName.
 	
 	accounts do: [: account |
-			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
-			(account isKindOf: Portfolio) ifTrue: [ 
-				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
-				]. 
-		].
-	
+					(account generateStructureInfo) do:[ :name | structureInfo add: String tab, name					].
+				].
 	^structureInfo.! !
+
+!Portfolio methodsFor: 'reports' stamp: 'Jgv 10/26/2023 15:30:27'!
+generateStructureInfoValueForReport: aPortfolioReport
+	
+	accounts do: [: account |
+			account generateStructureInfoValueForReport: aPortfolioReport.
+		].! !
+
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/24/2023 20:58:07'!
+generateTransactionsReportValuesForAReport: aReportGenerator
+
+	accounts do: [:account | 
+				account generateTransactionsReportValuesForAReport: aReportGenerator.
+		].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -979,6 +982,10 @@ addedTo: aPortfolio
 receptiveAccountName
 	^receptiveAccountName. ! !
 
+
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Jgv 10/26/2023 16:01:40'!
+generateStructureInfo
+	^OrderedCollection with: receptiveAccountName.! !
 
 !ReceptiveAccount methodsFor: 'reports' stamp: 'jgv 10/24/2023 18:56:30'!
 generateTransactionsReportValuesForAReport: aReportGenerator

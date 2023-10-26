@@ -7955,3 +7955,376 @@ PASSED!
 ----SNAPSHOT----(25 October 2023 23:15:07) CuisUniversity-Portfolio2.image priorSource: 10603807!
 
 ----QUIT----(25 October 2023 23:15:22) CuisUniversity-Portfolio2.image priorSource: 10629984!
+
+----STARTUP---- (26 October 2023 15:20:04) as /home/kovix/Documents/Facu/Inge I/CUIS/linux64/CuisUniversity-Portfolio2.image!
+
+!Portfolio methodsFor: 'reports' stamp: 'Jgv 10/26/2023 15:27:08'!
+generateStructureInfo: aPortfolioReport
+	
+	accounts do: [: account |
+			account generateStructureInfoValueForReport: aPortfolioReport.
+		].! !
+
+!methodRemoval: Portfolio #generateStructureInfo stamp: 'Jgv 10/26/2023 15:27:13'!
+generateStructureInfo
+	|structureInfo |
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ 
+				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
+				]. 
+		].
+	
+	^structureInfo.!
+!Portfolio methodsFor: 'reports' stamp: 'Jgv 10/26/2023 15:30:27'!
+generateStructureInfoValueForReport: aPortfolioReport
+	
+	accounts do: [: account |
+			account generateStructureInfoValueForReport: aPortfolioReport.
+		].! !
+!Portfolio methodsFor: 'reports' stamp: 'AB 10/25/2023 23:11:58'!
+generateStructureInfo
+	|structureInfo |
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ 
+				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
+				]. 
+		].
+	
+	^structureInfo.! !
+
+!methodRemoval: Portfolio #generateStructureInfo: stamp: 'Jgv 10/26/2023 15:33:36'!
+generateStructureInfo: aPortfolioReport
+	
+	accounts do: [: account |
+			account generateStructureInfoValueForReport: aPortfolioReport.
+		].!
+!ReportsTest methodsFor: 'tests' stamp: 'Jgv 10/26/2023 15:40:29'!
+test23
+	| aPortfolio vinDieselAccount jordanaBrewsterAccount anotherPortfolio|
+	
+	
+	
+	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
+	jordanaBrewsterAccount := ReceptiveAccount named: 'Cuenta de Jordana Brewster'.
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de hermanos' with: jordanaBrewsterAccount.
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: anotherPortfolio.
+
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hermanos' with: String tab, String tab, 'Cuenta de Jordana Brewster')
+		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test23 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test22 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+
+!testRun: #ReportsTest #test23 stamp: 'Jgv 10/26/2023 15:40:30'!
+PASSED!
+!ReportsTest methodsFor: 'tests' stamp: 'Jgv 10/26/2023 15:40:41' prior: 50662992!
+test22
+	| aPortfolio vinDieselAccount jordanaBrewsterAccount anotherPortfolio|
+	
+	
+	
+	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
+	jordanaBrewsterAccount := ReceptiveAccount named: 'Cuenta de Jordana Brewster'.
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de hermanos' with: jordanaBrewsterAccount.
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: anotherPortfolio.
+
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hermanos' with: String tab, String tab, 'Cuenta de Jordana Brewster')
+		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+! !
+
+!testRun: #ReportsTest #test22 stamp: 'Jgv 10/26/2023 15:40:43'!
+PASSED!
+
+!testRun: #ReportsTest #test01 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test22 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!testRun: #ReportsTest #test23 stamp: 'Jgv 10/26/2023 15:40:44'!
+PASSED!
+
+!methodRemoval: ReportsTest #test23 stamp: 'Jgv 10/26/2023 15:42:25'!
+test23
+	| aPortfolio vinDieselAccount jordanaBrewsterAccount anotherPortfolio|
+	
+	
+	
+	vinDieselAccount := ReceptiveAccount named: 'Cuenta de Vin Diesel'.
+	jordanaBrewsterAccount := ReceptiveAccount named: 'Cuenta de Jordana Brewster'.
+	
+	anotherPortfolio := Portfolio named: 'Portfolio de hermanos' with: jordanaBrewsterAccount.
+	
+	aPortfolio :=	 Portfolio named: 'Portfolio de la familia' with: vinDieselAccount with: anotherPortfolio.
+
+	self assert:  (OrderedCollection with: 'Portfolio de la familia' with: String tab, 'Cuenta de Vin Diesel' with: String tab, 'Portfolio de hermanos' with: String tab, String tab, 'Cuenta de Jordana Brewster')
+		equals:  (PortfolioStructureInfo forPortfolio: aPortfolio ) generateReport.
+!
+!Portfolio methodsFor: 'reports' stamp: 'Jgv 10/26/2023 15:59:13' prior: 50663877!
+generateStructureInfo
+	|structureInfo |
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+			structureInfo add: String tab, account generateStrutureInfo.
+			(account isKindOf: ReceptiveAccount ) ifTrue: [			structureInfo add: String tab, account receptiveAccountName].
+			(account isKindOf: Portfolio) ifTrue: [ 
+				(account generateStructureInfo) do:[:name|structureInfo add: String tab, name					].
+				]. 
+		].
+	
+	^structureInfo.! !
+!Portfolio methodsFor: 'reports' stamp: 'Jgv 10/26/2023 16:00:53' prior: 50664086!
+generateStructureInfo
+	|structureInfo |
+	
+	structureInfo := OrderedCollection with: portfolioName.
+	
+	accounts do: [: account |
+					(account generateStructureInfo) do:[ :name | structureInfo add: String tab, name					].
+				].
+	^structureInfo.! !
+!ReceptiveAccount methodsFor: 'reports' stamp: 'Jgv 10/26/2023 16:01:40'!
+generateStructureInfo
+	^OrderedCollection with: receptiveAccountName.! !
+
+!testRun: #ReportsTest #test01 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test02 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test03 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test04 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test05 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test06 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test07 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test08 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test09 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test10 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test11 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test12 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test13 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test14 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test15 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test16 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test17 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test18 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test19 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test20 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test21 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+
+!testRun: #ReportsTest #test22 stamp: 'Jgv 10/26/2023 16:01:54'!
+PASSED!
+!PortfolioStructureInfo methodsFor: 'initialization' stamp: 'Jgv 10/26/2023 16:13:09'!
+generateStructureInfoForPortfolio: aPortfolio
+! !
+
+Object subclass: #PortfolioStructureInfo
+	instanceVariableNames: 'structure tabs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureInfo category: 'Portfolio-Solucion' stamp: 'Jgv 10/26/2023 16:13:46'!
+Object subclass: #PortfolioStructureInfo
+	instanceVariableNames: 'structure tabs'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!methodRemoval: PortfolioStructureInfo #generateStructureInfoForPortfolio: stamp: 'Jgv 10/26/2023 16:20:17'!
+generateStructureInfoForPortfolio: aPortfolio
+!
+
+Object subclass: #PortfolioStructureInfo
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classDefinition: #PortfolioStructureInfo category: 'Portfolio-Solucion' stamp: 'Jgv 10/26/2023 16:20:44'!
+Object subclass: #PortfolioStructureInfo
+	instanceVariableNames: 'portfolio'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----QUIT----(26 October 2023 16:27:53) CuisUniversity-Portfolio2.image priorSource: 10630083!
