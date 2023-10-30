@@ -169,8 +169,8 @@ test16ForwardBackwardsAndRotateRightWorkAsExpectedWhenPointingWest
 		heading: self west 
 ! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 18:50:53'!
-test17
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:47:31'!
+test17IsEmptyLoggerPositionWhenStar
 
 	| marsRover logger|
 	
@@ -180,8 +180,8 @@ test17
 	
 	self assert: logger log equals: OrderedCollection new.! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 18:54:32'!
-test18
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:48:44'!
+test18LoggerHavePositionForAFowardMove
 
 	| marsRover logger |
 	
@@ -192,8 +192,8 @@ test18
 	
 	self assert: logger log equals: (OrderedCollection with: (1@2) asString).! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 18:54:56'!
-test19
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:49:36'!
+test19LoggerHavePositionForABackwardMove
 
 	| marsRover logger |
 	
@@ -205,8 +205,8 @@ test19
 	
 	self assert: logger log equals: (OrderedCollection with: (1@0) asString).! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 18:55:13'!
-test20
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:51:11'!
+test20LoggerHavePositionsForManyMoves
 
 	| marsRover logger |
 	
@@ -218,8 +218,8 @@ test20
 	
 	self assert: logger log equals: (OrderedCollection with: (2@1) asString with: (1@1) asString).! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 18:57:56'!
-test21
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:52:17'!
+test21LoggerHaveRotationForRightMove
 
 	| marsRover logger |
 	
@@ -231,8 +231,8 @@ test21
 	
 	self assert: logger log equals: (OrderedCollection with: 'East').! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:01:48'!
-test22
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:52:34'!
+test22LoggerHaveManyRotationsMoves
 
 	| marsRover logger |
 	
@@ -244,8 +244,8 @@ test22
 	
 	self assert: logger log equals: (OrderedCollection with: 'South' with: 'West' with: 'North').! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:04:09'!
-test23
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:52:57'!
+test23LoggerHaveRotationAndPositionsMoves
 
 	| marsRover logger |
 	
@@ -257,8 +257,8 @@ test23
 	
 	self assert: logger log equals: (OrderedCollection with: '1@2' with: 'East' with: '0@2' with: 'North').! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:34:09'!
-test24
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:55:52'!
+test24WindowHaveNoPositonWhenMarsRoversStart
 
 	| marsRover window |
 	
@@ -268,8 +268,8 @@ test24
 		
 	self assert: window log equals: (OrderedCollection new).! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:10:08'!
-test25
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:54:12'!
+test25WindowHavePositionForFowardMove
 
 	| marsRover window |
 	
@@ -281,8 +281,8 @@ test25
 		
 	self assert: window log equals: (OrderedCollection with: '1@2').! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:28:29'!
-test26
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:54:43'!
+test26WindowChangePositionAfterManyMoves
 
 	| marsRover window |
 	
@@ -303,8 +303,8 @@ test26
 
 ! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:34:25'!
-test27
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:55:35'!
+test27WindowHaveNoRotationWhenStart
 
 	| marsRover window |
 	
@@ -317,8 +317,8 @@ test27
 
 ! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:29:02'!
-test28
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:56:17'!
+test28WindowChangeRotationAfterManyRightMoves
 
 	| marsRover window |
 	
@@ -340,8 +340,8 @@ test28
 
 ! !
 
-!MarsRoverTest methodsFor: 'tests' stamp: 'Jgv 10/29/2023 19:32:13'!
-test29
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:56:40'!
+test29WindowHavePositionAndRotation
 
 	| marsRover window |
 	

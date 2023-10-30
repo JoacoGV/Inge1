@@ -1,0 +1,402 @@
+
+
+----STARTUP---- (30 October 2023 14:44:15) as C:\Users\Antonela\Desktop\windows64\windows64\CuisUniversity-MarsRover2.image!
+
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:47:31'!
+test17IsEmptyLoggerPositionWhenStar
+
+	| marsRover logger|
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	
+	logger := Logger forPositionOnMarsRover: marsRover.
+	
+	self assert: logger log equals: OrderedCollection new.! !
+
+!methodRemoval: MarsRoverTest #test17 stamp: 'AB 10/30/2023 14:47:38'!
+test17
+
+	| marsRover logger|
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	
+	logger := Logger forPositionOnMarsRover: marsRover.
+	
+	self assert: logger log equals: OrderedCollection new.!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:48:44'!
+test18LoggerHavePositionForAFowardMove
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	
+	logger := Logger  forPositionOnMarsRover: marsRover.		
+	marsRover process: 'f'.
+	
+	self assert: logger log equals: (OrderedCollection with: (1@2) asString).! !
+
+!methodRemoval: MarsRoverTest #test18 stamp: 'AB 10/30/2023 14:48:44'!
+test18
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	
+	logger := Logger  forPositionOnMarsRover: marsRover.		
+	marsRover process: 'f'.
+	
+	self assert: logger log equals: (OrderedCollection with: (1@2) asString).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:49:36'!
+test19LoggerHavePositionForABackwardMove
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	logger := Logger forPositionOnMarsRover: marsRover.
+	
+	marsRover process: 'b'.
+	
+	self assert: logger log equals: (OrderedCollection with: (1@0) asString).! !
+
+!methodRemoval: MarsRoverTest #test19 stamp: 'AB 10/30/2023 14:49:36'!
+test19
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	logger := Logger forPositionOnMarsRover: marsRover.
+	
+	marsRover process: 'b'.
+	
+	self assert: logger log equals: (OrderedCollection with: (1@0) asString).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:51:11'!
+test20LoggerHavePositionsForManyMoves
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self east . 
+	
+	logger := Logger forPositionOnMarsRover: marsRover.
+	
+	marsRover process: 'fb'.
+	
+	self assert: logger log equals: (OrderedCollection with: (2@1) asString with: (1@1) asString).! !
+
+!methodRemoval: MarsRoverTest #test20 stamp: 'AB 10/30/2023 14:51:11'!
+test20
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self east . 
+	
+	logger := Logger forPositionOnMarsRover: marsRover.
+	
+	marsRover process: 'fb'.
+	
+	self assert: logger log equals: (OrderedCollection with: (2@1) asString with: (1@1) asString).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:52:17'!
+test21LoggerHaveRotationForRightMove
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	
+	logger := Logger forRotationOnMarsRover: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: logger log equals: (OrderedCollection with: 'East').! !
+
+!methodRemoval: MarsRoverTest #test21 stamp: 'AB 10/30/2023 14:52:17'!
+test21
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north . 
+	
+	logger := Logger forRotationOnMarsRover: marsRover.
+	
+	marsRover process: 'r'.
+	
+	self assert: logger log equals: (OrderedCollection with: 'East').!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:52:34'!
+test22LoggerHaveManyRotationsMoves
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self east. 
+	
+	logger := Logger forRotationOnMarsRover: marsRover.
+	
+	marsRover process: 'rrr'.
+	
+	self assert: logger log equals: (OrderedCollection with: 'South' with: 'West' with: 'North').! !
+
+!methodRemoval: MarsRoverTest #test22 stamp: 'AB 10/30/2023 14:52:34'!
+test22
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self east. 
+	
+	logger := Logger forRotationOnMarsRover: marsRover.
+	
+	marsRover process: 'rrr'.
+	
+	self assert: logger log equals: (OrderedCollection with: 'South' with: 'West' with: 'North').!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:52:57'!
+test23LoggerHaveRotationAndPositionsMoves
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	logger := Logger forPositionAndRotationOnMarsRover: marsRover.
+	
+	marsRover process: 'frbl'.
+	
+	self assert: logger log equals: (OrderedCollection with: '1@2' with: 'East' with: '0@2' with: 'North').! !
+
+!methodRemoval: MarsRoverTest #test23 stamp: 'AB 10/30/2023 14:52:57'!
+test23
+
+	| marsRover logger |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	logger := Logger forPositionAndRotationOnMarsRover: marsRover.
+	
+	marsRover process: 'frbl'.
+	
+	self assert: logger log equals: (OrderedCollection with: '1@2' with: 'East' with: '0@2' with: 'North').!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:53:25'!
+test24WindowIsEmptyWhenMarsRoversStart
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).! !
+
+!methodRemoval: MarsRoverTest #test24 stamp: 'AB 10/30/2023 14:53:25'!
+test24
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:54:12'!
+test25WindowHavePositionForFowardMove
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+
+	marsRover process: 'f'.
+		
+	self assert: window log equals: (OrderedCollection with: '1@2').! !
+
+!methodRemoval: MarsRoverTest #test25 stamp: 'AB 10/30/2023 14:54:12'!
+test25
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+
+	marsRover process: 'f'.
+		
+	self assert: window log equals: (OrderedCollection with: '1@2').!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:54:43'!
+test26WindowChangePositionAfterManyMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).
+	
+	marsRover process: 'rf'.
+	
+	self assert: window log equals: (OrderedCollection with: '2@1').
+	
+	marsRover process: 'b'.
+	
+	self assert: window log equals: (OrderedCollection with: '1@1').
+	
+
+! !
+
+!methodRemoval: MarsRoverTest #test26 stamp: 'AB 10/30/2023 14:54:43'!
+test26
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).
+	
+	marsRover process: 'rf'.
+	
+	self assert: window log equals: (OrderedCollection with: '2@1').
+	
+	marsRover process: 'b'.
+	
+	self assert: window log equals: (OrderedCollection with: '1@1').
+	
+
+!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:55:35'!
+test27WindowHaveNoRotationWhenStart
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forRotationOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).
+	
+
+! !
+
+!methodRemoval: MarsRoverTest #test27 stamp: 'AB 10/30/2023 14:55:35'!
+test27
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forRotationOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).
+	
+
+!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:55:52'!
+test24WindowHaveNoPositonWhenMarsRoversStart
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).! !
+
+!methodRemoval: MarsRoverTest #test24WindowIsEmptyWhenMarsRoversStart stamp: 'AB 10/30/2023 14:55:52'!
+test24WindowIsEmptyWhenMarsRoversStart
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:56:17'!
+test28WindowChangeRotationAfterManyRightMoves
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forRotationOnMarsRover: marsRover.
+		
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'East').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'South').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'West').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'North').
+
+! !
+
+!methodRemoval: MarsRoverTest #test28 stamp: 'AB 10/30/2023 14:56:17'!
+test28
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forRotationOnMarsRover: marsRover.
+		
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'East').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'South').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'West').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: 'North').
+
+!
+!MarsRoverTest methodsFor: 'tests' stamp: 'AB 10/30/2023 14:56:40'!
+test29WindowHavePositionAndRotation
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionAndRotationOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).
+	
+	marsRover process: 'f'.
+	self assert: window log equals: (OrderedCollection with: '1@2').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: '1@2' with: 'East').
+	
+	
+	
+
+! !
+
+!methodRemoval: MarsRoverTest #test29 stamp: 'AB 10/30/2023 14:56:40'!
+test29
+
+	| marsRover window |
+	
+	marsRover := MarsRover at: 1@1 heading: self north. 
+	
+	window := Window forPositionAndRotationOnMarsRover: marsRover.
+		
+	self assert: window log equals: (OrderedCollection new).
+	
+	marsRover process: 'f'.
+	self assert: window log equals: (OrderedCollection with: '1@2').
+	
+	marsRover process: 'r'.
+	self assert: window log equals: (OrderedCollection with: '1@2' with: 'East').
+	
+	
+	
+
+!
+
+----SNAPSHOT----(30 October 2023 14:56:44) CuisUniversity-MarsRover2.image priorSource: 10486969!
+
+----QUIT----(30 October 2023 14:57:54) CuisUniversity-MarsRover2.image priorSource: 10497808!
