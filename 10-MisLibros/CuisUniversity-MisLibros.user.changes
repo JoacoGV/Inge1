@@ -1,0 +1,2938 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (18 September 2023 20:36:46) as /home/clinux01/Escritorio/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/clinux01/Escritorio/linux64/1erParcial/ISW1-2022-1C-Parcial-1.st----!
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:03:21'!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | element |
+		element := unaColeccion at: ix.
+		self relocate: element after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:03:55' prior: 50651396!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:04:53' prior: 50650962!
+advance: aTimeLapse
+	
+	| ix cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:01' prior: 50651419!
+advance: aTimeLapse
+	
+	|  cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:07' prior: 50651430!
+advance: aTimeLapse
+	
+	|  cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:41' prior: 50651408!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar un closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:42' prior: 50651452!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:06:36'!
+recorrer: unaColeccion realizando: unaAccion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:06:51' prior: 50651478!
+recorrer: unaColeccion realizando: unaAccion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | elem |
+		elem := unaColeccion at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	]
+! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:07:45' prior: 50651248!
+cars
+	| allCars ix |
+	
+	allCars := Set new.
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars
+	! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:09:39' prior: 50651503!
+cars
+	| allCars ix |
+	
+	allCars := Set new.
+	self usar: allCars yRealizar: [allCars addAll: 1].
+	"ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	]."
+
+	^ allCars
+	! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:11:48'!
+usar: allCars yRealizar: unaAccion
+	|ix|
+	 [allCars addAll: 1].
+
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	].
+
+	^ allCars
+	! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:12:37' prior: 50651700!
+usar: unaColeccion yRealizar: unaAccion
+	|ix|
+	 "[allCars addAll: 1]."
+
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	].
+
+	
+	! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car activated timesActivated'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #Turbo category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:13'!
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car activated timesActivated'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #Turbo category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:50'!
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+FormulaOneCar subclass: #TurboActivado
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #TurboActivado category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:57'!
+FormulaOneCar subclass: #TurboActivado
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classRenamed: #Turbo as: #TurboDesactivado stamp: 'avb 9/18/2023 21:20:05'!
+Smalltalk renameClassNamed: #Turbo as: #TurboDesactivado!
+!TurboActivado methodsFor: 'no messages' stamp: 'avb 9/18/2023 21:20:20'!
+dd 
+self error: self turboAlreadyActivatedErrorDescription ! !
+!TurboActivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:20:36' overrides: 50650872!
+activateTurbo
+	self error: self turboAlreadyActivatedErrorDescription ! !
+
+!methodRemoval: TurboActivado #dd stamp: 'avb 9/18/2023 21:20:41'!
+dd 
+self error: self turboAlreadyActivatedErrorDescription !
+!TurboDesactivado methodsFor: 'nil' stamp: 'avb 9/18/2023 21:21:08'!
+activateTurboTo: unAuto
+! !
+!TurboDesactivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:21:44' prior: 50651864!
+activateTurboTo: unAuto
+	(unAuto currentSector) activateTurboTo: unAuto .! !
+!TurboDesactivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:22:27' prior: 50651869!
+activateTurboTo: unAuto
+	^ currentSector activateTurboTo: unAuto .! !
+!FormulaOneCar methodsFor: 'turbo' stamp: 'avb 9/18/2023 21:23:05' prior: 50650872!
+activateTurbo
+
+	"turboActivated ifTrue: [ self error: self turboAlreadyActivatedErrorDescription ].
+	
+	currentSector activateTurboTo: self."
+
+	self subclassResponsibility .! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:27:28'!
+codigosRepetidos
+
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:27:59' prior: 50651977!
+codigosRepetidos
+"sector if none"
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:28:28' prior: 50651987!
+codigosRepetidos
+"sector if none"
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:28:41' prior: 50651997!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:29:11' prior: 50652014!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:29:49' prior: 50652031!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:30:32' prior: 50652057!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"
+
+"cars
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars"! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:32:41' prior: 50652089!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"
+
+"cars
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars"
+	
+	" includes
+		| inc ix sector |
+	inc := false.
+	ix := 1.
+	
+	(sectors size = 0) ifTrue: [ ^ inc ].
+	
+	sector := sectors at: ix.
+	(sector includes: aCar) 
+		ifTrue: [ inc := true]
+		ifFalse: [
+			ix := ix +1.
+			[ix <= sectors size] whileTrue: [ | s |
+				s := sectors at: ix.
+				(s includes: aCar) ifTrue: [ ^ true ].
+				ix := ix + 1
+			]	
+		]. 
+	^ inc"! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+
+----STARTUP---- (30 October 2023 19:11:31) as /home/clinux01/Escritorio/linux64/CuisUniversity-MisLibros.image!
+
+
+TestSuite subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+
+!classDefinition: #CartTest category: 'MisLibros' stamp: 'jgv 10/30/2023 19:13:09'!
+TestSuite subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+!CartTest methodsFor: 'no messages' stamp: 'jgv 10/30/2023 19:13:42'!
+cartStartsEmpty! !
+
+!classDefinition: #Cart category: 'MisLibros' stamp: 'jgv 10/30/2023 19:15:07'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+!CartTest methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:15:22' prior: 50650333!
+cartStartsEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmpty.! !
+!Cart methodsFor: 'no messages' stamp: 'jgv 10/30/2023 19:15:57'!
+isEmpty
+	^true.! !
+
+!methodRemoval: Cart #isEmpty stamp: 'jgv 10/30/2023 19:16:16'!
+isEmpty
+	^true.!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+
+!classDefinition: #CartTest category: 'MisLibros' stamp: 'jgv 10/30/2023 19:16:30'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Portfolio-Solucion.st----!
+
+!classRemoval: #TransferenceWithdraw stamp: 'jgv 10/30/2023 19:17:14'!
+TransferenceTransaction subclass: #TransferenceWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceDeposit stamp: 'jgv 10/30/2023 19:17:15'!
+TransferenceTransaction subclass: #TransferenceDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTransaction stamp: 'jgv 10/30/2023 19:17:15'!
+Object subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transference stamp: 'jgv 10/30/2023 19:17:15'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'jgv 10/30/2023 19:17:15'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'jgv 10/30/2023 19:17:15'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'jgv 10/30/2023 19:17:15'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'jgv 10/30/2023 19:17:15'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'jgv 10/30/2023 19:17:16'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'jgv 10/30/2023 19:17:16'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTest stamp: 'jgv 10/30/2023 19:17:16'!
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportsTest stamp: 'jgv 10/30/2023 19:17:16'!
+TestCase subclass: #ReportsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'jgv 10/30/2023 19:17:16'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'jgv 10/30/2023 19:17:16'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Portfolio-Solucion.st----!
+
+----QUIT----(30 October 2023 19:18:29) CuisUniversity-MisLibros.image priorSource: 10197292!
+
+----STARTUP---- (30 October 2023 19:18:33) as /home/clinux01/Escritorio/linux64/CuisUniversity-MisLibros.image!
+
+
+!classRemoval: #TransferenceWithdraw stamp: 'jgv 10/30/2023 19:18:52'!
+TransferenceTransaction subclass: #TransferenceWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceDeposit stamp: 'jgv 10/30/2023 19:18:52'!
+TransferenceTransaction subclass: #TransferenceDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTransaction stamp: 'jgv 10/30/2023 19:18:52'!
+Object subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transference stamp: 'jgv 10/30/2023 19:18:52'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'jgv 10/30/2023 19:18:52'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'jgv 10/30/2023 19:18:52'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'jgv 10/30/2023 19:18:52'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'jgv 10/30/2023 19:18:53'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'jgv 10/30/2023 19:18:53'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'jgv 10/30/2023 19:18:53'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTest stamp: 'jgv 10/30/2023 19:18:53'!
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportsTest stamp: 'jgv 10/30/2023 19:18:53'!
+TestCase subclass: #ReportsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'jgv 10/30/2023 19:18:53'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'jgv 10/30/2023 19:18:54'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:19:31' prior: 50650343!
+cartStartsEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmptyCart.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:19:34' prior: 50653013!
+cartStartsEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmptyCart! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Portfolio-Solucion.st----!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:20:59'!
+test01CartStartsEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmptyCart! !
+
+!methodRemoval: CartTest #cartStartsEmpty stamp: 'jgv 10/30/2023 19:20:59'!
+cartStartsEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmptyCart!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:21:01'!
+ERROR!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:21:01'!
+ERROR!
+
+!classRemoval: #TransferenceWithdraw stamp: 'jgv 10/30/2023 19:21:06'!
+TransferenceTransaction subclass: #TransferenceWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceDeposit stamp: 'jgv 10/30/2023 19:21:06'!
+TransferenceTransaction subclass: #TransferenceDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTransaction stamp: 'jgv 10/30/2023 19:21:06'!
+Object subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transference stamp: 'jgv 10/30/2023 19:21:06'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'jgv 10/30/2023 19:21:06'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'jgv 10/30/2023 19:21:07'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'jgv 10/30/2023 19:21:07'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'jgv 10/30/2023 19:21:07'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'jgv 10/30/2023 19:21:07'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'jgv 10/30/2023 19:21:07'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTest stamp: 'jgv 10/30/2023 19:21:07'!
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportsTest stamp: 'jgv 10/30/2023 19:21:08'!
+TestCase subclass: #ReportsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'jgv 10/30/2023 19:21:08'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'jgv 10/30/2023 19:21:08'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:21:26'!
+ERROR!
+!Cart methodsFor: 'testing' stamp: 'jgv 10/30/2023 19:21:30'!
+isEmptyCart
+	self shouldBeImplemented.! !
+!Cart methodsFor: 'testing' stamp: 'jgv 10/30/2023 19:21:35' prior: 50654363!
+isEmptyCart
+	^true.! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:21:36'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:21:36'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:22:21'!
+test02ACartWithBooksInItIsNotEmpty
+	|cart|
+	
+	cart := Cart new.
+	
+	self assert: cart isEmptyCart! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:24:09' prior: 50654376!
+test02ACartWithBooksInItIsNotEmpty
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	
+	self deny: cart isEmptyCart.! !
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:24:18'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:24:38'!
+addBook: ISBN 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Cart category: 'MisLibros' stamp: 'jgv 10/30/2023 19:25:14'!
+Object subclass: #Cart
+	instanceVariableNames: 'books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:25:12' prior: 50654393!
+addBook: anISBN 
+	 books := anISBN.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:25:21' prior: 50654404!
+addBook: anISBN 
+	 books add: anISBN.! !
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:25:22'!
+ERROR!
+!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 19:26:05' overrides: 16920235!
+initialize
+	books := OrderedCollection new.! !
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:26:12'!
+FAILURE!
+!Cart methodsFor: 'testing' stamp: 'jgv 10/30/2023 19:26:42' prior: 50654367!
+isEmptyCart
+	^books isEmpty.! !
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:26:45'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:26:45'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:26:45'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:35:07'!
+test03ACartCanListsItsContent
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	
+	self deny: cart isEmptyCart.! !
+
+!testRun: #CartTest #test03ACartCanListsItsContent stamp: 'jgv 10/30/2023 19:35:07'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:35:07'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:35:07'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListsItsContent stamp: 'jgv 10/30/2023 19:35:07'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:35:13' prior: 50654437!
+test03ACartCanListsItsContent
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	
+	cart addBook: anISBN.
+	
+	self deny: cart isEmptyCart.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:41:03'!
+test03addingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03ACartCanListsItsContent stamp: 'jgv 10/30/2023 19:41:08'!
+test03ACartCanListsItsContent
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	
+	cart addBook: anISBN.
+	
+	self deny: cart isEmptyCart.!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:41:13'!
+test03AddingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03addingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 19:41:13'!
+test03addingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	!
+
+!testRun: #CartTest #test03AddingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 19:41:19'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:41:30' prior: 50654481!
+test03AddingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03AddingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 19:41:35'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:41:46'!
+listContent
+	self shouldBeImplemented.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:41:52' prior: 50654508!
+test03AddingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03AddingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 19:42:10'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:42:14' prior: 50654527!
+test03AddingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2').
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:42:47'!
+test03ACartCanListsItsContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2').
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:42:53'!
+test03ACartCanListItsContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2').
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03ACartCanListsItsContent stamp: 'jgv 10/30/2023 19:42:55'!
+test03ACartCanListsItsContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2').
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:43:05' prior: 50654572!
+test03ACartCanListItsContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:43:09'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:44:01' prior: 50654599!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	cart addBook: anISBN.
+	cart addBook: anotherISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:44:44' prior: 50654612!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	cart addBook: anISBN.
+	cart addBook: anotherISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBM: 789456123 | quantity: 1').
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:44:46'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:46:38' prior: 50654523!
+listContent
+	|contentList|
+	
+	contentList := OrderedCollection new.
+	
+	books do: [:book |
+			contentList add: 'ISBN: ', book, ' | quantity: 1'. 			
+		]
+	
+	^contentList.! !
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:46:40'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 19:46:50' prior: 50654640!
+listContent
+	|contentList|
+	
+	contentList := OrderedCollection new.
+	
+	books do: [:book |
+			contentList add: 'ISBN: ', book, ' | quantity: 1'. 			
+		].
+	
+	^contentList.! !
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:46:51'!
+FAILURE!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:47:30'!
+FAILURE!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:48:19'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:48:19'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:48:19'!
+FAILURE!
+
+!testRun: #CartTest #test03AddingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 19:48:19'!
+ERROR!
+
+!methodRemoval: CartTest #test03AddingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 19:48:27'!
+test03AddingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2').
+	
+	
+	
+	
+	!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:48:32'!
+FAILURE!
+
+cart listContent!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:49:05' prior: 50654623!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	cart addBook: anISBN.
+	cart addBook: anotherISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:49:06'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 19:49:06'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 19:49:06'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 19:49:06'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:50:05'!
+test03AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	anISBN := '789456123'.
+	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 19:50:08'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:50:24' prior: 50654723!
+test03AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 19:50:25'!
+FAILURE!
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 19:51:20' prior: 50654417 overrides: 16920235!
+initialize
+	books := Dictionary new.! !
+
+aDictionary := Dictionary new.!
+
+aDictionary at: '123'.!
+
+aDictionary add: '123'->1.!
+
+aDictionary at: '123'!
+
+aDictionary add: '123' ->2.!
+
+aDictionary at: '123'!
+
+aDictionary asOrderedCollection !
+
+aDictionary asOrderedCollection!
+
+aDictionary at: '456' put: 1.!
+
+aDictionary := Dictionary new.!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 20:00:10' prior: 50654409!
+addBook: anISBN 
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+aDictionary at: '123' ifAbsent: [0].!
+
+aDictionary := Dictionary new.!
+
+aDictionary at: '123' put: 1.!
+
+aDictionary at: '123'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 20:04:21' prior: 50654652!
+listContent
+	|contentList|
+	
+	contentList := OrderedCollection new.
+	
+	books keysDo: [:ISBN |
+			contentList add: 'ISBN: ', ISBN, ' | quantity: ', ((books at: ISBN) asString). 			
+		].
+	
+	^contentList.! !
+
+!testRun: #CartTest #test03AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 20:04:26'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 20:04:26'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 20:04:26'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 20:04:26'!
+PASSED!
+
+!testRun: #CartTest #test03AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 20:04:26'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:04:32'!
+test04AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 20:04:36'!
+test03AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:04:51'!
+test04AddingTheSameItemMultipleTimesIncreasesItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test04AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 20:04:51'!
+test04AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:07:26'!
+test05AddingTheSameItemMultipleTimesIncreasesItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test05AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 20:09:39'!
+test05AddingTheSameItemMultipleTimesIncreasesItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	!
+
+!methodRemoval: CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 20:14:22'!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	cart addBook: anISBN.
+	cart addBook: anotherISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').
+	
+	
+	
+	
+	!
+
+!methodRemoval: CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 20:14:24'!
+test04AddingTheSameItemMultipleTimesIncreasesItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:50:24'!
+test03AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 19:41:03'!
+test03addingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:04:51'!
+test04AddingTheSameItemMultipleTimesIncreasesItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03AddingTheSameItemMultipleTimesIncreaseItsQuantity stamp: 'jgv 10/30/2023 20:17:50'!
+test03AddingTheSameItemMultipleTimesIncreaseItsQuantity
+
+	|cart anISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:18:11'!
+test03canListCartContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03addingTheSameBookMultipleTimesIncrementsItsQuantity stamp: 'jgv 10/30/2023 20:18:11'!
+test03addingTheSameBookMultipleTimesIncrementsItsQuantity
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:18:59'!
+test0202canAddMultipleItems
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	cart addBook: '4564897213'.
+	
+	self deny: cart isEmptyCart.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:23:16' prior: 50657907!
+test03canListCartContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: '4564897213'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 4564897213 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test0202canAddMultipleItems stamp: 'jgv 10/30/2023 20:24:32'!
+test0202canAddMultipleItems
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	cart addBook: '4564897213'.
+	
+	self deny: cart isEmptyCart.!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:24:51'!
+test03ACartCanListItsContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: '4564897213'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 4564897213 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test03canListCartContent stamp: 'jgv 10/30/2023 20:24:51'!
+test03canListCartContent
+
+	|cart ISBN|
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	cart addBook: '4564897213'.
+	cart add: ISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 4564897213 | quantity: 1').
+	
+	cart add: ISBN.
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:25:19' prior: 50657957!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	cart addBook: '789456123'.
+	
+	cart add: anISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 4564897213 | quantity: 1').
+	
+	cart add: anISBN.
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:25:32' prior: 50657981!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	cart addBook: '789456123'.
+	
+	cart add: anISBN.
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 4564897213 | quantity: 1').
+	
+	cart add: anISBN.
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:26:20' prior: 50657994!
+test03ACartCanListItsContent
+
+	|cart anISBN anotherISBN|
+	
+	cart := Cart new.
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	cart addBook: anISBN.
+	cart addBook: anotherISBN.	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 20:26:24'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 20:26:24'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 20:26:24'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 20:26:24'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 20:26:24'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:42:46'!
+test05CanNotAddAnInvalidBookToCart
+
+	|cart anISBN validISBNs|
+	
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+	cart := Cart new.
+	anISBN := '123456789'.	
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:47:12' prior: 50658037!
+test05CanNotAddAnInvalidBookToCart
+
+	|cart anInvalidISBN validISBNs|
+	
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+	cart := Cart validBooks: validISBNs.
+	
+	anInvalidISBN := '456789123'.	
+	
+	self should: [cart add: anInvalidISBN ] 
+	raise: Error  
+	withExceptionDo: [:anError |
+			self assert: anError equals: Cart CannotAddInvalidBook.
+		].
+	cart addBook: anInvalidISBN .
+
+	
+	
+	
+	
+	! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Portfolio-Solucion.st----!
+
+!classRemoval: #TransferenceWithdraw stamp: 'jgv 10/30/2023 20:48:24'!
+TransferenceTransaction subclass: #TransferenceWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceDeposit stamp: 'jgv 10/30/2023 20:48:24'!
+TransferenceTransaction subclass: #TransferenceDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTransaction stamp: 'jgv 10/30/2023 20:48:24'!
+Object subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transference stamp: 'jgv 10/30/2023 20:48:25'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'jgv 10/30/2023 20:48:25'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'jgv 10/30/2023 20:48:25'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'jgv 10/30/2023 20:48:25'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'jgv 10/30/2023 20:48:25'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'jgv 10/30/2023 20:48:25'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'jgv 10/30/2023 20:48:26'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTest stamp: 'jgv 10/30/2023 20:48:26'!
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportsTest stamp: 'jgv 10/30/2023 20:48:26'!
+TestCase subclass: #ReportsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'jgv 10/30/2023 20:48:26'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'jgv 10/30/2023 20:48:26'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:49:07' prior: 50658054!
+test05CanNotAddAnInvalidBookToCart
+
+	|cart anInvalidISBN validISBNs|
+	
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+	cart := Cart validBooks: validISBNs.
+	
+	anInvalidISBN := '456789123'.	
+	
+	self should: [cart add: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart CannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		].
+	cart addBook: anInvalidISBN .
+
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:49:11' prior: 50659391!
+test05CanNotAddAnInvalidBookToCart
+
+	|cart anInvalidISBN validISBNs|
+	
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+	cart := Cart validBooks: validISBNs.
+	
+	anInvalidISBN := '456789123'.	
+	
+	self should: [cart add: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart CannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		].
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 20:49:13'!
+ERROR!
+!Cart class methodsFor: 'instance creation' stamp: 'jgv 10/30/2023 20:49:20'!
+validBooks: validISBNs 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeValidBooks: validISBNs ! !
+!Cart class methodsFor: 'instance creation' stamp: 'jgv 10/30/2023 20:49:40' prior: 50659431!
+validBooks: validISBNs 
+	^self new initializeWithValidBooks: validISBNs ! !
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 20:49:43'!
+ERROR!
+
+!classDefinition: #Cart category: 'MisLibros' stamp: 'jgv 10/30/2023 20:49:47'!
+Object subclass: #Cart
+	instanceVariableNames: 'books validISBNs_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 20:49:47'!
+initializeWithValidBooks: validISBNs 
+	self shouldBeImplemented.
+	validISBNs_CHANGE_ME := validISBNs.! !
+
+!classDefinition: #Cart category: 'MisLibros' stamp: 'jgv 10/30/2023 20:52:29'!
+Object subclass: #Cart
+	instanceVariableNames: 'books validISBNs_CHANGE_ME validBooks'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'MisLibros'!
+!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 20:52:28' prior: 50659455!
+initializeWithValidBooks: validISBNs 
+	validBooks := validISBNs.! !
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 20:52:32'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 20:52:41' prior: 50659410!
+test05CanNotAddAnInvalidBookToCart
+
+	|cart anInvalidISBN validISBNs|
+	
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+	cart := Cart validBooks: validISBNs.
+	
+	anInvalidISBN := '456789123'.	
+	
+	self should: [cart addBook: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart CannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 20:52:49'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 20:54:54' prior: 50657697!
+addBook: anISBN 
+	(validBooks includes: anISBN) ifTrue: [^Cart CantAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 20:55:13'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 20:55:40' prior: 50659498!
+addBook: anISBN 
+	(validBooks includes: anISBN) ifTrue: [^Cart CannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+OrderedCollection with: 1.!
+
+dsfasd := OrderedCollection with: 1.!
+
+dsfasd includes: 1!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 20:56:46'!
+FAILURE!
+!Cart class methodsFor: 'error descriptions' stamp: 'jgv 10/30/2023 21:10:16'!
+cannotAddInvalidBookErrorDescription
+	^'Cannot add a book that is not selled by this publisher'! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 21:10:29' prior: 50659510!
+addBook: anISBN 
+	(validBooks includes: anISBN) ifTrue: [^Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:10:36' prior: 50659477!
+test05CanNotAddAnInvalidBookToCart
+
+	|cart anInvalidISBN validISBNs|
+	
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+	cart := Cart validBooks: validISBNs.
+	
+	anInvalidISBN := '456789123'.	
+	
+	self should: [cart addBook: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Portfolio-Solucion.st----!
+
+!classRemoval: #TransferenceWithdraw stamp: 'jgv 10/30/2023 21:11:08'!
+TransferenceTransaction subclass: #TransferenceWithdraw
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceDeposit stamp: 'jgv 10/30/2023 21:11:08'!
+TransferenceTransaction subclass: #TransferenceDeposit
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTransaction stamp: 'jgv 10/30/2023 21:11:09'!
+Object subclass: #TransferenceTransaction
+	instanceVariableNames: 'transference'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Transference stamp: 'jgv 10/30/2023 21:11:09'!
+Object subclass: #Transference
+	instanceVariableNames: 'transferenceWithdraw transferenceDeposit value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Withdraw stamp: 'jgv 10/30/2023 21:11:09'!
+AccountTransaction subclass: #Withdraw
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Deposit stamp: 'jgv 10/30/2023 21:11:09'!
+AccountTransaction subclass: #Deposit
+	instanceVariableNames: 'value'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #AccountTransaction stamp: 'jgv 10/30/2023 21:11:09'!
+Object subclass: #AccountTransaction
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccount stamp: 'jgv 10/30/2023 21:11:09'!
+Account subclass: #ReceptiveAccount
+	instanceVariableNames: 'transactions'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Portfolio stamp: 'jgv 10/30/2023 21:11:09'!
+Account subclass: #Portfolio
+	instanceVariableNames: 'accounts parents'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #Account stamp: 'jgv 10/30/2023 21:11:10'!
+Object subclass: #Account
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #TransferenceTest stamp: 'jgv 10/30/2023 21:11:10'!
+TestCase subclass: #TransferenceTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReportsTest stamp: 'jgv 10/30/2023 21:11:10'!
+TestCase subclass: #ReportsTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #ReceptiveAccountTest stamp: 'jgv 10/30/2023 21:11:10'!
+TestCase subclass: #ReceptiveAccountTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!classRemoval: #PortfolioTest stamp: 'jgv 10/30/2023 21:11:10'!
+TestCase subclass: #PortfolioTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Portfolio-Solucion'!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:11:26'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:11:44'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:11:46'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 21:11:46'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:11:46'!
+ERROR!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 21:11:46'!
+ERROR!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 21:11:46'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:11:46'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:11:50'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 21:12:29' prior: 50659530!
+addBook: anISBN 
+	(validBooks includes: anISBN) ifFalse: [^Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:12:31'!
+FAILURE!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:12:31'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 21:13:34' prior: 50660905!
+addBook: anISBN 
+	(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 21:13:38'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:13:38'!
+ERROR!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 21:13:38'!
+ERROR!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 21:13:38'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:13:38'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:13:41'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:14:45' prior: 50654250!
+test01CartStartsEmpty
+	|cart validBooks|
+	
+	validBooks := OrderedCollection with: '123456789'.	
+	
+	cart := Cart validBooks: validBooks.
+	
+	self assert: cart isEmptyCart! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 21:14:48'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 21:14:48'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:14:48'!
+ERROR!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 21:14:48'!
+ERROR!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 21:14:48'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:14:48'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:14:49'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:15:16' prior: 50654382!
+test02ACartWithBooksInItIsNotEmpty
+	|cart  validBooks ISBN|
+	
+	validBooks := OrderedCollection with: '123456789'.
+	
+	cart := Cart new.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	
+	self deny: cart isEmptyCart.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:15:25' prior: 50660977!
+test02ACartWithBooksInItIsNotEmpty
+	|cart  validBooks ISBN|
+	
+	validBooks := OrderedCollection with: '123456789'.
+	
+	cart := Cart validBooks: '123456789'.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	
+	self deny: cart isEmptyCart.! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:15:31' prior: 50660987!
+test02ACartWithBooksInItIsNotEmpty
+	|cart  validBooks ISBN|
+	
+	validBooks := OrderedCollection with: '123456789'.
+	
+	cart := Cart validBooks: validBooks.
+	ISBN := '123456789'.
+	
+	cart addBook: ISBN.
+	
+	self deny: cart isEmptyCart.! !
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:15:33'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 21:15:34'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:16:20' prior: 50658008!
+test03ACartCanListItsContent
+
+	|cart validBooks anISBN anotherISBN|
+	
+
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	validBooks := OrderedCollection with: anISBN with: anotherISBN.
+	cart := Cart new.	
+	cart addBook: anISBN.
+	cart addBook: anotherISBN.	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:16:30' prior: 50661013!
+test03ACartCanListItsContent
+
+	|cart validBooks anISBN anotherISBN|
+	
+
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	validBooks := OrderedCollection with: anISBN with: anotherISBN.
+	cart := Cart validBooks: validBooks.	
+	cart addBook: anISBN.
+	cart addBook: anotherISBN.	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:16:32' prior: 50661029!
+test03ACartCanListItsContent
+
+	|cart validBooks anISBN anotherISBN|
+	
+
+	anISBN := '123456789'.
+	anotherISBN := '789456123'.
+	
+	validBooks := OrderedCollection with: anISBN with: anotherISBN.
+	cart := Cart validBooks: validBooks.
+		
+	cart addBook: anISBN.
+	cart addBook: anotherISBN.	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 21:16:33'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 21:16:36'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'jgv 10/30/2023 21:17:34' prior: 50657877!
+test04AddingTheSameItemMultipleTimesIncreasesItsQuantity
+
+	|cart validBooks anISBN|
+	
+	anISBN := '123456789'.		
+	validBooks :=OrderedCollection with: anISBN.
+	
+	cart := Cart validBooks: validBooks.
+	cart addBook: anISBN.
+	
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' ).
+	
+	cart addBook: anISBN .
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 2' ).	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 21:17:35'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 21:17:38'!
+PASSED!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'jgv 10/30/2023 21:17:38'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'jgv 10/30/2023 21:17:38'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'jgv 10/30/2023 21:17:38'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'jgv 10/30/2023 21:17:38'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'jgv 10/30/2023 21:17:38'!
+PASSED!
+
+----QUIT----(30 October 2023 21:17:47) CuisUniversity-MisLibros.image priorSource: 10280347!
