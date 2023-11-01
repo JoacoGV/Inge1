@@ -94,6 +94,57 @@ test05CanNotAddAnInvalidBookToCart
 	
 	! !
 
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:11:27'!
+test06CanAddAtTheSameTimeManyValidBooks
+
+	|cart ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+		
+	cart addBook: ISBNs.
+	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:17:40'!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs anInvalidISBN|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	anInvalidISBN := '456789123'.		
+	cart := Cart validBooks: ISBNs.
+	ISBNs add: anInvalidISBN.
+	
+	
+	
+self should: [ cart addBook: ISBNs. ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
 
 !classDefinition: #Cart category: 'MisLibros'!
 Object subclass: #Cart
@@ -116,10 +167,13 @@ initializeWithValidBooks: validISBNs
 	validBooks := validISBNs.! !
 
 
-!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 21:13:34'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:13:23'!
 addBook: anISBN 
-	(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
-	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
 
 !Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 20:04:21'!
 listContent

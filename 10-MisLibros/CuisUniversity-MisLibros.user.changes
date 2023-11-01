@@ -2936,3 +2936,541 @@ PASSED!
 PASSED!
 
 ----QUIT----(30 October 2023 21:17:47) CuisUniversity-MisLibros.image priorSource: 10280347!
+
+----STARTUP---- (31 October 2023 22:51:51) as /home/antonella/Documentos/Inge/linux64 (2)/linux64/CuisUniversity-MisLibros.image!
+
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 22:56:53'!
+test06CanAddAtTheSameTimeManyBooks
+
+	|cart anInvalidISBN ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	
+
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 22:58:14' prior: 50661115!
+test06CanAddAtTheSameTimeManyBooks
+
+	|cart ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+		
+	cart addBook: ISBNs.
+	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 22:58:20'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:00:00' prior: 50660920!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: []. 
+	(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:02:02' prior: 50661140!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: [:isbn | (validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.]]. 
+	(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:02:04'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:02:04'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:02:04'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:02:04'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:02:04'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:02:04'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:02:04'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:02:34' prior: 50661150!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: [:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: isbn ifAbsent: [0]) + 1.]]. 
+	(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:02:36'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:02:36'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:02:36'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:02:36'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:02:36'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:02:36'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:02:36'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:03:15'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:03:15'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:05:44' prior: 50661187!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: isbn ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:05:46'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:05:46'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:05:46'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:05:46'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:05:47'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:05:47'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:05:47'!
+ERROR!
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:06:35'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:06:35'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:06:35'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:06:35'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:06:35'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:06:35'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:06:35'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:08:25' prior: 50661230!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN asString put: (books at: isbn asString ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:08:27'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:08:27'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:08:27'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:08:27'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:08:27'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:08:27'!
+FAILURE!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:08:27'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:09:01' prior: 50661289!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN asString put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:09:03'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:09:03'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:09:03'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:09:03'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:09:03'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:09:03'!
+FAILURE!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:09:03'!
+FAILURE!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:09:57' prior: 50661327!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:10:00'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:10:00'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:10:00'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:10:00'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:10:00'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:10:00'!
+ERROR!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:10:00'!
+ERROR!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:10:51' prior: 50661365!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:10:53'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:10:53'!
+PASSED!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:10:53'!
+PASSED!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:10:53'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:10:53'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:10:53'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:11:27'!
+test06CanAddAtTheSameTimeManyValidBooks
+
+	|cart ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+		
+	cart addBook: ISBNs.
+	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!methodRemoval: CartTest #test06CanAddAtTheSameTimeManyBooks stamp: 'AB 10/31/2023 23:11:27'!
+test06CanAddAtTheSameTimeManyBooks
+
+	|cart ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+		
+	cart addBook: ISBNs.
+	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	
+	
+	
+	
+	
+	!
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:11:54'!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+		
+	cart addBook: ISBNs.
+	
+
+	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:12:22' prior: 50661403!
+addBook: anISBN 
+anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]
+	"(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1]."! !
+
+!testRun: #CartTest #test01CartStartsEmpty stamp: 'AB 10/31/2023 23:12:24'!
+PASSED!
+
+!testRun: #CartTest #test02ACartWithBooksInItIsNotEmpty stamp: 'AB 10/31/2023 23:12:24'!
+ERROR!
+
+!testRun: #CartTest #test03ACartCanListItsContent stamp: 'AB 10/31/2023 23:12:24'!
+ERROR!
+
+!testRun: #CartTest #test04AddingTheSameItemMultipleTimesIncreasesItsQuantity stamp: 'AB 10/31/2023 23:12:24'!
+ERROR!
+
+!testRun: #CartTest #test05CanNotAddAnInvalidBookToCart stamp: 'AB 10/31/2023 23:12:24'!
+PASSED!
+
+!testRun: #CartTest #test06CanAddAtTheSameTimeManyValidBooks stamp: 'AB 10/31/2023 23:12:24'!
+PASSED!
+
+!testRun: #CartTest #test07CanAddAtTheSameTimeManyBooksSomeInvalid stamp: 'AB 10/31/2023 23:12:24'!
+PASSED!
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:10:51' prior: 50661478!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:12:22' prior: 50661522!
+addBook: anISBN 
+anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]
+	"(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1]."! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:13:23' prior: 50661538!
+addBook: anISBN 
+	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
+	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
+	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:13:42' prior: 50661464!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+		
+	cart addBook: ISBNs.
+	
+self should: [ | anInvalidISBN |cart addBook: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:14:13' prior: 50661576!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs anInvalidISBN|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+
+	cart := Cart validBooks: ISBNs.
+	anInvalidISBN := '456789123'.		
+	cart addBook: ISBNs.
+	
+self should: [ cart addBook: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:15:50' prior: 50661594!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs anInvalidISBN|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	anInvalidISBN := '456789123'.		
+	cart := Cart validBooks: ISBNs.
+	ISBNs add anInvalidISBN.
+	
+	cart addBook: ISBNs.
+	
+self should: [ cart addBook: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test07CanAddAtTheSameTimeManyBooksSomeInvalid stamp: 'AB 10/31/2023 23:15:54'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:16:36' prior: 50661612!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs anInvalidISBN|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	anInvalidISBN := '456789123'.		
+	cart := Cart validBooks: ISBNs.
+	ISBNs add: anInvalidISBN.
+	
+	cart addBook: ISBNs.
+	
+self should: [ cart addBook: anInvalidISBN ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test07CanAddAtTheSameTimeManyBooksSomeInvalid stamp: 'AB 10/31/2023 23:16:38'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:17:40' prior: 50661635!
+test07CanAddAtTheSameTimeManyBooksSomeInvalid
+
+	|cart ISBNs anInvalidISBN|
+	
+	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	anInvalidISBN := '456789123'.		
+	cart := Cart validBooks: ISBNs.
+	ISBNs add: anInvalidISBN.
+	
+	
+	
+self should: [ cart addBook: ISBNs. ] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
+			self assert: cart isEmptyCart.
+		]
+	
+	
+	
+	
+	
+	
+	
+	
+	! !
+
+!testRun: #CartTest #test07CanAddAtTheSameTimeManyBooksSomeInvalid stamp: 'AB 10/31/2023 23:17:42'!
+FAILURE!
+
+!testRun: #CartTest #test07CanAddAtTheSameTimeManyBooksSomeInvalid stamp: 'AB 10/31/2023 23:18:20'!
+FAILURE!
+
+!testRun: #CartTest #test07CanAddAtTheSameTimeManyBooksSomeInvalid stamp: 'AB 10/31/2023 23:18:44'!
+FAILURE!
+
+----SNAPSHOT----(31 October 2023 23:18:59) CuisUniversity-MisLibros.image priorSource: 10542642!
+
+----QUIT----(31 October 2023 23:19:18) CuisUniversity-MisLibros.image priorSource: 10561143!
