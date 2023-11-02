@@ -94,16 +94,16 @@ test05CanNotAddAnInvalidBookToCart
 	
 	! !
 
-!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:11:27'!
-test06CanAddAtTheSameTimeManyValidBooks
+!CartTest methodsFor: 'tests' stamp: 'Joaco 11/2/2023 16:29:37'!
+test06CanAddManyBooksAtTheSameTime
 
-	|cart ISBNs|
+	|cart validISBNsCollection|
 	
-	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	validISBNsCollection := OrderedCollection with: '123456789' with: '789456123'.
 
-	cart := Cart validBooks: ISBNs.
+	cart := Cart validBooks: validISBNsCollection.
 		
-	cart addBook: ISBNs.
+	cart addBooks: validISBNsCollection.
 	
 
 	self assert: (cart listContent) equals: (OrderedCollection with: 'ISBN: 123456789 | quantity: 1' with: 'ISBN: 789456123 | quantity: 1').	
@@ -117,19 +117,21 @@ test06CanAddAtTheSameTimeManyValidBooks
 	
 	! !
 
-!CartTest methodsFor: 'tests' stamp: 'AB 10/31/2023 23:17:40'!
-test07CanAddAtTheSameTimeManyBooksSomeInvalid
+!CartTest methodsFor: 'tests' stamp: 'Joaco 11/2/2023 16:30:46'!
+test07CanNotAddManyBooksAtTheSameTimeWhenSomeAreInvalid
 
-	|cart ISBNs anInvalidISBN|
+	|cart validISBNs ISBNCollectionWithInvalidISBN anInvalidISBN|
 	
-	ISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	validISBNs := OrderedCollection with: '123456789' with: '789456123'.
+	cart := Cart validBooks: validISBNs.
+
 	anInvalidISBN := '456789123'.		
-	cart := Cart validBooks: ISBNs.
-	ISBNs add: anInvalidISBN.
+	ISBNCollectionWithInvalidISBN := OrderedCollection newFrom: validISBNs.
+	ISBNCollectionWithInvalidISBN add: anInvalidISBN.
 	
 	
 	
-self should: [ cart addBook: ISBNs. ] 
+self should: [ cart addBooks: ISBNCollectionWithInvalidISBN. ] 
 	raise: Error - MessageNotUnderstood 
 	withExceptionDo: [:anError |
 			self assert: anError messageText equals: Cart cannotAddInvalidBookErrorDescription.
@@ -157,25 +159,7 @@ Object subclass: #Cart
 isEmptyCart
 	^books isEmpty.! !
 
-
-!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 19:51:20'!
-initialize
-	books := Dictionary new.! !
-
-!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 20:52:28'!
-initializeWithValidBooks: validISBNs 
-	validBooks := validISBNs.! !
-
-
-!Cart methodsFor: 'as yet unclassified' stamp: 'AB 10/31/2023 23:13:23'!
-addBook: anISBN 
-	(anISBN isKindOf: OrderedCollection) ifTrue: [anISBN do: 
-	[:isbn | (validBooks includes: isbn) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
-	 books at: isbn  put: (books at: isbn  ifAbsent: [0]) + 1.]] 
-	ifFalse:[(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
-	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1].! !
-
-!Cart methodsFor: 'as yet unclassified' stamp: 'jgv 10/30/2023 20:04:21'!
+!Cart methodsFor: 'testing' stamp: 'jgv 10/30/2023 20:04:21'!
 listContent
 	|contentList|
 	
@@ -186,6 +170,26 @@ listContent
 		].
 	
 	^contentList.! !
+
+
+!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 19:51:20'!
+initialize
+	books := Dictionary new.! !
+
+!Cart methodsFor: 'initialization' stamp: 'jgv 10/30/2023 20:52:28'!
+initializeWithValidBooks: validISBNs 
+	validBooks := validISBNs.! !
+
+
+!Cart methodsFor: 'cart manipulation' stamp: 'jgv 10/30/2023 21:13:34'!
+addBook: anISBN 
+	(validBooks includes: anISBN) ifFalse: [self error: Cart cannotAddInvalidBookErrorDescription].
+	 books at: anISBN put: (books at: anISBN ifAbsent: [0]) + 1.! !
+
+!Cart methodsFor: 'cart manipulation' stamp: 'Joaco 11/2/2023 16:26:36'!
+addBooks: anISBNCollection
+	(anISBNCollection anySatisfy: [:anISBN | (validBooks includes: anISBN) not]) ifTrue: [self error: Cart cannotAddInvalidBookErrorDescription].
+	anISBNCollection do: [:anISBN | self addBook: anISBN ].! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
