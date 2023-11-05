@@ -125,18 +125,18 @@ createCart
 
 	^ Cart acceptingItemsOf: self validItems! !
 
-!CashierTest methodsFor: 'support' stamp: 'Joaco 11/2/2023 21:29:42'!
+!CashierTest methodsFor: 'support' stamp: 'jgv 11/5/2023 11:18:44'!
 createCashier
 
-	^ Cashier withPriceList: self priceList for: self createCart withCreditCard: self notExpiredCreditCard.! !
+	^ Cashier withPriceList: self priceList for: self createCart withCreditCard: self notExpiredCreditCard atDate: FixedGregorianDate today.! !
 
-!CashierTest methodsFor: 'support' stamp: 'Joaco 11/2/2023 21:54:48'!
+!CashierTest methodsFor: 'support' stamp: 'jgv 11/5/2023 11:20:01'!
 expiredCreditCard
-	^CreditCard number: '1234567891011121' expirationDate: FixedGregorianDate tomorrow securityCode: '123'.! !
+	^CreditCard number: '1234567891011121' expirationDate: FixedGregorianDate today monthOfYear previous securityCode: '123'.! !
 
-!CashierTest methodsFor: 'support' stamp: 'Joaco 11/2/2023 21:52:29'!
+!CashierTest methodsFor: 'support' stamp: 'jgv 11/5/2023 11:17:36'!
 notExpiredCreditCard
-	^CreditCard number: '1234567891011121' expirationDate: FixedGregorianDate yesterday securityCode: '123'.! !
+	^CreditCard number: '1234567891011121' expirationDate: FixedGregorianDate today monthOfYear securityCode: '123'.! !
 
 !CashierTest methodsFor: 'support' stamp: 'Joaco 11/2/2023 19:19:21'!
 priceList
@@ -153,44 +153,52 @@ validItems
 	^Array with: 'aValidItem' with: 'anotherValidItem'! !
 
 
-!CashierTest methodsFor: 'tests' stamp: 'Joaco 11/2/2023 21:40:45'!
+!CashierTest methodsFor: 'tests' stamp: 'jgv 11/5/2023 11:12:01'!
 test01CashierCantCheckoutAnEmptyCart
 	
-	self should: [Cashier withPriceList: self priceList for: self createCart withCreditCard: self notExpiredCreditCard.]
+	self should: [Cashier withPriceList: self priceList for: self createCart withCreditCard: self notExpiredCreditCard atDate: FixedGregorianDate today.]
 	raise: Error - MessageNotUnderstood
 	 withExceptionDo: [ :anError | 
 		self assert: anError messageText equals: Cashier CanNotCheckoutAnEmptyCartErrorDescription
 		].! !
 
-!CashierTest methodsFor: 'tests' stamp: 'Joaco 11/2/2023 21:42:19'!
+!CashierTest methodsFor: 'tests' stamp: 'jgv 11/5/2023 12:55:53'!
 test02CashierCanCheckoutACartWithOneBook
 	
-	| aCashier aCart |
+	| aCashier aCart paymentProcessor paymentRegister |
 	
 	aCart := self createCart.
 	aCart add: 'aValidItem'.
 	
-	aCashier := Cashier withPriceList: self priceList for: aCart withCreditCard: 	self notExpiredCreditCard.
+	paymentProcessor := TestPaymentProcessor expectedBehaviour: [^1].
+	paymentRegister := OrderedCollection new.
+	
+	aCashier := Cashier withPriceList: self priceList for: aCart withCreditCard: 	self notExpiredCreditCard atDate: FixedGregorianDate today processedBy: paymentProcessor toBeRegisteredIn: paymentRegister.
 	
 	self assert: (aCashier checkout ) equals: 100.
+	self assert: (paymentRegister includes: aCashier)
 ! !
 
-!CashierTest methodsFor: 'tests' stamp: 'Joaco 11/2/2023 21:45:15'!
+!CashierTest methodsFor: 'tests' stamp: 'jgv 11/5/2023 12:56:10'!
 test03CashierCanCheckoutACartWithMoreThanOneItem
 	
-	| aCashier aCart |
+	| aCashier aCart paymentProcessor paymentRegister |
 	
 	aCart := self createCart.
 	aCart add: 'aValidItem' withOcurrences: 3.
 	aCart add: 'anotherValidItem' withOcurrences: 1.
 	
-	aCashier := Cashier withPriceList:  self priceList for: aCart  withCreditCard: self notExpiredCreditCard.
+	paymentProcessor := TestPaymentProcessor expectedBehaviour: [^1].
+	paymentRegister := OrderedCollection new.
+	
+	aCashier := Cashier withPriceList: self priceList for: aCart withCreditCard: 	self expiredCreditCard atDate: FixedGregorianDate today processedBy: paymentProcessor toBeRegisteredIn: paymentRegister .
 	
 	
 	self assert: (aCashier checkout) equals: 350.
+	self assert: (paymentRegister includes: aCashier)
 ! !
 
-!CashierTest methodsFor: 'tests' stamp: 'Joaco 11/2/2023 21:46:20'!
+!CashierTest methodsFor: 'tests' stamp: 'jgv 11/5/2023 11:19:11'!
 test04CashierCannotCheckoutIfCreditCardIsExpired
 	
 	| aCart |
@@ -200,11 +208,57 @@ test04CashierCannotCheckoutIfCreditCardIsExpired
 	aCart add: 'anotherValidItem' withOcurrences: 1.	
 	
 	self should:[
-			Cashier withPriceList: self priceList for: aCart withCreditCard: self expiredCreditCard.
+			Cashier withPriceList: self priceList for: aCart withCreditCard: 	self expiredCreditCard atDate: FixedGregorianDate today.
 		] 
 	raise: Error - MessageNotUnderstood 
 	withExceptionDo: [:anError |
 			self assert: anError messageText equals: Cashier CanNotCheckoutIfCreditCardIsExpiredErrorDescription . 			
+		]! !
+
+!CashierTest methodsFor: 'tests' stamp: 'jgv 11/5/2023 12:22:54'!
+test05CashierCannotCheckoutIfCreditCardIsStolen
+	
+	| aCart aCashier purchaseRegister merchantProcessor |
+		
+	purchaseRegister := OrderedCollection new.
+	merchantProcessor := TestPaymentProcessor expectedBehaviour: [^TestPaymentProcessor CannotDebitFromStolenCreditCard].
+	
+	aCart := self createCart.
+	aCart add: 'aValidItem' withOcurrences: 3.
+	aCart add: 'anotherValidItem' withOcurrences: 1.	
+	
+	aCashier := Cashier withPriceList: self priceList for: aCart withCreditCard: 	self expiredCreditCard atDate: FixedGregorianDate today processedBy: merchantProcessor toBeRegisteredIn: purchaseRegister .
+	
+	self should:[
+			aCashier checkout 
+		] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: TestPaymentProcessor CannotDebitFromStolenCreditCard. 
+			self assert: purchaseRegister isEmpty.
+		]! !
+
+!CashierTest methodsFor: 'tests' stamp: 'jgv 11/5/2023 12:49:28'!
+test06CashierCannotCheckoutIfCreditCardHasNotEnoughtCredit
+	
+	| aCart aCashier purchaseRegister merchantProcessor |
+		
+	purchaseRegister := OrderedCollection new.
+	merchantProcessor := TestPaymentProcessor expectedBehaviour: [^TestPaymentProcessor CannotDebitIfCreditIsNotEnought].
+	
+	aCart := self createCart.
+	aCart add: 'aValidItem' withOcurrences: 3.
+	aCart add: 'anotherValidItem' withOcurrences: 1.	
+	
+	aCashier := Cashier withPriceList: self priceList for: aCart withCreditCard: 	self expiredCreditCard atDate: FixedGregorianDate today processedBy: merchantProcessor toBeRegisteredIn: purchaseRegister .
+	
+	self should:[
+			aCashier checkout 
+		] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: TestPaymentProcessor CannotDebitIfCreditIsNotEnought. 
+			self assert: purchaseRegister isEmpty.
 		]! !
 
 
@@ -293,19 +347,23 @@ acceptingItemsOf: aCatalog
 
 !classDefinition: #Cashier category: 'TusLibros'!
 Object subclass: #Cashier
-	instanceVariableNames: 'itemsPriceList renameMe1 priceList cart creditCard'
+	instanceVariableNames: 'itemsPriceList renameMe1 priceList cart creditCard date purchaseRegister paymentProcessor'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!Cashier methodsFor: 'checkout' stamp: 'Joaco 11/2/2023 21:42:49'!
+!Cashier methodsFor: 'checkout' stamp: 'jgv 11/5/2023 12:11:40'!
 checkout
 	| totalAmountOfPayment |
 	
 	totalAmountOfPayment := 0.
 	cart items do: [:aCartItem | totalAmountOfPayment := (self itemPrice: aCartItem) + totalAmountOfPayment ].
+	
+	paymentProcessor debit: totalAmountOfPayment from: creditCard.
+	
+	purchaseRegister add: self.
+		
 	^totalAmountOfPayment.! !
-
 
 
 !Cashier methodsFor: 'queries' stamp: 'Joaco 11/2/2023 21:44:02'!
@@ -318,6 +376,15 @@ initializeWithPriceList: aPriceList for: aCart withCreditCard: aCreditCard
 	priceList := aPriceList.
 	cart := aCart.
 	creditCard := aCreditCard.! !
+
+!Cashier methodsFor: 'initialization' stamp: 'jgv 11/5/2023 12:10:06'!
+initializeWithPriceList: aPriceList for: aCart withCreditCard: aCreditCard atDate: aDate processedBy: aPaymentProcessor toBeRegisteredIn: aPurchaseRegister 
+	priceList := aPriceList.
+	cart := aCart.
+	creditCard := aCreditCard.
+	date := aDate.
+	paymentProcessor := aPaymentProcessor.
+	purchaseRegister := aPurchaseRegister.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -334,24 +401,29 @@ CanNotCheckoutIfCreditCardIsExpiredErrorDescription
 	^'No se puede completar el checkout con una tarjeta vencida. Vuelva a intentarlo con un método de pago valido'! !
 
 
-!Cashier class methodsFor: 'instance creation' stamp: 'Joaco 11/2/2023 19:16:29'!
-withPriceList: aPriceList
-	^self new initializeWithPriceList: aPriceList ! !
-
-!Cashier class methodsFor: 'instance creation' stamp: 'Joaco 11/2/2023 21:38:42'!
-withPriceList: aPriceList for: aCart withCreditCard: aCreditCard 
+!Cashier class methodsFor: 'instance creation' stamp: 'jgv 11/5/2023 11:11:29'!
+withPriceList: aPriceList for: aCart withCreditCard: aCreditCard atDate: aDate
 	self assertCartIsNotEmpty: aCart.
-	self assertCreditCardIsNotExpired: aCreditCard.
+	self assertCreditCardIsNotExpired: aCreditCard forDate: aDate.
 	^self new initializeWithPriceList: aPriceList for: aCart withCreditCard: aCreditCard ! !
+
+!Cashier class methodsFor: 'instance creation' stamp: 'jgv 11/5/2023 12:09:52'!
+withPriceList: aPriceList for: aCart withCreditCard: aCreditCard atDate: aDate processedBy: aPaymentProcessor toBeRegisteredIn: aPurchaseRegister 
+	^self new initializeWithPriceList: aPriceList for: aCart withCreditCard: aCreditCard atDate: aDate processedBy: aPaymentProcessor toBeRegisteredIn: aPurchaseRegister ! !
+
+!Cashier class methodsFor: 'instance creation' stamp: 'jgv 11/5/2023 12:01:03'!
+withPriceList: aPriceList for: aCart withCreditCard: aCreditCard atDate: aDate toBeRegisteredIn: purchaseRegister 
+
+	^self new initializeWithPriceList: aPriceList for: aCart withCreditCard: aCreditCard atDate: aDate toBeRegisteredIn: purchaseRegister ! !
 
 
 !Cashier class methodsFor: 'assertions' stamp: 'Joaco 11/2/2023 21:38:07'!
 assertCartIsNotEmpty: aCart 
 	aCart isEmpty ifTrue: [ self error: Cashier CanNotCheckoutAnEmptyCartErrorDescription].! !
 
-!Cashier class methodsFor: 'assertions' stamp: 'Joaco 11/2/2023 21:38:14'!
-assertCreditCardIsNotExpired: aCreditCard 
-	aCreditCard isExpired ifTrue: [self error: Cashier CanNotCheckoutIfCreditCardIsExpiredErrorDescription]! !
+!Cashier class methodsFor: 'assertions' stamp: 'jgv 11/5/2023 11:13:45'!
+assertCreditCardIsNotExpired: aCreditCard forDate: aDate
+	(aCreditCard isExpired: aDate monthOfYear ) ifTrue: [self error: Cashier CanNotCheckoutIfCreditCardIsExpiredErrorDescription]! !
 
 
 !classDefinition: #CreditCard category: 'TusLibros'!
@@ -368,9 +440,9 @@ initializeWithNumber: aCreditCardNumber expirationDate: aCreditCardExpirationDat
 	creditCardSecurityCode := aCreditCardSecurityCode.! !
 
 
-!CreditCard methodsFor: 'queries' stamp: 'Joaco 11/2/2023 19:33:50'!
-isExpired
-	^FixedGregorianDate today < creditCardExpirationDate.! !
+!CreditCard methodsFor: 'queries' stamp: 'jgv 11/5/2023 11:22:33'!
+isExpired: aMonthOfYear
+	^aMonthOfYear > creditCardExpirationDate.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -401,3 +473,54 @@ assertSecurityCodeIsValid: aCreditCardSecurityCode
 !CreditCard class methodsFor: 'error messages' stamp: 'Joaco 11/2/2023 21:51:49'!
 CantCreateACreditCardWithInvalidCardNumberErrorDescription
 	^'Cant create a credit card with an invalid credit card number. Please check the number lenght is 16 digits'! !
+
+
+!classDefinition: #PaymentProcessor category: 'TusLibros'!
+Object subclass: #PaymentProcessor
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+
+!classDefinition: #TestPaymentProcessor category: 'TusLibros'!
+Object subclass: #TestPaymentProcessor
+	instanceVariableNames: 'block testBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!TestPaymentProcessor methodsFor: 'initialization' stamp: 'jgv 11/5/2023 12:17:24'!
+initializeExpectedBehaviour: aBlock 
+	testBehaviour := aBlock.! !
+
+
+!TestPaymentProcessor methodsFor: 'debit' stamp: 'jgv 11/5/2023 12:18:24'!
+debit: totalAmountOfPayment from: aCreditCard 
+	testBehaviour value.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'TestPaymentProcessor class' category: 'TusLibros'!
+TestPaymentProcessor class
+	instanceVariableNames: ''!
+
+!TestPaymentProcessor class methodsFor: 'instance creation' stamp: 'jgv 11/5/2023 12:17:05'!
+expectedBehaviour: aBlock 
+
+	^self new initializeExpectedBehaviour: aBlock ! !
+
+!TestPaymentProcessor class methodsFor: 'instance creation' stamp: 'jgv 11/5/2023 12:14:15'!
+forStolenCreditCardTest
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeForStolenCreditCardTest! !
+
+
+!TestPaymentProcessor class methodsFor: 'error description' stamp: 'jgv 11/5/2023 12:43:31'!
+CannotDebitFromStolenCreditCard
+	^'Can not process payment with stolen credit card!! We calling the police >:('! !
+
+!TestPaymentProcessor class methodsFor: 'error description' stamp: 'jgv 11/5/2023 12:52:04'!
+CannotDebitIfCreditIsNotEnought
+	^'Credit in credit card is not enought to complete purchase!!'! !
