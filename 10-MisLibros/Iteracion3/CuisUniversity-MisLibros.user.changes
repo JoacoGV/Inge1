@@ -1,0 +1,2059 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (18 September 2023 20:36:46) as /home/clinux01/Escritorio/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/clinux01/Escritorio/linux64/1erParcial/ISW1-2022-1C-Parcial-1.st----!
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:03:21'!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | element |
+		element := unaColeccion at: ix.
+		self relocate: element after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:03:55' prior: 50651396!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:04:53' prior: 50650962!
+advance: aTimeLapse
+	
+	| ix cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:01' prior: 50651419!
+advance: aTimeLapse
+	
+	|  cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:07' prior: 50651430!
+advance: aTimeLapse
+	
+	|  cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:41' prior: 50651408!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar un closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:42' prior: 50651452!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:06:36'!
+recorrer: unaColeccion realizando: unaAccion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:06:51' prior: 50651478!
+recorrer: unaColeccion realizando: unaAccion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | elem |
+		elem := unaColeccion at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	]
+! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:07:45' prior: 50651248!
+cars
+	| allCars ix |
+	
+	allCars := Set new.
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars
+	! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:09:39' prior: 50651503!
+cars
+	| allCars ix |
+	
+	allCars := Set new.
+	self usar: allCars yRealizar: [allCars addAll: 1].
+	"ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	]."
+
+	^ allCars
+	! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:11:48'!
+usar: allCars yRealizar: unaAccion
+	|ix|
+	 [allCars addAll: 1].
+
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	].
+
+	^ allCars
+	! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:12:37' prior: 50651700!
+usar: unaColeccion yRealizar: unaAccion
+	|ix|
+	 "[allCars addAll: 1]."
+
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	].
+
+	
+	! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car activated timesActivated'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #Turbo category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:13'!
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car activated timesActivated'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #Turbo category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:50'!
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+FormulaOneCar subclass: #TurboActivado
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #TurboActivado category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:57'!
+FormulaOneCar subclass: #TurboActivado
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classRenamed: #Turbo as: #TurboDesactivado stamp: 'avb 9/18/2023 21:20:05'!
+Smalltalk renameClassNamed: #Turbo as: #TurboDesactivado!
+!TurboActivado methodsFor: 'no messages' stamp: 'avb 9/18/2023 21:20:20'!
+dd 
+self error: self turboAlreadyActivatedErrorDescription ! !
+!TurboActivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:20:36' overrides: 50650872!
+activateTurbo
+	self error: self turboAlreadyActivatedErrorDescription ! !
+
+!methodRemoval: TurboActivado #dd stamp: 'avb 9/18/2023 21:20:41'!
+dd 
+self error: self turboAlreadyActivatedErrorDescription !
+!TurboDesactivado methodsFor: 'nil' stamp: 'avb 9/18/2023 21:21:08'!
+activateTurboTo: unAuto
+! !
+!TurboDesactivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:21:44' prior: 50651864!
+activateTurboTo: unAuto
+	(unAuto currentSector) activateTurboTo: unAuto .! !
+!TurboDesactivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:22:27' prior: 50651869!
+activateTurboTo: unAuto
+	^ currentSector activateTurboTo: unAuto .! !
+!FormulaOneCar methodsFor: 'turbo' stamp: 'avb 9/18/2023 21:23:05' prior: 50650872!
+activateTurbo
+
+	"turboActivated ifTrue: [ self error: self turboAlreadyActivatedErrorDescription ].
+	
+	currentSector activateTurboTo: self."
+
+	self subclassResponsibility .! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:27:28'!
+codigosRepetidos
+
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:27:59' prior: 50651977!
+codigosRepetidos
+"sector if none"
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:28:28' prior: 50651987!
+codigosRepetidos
+"sector if none"
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:28:41' prior: 50651997!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:29:11' prior: 50652014!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:29:49' prior: 50652031!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:30:32' prior: 50652057!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"
+
+"cars
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars"! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:32:41' prior: 50652089!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"
+
+"cars
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars"
+	
+	" includes
+		| inc ix sector |
+	inc := false.
+	ix := 1.
+	
+	(sectors size = 0) ifTrue: [ ^ inc ].
+	
+	sector := sectors at: ix.
+	(sector includes: aCar) 
+		ifTrue: [ inc := true]
+		ifFalse: [
+			ix := ix +1.
+			[ix <= sectors size] whileTrue: [ | s |
+				s := sectors at: ix.
+				(s includes: aCar) ifTrue: [ ^ true ].
+				ix := ix + 1
+			]	
+		]. 
+	^ inc"! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+
+----STARTUP---- (6 November 2023 19:46:13) as /home/clinux01/Escritorio/linux64/CuisUniversity-MisLibros.image!
+
+
+----End fileIn of /home/clinux01/Escritorio/linux64/TusLibros-33.st----!
+
+TestCase subclass: #InputInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InputInterface category: 'TusLibros' stamp: 'JGV 11/6/2023 19:52:34'!
+TestCase subclass: #InputInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRenamed: #InputInterface as: #InputInterfaceTest stamp: 'JGV 11/6/2023 19:57:22'!
+Smalltalk renameClassNamed: #InputInterface as: #InputInterfaceTest!
+
+!classDefinition: #InputInterface category: 'TusLibros' stamp: 'JGV 11/6/2023 20:06:51'!
+Object subclass: #InputInterface
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InputInterfaceTest methodsFor: 'no messages' stamp: 'JGV 11/6/2023 20:06:45'!
+test01CanNotCreateCartWithInvalidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: self validClientId withPassword: self validClientPassword
+		] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: InputInterface InvalidUserCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:06:59'!
+ERROR!
+!InputInterfaceTest methodsFor: 'support' stamp: 'JGV 11/6/2023 20:07:11'!
+validClientId
+	self shouldBeImplemented.! !
+!InputInterfaceTest methodsFor: 'support' stamp: 'JGV 11/6/2023 20:07:25' prior: 50650919!
+validClientId
+	^'validClientId'! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:07:26'!
+ERROR!
+!InputInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 20:07:37'!
+validClientPassword
+	self shouldBeImplemented.! !
+!InputInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 20:07:55' prior: 50650932!
+validClientPassword
+	^'validClientPassword'! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:07:55'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:08:09'!
+createCartForClient: aRenameMe1 withPassword: aRenameMe2 
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:10:40' prior: 50650945!
+createCartForClient: aClientId withPassword: aClientPassword
+	Cart acceptingItemsOf: self validItems.
+	^42! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:10:43'!
+ERROR!
+
+TestCase subclass: #InputInterfaceTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InputInterfaceTest category: 'TusLibros' stamp: 'JGV 11/6/2023 20:11:17'!
+TestCase subclass: #InputInterfaceTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InputInterfaceTest methodsFor: 'nil' stamp: 'JGV 11/6/2023 20:11:49'!
+setup! !
+!InputInterfaceTest methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 20:12:13' prior: 50650974!
+setup
+	testObjectsFactory := StoreTestObjectsFactory new.! !
+!StoreTestObjectsFactory methodsFor: 'nil' stamp: 'JGV 11/6/2023 20:14:05'!
+validClientId
+	^'validClientId'! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:14:24'!
+validClientPassword
+	^'validClientPassword'! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:14:38'!
+clientId
+	^'validClientId'! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:14:43' prior: 50650991!
+clientId
+	^'clientId'! !
+
+!methodRemoval: StoreTestObjectsFactory #validClientId stamp: 'JGV 11/6/2023 20:14:46'!
+validClientId
+	^'validClientId'!
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:14:54'!
+clientPassword
+	^'clientPassword'! !
+
+!methodRemoval: StoreTestObjectsFactory #validClientPassword stamp: 'JGV 11/6/2023 20:14:56'!
+validClientPassword
+	^'validClientPassword'!
+
+!methodRemoval: InputInterfaceTest #validClientId stamp: 'JGV 11/6/2023 20:15:05'!
+validClientId
+	^'validClientId'!
+
+!methodRemoval: InputInterfaceTest #validClientPassword stamp: 'JGV 11/6/2023 20:15:05'!
+validClientPassword
+	^'validClientPassword'!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:15:09'!
+ERROR!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:16:33' prior: 50650899!
+test01CanNotCreateCartWithInvalidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 		] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: InputInterface InvalidUserCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:16:35'!
+ERROR!
+!InputInterfaceTest methodsFor: 'setup' stamp: 'JGV 11/6/2023 20:17:02' overrides: 16961394!
+setUp
+	testObjectsFactory := StoreTestObjectsFactory new.! !
+
+!methodRemoval: InputInterfaceTest #setup stamp: 'JGV 11/6/2023 20:17:02'!
+setup
+	testObjectsFactory := StoreTestObjectsFactory new.!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:17:05'!
+ERROR!
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 20:17:20'!
+InvalidUserCredentialsErrorDescription
+	self shouldBeImplemented.! !
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 20:17:53' prior: 50651057!
+InvalidUserCredentialsErrorDescription
+	^'The provided user credentials are invalid. Please check them and try again'! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:17:53'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:23:31' prior: 50650951!
+createCartForClient: aClientId withPassword: aClientPassword
+	Cart acceptingItemsOf: self catalog
+	^42! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:23:33' prior: 50651074!
+createCartForClient: aClientId withPassword: aClientPassword
+	Cart acceptingItemsOf: self catalog.
+	^42! !
+
+	Cart acceptingItemsOf: self catalog.!
+
+	^42!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:23:49' prior: 50651080!
+createCartForClient: aClientId withPassword: aClientPassword
+	Cart acceptingItemsOf: self catalog.
+	^42! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:23:49'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:23:49'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:24:00'!
+catalog
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:25:36' prior: 50651102!
+catalog
+	^ Dictionary new
+		at: 'validBook' put: 10;
+		yourself ! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:25:41'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:25:49'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:26:13'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:26:15'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:26:15'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:26:15'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:27:09' prior: 50651088!
+createCartForClient: aClientId withPassword: aClientPasswor
+	Cart acceptingItemsOf: self catalog.
+	^42! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:27:57' prior: 50651023!
+test01CanNotCreateCartWithInvalidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: self invalidCredentialAuthenticator] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: InputInterface InvalidUserCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:28:03'!
+ERROR!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:28:18' prior: 50651141!
+test01CanNotCreateCartWithInvalidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory invalidCredentialAuthenticator] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: InputInterface InvalidUserCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:28:19'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 20:28:28'!
+invalidCredentialAuthenticator
+	self shouldBeImplemented.! !
+
+!classDefinition: #TestAuthenticator category: 'TusLibros' stamp: 'JGV 11/6/2023 20:32:43'!
+Object subclass: #TestAuthenticator
+	instanceVariableNames: 'testBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StoreTestObjectsFactory methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 20:32:08' prior: 50651186!
+invalidCredentialAuthenticator
+	^TestAuthenticator withBehaviour: [^TestAuthenticator InvalidCredentialsErrorDescription].! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:32:51'!
+ERROR!
+!TestAuthenticator class methodsFor: 'instance creation' stamp: 'JGV 11/6/2023 20:32:56'!
+withBehaviour: aRenameMe1 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithBehaviour: aRenameMe1 ! !
+!TestAuthenticator class methodsFor: 'instance creation' stamp: 'JGV 11/6/2023 20:33:19' prior: 50651210!
+withBehaviour: aTestBehaviourBlock 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithBehaviour: aTestBehaviourBlock ! !
+!TestAuthenticator class methodsFor: 'instance creation' stamp: 'JGV 11/6/2023 20:33:24' prior: 50651219!
+withBehaviour: aTestBehaviourBlock 
+	^self new initializeWithBehaviour: aTestBehaviourBlock ! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:33:25'!
+ERROR!
+
+!classDefinition: #TestAuthenticator category: 'TusLibros' stamp: 'JGV 11/6/2023 20:33:32'!
+Object subclass: #TestAuthenticator
+	instanceVariableNames: 'testBehaviour testBehaviourBlock'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TestAuthenticator methodsFor: 'initialization' stamp: 'JGV 11/6/2023 20:33:32'!
+initializeWithBehaviour: aTestBehaviourBlock 
+	self shouldBeImplemented.
+	testBehaviourBlock := aTestBehaviourBlock.! !
+!TestAuthenticator methodsFor: 'initialization' stamp: 'JGV 11/6/2023 20:34:05' prior: 50651247!
+initializeWithBehaviour: aBlock 
+	testBehaviour := aBlock.! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:34:07'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:34:15'!
+createCartForClient: aRenameMe1 withPassword: aRenameMe2 usingAuthenticator: aRenameMe3 
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:35:39' prior: 50651262!
+createCartForClient: aClientId withPassword: aClientPassword usingAuthenticator: anAuthenticator 
+	anAuthenticator userId: aClientId password: aClientPassword.
+	Cart acceptingItemsOf: self catalog.
+	^42! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:35:43'!
+ERROR!
+!TestAuthenticator methodsFor: 'auth' stamp: 'JGV 11/6/2023 20:35:54'!
+userId: aClientId password: aClientPassword 
+	self shouldBeImplemented.! !
+!TestAuthenticator methodsFor: 'auth' stamp: 'JGV 11/6/2023 20:36:02' prior: 50651282!
+userId: aClientId password: aClientPassword 
+	^testBehaviour value! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:36:06'!
+ERROR!
+!TestAuthenticator class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 20:36:19'!
+InvalidCredentialsErrorDescription
+	self shouldBeImplemented.! !
+!TestAuthenticator class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 20:36:34' prior: 50651297!
+InvalidCredentialsErrorDescription
+	^'Credentials for user authentication are invalid'! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:36:35'!
+FAILURE!
+
+!methodRemoval: InputInterface #createCartForClient:withPassword: stamp: 'JGV 11/6/2023 20:38:20'!
+createCartForClient: aClientId withPassword: aClientPasswor
+	Cart acceptingItemsOf: self catalog.
+	^42!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:38:35' prior: 50651163!
+test01CanNotCreateCartWithInvalidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory invalidCredentialAuthenticator] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: TestAuthenticator InvalidCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:38:36'!
+FAILURE!
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:39:22' prior: 50651199!
+invalidCredentialAuthenticator
+	^TestAuthenticator withBehaviour: [self error: TestAuthenticator InvalidCredentialsErrorDescription].! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:39:25'!
+PASSED!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:39:53'!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory invalidCredentialAuthenticator] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: TestAuthenticator InvalidCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:40:04' prior: 50651353!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.
+	
+	self should: [
+		inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo:  [ :error | 
+			self assert: error messageText equals: TestAuthenticator InvalidCredentialsErrorDescription.
+			self 
+		].
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:50:07' prior: 50651372!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood 
+	
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:51:18' prior: 50651391!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self assert: cartId equals: 42.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood 
+	
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:51:18'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:51:26'!
+validCredentialAuthenticator
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:52:05' prior: 50651428!
+validCredentialAuthenticator
+	^TestAuthenticator withBehaviour: [^'Authentication successfull'].! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:52:07'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:52:45'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:54:24'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:54:24'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:54:24'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:54:24'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'users' stamp: 'JGV 11/6/2023 20:56:51' prior: 50651433!
+validCredentialAuthenticator
+	^TestAuthenticator withBehaviour: ['Authentication successfull'].! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:56:56'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:56:56'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:56:56'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:56:56'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:57:10'!
+listCart
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:57:14' prior: 50651483!
+listCart
+	! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:57:15'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:57:17'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:57:17'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:57:17'!
+PASSED!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:57:36' prior: 50651407!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood 
+	
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 20:57:45' prior: 50651506!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood 
+	
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:57:49'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 20:57:49'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 20:57:49'!
+PASSED!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:03:03'!
+test02CanCreateCartForValidUser
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood 
+	
+	
+	
+	
+	! !
+
+!methodRemoval: InputInterfaceTest #test02CanCreateCartWithValidUserCredentials stamp: 'JGV 11/6/2023 21:03:03'!
+test02CanCreateCartWithValidUserCredentials
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood 
+	
+	
+	
+	
+	!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:03:11' prior: 50651548!
+test02CanCreateCartForValidUser
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:04:17'!
+test02CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:04:25'!
+test03CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood
+	
+	
+	! !
+
+!methodRemoval: InputInterfaceTest #test02CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:04:25'!
+test02CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood
+	
+	
+	!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:06:07' prior: 50651609!
+test03CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self should: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:06:18' prior: 50651640!
+test03CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+		
+	self should: [
+			inputInterface listCart
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:06:25'!
+FAILURE!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:08:49' prior: 50651660!
+test03CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+		
+	self should: [ | aQuantity anISBN |
+			inputInterface addBook: anISBN withQuantity: aQuantity
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:09:29' prior: 50651678!
+test03CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+		
+	self should: [
+			inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:09:55' prior: 50651694!
+test03CanNotAddItemWithInvalidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+		
+	self should: [
+			inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: 1
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:10:03'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:10:09'!
+addBook: aRenameMe1 withQuantity: aRenameMe2 toCart: aRenameMe3 
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:11:03' prior: 50651729!
+addBook: anISBN withQuantity: aQuantity toCart: aCartId
+	self error: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription
+	! !
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:11:05'!
+ERROR!
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 21:11:09'!
+CanNotAddItemWithInvalidCartIdForUserIdErrorDescription
+	self shouldBeImplemented.! !
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 21:11:43' prior: 50651746!
+CanNotAddItemWithInvalidCartIdForUserIdErrorDescription
+	^'Can not add item to cart, invalid cart id!!'! !
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:11:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:11:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:11:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:11:46'!
+PASSED!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:12:07'!
+test04CanAddItemToValidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.
+		
+	self should: [
+			inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: 1
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:22:48' prior: 50651772!
+test04CanAddItemToValidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.	
+		
+	self should: [
+			inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: 1
+		] 
+	raise: Error - MessageNotUnderstood
+	withExceptionDo: [ :anError| 
+			self assert: anError messageText equals: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription			
+		]
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:22:48'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:22:48'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:22:48'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:22:48'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:22:48'!
+PASSED!
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:27:10' prior: 50651788!
+test04CanAddItemToValidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.	
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: 1
+	
+	assert: 'ISBN: validBook | Quantity: 3' equals: inputInterface listCart: 1.
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:27:42'!
+ERROR!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:27:57' prior: 50654740!
+test04CanAddItemToValidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.	
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: 1.
+	
+	self assert: 'ISBN: validBook | Quantity: 3' equals: inputInterface listCart: 1.
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:27:58'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:30:15' prior: 50651735!
+addBook: anISBN withQuantity: aQuantity toCart: aCartId
+	(aCartId = 1) ifFalse: [ self error: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription ].
+	^'ISBN: validBook | Quantity: 3' 
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:30:16'!
+ERROR!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:30:28' prior: 50654755!
+test04CanAddItemToValidCartId
+
+	| inputInterface| 
+	
+	inputInterface := InputInterface  new.	
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: 1.
+	
+	self assert: 'ISBN: validBook | Quantity: 3' equals: (inputInterface listCart: 1).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:30:31'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:30:36'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:30:41'!
+listCart: aRenameMe1 
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:30:50' prior: 50654801!
+listCart: aCartId 
+	self shouldBeImplemented.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:31:17' prior: 50654806!
+listCart: aCartId 
+	^'ISBN: validBook | Quantity: 3'! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:31:18'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:31:18'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:31:18'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:31:18'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:31:18'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:31:18'!
+FAILURE!
+
+!methodRemoval: InputInterface #listCart stamp: 'JGV 11/6/2023 21:32:05'!
+listCart
+	!
+
+Object subclass: #InputInterface
+	instanceVariableNames: 'carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InputInterface category: 'TusLibros' stamp: 'JGV 11/6/2023 21:32:19'!
+Object subclass: #InputInterface
+	instanceVariableNames: 'carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InputInterface methodsFor: 'initialization' stamp: 'JGV 11/6/2023 21:32:52' overrides: 16920235!
+initialize
+	carts := Dictionary new.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:33:25' prior: 50651269!
+createCartForClient: aClientId withPassword: aClientPassword usingAuthenticator: anAuthenticator 
+	anAuthenticator userId: aClientId password: aClientPassword.
+	Cart acceptingItemsOf: self catalog.
+	self nextId.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:35:20' prior: 50654855!
+createCartForClient: aClientId withPassword: aClientPassword usingAuthenticator: anAuthenticator 
+	
+	| cartId |
+	anAuthenticator userId: aClientId password: aClientPassword.
+	
+	cartId := self nextId. 
+	carts at: cartId put: (Cart acceptingItemsOf: self catalog).
+	
+	^cartId.! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:35:26' prior: 50654865!
+createCartForClient: aClientId withPassword: aClientPassword usingAuthenticator: anAuthenticator 
+	| cartId |
+	
+	anAuthenticator userId: aClientId password: aClientPassword.
+	
+	cartId := self nextId. 
+	carts at: cartId put: (Cart acceptingItemsOf: self catalog).
+	
+	^cartId.! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:35:39'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:35:39'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:35:39'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:35:39'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:35:39'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:35:41'!
+ERROR!
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 21:35:53'!
+nextId
+	self shouldBeImplemented.! !
+
+!classDefinition: #InputInterface category: 'TusLibros' stamp: 'JGV 11/6/2023 21:36:49'!
+Object subclass: #InputInterface
+	instanceVariableNames: 'carts nextId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 21:36:47' prior: 50654910!
+nextId
+	| id |
+	id := nextId.
+	nextId := nextId+1.
+	^id.  ! !
+!InputInterface methodsFor: 'as yet unclassified' stamp: 'JGV 11/6/2023 21:36:53' prior: 50654922!
+nextId
+	| id |
+	id := nextId.
+	nextId := nextId+1.
+	^id.  ! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:37:02'!
+ERROR!
+!InputInterface methodsFor: 'initialization' stamp: 'JGV 11/6/2023 21:37:17' prior: 50654851 overrides: 16920235!
+initialize
+	carts := Dictionary new.
+	nextId := 1.! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:37:33'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:37:33'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:37:33'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:37:33'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:37:33'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:37:35'!
+ERROR!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:38:05' prior: 50651579!
+test02CanCreateCartForValidUser
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.
+	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword 	usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	self shouldnt: [
+			inputInterface listCart: cartId.
+		] 
+	raise: Error - MessageNotUnderstood
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:38:09'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:38:10'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:38:10'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:38:10'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:38:10'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:38:10'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:40:01' prior: 50654770!
+addBook: anISBN withQuantity: aQuantity toCart: aCartId
+	| cart |
+	cart := carts at: aCartId ifAbsent: [ self error: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription ].
+	^'ISBN: validBook | Quantity: 3' 
+	
+	
+	! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:40:18' prior: 50654998!
+addBook: anISBN withQuantity: aQuantity toCart: aCartId
+	| cart |
+	cart := carts at: aCartId ifAbsent: [ self error: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription ].
+	^'ISBN: validBook | Quantity: 3' 
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:41:53' prior: 50654783!
+test04CanAddItemToValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:48:20'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/6/2023 21:48:20'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/6/2023 21:48:20'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/6/2023 21:48:20'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/6/2023 21:48:20'!
+PASSED!
+
+----QUIT----(6 November 2023 21:49:33) CuisUniversity-MisLibros.image priorSource: 10197292!
+
+----STARTUP---- (6 November 2023 21:50:46) as /home/clinux01/Escritorio/linux64/CuisUniversity-MisLibros.image!
+
+
+----QUIT----(6 November 2023 21:50:51) CuisUniversity-MisLibros.image priorSource: 10348909!
