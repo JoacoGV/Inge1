@@ -307,7 +307,7 @@ test03CanNotAddItemWithInvalidCartId
 	
 	! !
 
-!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/6/2023 21:41:53'!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:04:51'!
 test04CanAddItemToValidCartId
 
 	| inputInterface cartId | 
@@ -318,7 +318,25 @@ test04CanAddItemToValidCartId
 	
 	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
 	
-	self assert: 'ISBN: validBook | Quantity: 3' equals: (inputInterface listCart: cartId).
+	self assert: ' ISBN: validBook | Quantity: 3 |' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:05:48'!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: ' ISBN: anotherValidBook | Quantity: 2 | ISBN: validBook | Quantity: 3 |' equals: (inputInterface listCart: cartId).
 	
 	
 	
@@ -365,6 +383,10 @@ initializeAcceptingItemsOf: aCatalog
 	catalog := aCatalog.
 	items := OrderedCollection new.! !
 
+
+!Cart methodsFor: 'queries' stamp: 'JGV 11/8/2023 17:28:21'!
+items 
+	^items.! !
 
 !Cart methodsFor: 'queries' stamp: 'HernanWilkinson 6/17/2013 17:45'!
 occurrencesOf: anItem
@@ -548,20 +570,21 @@ initialize
 	nextId := 1.! !
 
 
-!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:40:18'!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:56:08'!
 addBook: anISBN withQuantity: aQuantity toCart: aCartId
 	| cart |
 	cart := carts at: aCartId ifAbsent: [ self error: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription ].
-	^'ISBN: validBook | Quantity: 3' 
+	cart add: aQuantity of: anISBN.
 	
 	
 	
 	! !
 
-!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 20:25:36'!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:23:56'!
 catalog
 	^ Dictionary new
 		at: 'validBook' put: 10;
+		at: 'anotherValidBook' put: 5;
 		yourself ! !
 
 !InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:35:26'!
@@ -575,9 +598,22 @@ createCartForClient: aClientId withPassword: aClientPassword usingAuthenticator:
 	
 	^cartId.! !
 
-!InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:31:17'!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:04:32'!
 listCart: aCartId 
-	^'ISBN: validBook | Quantity: 3'! !
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
 
 !InputInterface methodsFor: 'cart' stamp: 'JGV 11/6/2023 21:36:53'!
 nextId
@@ -639,6 +675,14 @@ Object subclass: #StoreTestObjectsFactory
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'JGV 11/8/2023 17:24:06'!
+anotherItemSellByTheStore
+	^'anotherValidBook'! !
+
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'JGV 11/8/2023 17:23:03'!
+anotherItemSellByTheStorePrice
+	^5! !
+
 !StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
 itemNotSellByTheStore
 	
@@ -660,11 +704,12 @@ createCart
 	
 	^Cart acceptingItemsOf: self defaultCatalog! !
 
-!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:22:41'!
 defaultCatalog
 	
 	^ Dictionary new
 		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self anotherItemSellByTheStore put: self anotherItemSellByTheStorePrice;
 		yourself ! !
 
 

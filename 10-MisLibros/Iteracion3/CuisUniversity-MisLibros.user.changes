@@ -2057,3 +2057,659 @@ PASSED!
 
 
 ----QUIT----(6 November 2023 21:50:51) CuisUniversity-MisLibros.image priorSource: 10348909!
+
+----STARTUP---- (8 November 2023 17:01:31) as /home/clinux01/Escritorio/linux64/CuisUniversity-MisLibros.image!
+
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:05:22'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:05:22'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:05:22'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:05:22'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:05:22'!
+PASSED!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 17:09:09'!
+test05CanAddMoreThanOneItemToValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 17:11:43' prior: 50655084!
+test05CanAddMoreThanOneItemToValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 2' equals: (inputInterface listCart: cartId).	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanAddMoreThanOneItemToValidCartId stamp: 'JGV 11/8/2023 17:11:45'!
+ERROR!
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'JGV 11/8/2023 17:11:49'!
+anotherItemSellByTheStore
+	self shouldBeImplemented.! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'JGV 11/8/2023 17:12:01' prior: 50655130!
+anotherItemSellByTheStore
+	^'anotherValidItems'! !
+
+!testRun: #InputInterfaceTest #test05CanAddMoreThanOneItemToValidCartId stamp: 'JGV 11/8/2023 17:12:02'!
+FAILURE!
+
+!methodRemoval: InputInterfaceTest #test05CanAddMoreThanOneItemToValidCartId stamp: 'JGV 11/8/2023 17:20:28'!
+test05CanAddMoreThanOneItemToValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 2' equals: (inputInterface listCart: cartId).	
+	
+	
+	!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 17:21:01'!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:22:41' prior: 50650845!
+defaultCatalog
+	
+	^ Dictionary new
+		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self anotherItemSellByTheStore put: self anotherItemSellByTheStorePrice;
+		yourself ! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:22:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:22:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:22:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:22:46'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:22:46'!
+PASSED!
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'JGV 11/8/2023 17:23:03'!
+anotherItemSellByTheStorePrice
+	^5! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:23:56' prior: 50651106!
+catalog
+	^ Dictionary new
+		at: 'validBook' put: 10;
+		at: 'anotherValidBook' put: 5;
+		yourself ! !
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'JGV 11/8/2023 17:24:06' prior: 50655135!
+anotherItemSellByTheStore
+	^'anotherValidBook'! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 17:25:13' prior: 50655167!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStorePrice withQuantity: 2 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 5 ' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:26:38'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:26:43'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:26:43'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:26:43'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:26:43'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:26:43'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:26:43'!
+FAILURE!
+!Cart methodsFor: 'queries' stamp: 'JGV 11/8/2023 17:28:21'!
+items 
+	^items.! !
+
+'asdfsdaf','f'!
+
+'asdfsdaf'.'f'!
+
+'asdfsdaf','f'!
+
+'asdfsdaf','pablo'!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:34:58' prior: 50654811!
+listCart: aCartId 
+	
+	| cart list |
+	list:= ''.
+	
+	cart := carts at: aCartId.
+	cart items keysAndValuesDo: [:item :quantity | 
+			list, ' ISBN: 'item, ' | Quantity: ', quantity asString, ' |'
+		]
+	
+	^list
+	! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:35:05' prior: 50655281!
+listCart: aCartId 
+	
+	| cart list |
+	
+	list:= ''.
+	
+	cart := carts at: aCartId.
+	cart items keysAndValuesDo: [:item :quantity | 
+			list, ' ISBN: 'item, ' | Quantity: ', quantity asString, ' |'
+		]
+	
+	^list
+	! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:35:21' prior: 50655291!
+listCart: aCartId 
+	
+	| cart list |
+	
+	list:= ''.
+	
+	cart := carts at: aCartId.
+	cart items keysAndValuesDo: [:item :quantity | 
+			list, ' ISBN: ', item, ' | Quantity: ', quantity asString, ' |'
+		]
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:35:26'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:35:26'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:35:26'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:35:26'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:35:26'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:35:29'!
+ERROR!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:35:40' prior: 50655301!
+listCart: aCartId 
+	
+	| cart list |
+	
+	list:= ''.
+	
+	cart := carts at: aCartId.
+	cart items keysAndValuesDo: [:item :quantity | 
+			list, ' ISBN: ', item, ' | Quantity: ', quantity asString, ' |'
+		].
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:35:41'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:35:42'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:35:42'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:35:42'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:35:42'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:35:42'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:35:44'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:36:56' prior: 50655331!
+listCart: aCartId 
+	
+	| cart list |
+	
+	list:= ''.
+	
+	cart := carts at: aCartId.
+	cart items keysAndValuesDo: [:item :quantity | 
+			list := list, ' ISBN: ', item, ' | Quantity: ', quantity asString, ' |'
+		].
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:37:02'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:37:06'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:37:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:37:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:37:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:37:07'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:37:07'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:37:09'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:48:17' prior: 50655365!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	cartItems items keysAndValuesDo: [:item :quantity | 
+			list := list, ' ISBN: ', item, ' | Quantity: ', quantity asString, ' |'
+		].
+	
+	^list
+	! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:50:27' prior: 50655402!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+			
+		].
+	
+	^list
+	! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:50:31' prior: 50655413!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:50:33'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:50:33'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:50:33'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:50:33'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:50:33'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:50:36'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:53:11' prior: 50655426!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:53:13'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:53:13'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:53:13'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:53:13'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:53:13'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:53:15'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 17:56:08' prior: 50655008!
+addBook: anISBN withQuantity: aQuantity toCart: aCartId
+	| cart |
+	cart := carts at: aCartId ifAbsent: [ self error: InputInterface CanNotAddItemWithInvalidCartIdForUserIdErrorDescription ].
+	cart add: aQuantity of: anISBN.
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:56:16'!
+ERROR!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:56:25'!
+ERROR!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 17:57:16' prior: 50655228!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 5 ' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:57:18'!
+FAILURE!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 17:57:35' prior: 50655509!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 2 ' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:57:36'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 17:57:44'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 17:57:44'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 17:57:44'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:57:44'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 17:57:44'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 17:57:46'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:00:18' prior: 50655459!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 18:00:25'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 18:00:25'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 18:00:25'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 18:00:25'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 18:00:25'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 18:00:26'!
+FAILURE!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:02:28' prior: 50655536!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 2 |' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:02:37' prior: 50655019!
+test04CanAddItemToValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	
+	self assert: 'ISBN: validBook | Quantity: 3 |' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 18:02:38'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:04:32' prior: 50655583!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:04:47' prior: 50655616!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: ' ISBN: validBook | Quantity: 3 | ISBN: anotherValidBook | Quantity: 2 |' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:04:51' prior: 50655639!
+test04CanAddItemToValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	
+	self assert: ' ISBN: validBook | Quantity: 3 |' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 18:04:53'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 18:04:53'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 18:04:53'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 18:04:53'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 18:04:53'!
+FAILURE!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 18:04:53'!
+FAILURE!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:05:48' prior: 50655674!
+test05CanListCartItemsWithValidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	self assert: ' ISBN: anotherValidBook | Quantity: 2 | ISBN: validBook | Quantity: 3 |' equals: (inputInterface listCart: cartId).
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 18:06:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 18:06:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 18:06:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 18:06:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 18:06:07'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 18:06:07'!
+PASSED!
+
+----QUIT----(8 November 2023 18:07:20) CuisUniversity-MisLibros.image priorSource: 10348909!
