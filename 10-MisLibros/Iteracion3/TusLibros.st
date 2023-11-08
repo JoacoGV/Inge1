@@ -342,6 +342,40 @@ test05CanListCartItemsWithValidCartId
 	
 	! !
 
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:24:22'!
+test06CanNotLisItemsWithInvalidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	inputInterface checkout: cartId creditCardNumber: '12345678910111213' expirationDate: '04/2024' 	owner: 'Who And See Toe'.
+	
+	self
+	! !
+
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:17:14'!
+test07CanCheckOutWithValidCartId
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.	
+	
+	self should: [inputInterface listCart: 1] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | 
+			self assert: anError messageText equals: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription 		
+		].
+	
+	
+	
+	! !
+
 
 !InputInterfaceTest methodsFor: 'setup' stamp: 'JGV 11/6/2023 20:17:02'!
 setUp
@@ -598,14 +632,14 @@ createCartForClient: aClientId withPassword: aClientPassword usingAuthenticator:
 	
 	^cartId.! !
 
-!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:04:32'!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:16:42'!
 listCart: aCartId 
 	
 	| cartItems list |
 	
 	list:= ''.
 	
-	cartItems := (carts at: aCartId) items.
+	cartItems := (carts at: aCartId ifAbsent: [self error: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription]) items.
 	self catalog keysDo: [:item |
 			(cartItems occurrencesOf: item) > 0 ifTrue: [
 					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
@@ -631,6 +665,10 @@ InputInterface class
 !InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 21:11:43'!
 CanNotAddItemWithInvalidCartIdForUserIdErrorDescription
 	^'Can not add item to cart, invalid cart id!!'! !
+
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/8/2023 18:15:18'!
+CanNotListItemsWithInvalidCartIdForUserIdErrorDescription
+	^'No se encuentra ningun carrito para el id especificado.'! !
 
 !InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/6/2023 20:17:53'!
 InvalidUserCredentialsErrorDescription

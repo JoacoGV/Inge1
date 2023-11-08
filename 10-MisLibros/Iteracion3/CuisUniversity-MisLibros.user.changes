@@ -2713,3 +2713,192 @@ PASSED!
 PASSED!
 
 ----QUIT----(8 November 2023 18:07:20) CuisUniversity-MisLibros.image priorSource: 10348909!
+
+----STARTUP---- (8 November 2023 18:10:48) as /home/clinux01/Escritorio/linux64/CuisUniversity-MisLibros.image!
+
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:12:26'!
+test05CanNotLisItemsWithInvalidCartId
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.	
+	
+	self assert: ' ISBN: anotherValidBook | Quantity: 2 | ISBN: validBook | Quantity: 3 |' equals: (inputInterface listCart: 1).
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:14:36' prior: 50655787!
+test05CanNotLisItemsWithInvalidCartId
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.	
+	
+	self should: [inputInterface listCart: 1] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | 
+			self assert: anError messageText equals: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription 		
+		].
+	
+	
+	
+	! !
+
+!testRun: #InputInterfaceTest #test05CanNotLisItemsWithInvalidCartId stamp: 'JGV 11/8/2023 18:14:52'!
+ERROR!
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/8/2023 18:14:56'!
+CanNotListItemsWithInvalidCartIdForUserIdErrorDescription
+	self shouldBeImplemented.! !
+!InputInterface class methodsFor: 'error descriptions' stamp: 'JGV 11/8/2023 18:15:18' prior: 50655816!
+CanNotListItemsWithInvalidCartIdForUserIdErrorDescription
+	^'No se encuentra ningun carrito para el id especificado.'! !
+
+!testRun: #InputInterfaceTest #test05CanNotLisItemsWithInvalidCartId stamp: 'JGV 11/8/2023 18:15:19'!
+FAILURE!
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:16:34' prior: 50655661!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId ifAbsent: [self error: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription ]) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
+!InputInterface methodsFor: 'cart' stamp: 'JGV 11/8/2023 18:16:42' prior: 50655832!
+listCart: aCartId 
+	
+	| cartItems list |
+	
+	list:= ''.
+	
+	cartItems := (carts at: aCartId ifAbsent: [self error: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription]) items.
+	self catalog keysDo: [:item |
+			(cartItems occurrencesOf: item) > 0 ifTrue: [
+					list := list, ' ISBN: ', item, ' | Quantity: ', (cartItems occurrencesOf: item) asString, ' |'
+				] 
+		].
+	
+	^list
+	! !
+
+!testRun: #InputInterfaceTest #test01CanNotCreateCartWithInvalidUserCredentials stamp: 'JGV 11/8/2023 18:16:47'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test02CanCreateCartForValidUser stamp: 'JGV 11/8/2023 18:16:47'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test03CanNotAddItemWithInvalidCartId stamp: 'JGV 11/8/2023 18:16:47'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test04CanAddItemToValidCartId stamp: 'JGV 11/8/2023 18:16:47'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test05CanListCartItemsWithValidCartId stamp: 'JGV 11/8/2023 18:16:47'!
+PASSED!
+
+!testRun: #InputInterfaceTest #test05CanNotLisItemsWithInvalidCartId stamp: 'JGV 11/8/2023 18:16:47'!
+PASSED!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:16:56'!
+test06CanNotLisItemsWithInvalidCartId
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.	
+	
+	self should: [inputInterface listCart: 1] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | 
+			self assert: anError messageText equals: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription 		
+		].
+	
+	
+	
+	! !
+
+!methodRemoval: InputInterfaceTest #test05CanNotLisItemsWithInvalidCartId stamp: 'JGV 11/8/2023 18:16:56'!
+test05CanNotLisItemsWithInvalidCartId
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.	
+	
+	self should: [inputInterface listCart: 1] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | 
+			self assert: anError messageText equals: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription 		
+		].
+	
+	
+	
+	!
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:17:14'!
+test07CanCheckOutWithValidCartId
+
+	| inputInterface | 
+	
+	inputInterface := InputInterface  new.	
+	
+	self should: [inputInterface listCart: 1] 
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError | 
+			self assert: anError messageText equals: InputInterface CanNotListItemsWithInvalidCartIdForUserIdErrorDescription 		
+		].
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:17:33' prior: 50655884!
+test06CanNotLisItemsWithInvalidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	
+	
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:21:44' prior: 50655926!
+test06CanNotLisItemsWithInvalidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	inputInterface checkout: cartId creditCardNumber: '12345678910111213' expirationDate: '04/2024' 	owner: 'Who And See Toe'.
+	! !
+!InputInterfaceTest methodsFor: 'tests' stamp: 'JGV 11/8/2023 18:24:22' prior: 50655945!
+test06CanNotLisItemsWithInvalidCartId
+
+	| inputInterface cartId | 
+	
+	inputInterface := InputInterface  new.	
+	
+	cartId := inputInterface createCartForClient: testObjectsFactory clientId withPassword: testObjectsFactory clientPassword usingAuthenticator: testObjectsFactory validCredentialAuthenticator.
+	
+	inputInterface addBook: testObjectsFactory itemSellByTheStore withQuantity: 3 toCart: cartId.
+	inputInterface addBook: testObjectsFactory anotherItemSellByTheStore withQuantity: 2 toCart: cartId.
+	
+	inputInterface checkout: cartId creditCardNumber: '12345678910111213' expirationDate: '04/2024' 	owner: 'Who And See Toe'.
+	
+	self
+	! !
+
+----QUIT----(8 November 2023 18:24:35) CuisUniversity-MisLibros.image priorSource: 10372156!
