@@ -1,0 +1,3340 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (17 August 2023 19:40:10) as /home/clinux01/Descargas/linux64/CuisUniversity-5981.image!
+
+
+ObjectBuilder create: #verdadero
+
+	collaboratorNames: ''
+	in: 'verdaderoFalso'
+	!
+
+!classDefinition: #verdadero category: 'verdaderoFalso' stamp: 'JG 8/17/2023 20:34:26'!
+DenotativeObject subclass: #verdadero
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'verdaderoFalso'!
+
+!classDefinition: 'verdadero class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 20:34:26'!
+verdadero class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #falso asChildOf: DenotativeObject collaboratorNames: '' in: 'verdaderoFalso'!
+
+!classDefinition: #falso category: 'verdaderoFalso' stamp: 'JG 8/17/2023 20:34:35'!
+DenotativeObject subclass: #falso
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'verdaderoFalso'!
+
+!classDefinition: 'falso class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 20:34:35'!
+falso class
+	instanceVariableNames: ''!
+
+ObjectBuilder create: #verdaderoFalsoTest asChildOf: DenotativeObject collaboratorNames: '' in: 'verdaderoFalso'!
+
+!classDefinition: #verdaderoFalsoTest category: 'verdaderoFalso' stamp: 'JG 8/17/2023 20:36:08'!
+DenotativeObject subclass: #verdaderoFalsoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'verdaderoFalso'!
+
+!classDefinition: 'verdaderoFalsoTest class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 20:36:08'!
+verdaderoFalsoTest class
+	instanceVariableNames: ''!
+!verdaderoFalsoTest class methodsFor: 'no messages' stamp: 'JG 8/17/2023 20:39:25'!
+test01notVerdaderoEsFalso
+
+	! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 20:49:35'!
+test01notVerdaderoEsFalso:
+	Assert that: verdadero verdadero isEqualTo: falso
+
+	! !
+!verdadero class methodsFor: 'no messages' stamp: 'JG 8/17/2023 20:50:07'!
+no! !
+
+!methodRemoval: verdaderoFalsoTest class #test01notVerdaderoEsFalso:that: stamp: 'JG 8/17/2023 20:50:16'!
+test01notVerdaderoEsFalso:
+	Assert that: verdadero verdadero isEqualTo: falso
+
+	!
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 20:50:41' prior: 50650367!
+test01notVerdaderoEsFalso
+	Assert that: verdadero no isEqualTo: falso
+
+	! !
+
+verdaderoFalsoTest test01notVerdaderoEsFalso !
+
+verdaderoFalsoTest test01notVerdaderoEsFalso !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 20:52:15' prior: 50650376!
+no
+	^falso! !
+
+verdaderoFalsoTest test01notVerdaderoEsFalso !
+
+verdaderoFalsoTest test01notVerdaderoEsFalso !
+
+verdaderoFalsoTest test01notVerdaderoEsFalso !
+!falso class methodsFor: 'no messages' stamp: 'JG 8/17/2023 20:55:06'!
+no
+	^verdadero! !
+
+verdadero no!
+
+verdadero no!
+
+verdadero no!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 20:55:34'!
+PASSED!
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 20:56:20'!
+test02notFalsoEsVerdadero
+	Assert that: falso no isEqualTo: verdadero ! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 20:56:53'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 20:58:09'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 20:58:13'!
+PASSED!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 20:59:56'!
+y
+	! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:01:31'!
+test03verdaderoYVerdaderoEsVerdadero
+	Assert that: verdadero y :verdadero isEqualTo: verdadero ! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:01:44' prior: 50650429!
+test03verdaderoYVerdaderoEsVerdadero
+	Assert that: verdadero y: verdadero isEqualTo: verdadero ! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:01:57' prior: 50650436!
+test03verdaderoYVerdaderoEsVerdadero
+	Assert that: verdadero y :verdadero isEqualTo: verdadero ! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:02:49' prior: 50650443!
+test03verdaderoYVerdaderoEsVerdadero
+	Assert that: (verdadero y :verdadero) isEqualTo: verdadero ! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:05:27'!
+y: booleano
+	
+	! !
+
+!methodRemoval: verdadero class #y: stamp: 'JG 8/17/2023 21:05:50'!
+y: booleano
+	
+	!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:06:53'!
+y: booleano
+	Assert that: booleano  isEqualTo: 	verdadero! !
+
+!methodRemoval: verdadero class #y stamp: 'JG 8/17/2023 21:11:08'!
+y
+	!
+!falso class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:13:26'!
+y: booleano
+	^falso! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:14:08'!
+test03verdaderoYFalsoEsFalso
+	Assert that: (falso y:falso) isEqualTo: falso! !
+
+!methodRemoval: verdaderoFalsoTest class #test03verdaderoYFalsoEsFalso stamp: 'JG 8/17/2023 21:14:13'!
+test03verdaderoYFalsoEsFalso
+	Assert that: (falso y:falso) isEqualTo: falso!
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:14:47'!
+test03verdaderoYFalsoEsFalso
+	Assert that: (falso y:falso) isEqualTo: falso! !
+
+!methodRemoval: verdaderoFalsoTest class #test03verdaderoYVerdaderoEsVerdadero stamp: 'JG 8/17/2023 21:14:53'!
+test03verdaderoYVerdaderoEsVerdadero
+	Assert that: (verdadero y :verdadero) isEqualTo: verdadero !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:14:56'!
+PASSED!
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:16:17'!
+test04falsoYFalsoEsFalso
+	Assert that: (falso y: falso) isEqualTo: falso! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:16:26' prior: 50650484!
+test03verdaderoYFalsoEsFalso
+	Assert that: (falso y:verdadero) isEqualTo: falso! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:16:58'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:17:03'!
+PASSED!
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:17:37'!
+test05verdaderoYVerdaderoEsVerdadero! !
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:18:13'!
+test03falsoYVerdaderoEsFalso
+	Assert that: (falso y:verdadero) isEqualTo: falso! !
+
+!methodRemoval: verdaderoFalsoTest class #test03verdaderoYFalsoEsFalso stamp: 'JG 8/17/2023 21:18:30'!
+test03verdaderoYFalsoEsFalso
+	Assert that: (falso y:verdadero) isEqualTo: falso!
+!verdaderoFalsoTest class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:19:33' prior: 50650517!
+test05verdaderoYVerdaderoEsVerdadero
+	Assert that: (verdadero y:verdadero) isEqualTo: verdadero! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:19:55' prior: 50650462!
+y: booleano
+	^booleano! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:20:00'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:20:05'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:20:09'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:20:14'!
+PASSED!
+!verdaderoFalsoTest class methodsFor: 'nil' stamp: 'JG 8/17/2023 21:22:52'!
+test06verdaderoOrVerdaderoEsVerdadero
+	Assert that: (verdadero or: verdadero) isEqualTo: verdadero! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:23:22'!
+or: booleano
+	^verdadero! !
+!falso class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:24:44'!
+or: booleano
+	^booleano! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:24:51'!
+PASSED!
+!verdaderoFalsoTest class methodsFor: 'or' stamp: 'JG 8/17/2023 21:26:17'!
+test07falsoOrVerdaderoEsVerdadero
+	Assert that: (falso or: verdadero) isEqualTo: verdadero! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:26:41'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:27:14'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:27:16'!
+PASSED!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:27:18'!
+PASSED!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:34:15'!
+siEsVerdadero: aClosure
+	[aClosure] value! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:36:15'!
+siEsFalso: aClosure
+	
+	! !
+
+'hola'!
+
+verdadero siEsVerdadero: ['hola']!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:39:22'!
+test08verdaderoSiEsVerdadero
+	Assert that: (verdadero siEsVerdadero: [2+2]) isEqualTo: 4 
+	! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:39:28'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:39:28'!
+ERROR!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:40:54' prior: 50650591!
+siEsVerdadero: aClosure
+	aClosure value! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:40:59' prior: 50650612!
+siEsVerdadero: aClosure
+	^aClosure value! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:41:06'!
+PASSED!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:42:14' prior: 50650595!
+siEsFalso: aClosure
+	^nil
+	
+	! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:42:54' prior: 50650625!
+siEsFalso: aClosure
+! !
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:43:54'!
+test08verdaderoSiEsVerdaderoo
+	Assert that: (verdadero siEsVerdadero: [2+2]) isEqualTo: 4 
+	! !
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:44:15'!
+test08verdaderoSiEsFalso
+	Assert that: (verdadero siEsVerdadero: [2+2]) isEqualTo:  nil! !
+
+!methodRemoval: verdaderoFalsoTest class #test08verdaderoSiEsFalso stamp: 'JG 8/17/2023 21:44:20'!
+test08verdaderoSiEsFalso
+	Assert that: (verdadero siEsVerdadero: [2+2]) isEqualTo:  nil!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:44:33'!
+test08verdaderoSiEsFalso
+	Assert that: (verdadero siEsVerdadero: [2+2]) isEqualTo: nil
+	! !
+
+!methodRemoval: verdaderoFalsoTest class #test08verdaderoSiEsVerdaderoo stamp: 'JG 8/17/2023 21:44:40'!
+test08verdaderoSiEsVerdaderoo
+	Assert that: (verdadero siEsVerdadero: [2+2]) isEqualTo: 4 
+	!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:44:43'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:44:43'!
+ERROR!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:45:15' prior: 50650630!
+siEsFalso: aClosure
+	^nil! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:45:22'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:45:22'!
+ERROR!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:48:58' prior: 50650670!
+siEsFalso: aClosure! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:52:31' prior: 50650680!
+siEsFalso: aClosure
+	! !
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:53:08' prior: 50650684!
+siEsFalso: aClosure
+	 ^self! !
+
+verdaderoFalsoTest
+	collaboratorNames: 'a'
+	in: 'verdaderoFalso'!
+
+!classDefinition: 'verdaderoFalsoTest class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 21:53:47'!
+verdaderoFalsoTest class
+	instanceVariableNames: 'a'!
+
+!classDefinition: #verdaderoFalsoTest category: 'verdaderoFalso' stamp: 'JG 8/17/2023 21:53:47'!
+DenotativeObject subclass: #verdaderoFalsoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'verdaderoFalso'!
+
+!classDefinition: 'verdaderoFalsoTest class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 21:53:47'!
+verdaderoFalsoTest class
+	instanceVariableNames: 'a'!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:54:29' prior: 50650652!
+test08verdaderoSiEsFalso
+	a := 0
+	Assert that: (verdadero siEsVerdadero: [a + 1]) isEqualTo: a
+	! !
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:54:51' prior: 50650600!
+test08verdaderoSiEsVerdadero
+	a := 0
+	Assert that: (verdadero siEsVerdadero: [a + 1]) isEqualTo: a+1
+	! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:54:54'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:54:54'!
+ERROR!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:55:22' prior: 50650719!
+test08verdaderoSiEsVerdadero
+	a := 0
+	Assert that: (verdadero siEsVerdadero: [a + 1]) isEqualTo: 1
+	! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:55:24'!
+ERROR!
+!verdadero class methodsFor: 'as yet unclassified' stamp: 'JG 8/17/2023 21:55:43' prior: 50650688!
+siEsFalso: aClosure! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:55:52'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:55:52'!
+ERROR!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:56:24' prior: 50650732!
+test08verdaderoSiEsVerdadero
+	a := 0
+	Assert that: (verdadero siEsVerdadero: [a:= a + 1]) isEqualTo: 1
+	! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:56:26'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:56:26'!
+ERROR!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:56:55' prior: 50650712!
+test08verdaderoSiEsFalso
+	a := 0
+	Assert that: (verdadero siEsVerdadero: [a:= a + 1]) isEqualTo: a
+	! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:56:59'!
+ERROR!
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:56:59'!
+ERROR!
+
+verdaderoFalsoTest
+	collaboratorNames: ''
+	in: 'verdaderoFalso'!
+
+!classDefinition: 'verdaderoFalsoTest class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 21:57:22'!
+verdaderoFalsoTest class
+	instanceVariableNames: ''!
+
+!classDefinition: #verdaderoFalsoTest category: 'verdaderoFalso' stamp: 'JG 8/17/2023 21:57:22'!
+DenotativeObject subclass: #verdaderoFalsoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'verdaderoFalso'!
+
+!classDefinition: 'verdaderoFalsoTest class' category: 'verdaderoFalso' stamp: 'JG 8/17/2023 21:57:22'!
+verdaderoFalsoTest class
+	instanceVariableNames: ''!
+!verdaderoFalsoTest class methodsFor: 'value' stamp: 'JG 8/17/2023 21:58:57' prior: 50650765!
+test08verdaderoSiEsFalso
+	|aClosure n1|
+	n1 := 0.
+	aClosure := [n1 := 5].
+	verdadero siEsFalso: aClosure .
+	Assert that: n1 isEqualTo: 0
+	! !
+
+!testRun: #DenotativeObjectTestCase #performRealTest stamp: 'JG 8/17/2023 21:59:00'!
+PASSED!
+
+----STARTUP---- (24 August 2023 20:29:15) as /home/clinux01/Documentos/CUISUniversity/linux64/CuisUniversity-5981.image!
+
+
+ObjectBuilder create: #I asChildOf: DenotativeObject collaboratorNames: '' in: 'Peano'!
+
+!classDefinition: #I category: 'Peano' stamp: 'JGV 8/24/2023 20:29:57'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:29:57'!
+I class
+	instanceVariableNames: ''!
+
+	^self cloneNamed: self name, 'I'!
+
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #II category: 'Peano' stamp: 'JGV 8/24/2023 20:35:22'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+II class
+	instanceVariableNames: ''!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 20:35:22'!
+II class
+	instanceVariableNames: ''!
+
+	^self cloneNamed: self name, 'I'!
+
+	^self cloneNamed: self name, 'I'!
+!I class methodsFor: 'no messages' stamp: 'JGV 8/24/2023 20:36:02'!
+next
+
+	^self cloneNamed: self name, 'I'! !
+
+	^self cloneNamed: self name, 'I'!
+
+!classRemoval: #II stamp: 'JGV 8/24/2023 20:36:23'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+	^self cloneNamed: self name, 'I'!
+
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #II category: 'Peano' stamp: 'JGV 8/24/2023 20:36:41'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+II class
+	instanceVariableNames: ''!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 20:36:41'!
+II class
+	instanceVariableNames: ''!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 20:36:41'!
+next
+
+	^self cloneNamed: self name, 'I'! !
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+	^self cloneNamed: self name, 'I'!
+
+	^self cloneNamed: self name, 'I'!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #III category: 'Peano' stamp: 'JGV 8/24/2023 20:37:07'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+III class
+	instanceVariableNames: ''!
+
+!classDefinition: 'III class' category: 'Peano' stamp: 'JGV 8/24/2023 20:37:07'!
+III class
+	instanceVariableNames: ''!
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 20:37:07'!
+next
+
+	^self cloneNamed: self name, 'I'! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 20:37:49' prior: 50650380!
+next
+
+	^self cloneNamed: self name, 'I' III .! !
+
+I
+	collaboratorNames: 'nextNumber'
+	in: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:47:24'!
+I class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: #I category: 'Peano' stamp: 'JGV 8/24/2023 20:47:24'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:47:24'!
+I class
+	instanceVariableNames: 'nextNumber'!
+
+	^nextNumber isNil ifTrue: [self cloneNamed: self name, 'I'] value ifFalse: nextNumber!
+
+	nextNumber ifNil: [^self cloneNamed: self name, 'I'].!
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 20:55:52' prior: 50650353!
+next
+	nextNumber ifNotNil: [nextNumber ].
+	nextNumber ifNil: [^self cloneNamed: self name, 'I'].! !
+
+!classRemoval: #II stamp: 'JGV 8/24/2023 20:56:01'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classRemoval: #III stamp: 'JGV 8/24/2023 20:56:09'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 20:56:29' prior: 50650435!
+next
+	nextNumber ifNotNil: [nextNumber ].
+	^self cloneNamed: self name, 'I'! !
+
+	^self cloneNamed: self name, 'I'!
+
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #II category: 'Peano' stamp: 'JGV 8/24/2023 20:56:30'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+II class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 20:56:30'!
+II class
+	instanceVariableNames: 'nextNumber'!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 20:56:30'!
+next
+	nextNumber ifNotNil: [nextNumber ].
+	^self cloneNamed: self name, 'I'! !
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+ II .!
+
+	^self cloneNamed: self name, 'I'!
+
+I next !
+
+!classRemoval: #I stamp: 'JGV 8/24/2023 20:57:13'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classRemoval: #II stamp: 'JGV 8/24/2023 20:57:43'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+ObjectBuilder create: #I asChildOf: DenotativeObject collaboratorNames: '' in: 'Peano'!
+
+!classDefinition: #I category: 'Peano' stamp: 'JGV 8/24/2023 20:57:59'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:57:59'!
+I class
+	instanceVariableNames: ''!
+
+I
+	collaboratorNames: 'next'
+	in: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:58:15'!
+I class
+	instanceVariableNames: 'next'!
+
+!classDefinition: #I category: 'Peano' stamp: 'JGV 8/24/2023 20:58:15'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:58:15'!
+I class
+	instanceVariableNames: 'next'!
+
+I
+	collaboratorNames: 'nextNumber'
+	in: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:59:05'!
+I class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: #I category: 'Peano' stamp: 'JGV 8/24/2023 20:59:05'!
+DenotativeObject subclass: #I
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: 'I class' category: 'Peano' stamp: 'JGV 8/24/2023 20:59:05'!
+I class
+	instanceVariableNames: 'nextNumber'!
+!I class methodsFor: 'nil' stamp: 'JGV 8/24/2023 20:59:11'!
+next
+	nextNumber ifNotNil: [nextNumber ].
+	^self cloneNamed: self name, 'I'! !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:00:17' prior: 50650537!
+next
+	nextNumber ifNotNil: [nextNumber ].
+	nextNumber:=self cloneNamed: self name, 'I'
+		^nextNumber ! !
+
+I next !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:00:40' prior: 50650543!
+next
+	nextNumber ifNotNil: [nextNumber ].
+	nextNumber:=self cloneNamed: self name, 'I'
+	^nextNumber ! !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:00:56' prior: 50650550!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber:=self cloneNamed: self name, 'I'.
+	^nextNumber ! !
+
+	^nextNumber !
+
+	^nextNumber!
+
+	^nextNumber!
+
+	^nextNumber!
+
+I next !
+
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #II category: 'Peano' stamp: 'JGV 8/24/2023 21:01:30'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+II class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 21:01:30'!
+II class
+	instanceVariableNames: 'nextNumber'!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:01:30'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber:=self cloneNamed: self name, 'I'.
+	^nextNumber ! !
+
+I next !
+
+I next !
+
+I next.!
+
+I next!
+
+II next!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #III category: 'Peano' stamp: 'JGV 8/24/2023 21:02:05'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+III class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'III class' category: 'Peano' stamp: 'JGV 8/24/2023 21:02:05'!
+III class
+	instanceVariableNames: 'nextNumber'!
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:02:05'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber:=self cloneNamed: self name, 'I'.
+	^nextNumber ! !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:03:51' prior: 50650557!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	^nextNumber! !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:04:15'!
++ unNumeroNatural
+
+	^ unNumeroNatural  next! !
+
+!classRemoval: #III stamp: 'JGV 8/24/2023 21:04:34'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classRemoval: #II stamp: 'JGV 8/24/2023 21:04:37'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+I next!
+
+I next!
+
+I next!
+
+I next!
+
+I next!
+
+I next!
+
+I next!
+
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #II category: 'Peano' stamp: 'JGV 8/24/2023 21:07:03'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+II class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 21:07:03'!
+II class
+	instanceVariableNames: 'nextNumber'!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:07:03'!
++ unNumeroNatural
+
+	^ unNumeroNatural  next! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:07:03'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	^nextNumber! !
+
+II next!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #III category: 'Peano' stamp: 'JGV 8/24/2023 21:07:13'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+III class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'III class' category: 'Peano' stamp: 'JGV 8/24/2023 21:07:13'!
+III class
+	instanceVariableNames: 'nextNumber'!
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:07:13'!
++ unNumeroNatural
+
+	^ unNumeroNatural  next! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:07:13'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	^nextNumber! !
+
+II +I!
+
+II +I!
+
+II +I!
+
+II +I!
+
+II +I!
+
+II +I!
+
+II +I!
+
+II +I!
+
+I+I!
+
+I+II!
+
+I+II!
+
+I+III!
+
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #IIII category: 'Peano' stamp: 'JGV 8/24/2023 21:08:50'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+IIII class
+	instanceVariableNames: 'nextNumber'!
+
+!classDefinition: 'IIII class' category: 'Peano' stamp: 'JGV 8/24/2023 21:08:50'!
+IIII class
+	instanceVariableNames: 'nextNumber'!
+!IIII class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:08:50'!
++ unNumeroNatural
+
+	^ unNumeroNatural  next! !
+!IIII class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:08:50'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	^nextNumber! !
+
+II+II !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:18:57' prior: 50650655!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	nextNumber  previous: self.
+	^nextNumber! !
+
+II
+	collaboratorNames: 'nextNumber, previousNumber'
+	in: 'Peano'!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 21:19:40'!
+II class
+	instanceVariableNames: 'nextNumber previousNumber'!
+
+!classDefinition: #II category: 'Peano' stamp: 'JGV 8/24/2023 21:19:40'!
+DenotativeObject subclass: #II
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: 'II class' category: 'Peano' stamp: 'JGV 8/24/2023 21:19:40'!
+II class
+	instanceVariableNames: 'nextNumber previousNumber'!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:20:28'!
+previous: unNumeroNatural
+
+	previousNumber := unNumeroNatural .
+	^unNumeroNatural.! !
+
+!classRemoval: #IIII stamp: 'JGV 8/24/2023 21:20:44'!
+DenotativeObject subclass: #IIII
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classRemoval: #III stamp: 'JGV 8/24/2023 21:20:46'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:21:22'!
+previous
+
+	^previousNumber ! !
+
+II + I !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:26:06' prior: 50650651!
++ unNumeroNatural
+
+	^self previous + unNumeroNatural next.! !
+
+II + I !
+
+II + I !
+
+II!
+
+II + I !
+
+II + I !
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #III category: 'Peano' stamp: 'JGV 8/24/2023 21:27:58'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+III class
+	instanceVariableNames: 'nextNumber previousNumber'!
+
+!classDefinition: 'III class' category: 'Peano' stamp: 'JGV 8/24/2023 21:27:58'!
+III class
+	instanceVariableNames: 'nextNumber previousNumber'!
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:27:58'!
++ unNumeroNatural
+
+	^self previous + unNumeroNatural next.! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:27:58'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	nextNumber  previous: self.
+	^nextNumber! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:27:58'!
+previous
+
+	^previousNumber ! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:27:58'!
+previous: unNumeroNatural
+
+	previousNumber := unNumeroNatural .
+	^unNumeroNatural.! !
+
+II + I !
+
+!classRemoval: #III stamp: 'JGV 8/24/2023 21:28:18'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:31:56'!
+- unNumeroNatural
+	^ self previousNumber -unNumeroNatural previus! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:32:11' prior: 50650813!
+- unNumeroNatural
+	^ self previousNumber -unNumeroNatural previous! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:32:30' prior: 50650819!
+- unNumeroNatural
+	^ self previousNumber -unNumeroNatural previous! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:32:38' prior: 50650825!
+- unNumeroNatural
+	^ self previous -unNumeroNatural previous! !
+
+II - I!
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:44:46' prior: 50650831!
+- unNumeroNatural
+	^ self previous - unNumeroNatural previous! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:46:12' prior: 50650837!
+-unNumeroNatural
+	^ self previous ! !
+
+II next!
+
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+!classDefinition: #III category: 'Peano' stamp: 'JGV 8/24/2023 21:46:40'!
+DenotativeObject subclass: #III
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'Peano'!
+
+III class
+	instanceVariableNames: 'nextNumber previousNumber'!
+
+!classDefinition: 'III class' category: 'Peano' stamp: 'JGV 8/24/2023 21:46:40'!
+III class
+	instanceVariableNames: 'nextNumber previousNumber'!
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:46:40'!
++ unNumeroNatural
+
+	^self previous + unNumeroNatural next.! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:46:40'!
+-unNumeroNatural
+	^ self previous ! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:46:40'!
+next
+	nextNumber ifNotNil: [^nextNumber ].
+	nextNumber := self cloneNamed: self name, 'I'.
+	nextNumber  previous: self.
+	^nextNumber! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:46:40'!
+previous
+
+	^previousNumber ! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:46:40'!
+previous: unNumeroNatural
+
+	previousNumber := unNumeroNatural .
+	^unNumeroNatural.! !
+!III class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:47:00' prior: 50650868!
+-unNumeroNatural
+	^ self previous - unNumeroNatural previous! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:49:05' prior: 50650842!
+-unNumeroNatural
+	unNumeroNatural  = I ifTrue: [^self previous].
+	^ self previous - unNumeroNatural previous.! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:57:37' prior: 50650894!
+-unNumeroNatural
+	^unNumeroNatural restateA: self.! !
+!II class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:58:24'!
+restateA: unNumeroNatural
+
+	^unNumeroNatural previous - self previous.! !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:58:52'!
+restateA: unNumeroNatural
+
+	^unNumeroNatural previous .
+! !
+!I class methodsFor: 'as yet unclassified' stamp: 'JGV 8/24/2023 21:58:54' prior: 50650911!
+restateA: unNumeroNatural
+
+	^unNumeroNatural previous.
+! !
+!I class methodsFor: '--** private fileout/in **--' stamp: 'JGV 8/24/2023 21:59:14' overrides: 50637315!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nextNumber := II.! !
+!II class methodsFor: '--** private fileout/in **--' stamp: 'JGV 8/24/2023 21:59:14' overrides: 50637315!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nextNumber := III.
+	previousNumber := I.! !
+!III class methodsFor: '--** private fileout/in **--' stamp: 'JGV 8/24/2023 21:59:14' overrides: 50637315!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nextNumber := nil.
+	previousNumber := II.! !
+
+!methodRemoval: I class #initializeCollaboratorsFromFile stamp: 'JGV 8/24/2023 21:59:14'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nextNumber := II.!
+
+!methodRemoval: II class #initializeCollaboratorsFromFile stamp: 'JGV 8/24/2023 21:59:14'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nextNumber := III.
+	previousNumber := I.!
+
+!methodRemoval: III class #initializeCollaboratorsFromFile stamp: 'JGV 8/24/2023 21:59:14'!
+initializeCollaboratorsFromFile
+	"Auto generated method for loading purposes - Do not modify it"
+
+	nextNumber := nil.
+	previousNumber := II.!
+
+----STARTUP---- (16 November 2023 19:07:27) as /home/clinux01/Documentos/CUISUniversity/linux64/CuisUniversity-CustomerImporter.image!
+
+
+----End fileIn of /home/clinux01/Documentos/CUISUniversity/linux64/CustomerImporter-1.st----!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'jgv 11/16/2023 19:13:44' prior: 50650629 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer  |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'jgv 11/16/2023 19:13:44'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:14:15' prior: 50650843 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	| newCustomer |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'jgv 11/16/2023 19:14:24' prior: 50650884 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'jgv 11/16/2023 19:14:24'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream line newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:15:21'!
+createRecord
+
+	^ line findTokens: $,! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:15:21' prior: 50650917 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := self createRecord.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:15:21' prior: 50650962 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := self createRecord.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := self createRecord.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:16:31' prior: 50650995 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := self createRecord.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := self createRecord.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:16:40' prior: 50651027 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData record |
+			record := self createRecord.
+	customerData := record.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := self createRecord.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:17:21' prior: 50651059 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			
+			customerData := record.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := record.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'jgv 11/16/2023 19:17:24'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:17:46' prior: 50651092 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			
+			customerData := self createRecord.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := self createRecord.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:17:21' prior: 50651128 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			
+			customerData := record.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := record.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:18:30' prior: 50651161 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(line beginsWith: 'C') ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := record.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:18:40' prior: 50651194 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(line beginsWith: 'C') ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:20:49'!
+isCustomerRecord
+
+	^ line beginsWith: 'C'! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:20:49' prior: 50651225 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:21:08'!
+isAddressRecord
+
+	^ line beginsWith: 'A'! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:21:08' prior: 50651258 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:21:57' prior: 50651291 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:22:38'!
+importCustomer: aCustomerRecord
+
+	newCustomer := Customer new.
+			newCustomer firstName: aCustomerRecord second.
+			newCustomer lastName: aCustomerRecord third.
+			newCustomer identificationType: aCustomerRecord fourth.
+			newCustomer identificationNumber: aCustomerRecord fifth.
+			session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:22:38' prior: 50651320 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			self importCustomer: record ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:22:52' prior: 50651362 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer: record ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:21:57' prior: 50651384 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:24:50' prior: 50651406 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	|record|
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'jgv 11/16/2023 19:24:52' prior: 50651435 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'jgv 11/16/2023 19:24:52'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream line newCustomer record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:25:07'!
+importCustomer
+
+	newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:25:07' prior: 50651464 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			self importCustomer ].
+
+		(self isAddressRecord) ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:25:16'!
+importAddress
+
+	| newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: record second.
+			newAddress streetNumber: record third asNumber .
+			newAddress town: record fourth.
+			newAddress zipCode: record fifth asNumber .
+			newAddress province: record sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:25:16' prior: 50651512 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [ 
+			self importCustomer ].
+
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:26:04' prior: 50651547 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ line := readStream nextLine. ^line notNil. ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+		line := readStream nextLine.].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:26:38' prior: 50651560 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ line := readStream nextLine. ^line notNil. ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:28:00' prior: 50651573 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ line := readStream nextLine. line notNil. ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+	].
+
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'jgv 11/16/2023 19:28:02'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:29:21' prior: 50651585 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ line := readStream nextLine. self halt. line notNil. ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+	].
+
+	! !
+
+line notNil!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:29:48' prior: 50651600 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ line := readStream nextLine. line notNil. ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:31:46'!
+canGetNextRecord
+
+	line := readStream nextLine. line notNil! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:31:46' prior: 50651613 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ self canGetNextRecord. ] whileTrue: [
+		record := self createRecord.
+		(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ].
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:32:00'!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+		(self isAddressRecord) ifTrue: [ self importAddress ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:32:00' prior: 50651630 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ self canGetNextRecord. ] whileTrue: [
+		record := self createRecord.
+		self importRecord.
+	].
+
+	! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:33:15'!
+test01ImportValidDataWorksAsExpected
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!methodRemoval: ImportTest #test01Import stamp: 'jgv 11/16/2023 19:33:15'!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:34:14'!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:34:17' prior: 50651674!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	CustomerImporter valueFrom: self validImportData into: session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:35:47' prior: 50651685!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:36:06'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:36:38' prior: 50651624!
+canGetNextRecord
+
+	line := readStream nextLine. ^line notNil.! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:36:47'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:36:48'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:36:48'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:36:48'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:36:59' prior: 50651655!
+test01ImportValidDataWorksAsExpected
+
+	CustomerImporter valueFrom: self validImportData into: session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:38:35' prior: 50651696!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	| importer |
+	importer := CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.
+
+	self
+		should: [importer value]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: importer InvalidCustomerImportValues.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:39:17' prior: 50651740!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	| importer |
+	importer := CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.
+
+	self
+		should: [importer value]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: importer InvalidCustomerImportValues.
+				self assert: session 
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:40:27' prior: 50651753!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	| importer |
+	importer := CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.
+
+	self
+		should: [importer value]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: importer InvalidCustomerImportValues.
+				self assert: (session selectAllOfType: Customer) size equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:41:08'!
+getQuantityOfCustomers
+
+	^ (session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:41:08' prior: 50651767!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	| importer |
+	importer := CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.
+
+	self
+		should: [importer value]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: importer InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'assertions' stamp: 'jgv 11/16/2023 19:41:08' prior: 50650425!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: self getQuantityOfCustomers! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:41:14' prior: 50651787!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	| importer |
+	importer := CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.
+
+	self
+		should: [importer value]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: importer InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:41:16'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:41:48'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:42:21'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:44:00' prior: 50651808!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:45:12' prior: 50651640!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:48:49'!
+getRecordFromLine
+
+	^ line findTokens: $,! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'jgv 11/16/2023 19:48:49' prior: 50651648 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ self canGetNextRecord. ] whileTrue: [
+		record := self getRecordFromLine.
+		self importRecord.
+	].
+
+	! !
+
+!methodRemoval: CustomerImporter #createRecord stamp: 'jgv 11/16/2023 19:48:49'!
+createRecord
+
+	^ line findTokens: $,!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:49:02'!
+createRecord
+
+	^ record := self getRecordFromLine! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:49:02' prior: 50651861 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+	 
+	
+	[ self canGetNextRecord. ] whileTrue: [
+		self createRecord.
+		self importRecord.
+	].
+
+	! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:49:05'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:49:05'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:49:05'!
+ERROR!
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 19:49:21'!
+InvalidCustomerImportValues
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 19:49:49' prior: 50651896!
+InvalidCustomerImportValues
+	^'Customer record should have five values'! !
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 19:49:56' prior: 50651902!
+InvalidCustomerImportValues
+	^'Customer record should have fields'! !
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:49:57'!
+FAILURE!
+
+!methodRemoval: CustomerImporter #importCustomer: stamp: 'jgv 11/16/2023 19:50:22'!
+importCustomer: aCustomerRecord
+
+	newCustomer := Customer new.
+			newCustomer firstName: aCustomerRecord second.
+			newCustomer lastName: aCustomerRecord third.
+			newCustomer identificationType: aCustomerRecord fourth.
+			newCustomer identificationNumber: aCustomerRecord fifth.
+			session persist: newCustomer!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:50:29'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:50:29'!
+FAILURE!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:50:29'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:52:13' prior: 50651500!
+importCustomer
+	
+	record size < 5 ifTrue: [self error: CustomerImporter InvalidCustomerImportValues ].
+	newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:52:17'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:52:17'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:52:30'!
+test03CanNotImportCustomerWithMoreThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 19:52:55' prior: 50651960!
+test03CanNotImportCustomerWithMoreThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 19:52:57'!
+FAILURE!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 19:53:11'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 19:53:28' prior: 50651940!
+importCustomer
+	
+	record size ~= 5 ifTrue: [self error: CustomerImporter InvalidCustomerImportValues ].
+	newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer! !
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 19:53:36'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 19:53:37'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 19:53:37'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 19:53:37'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:01:01'!
+test04xxxx
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:01:08' prior: 50652023!
+test04xxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:02:17' prior: 50652036!
+test04xxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:02:43' prior: 50652049!
+test04xxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecord.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:02:51'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:03:15' prior: 50652062!
+test04xxxx
+
+	CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.
+	! !
+
+!testRun: #ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:03:15'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:03:16'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:03:16'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:03:16'!
+PASSED!
+
+!testRun: #ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:03:16'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:03:28' prior: 50652077!
+test04xxxx
+
+	CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.
+	self assert: self getQuantityOfCustomers equals: 0.! !
+
+!testRun: #ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:03:29'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:03:30'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:03:30'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:03:30'!
+PASSED!
+
+!testRun: #ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:03:30'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:03:52' prior: 50652099!
+test04xxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecord.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:03:54'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:04:58'!
+test04CanNotImportRecordWithInvalidRecordType
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecord.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:05:04' prior: 50652137!
+test04CanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!methodRemoval: ImportTest #test04xxxx stamp: 'jgv 11/16/2023 20:05:10'!
+test04xxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecord.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:05:42' prior: 50651848!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	self error: CustomerImporter invalidRecordType.! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:06:14' prior: 50652177!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	self error: CustomerImporter InvalidRecordType.! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:06:16'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:06:16'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:06:16'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:06:16'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:06:23'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:06:38' prior: 50652186!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:07:58' prior: 50652212!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(record ~= 'C' or: [ record ~= 'A']) ifTrue: [self CustomerImporter InvalidRecordType]! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:08:01'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:08:01'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:08:01'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:08:01'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:08:16' prior: 50652220!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(record ~= 'C' and: [ record ~= 'A']) ifTrue: [self CustomerImporter InvalidRecordType]! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:08:17'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:08:17'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:08:17'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:08:17'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:08:20'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:08:34' prior: 50652244!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(record ~= 'C' and: [ record ~= 'A']) ifTrue: [self error: CustomerImporter InvalidRecordType]! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:08:36'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:08:36'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:08:36'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:08:36'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:08:37'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:10:22' prior: 50652271!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(self isCustomerRecord negated and: [ self isAddressRecord negated]) ifTrue: [self error: CustomerImporter InvalidRecordType]! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:10:23'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:10:23'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:10:23'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:10:23'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:10:31'!
+ERROR!
+
+self isCustomerRecord!
+
+self negated!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:11:08' prior: 50652299!
+importRecord
+
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(self isCustomerRecord not and: [ self isAddressRecord not]) ifTrue: [self error: CustomerImporter InvalidRecordType]! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:11:10'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:11:10'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:11:10'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:11:10'!
+ERROR!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:11:10'!
+ERROR!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:11:18'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:11:18'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:11:18'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:11:18'!
+ERROR!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:11:18'!
+ERROR!
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 20:11:23'!
+InvalidRecordType
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 20:12:03' prior: 50652375!
+InvalidRecordType
+	'Import only allows lines that stars with letter C or A'.! !
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:12:04'!
+FAILURE!
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 20:12:31' prior: 50652380!
+InvalidRecordType
+	^'Import only allows lines that stars with letter C or A'.! !
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:12:32'!
+FAILURE!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:13:09'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:13:09'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:13:10'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:13:10'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:13:24' prior: 50652151!
+test04CanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:13:30'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:13:31'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:13:31'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:13:31'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:13:31'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:14:19'!
+test0XCanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:14:40'!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:15:30' prior: 50652457!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'R,Pepe,Sanchez,D,22333444
+			A,San Martin,3322,Olivos,1636') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:15:37' prior: 50652471!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'R,Pepe,Sanchez,D,22333444
+			A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:15:40' prior: 50652486!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'R,Pepe,Sanchez,D,22333444
+			A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:15:43' prior: 50652501!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'R,Pepe,Sanchez,D,22333444
+			A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:17:04' prior: 50652516!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'R,Pepe,Sanchez,D,22333444
+			A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter .
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+
+!methodRemoval: ImportTest #test04CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:17:12'!
+test04CanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:17:27' prior: 50652531!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'R,Pepe,Sanchez,D,22333444
+			A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:17:49'!
+ERROR!
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 20:17:53'!
+InvalidAddressImportValues
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/16/2023 20:18:13' prior: 50652578!
+InvalidAddressImportValues
+	^'Address should have five fields'! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:18:14'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:18:17'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:19:49' prior: 50651533!
+importAddress
+
+	| newAddress |
+	
+	record size < 5 ifTrue: [self error: CustomerImporter InvalidAddressImportValues ].	
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:19:56'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:19:56'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:19:56'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:19:57'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:19:57'!
+FAILURE!
+
+!testRun: #ImportTest #test0XCanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:19:57'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:19:57'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:20:00'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:20:09' prior: 50652559!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 
+			'C,Pepe,Sanchez,D,22333444
+			A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:20:11'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:21:32' prior: 50652640!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+				'C,Pepe,Sanchez,D,22333444
+				A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:21:36'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:21:57'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:22:04'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:22:18'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:22:54'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:23:05'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:23:06'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:23:21'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:23:41'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:23:41'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:23:54'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:24:11'!
+FAILURE!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:24:40'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:25:31' prior: 50652329!
+importRecord
+	self halt.
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(self isCustomerRecord not and: [ self isAddressRecord not]) ifTrue: [self error: CustomerImporter InvalidRecordType]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:26:48' prior: 50652659!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			].! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:27:49' prior: 50652721!
+importRecord
+	(self isCustomerRecord) ifTrue: [			self importCustomer ].
+	(self isAddressRecord) ifTrue: [ self importAddress ].
+	(self isCustomerRecord not and: [ self isAddressRecord not]) ifTrue: [self error: CustomerImporter InvalidRecordType]! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:27:55'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:31:27' prior: 50652732!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:31:29'!
+ERROR!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:32:07'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'jgv 11/16/2023 20:32:46'!
+getQuantityOfAddresses
+	self shouldBeImplemented.! !
+!ImportTest methodsFor: 'test data' stamp: 'jgv 11/16/2023 20:33:05' prior: 50652783!
+getQuantityOfAddresses
+	^ (session selectAllOfType: Address) size! !
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:33:07'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:33:07'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:33:07'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:33:08'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:33:08'!
+PASSED!
+
+!testRun: #ImportTest #test0XCanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:33:08'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:33:30'!
+test04CanNotImportAddressWithMoraThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:33:32'!
+test04CanNotImportAddressWithMoreThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+
+!methodRemoval: ImportTest #test04CanNotImportAddressWithMoraThanFiveFields stamp: 'jgv 11/16/2023 20:34:00'!
+test04CanNotImportAddressWithMoraThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:34:09'!
+test05CanNotImportAddressWithMoreThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+
+!methodRemoval: ImportTest #test04CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:34:09'!
+test04CanNotImportAddressWithMoreThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:34:23' prior: 50652858!
+test05CanNotImportAddressWithMoreThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:34:25'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:34:42' prior: 50652597!
+importAddress
+
+	| newAddress |
+	
+	record size ~= 5 ifTrue: [self error: CustomerImporter InvalidAddressImportValues ].	
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:38:35' prior: 50651996!
+importCustomer
+	
+	record size ~= 6 ifTrue: [self error: CustomerImporter InvalidCustomerImportValues ].
+	newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer! !
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:39:54'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:40:17'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:54:18' prior: 50652923!
+importCustomer
+	
+	record size ~= 5 ifTrue: [self error: CustomerImporter InvalidCustomerImportValues ].
+	newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 20:54:23' prior: 50652907!
+importAddress
+
+	| newAddress |
+	
+	record size ~= 6 ifTrue: [self error: CustomerImporter InvalidAddressImportValues ].	
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:54:33'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 20:54:33'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:54:33'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:54:33'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 20:54:33'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 20:54:34'!
+PASSED!
+
+!testRun: #ImportTest #test0XCanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:54:34'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 20:54:50'!
+test06CanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!methodRemoval: ImportTest #test0XCanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 20:54:50'!
+test0XCanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 21:34:44'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 21:34:45'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:34:45'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:34:45'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:34:45'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:34:46'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 21:34:46'!
+PASSED!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 21:35:14' prior: 50652747!
+importRecord
+	(self isCustomerRecord) ifTrue: [			^self importCustomer ].
+	(self isAddressRecord) ifTrue: [ ^self importAddress ].
+	self error: CustomerImporter InvalidRecordType.! !
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:35:22'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 21:35:22'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:35:22'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:35:22'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:35:23'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:35:23'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 21:35:23'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 21:36:15'!
+test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'CA,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/16/2023 21:36:16'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 21:38:07' prior: 50651253!
+isCustomerRecord
+
+	^ (line beginsWith: 'C') and: [line size = 1].! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 21:40:13' prior: 50653103!
+isCustomerRecord
+
+	^ record first = 'C'.! !
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/16/2023 21:40:22'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 21:40:22'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:40:22'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:40:22'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:40:22'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:40:23'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 21:40:23'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/16/2023 21:40:23'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 21:40:40'!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'CA,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 21:41:04' prior: 50653142!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs,x') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/16/2023 21:41:06'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 21:41:13' prior: 50653157!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 21:41:16' prior: 50653177!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/16/2023 21:41:18'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/16/2023 21:41:37' prior: 50651286!
+isAddressRecord
+
+	^ record first = 'A'.! !
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/16/2023 21:41:47'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/16/2023 21:41:56' prior: 50653193!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/16/2023 21:41:57'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/16/2023 21:41:57'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:41:57'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:41:57'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/16/2023 21:41:58'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/16/2023 21:41:58'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/16/2023 21:41:58'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/16/2023 21:41:58'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/16/2023 21:41:58'!
+PASSED!
+
+----QUIT----(16 November 2023 21:42:20) CuisUniversity-CustomerImporter.image priorSource: 10197292!
