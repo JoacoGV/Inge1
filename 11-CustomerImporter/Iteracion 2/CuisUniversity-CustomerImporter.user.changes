@@ -3338,3 +3338,1190 @@ PASSED!
 PASSED!
 
 ----QUIT----(16 November 2023 21:42:20) CuisUniversity-CustomerImporter.image priorSource: 10197292!
+
+----STARTUP---- (21 November 2023 16:15:08) as D:\Facu\Inge I\windows64\CuisUniversity-CustomerImporter.image!
+
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/21/2023 16:28:49'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/21/2023 16:28:50'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/21/2023 16:28:50'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/21/2023 16:28:50'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/21/2023 16:28:51'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/21/2023 16:28:51'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/21/2023 16:28:51'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/21/2023 16:28:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/21/2023 16:28:52'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:34:19'!
+test08CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:34:26'!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+
+!methodRemoval: ImportTest #test08CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/21/2023 16:34:26'!
+test08CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:34:50' prior: 50653325!
+test09CanNotAddAddressesWithNoCustomer
+
+	CustomerImporter valueFrom: (ReadStream on: 'A,San Martin,3322,Olivos,1636,BsAs') into: session.
+	! !
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/21/2023 16:34:52'!
+ERROR!
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/21/2023 16:35:22'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:35:37' prior: 50653355!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:36:03' prior: 50653369!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:36:27' prior: 50653383!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter CantImportAddressWithoutCustomer.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:36:35' prior: 50653397!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter CantImportAddressWithoutCustomer.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/21/2023 16:36:38'!
+ERROR!
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/21/2023 16:36:45'!
+CantImportAddressWithoutCustomer
+	self shouldBeImplemented.! !
+!CustomerImporter class methodsFor: 'error descriptions' stamp: 'jgv 11/21/2023 16:37:03' prior: 50653429!
+CantImportAddressWithoutCustomer
+	^'No se puede importar una dirección sin un cliente asociado.'! !
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/21/2023 16:37:05'!
+FAILURE!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'jgv 11/21/2023 16:37:58' prior: 50652959!
+importAddress
+
+	| newAddress |
+	
+	record size ~= 6 ifTrue: [self error: CustomerImporter InvalidAddressImportValues ].	
+	newCustomer isNil ifTrue: [self error: CustomerImporter CantImportAddressWithoutCustomer ].
+	
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/21/2023 16:38:00'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/21/2023 16:38:00'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/21/2023 16:38:01'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/21/2023 16:38:01'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/21/2023 16:38:02'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/21/2023 16:38:02'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/21/2023 16:38:02'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/21/2023 16:38:02'!
+PASSED!
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/21/2023 16:38:03'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:56:53'!
+test10xxxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: session.]
+		raise: Error 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter CantImportAddressWithoutCustomer.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].
+! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:57:12' prior: 50653495!
+test10xxxxx
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'CA,Pepe,Sanchez,D,22333444') into: session.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:58:02' prior: 50653509!
+test10xxxxx
+
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 16:58:24' prior: 50653522!
+test10xxxxx
+
+	CustomerImporter valueFrom: (ReadStream on: 'CA,Pepe,Sanchez,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:00:41' prior: 50653529!
+test10xxxxx
+
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Javie,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+
+!testRun: #ImportTest #test10xxxxx stamp: 'jgv 11/21/2023 17:00:43'!
+ERROR!
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:01:03' prior: 50653539!
+test10xxxxx
+
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:08:13' prior: 50653551!
+test10xxxxx
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:09:17' prior: 50653561!
+test10xxxxx
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:09:28' prior: 50653571!
+test10xxxxx
+"No se que onda esto"
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:09:42' prior: 50653581!
+test10xxxxx
+"No se que onda esto, no logro replicar el bug de los desplazamientos"
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+!ImportTest methodsFor: 'tests' stamp: 'jgv 11/21/2023 17:09:47' prior: 50653591!
+test10xxxxx
+	"No se que onda esto, no logro replicar el bug de los desplazamientos"
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.! !
+
+----QUIT----(21 November 2023 18:15:18) CuisUniversity-CustomerImporter.image priorSource: 10291848!
+
+----STARTUP---- (22 November 2023 18:27:04) as D:\Facu\Inge I\windows64\CuisUniversity-CustomerImporter.image!
+
+
+!methodRemoval: ImportTest #test10xxxxx stamp: 'jgv 11/22/2023 18:27:14'!
+test10xxxxx
+	"No se que onda esto, no logro replicar el bug de los desplazamientos"
+	CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez	,D,22333444') into: session.
+	self assertCustomerWithIdentificationType: 'D' number: '22333444' hasFirstName: 'Pepe' lastName: 'Sanchez'.!
+
+Object subclass: #PersisentDataBase
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersisentDataBase category: 'CustomerImporter' stamp: 'jgv 11/22/2023 18:40:00'!
+Object subclass: #PersisentDataBase
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+Object subclass: #PersisentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersisentDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 18:41:24'!
+Object subclass: #PersisentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersisentDataBase stamp: 'jgv 11/22/2023 18:41:31'!
+Object subclass: #PersisentDataBase
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----QUIT----(22 November 2023 18:42:53) CuisUniversity-CustomerImporter.image priorSource: 10302845!
+
+----STARTUP---- (22 November 2023 20:16:56) as D:\Facu\Inge I\windows64\CuisUniversity-CustomerImporter.image!
+
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:24:30'!
+createDataBaseSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:24:31' prior: 50650460 overrides: 16961394!
+setUp
+
+	session := self createDataBaseSession.
+	session beginTransaction.
+! !
+
+!methodRemoval: ImportTest #createDataBaseSession stamp: 'jgv 11/22/2023 20:25:30'!
+createDataBaseSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:25:30' prior: 50653678 overrides: 16961394!
+setUp
+
+	session :=  DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+!PersisentDataBaseSystem class methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:26:19'!
+for: anArrayOfObjectsClasses
+	self new initializeFor: anArrayOfObjectsClasses.! !
+!PersisentDataBaseSystem methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:28:10'!
+initializeFor: anArrayOfObjectClasses
+	session := DataBaseSession for: 	(anArrayOfObjectClasses).! !
+
+Object subclass: #PersistentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 20:49:04'!
+Object subclass: #PersistentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersisentDataBaseSystem stamp: 'jgv 11/22/2023 20:49:07'!
+Object subclass: #PersisentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:49:36' prior: 50653690 overrides: 16961394!
+setUp
+
+	session :=  PersistentDataBaseSystem.
+	session beginTransaction.
+! !
+!PersistentDataBaseSystem class methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:50:29'!
+for: aConfiguration
+	self newInitializeFor: aConfiguration.! !
+!PersistentDataBaseSystem methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:51:09'!
+initializeForConfiguration: aConfiguration
+	session := DataBaseSession for: aConfiguration.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:51:25' prior: 50653741!
+initializeForConfiguration: aConfiguration
+	session := DataBaseSession for: aConfiguration.
+	session beginTransaction.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:51:35' prior: 50653748!
+initializeForConfiguration: aConfiguration
+	session := DataBaseSession for: aConfiguration.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:53:09' prior: 50653730 overrides: 16961394!
+setUp
+
+	session :=  PersistentDataBaseSystem for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+!PersistentDataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 20:53:38'!
+beginTransaction
+	session beginTransaction.! !
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'jgv 11/22/2023 20:54:05'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'dataBaseSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50652888!
+test05CanNotImportAddressWithMoreThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,x') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50652788!
+getQuantityOfAddresses
+	^ (dataBaseSystem selectAllOfType: Address) size! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50651730!
+test01ImportValidDataWorksAsExpected
+
+	CustomerImporter valueFrom: self validImportData into: dataBaseSystem.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50653411!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: dataBaseSystem.]
+		raise: Error 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter CantImportAddressWithoutCustomer.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50653763 overrides: 16961394!
+setUp
+
+	dataBaseSystem :=  PersistentDataBaseSystem for: (Array with: Address with: Customer).
+	dataBaseSystem beginTransaction.
+! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50651974!
+test03CanNotImportCustomerWithMoreThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444,x') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50652998!
+test06CanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50650471!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (dataBaseSystem
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50651782!
+getQuantityOfCustomers
+
+	^ (dataBaseSystem selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50653222!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50651834!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50653084!
+test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'CA,Pepe,Sanchez,D,22333444') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50652761!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50650467 overrides: 16961402!
+tearDown
+
+	dataBaseSystem commit.
+	dataBaseSystem close.
+	! !
+!PersistentDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 20:54:33' prior: 50653736!
+for: aConfiguration
+	self new initializeFor: aConfiguration.! !
+!PersistentDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 20:54:43' prior: 50653954!
+for: aConfiguration
+	self new initializeForConfiguration: aConfiguration.! !
+!PersistentDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 20:55:38' prior: 50653960!
+for: aConfiguration
+	^self new initializeForConfiguration: aConfiguration.! !
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 20:55:47'!
+ERROR!
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:34'!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:49' prior: 50653976!
+selectAllOfType: Customer 
+	session selectAllOfType: Customer.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:58' prior: 50653982!
+selectAllOfType: aType 
+	session selectAllOfType: aType .! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:59' prior: 50653988!
+selectAllOfType: aType 
+	session selectAllOfType: aType.! !
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 20:57:00'!
+ERROR!
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:57:19' prior: 50653994!
+selectAllOfType: aType 
+	^session selectAllOfType: aType.! !
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 20:57:20'!
+PASSED!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:57:54' prior: 50653948 overrides: 16961402!
+tearDown
+
+	dataBaseSystem close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:57:57' prior: 50654014 overrides: 16961402!
+tearDown
+	dataBaseSystem close.
+	! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:58:14'!
+close
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:58:22' prior: 50654024!
+close
+	session commit.
+	session close.! !
+
+----STARTUP---- (22 November 2023 20:58:47) as D:\Facu\Inge I\windows64\CuisUniversity-CustomerImporter.image!
+
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:24:30'!
+createDataBaseSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:24:31' prior: 50650460 overrides: 16961394!
+setUp
+
+	session := self createDataBaseSession.
+	session beginTransaction.
+! !
+
+!methodRemoval: ImportTest #createDataBaseSession stamp: 'jgv 11/22/2023 20:58:55'!
+createDataBaseSession
+
+	^ DataBaseSession for: (Array with: Address with: Customer)!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:25:30' prior: 50654044 overrides: 16961394!
+setUp
+
+	session :=  DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+!PersisentDataBaseSystem class methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:26:19'!
+for: anArrayOfObjectsClasses
+	self new initializeFor: anArrayOfObjectsClasses.! !
+!PersisentDataBaseSystem methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:28:10'!
+initializeFor: anArrayOfObjectClasses
+	session := DataBaseSession for: 	(anArrayOfObjectClasses).! !
+
+!classDefinition: #PersistentDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 20:58:55'!
+Object subclass: #PersistentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 20:58:55'!
+Object subclass: #PersistentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classRemoval: #PersisentDataBaseSystem stamp: 'jgv 11/22/2023 20:58:56'!
+Object subclass: #PersisentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:49:36' prior: 50654056 overrides: 16961394!
+setUp
+
+	session :=  PersistentDataBaseSystem.
+	session beginTransaction.
+! !
+!PersistentDataBaseSystem class methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:50:29'!
+for: aConfiguration
+	self newInitializeFor: aConfiguration.! !
+!PersistentDataBaseSystem methodsFor: 'no messages' stamp: 'jgv 11/22/2023 20:51:09'!
+initializeForConfiguration: aConfiguration
+	session := DataBaseSession for: aConfiguration.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:51:25' prior: 50654111!
+initializeForConfiguration: aConfiguration
+	session := DataBaseSession for: aConfiguration.
+	session beginTransaction.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:51:35' prior: 50654118!
+initializeForConfiguration: aConfiguration
+	session := DataBaseSession for: aConfiguration.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:53:09' prior: 50654100 overrides: 16961394!
+setUp
+
+	session :=  PersistentDataBaseSystem for: (Array with: Address with: Customer).
+	session beginTransaction.
+! !
+!PersistentDataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 20:53:38'!
+beginTransaction
+	session beginTransaction.! !
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'jgv 11/22/2023 20:58:57'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'dataBaseSystem'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50652888!
+test05CanNotImportAddressWithMoreThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs,x') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50652788!
+getQuantityOfAddresses
+	^ (dataBaseSystem selectAllOfType: Address) size! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50651730!
+test01ImportValidDataWorksAsExpected
+
+	CustomerImporter valueFrom: self validImportData into: dataBaseSystem.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50653411!
+test09CanNotAddAddressesWithNoCustomer
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:'A,San Martin,3322,Olivos,1636,BsAs') into: dataBaseSystem.]
+		raise: Error 
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter CantImportAddressWithoutCustomer.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50654133 overrides: 16961394!
+setUp
+
+	dataBaseSystem :=  PersistentDataBaseSystem for: (Array with: Address with: Customer).
+	dataBaseSystem beginTransaction.
+! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50651974!
+test03CanNotImportCustomerWithMoreThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez,D,22333444,x') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50652998!
+test06CanNotImportRecordWithInvalidRecordType
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'R,Pepe,Sanchez,D,22333444') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:05' prior: 50650471!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (dataBaseSystem
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50651782!
+getQuantityOfCustomers
+
+	^ (dataBaseSystem selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50653222!
+test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+AA,San Martin,3322,Olivos,1636,BsAs') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfAddresses equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50651834!
+test02CanNotImportCustomerWithLessThanFiveFields
+
+	
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'C,Pepe,Sanchez') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidCustomerImportValues.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50653084!
+test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore
+
+	self
+		should: [CustomerImporter valueFrom: (ReadStream on: 'CA,Pepe,Sanchez,D,22333444') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidRecordType.
+				self assert: self getQuantityOfCustomers equals: 0.
+			]! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50652761!
+test04CanNotImportAddressWithLessThanFiveFields
+	self
+		should: [CustomerImporter valueFrom: 
+			(ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322') into: dataBaseSystem.]
+		raise: Error
+		withExceptionDo: [:anError | 
+				self assert: anError messageText equals: CustomerImporter InvalidAddressImportValues.
+				self assert: self getQuantityOfAddresses equals: 0.
+			].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:54:06' prior: 50650467 overrides: 16961402!
+tearDown
+
+	dataBaseSystem commit.
+	dataBaseSystem close.
+	! !
+!PersistentDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 20:54:33' prior: 50654106!
+for: aConfiguration
+	self new initializeFor: aConfiguration.! !
+!PersistentDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 20:54:43' prior: 50654324!
+for: aConfiguration
+	self new initializeForConfiguration: aConfiguration.! !
+!PersistentDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 20:55:38' prior: 50654330!
+for: aConfiguration
+	^self new initializeForConfiguration: aConfiguration.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:34'!
+selectAllOfType: Customer 
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:49' prior: 50654342!
+selectAllOfType: Customer 
+	session selectAllOfType: Customer.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:58' prior: 50654348!
+selectAllOfType: aType 
+	session selectAllOfType: aType .! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:56:59' prior: 50654354!
+selectAllOfType: aType 
+	session selectAllOfType: aType.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:57:19' prior: 50654360!
+selectAllOfType: aType 
+	^session selectAllOfType: aType.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:57:54' prior: 50654318 overrides: 16961402!
+tearDown
+
+	dataBaseSystem close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:57:57' prior: 50654372 overrides: 16961402!
+tearDown
+	dataBaseSystem close.
+	! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:58:14'!
+close
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 20:58:22' prior: 50654382!
+close
+	session commit.
+	session close.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 20:59:46' prior: 50654377 overrides: 16961402!
+tearDown
+	dataBaseSystem commit.
+	dataBaseSystem close.
+	! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 20:59:50'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/22/2023 20:59:50'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/22/2023 20:59:51'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/22/2023 20:59:51'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/22/2023 20:59:51'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/22/2023 20:59:51'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 20:59:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/22/2023 20:59:52'!
+FAILURE!
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/22/2023 20:59:52'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 20:59:54'!
+ERROR!
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:00:37' prior: 50654387!
+close
+	session close.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:00:51'!
+commit
+	session commit.! !
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 21:01:09'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:01:09'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/22/2023 21:01:10'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/22/2023 21:01:10'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/22/2023 21:01:10'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/22/2023 21:01:10'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/22/2023 21:01:10'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 21:01:11'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/22/2023 21:01:11'!
+FAILURE!
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/22/2023 21:01:11'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:01:13'!
+ERROR!
+!CustomerImporter class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 21:03:04' prior: 50650670!
+from: aReadStream into: aDataBaseSystem
+	^self new initializeFrom: aReadStream into: aDataBaseSystem! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:03:19' prior: 50650623!
+initializeFrom: aReadStream into: aDataBaseSystem
+	session := aDataBaseSystem.
+	readStream := aReadStream.! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'jgv 11/22/2023 21:03:29'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'dataBaseSystem readStream line newCustomer record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:03:29' prior: 50654490!
+initializeFrom: aReadStream into: aDataBaseSystem
+	dataBaseSystem := aDataBaseSystem.
+	readStream := aReadStream.! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:03:30' prior: 50652945!
+importCustomer
+	
+	record size ~= 5 ifTrue: [self error: CustomerImporter InvalidCustomerImportValues ].
+	newCustomer := Customer new.
+			newCustomer firstName: record second.
+			newCustomer lastName: record third.
+			newCustomer identificationType: record fourth.
+			newCustomer identificationNumber: record fifth.
+			dataBaseSystem persist: newCustomer! !
+!CustomerImporter methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:03:38' prior: 50654506!
+initializeFrom: aReadStream into: aDataBaseSystem
+	dataBaseSystem := aDataBaseSystem.
+	readStream := aReadStream.! !
+!CustomerImporter class methodsFor: 'importing' stamp: 'jgv 11/22/2023 21:04:27' prior: 50650676!
+valueFrom: aReadStream into: aDataBaseSystem
+
+	^(self from: aReadStream into: aDataBaseSystem) value! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:05:34'!
+ERROR!
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:05:38'!
+persist: aNewCustomer 
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:05:49' prior: 50654545!
+persist: aNewCustomer 
+	session persist: aNewCustomer.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:06:16' prior: 50654551!
+persist: aNewCustomer 
+	session persist: aNewCustomer.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:06:23' prior: 50654557!
+persist: aValue 
+	session persist: aValue.! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:06:25'!
+ERROR!
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:06:33'!
+select: aRenameMe1 ofType: Customer 
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:06:48' prior: 50654571!
+select: aRenameMe1 ofType: aType 
+	self shouldBeImplemented.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:07:18' prior: 50654577!
+select: aRenameMe1 ofType: aType 
+	session select: aRenameMe1  ofType: aType.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:07:25' prior: 50654583!
+select: aRenameMe1 ofType: aType 
+	^session select: aRenameMe1  ofType: aType.! !
+!PersistentDataBaseSystem methodsFor: 'as yet unclassified' stamp: 'jgv 11/22/2023 21:07:41' prior: 50654589!
+select: aCondition ofType: aType 
+	^session select: aCondition  ofType: aType.! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:07:42'!
+PASSED!
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:07:43'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/22/2023 21:07:43'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/22/2023 21:07:44'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/22/2023 21:07:44'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/22/2023 21:07:44'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/22/2023 21:07:45'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 21:07:45'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/22/2023 21:07:45'!
+PASSED!
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/22/2023 21:07:46'!
+PASSED!
+
+!classDefinition: #DataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 21:08:11'!
+Object subclass: #DataBaseSystem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 21:08:11'!
+DataBaseSystem subclass: #PersistentDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!DataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 21:12:39'!
+for: aConfiguration
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:12:47'!
+initializeForConfiguration: aConfiguration
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'persisting' stamp: 'jgv 11/22/2023 21:13:22'!
+persist: aValue
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:14:07'!
+select: aCondition ofType: aType
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:14:11'!
+selectAllOfType: aType
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:14:17'!
+beginTransaction
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:14:20'!
+commit
+
+	self subclassResponsibility! !
+
+DataBaseSystem subclass: #TransientDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 21:15:06'!
+DataBaseSystem subclass: #TransientDataBaseSystem
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+DataBaseSystem subclass: #TransientDataBaseSystem
+	instanceVariableNames: 'data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientDataBaseSystem category: 'CustomerImporter' stamp: 'jgv 11/22/2023 21:15:17'!
+DataBaseSystem subclass: #TransientDataBaseSystem
+	instanceVariableNames: 'data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientDataBaseSystem class methodsFor: 'no messages' stamp: 'jgv 11/22/2023 21:16:04' overrides: 50654653!
+for: aConfiguration
+	^self new.! !
+!TransientDataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:16:28' overrides: 50654658!
+initializeForConfiguration: aConfiguration
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:16:28' prior: 50654658!
+initializeForConfiguration: aConfiguration
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'persisting' stamp: 'jgv 11/22/2023 21:16:37' overrides: 50654663!
+persist: aValue
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'persisting' stamp: 'jgv 11/22/2023 21:16:37' prior: 50654663!
+persist: aValue
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:16:44' overrides: 50654667!
+select: aCondition ofType: aType
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:16:45' prior: 50654667!
+select: aCondition ofType: aType
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:16:50' overrides: 50654672!
+selectAllOfType: aType
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:16:51' prior: 50654672!
+selectAllOfType: aType
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:16:58' overrides: 50654677!
+beginTransaction
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:16:58' prior: 50654677!
+beginTransaction
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:17:03' overrides: 50654682!
+commit
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:17:03' prior: 50654682!
+commit
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem class methodsFor: 'instance creation' stamp: 'jgv 11/22/2023 21:17:28' prior: 50654714 overrides: 50654653!
+for: aConfiguration
+	^self new initializeForConfiguration: aConfiguration.! !
+!TransientDataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:17:51' prior: 50654719 overrides: 50654725!
+initializeForConfiguration: aConfiguration.! !
+!TransientDataBaseSystem methodsFor: 'initialization' stamp: 'jgv 11/22/2023 21:18:25' prior: 50654792 overrides: 50654725!
+initializeForConfiguration: aConfiguration
+	data := Set new.! !
+!TransientDataBaseSystem methodsFor: 'persisting' stamp: 'jgv 11/22/2023 21:19:07' prior: 50654731 overrides: 50654736!
+persist: aValue
+
+	data add: 	aValue.! !
+
+----End fileIn of D:\Facu\Inge I\windows64\Packages\TerseGuide.pck.st----!
+!TransientDataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:21:45' prior: 50654741 overrides: 50654746!
+select: aCondition ofType: aType
+
+	^data select: [ :aValue |
+			(aCondition value: aValue) and: [ aValue]			
+		]! !
+!TransientDataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:23:27' prior: 50657729 overrides: 50654746!
+select: aCondition ofType: aType
+
+	^data select: [ :aValue |
+			(aCondition value: aValue) and: [ aValue isKindOf: aType].			
+		].! !
+!TransientDataBaseSystem methodsFor: 'selecting' stamp: 'jgv 11/22/2023 21:24:17' prior: 50654752 overrides: 50654757!
+selectAllOfType: aType
+
+	^data select: [:aValue | aValue isKindOf: aType].! !
+!TransientDataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:24:28' prior: 50654763 overrides: 50654768!
+beginTransaction! !
+!TransientDataBaseSystem methodsFor: 'transaction managment' stamp: 'jgv 11/22/2023 21:24:36' prior: 50654774 overrides: 50654779!
+commit! !
+!DataBaseSystem methodsFor: 'closing' stamp: 'jgv 11/22/2023 21:25:21'!
+close
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'closing' stamp: 'jgv 11/22/2023 21:25:29' overrides: 50657760!
+close
+
+	self subclassResponsibility! !
+!DataBaseSystem methodsFor: 'closing' stamp: 'jgv 11/22/2023 21:25:29' prior: 50657760!
+close
+
+	self subclassResponsibility! !
+!TransientDataBaseSystem methodsFor: 'closing' stamp: 'jgv 11/22/2023 21:26:41' prior: 50657765 overrides: 50657769!
+close
+
+	^data! !
+!TransientDataBaseSystem methodsFor: 'closing' stamp: 'jgv 11/22/2023 21:27:03' prior: 50657774 overrides: 50657769!
+close
+
+	^data removeAll.! !
+
+Set new!
+
+set := Set new!
+
+set add: 4!
+
+set add: 5!
+
+set add: 6!
+
+set removeAll !
+
+set!
+
+set isEmpty !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'jgv 11/22/2023 21:29:51' prior: 50654202 overrides: 16961394!
+setUp
+
+	dataBaseSystem :=  TransientDataBaseSystem for: (Array with: Address with: Customer).
+	dataBaseSystem beginTransaction.
+! !
+
+!testRun: #ImportTest #test01ImportValidDataWorksAsExpected stamp: 'jgv 11/22/2023 21:29:53'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportCustomerWithLessThanFiveFields stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test03CanNotImportCustomerWithMoreThanFiveFields stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test04CanNotImportAddressWithLessThanFiveFields stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressWithMoreThanFiveFields stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportRecordWithInvalidRecordType stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportRecordWithRecordTypeFieldHavingACAndSomethingMore stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportRecordWithRecordTypeFieldHavingAnAAndSomethingMore stamp: 'jgv 11/22/2023 21:29:54'!
+PASSED!
+
+!testRun: #ImportTest #test09CanNotAddAddressesWithNoCustomer stamp: 'jgv 11/22/2023 21:29:55'!
+PASSED!
+
+----QUIT----(22 November 2023 21:30:15) CuisUniversity-CustomerImporter.image priorSource: 10304445!
