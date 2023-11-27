@@ -45,237 +45,221 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 18:31:29'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:35:53'!
+addressRecordForSupplierWithLessThanSixFields
+
+	^ ReadStream on: 'S,Supplier1,D,123
+A,San Martin,3322,Olivos'! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:36:27'!
+addressRecordForSupplierWithMoreThanSixFields
+
+	^ ReadStream on: 'S,Supplier1,D,123
+A,San Martin,3322,Olivos,1636, BsAs, Argentina'! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:37:44'!
+addressWithoutSupplier
+
+	^ ReadStream on: 'A,San Martin,3322,Olivos,1636, BsAs'! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:37:07'!
+assertImportedOneSupplierWithoutAddresses
+
+	self assertImporterdRightNumberOfSuppliers.
+			self assert: (system supplierWithIdentificationType: 'D' number: '123') isAddressesEmpty! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:47:44'!
+importValidCustomers
+
+	^ CustomerImporter valueFrom: self validImportData into: system! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:33:11'!
+invalidAddressRecordForSupplierStartData
+
+	^ ReadStream on: 'S,Supplier1,D,123
+Ah re loco,San Martin,3322,Olivos,1636,BsAs'! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/25/2023 18:58:12'!
 test01ValidSupplierDataIsImportedCorrectly
-	| stream supplier |
 	
-	stream := ReadStream on: 'S,Supplier1,D,123'.
-	SupplierImporter valueFrom: stream into: system.
-	self assert: system numberOfSuppliers equals: 1.
-	supplier := system supplierWithIdentificationType: 'D' number: '123'.
-	self assert: (supplier isNamed: 'Supplier1').
-	self assert: (supplier isIdentifiedAs: 'D' withNumber: '123').
-	self assert: (supplier isAddressesEmpty).
-	self assert: (supplier isCustomersEmpty). ! !
+	SupplierImporter valueFrom: self validSupplierImportData into: system.
+	
+	self assertImporterdRightNumberOfSuppliers.
+	self assertSupplier1WasImportedCorrectly. ! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 19:09:02'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/25/2023 19:07:23'!
 test02DoesNotImportRecordsStartingWithSButMoreCharacters
-	| stream |
-	stream := ReadStream on: 'Supplier,Supplier1,D,123'.
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidRecordTypeErrorDescription.
-			self assert: system numberOfSuppliers equals: 0.
-		]! !
+	
+	self
+		shouldFailImporting: self invalidSupplierRecordStartData 
+		usingImporter: SupplierImporter  
+		messageText: SupplierImporter invalidRecordTypeErrorDescription
+		asserting: [ self assertNoSupplierWasImported ].
+! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 19:21:06'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/25/2023 19:10:07'!
 test03CanNotImportSupplierRecordWithLessThanFourFields
-	| stream |
-	stream := ReadStream on: 'S,Supplier1'.
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidSupplierRecordErrorDescription.
-			self assert: system numberOfSuppliers equals: 0.
-		]! !
+	self 
+		shouldFailImporting: self supplierRecordWithLessThanFourFields
+		usingImporter: SupplierImporter  
+		messageText: SupplierImporter invalidSupplierRecordErrorDescription 
+		asserting: [ self assertNoSupplierWasImported ].! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 19:24:53'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/25/2023 19:12:04'!
 test04CanNotImportSupplierRecordWithMoreThanFourFields
-	| stream |
-	stream := ReadStream on: 'S,Supplier1,D,123,Fravega'.
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidSupplierRecordErrorDescription.
-			self assert: system numberOfSuppliers equals: 0.
-		]! !
+	self 
+		shouldFailImporting: self supplierRecordWithMoreThanFourFields 
+		usingImporter: SupplierImporter 
+		messageText: SupplierImporter invalidSupplierRecordErrorDescription
+		asserting: [	self assertNoSupplierWasImported		]! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:21:56'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:44:41'!
 test05ValidSupplierWithNewCustomerDataIsImportedCorrectly
-	| stream supplier customer |
 	
-	stream := ReadStream on: 'S,Supplier1,D,123
-NC,Pepe,Sanchez,D,22333444'.
+	SupplierImporter valueFrom: self validSupplierWithNewCustomerData into: system.
+	
+	self assertPepeSanchezWasImportedAsCustomerOfSupplierWithID123.
+		
+	
 
-	SupplierImporter valueFrom: stream into: system.
-	supplier := system supplierWithIdentificationType: 'D' number: '123'.
-	
-	self assert: system numberOfCustomers equals: 1.
-	customer := supplier customerWithIdentificationType: 'D' number: '22333444' ifNone: [self fail].
-	self assert: customer firstName equals: 'Pepe'.
-	self assert: customer lastName equals: 'Sanchez'.
-	self assert: customer identificationType equals: 'D'.
-	self assert: customer identificationNumber equals: '22333444'.
+
 	! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:25:49'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 12:57:06'!
 test06DoesNotImportRecordsStartingWithNCButMoreCharacters
-	| stream supplier |
 	
-	stream := ReadStream on: 'S,Supplier1,D,123
-NCustomer,Pepe,Sanchez,D,22333444'.
+	self shouldFailImporting: self invalidNewCustomerRecordStartData 
+	usingImporter: SupplierImporter
+	messageText: SupplierImporter invalidRecordTypeErrorDescription
+	asserting: 	[self assertImportedOneSupplierWithoutCustomer].! !
 
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidRecordTypeErrorDescription.
-			self assert: system numberOfSuppliers equals: 1.
-			supplier := system supplierWithIdentificationType: 'D' number: '123'.
-			self assert: system numberOfCustomers equals: 0.
-			self assert: supplier isCustomersEmpty.
-		]! !
-
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:31:03'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:00:16'!
 test07CanNotImportNewCustomerRecordWithLessThanFiveFields
-	| stream supplier |
-	stream := ReadStream on: 'S,Supplier1,D,123
-NC,Pepe,Sanchez'.
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidCustomerRecordErrorDescription .
-			self assert: system numberOfSuppliers equals: 1.
-			supplier := system supplierWithIdentificationType: 'D' number: '123'.
-			self assert: system numberOfCustomers equals: 0.
-			self assert: supplier isCustomersEmpty.
-		]! !
+	
+	
+	self shouldFailImporting: self newCustomerRecordForSupplierWithLessThanFiveFields
+	usingImporter: SupplierImporter
+	messageText: SupplierImporter invalidCustomerRecordErrorDescription
+	asserting: 		[self assertImportedOneSupplierWithoutCustomer].! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:31:49'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:06:00'!
 test08CanNotImportNewCustomerRecordWithMoreThanFiveFields
-	| stream supplier |
-	stream := ReadStream on: 'S,Supplier1,D,123
-NC,Pepe,Sanchez, D, 122333444, Alias: Pepoide'.
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidCustomerRecordErrorDescription .
-			self assert: system numberOfSuppliers equals: 1.
-			supplier := system supplierWithIdentificationType: 'D' number: '123'.
-			self assert: system numberOfCustomers equals: 0.
-			self assert: supplier isCustomersEmpty.
-		]! !
+	
+	
+	self shouldFailImporting: self newCustomerRecordForSupplierWithMoreThanFiveFields
+	usingImporter: SupplierImporter 
+	messageText: SupplierImporter invalidCustomerRecordErrorDescription
+	asserting: [self assertImportedOneSupplierWithoutCustomer		].! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 21:14:18'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:07:57'!
 test09CanNotImportNewCustomerWithoutSupplier
-	| stream |
-	stream := ReadStream on: 'NC,Pepe,Sanchez, D, 122333444'.
-	self should: [SupplierImporter valueFrom: stream into: system]
+	self should: [SupplierImporter valueFrom: self newCustomerWithoutSupplier into: system]
 	raise: Error
 	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter cannotImportCustomerWithoutSupplier.
+			self assert: anError messageText equals: SupplierImporter cannotImportWithoutCustomer.
 		].! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:49:58'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:46:34'!
 test10ValidSupplierWithExistingCustomerDataIsImportedCorrectly
-	| stream supplier customer |
+	self validSupplierWithExistingCustomerData.
 	
-	CustomerImporter valueFrom: self validImportData into: system.
-	
-	stream := ReadStream on: 'S,Supplier1,D,123
-EC,D,22333444'.
-
-	SupplierImporter valueFrom: stream into: system.
-	supplier := system supplierWithIdentificationType: 'D' number: '123'.
-	
-	self assert: system numberOfCustomers equals: 2.
-	customer := supplier customerWithIdentificationType: 'D' number: '22333444' ifNone: [self fail].
-	self assert: customer firstName equals: 'Pepe'.
-	self assert: customer lastName equals: 'Sanchez'.
-	self assert: customer identificationType equals: 'D'.
-	self assert: customer identificationNumber equals: '22333444'.
+	self assertPepeSanchezIsCustomerOfSupplierWithID123.
 	! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:53:14'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:47:44'!
 test11DoesNotImportRecordsStartingWithECButMoreCharacters
-	| stream supplier |
 	
-	CustomerImporter valueFrom: self validImportData into: system.
+	self importValidCustomers.
 	
-	stream := ReadStream on: 'S,Supplier1,D,123
-ECustomer,D,22333444'.
+	self shouldFailImporting: self invalidExistingCustomerRecordStartData 
+	usingImporter: SupplierImporter
+	messageText: SupplierImporter invalidRecordTypeErrorDescription
+	asserting: [	self assertImportedOneSupplierWithoutExistingCustomer		].! !
 
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidRecordTypeErrorDescription.
-			self assert: system numberOfSuppliers equals: 1.
-			supplier := system supplierWithIdentificationType: 'D' number: '123'.
-			self assert: system numberOfCustomers equals: 2.
-			self assert: supplier isCustomersEmpty.
-		]! !
-
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 20:58:37'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:47:44'!
 test12CanNotImportExistingCustomerRecordWithLessThanThreeFields
-	| stream supplier |
 	
-	CustomerImporter valueFrom: self validImportData into: system.
 	
-	stream := ReadStream on: 'S,Supplier1,D,123
-EC,22333444'.
+	self importValidCustomers.
+	
+	self shouldFailImporting: self existingCustomerRecordForSupplierWithLessThanThreeFields
+	usingImporter: SupplierImporter
+	messageText: SupplierImporter 			invalidExistingCustomerRecordErrorDescription
+	asserting: [	self assertImportedOneSupplierWithoutExistingCustomer		].! !
 
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidExistingCustomerRecordErrorDescription .
-			self assert: system numberOfSuppliers equals: 1.
-			supplier := system supplierWithIdentificationType: 'D' number: '123'.
-			self assert: system numberOfCustomers equals: 2.
-			self assert: supplier isCustomersEmpty.
-		]! !
-
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 21:03:37'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:47:44'!
 test13CanNotImportExistingCustomerRecordWithMoreThanThreeFields
-	| stream supplier |
 	
-	CustomerImporter valueFrom: self validImportData into: system.
 	
-	stream := ReadStream on: 'S,Supplier1,D,123
-EC,Pepe,Sanchez,D,22333444'.
+	self importValidCustomers.
+	
+	self shouldFailImporting: self existingCustomerForSupplierWithMoreThanThreeFields
+	usingImporter: SupplierImporter
+	messageText: SupplierImporter invalidExistingCustomerRecordErrorDescription
+	asserting: [		self assertImportedOneSupplierWithoutExistingCustomer		].! !
 
-	self should: [SupplierImporter valueFrom: stream into: system]
-	raise: Error
-	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter invalidExistingCustomerRecordErrorDescription .
-			self assert: system numberOfSuppliers equals: 1.
-			supplier := system supplierWithIdentificationType: 'D' number: '123'.
-			self assert: system numberOfCustomers equals: 2.
-			self assert: supplier isCustomersEmpty.
-		]! !
-
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 21:14:40'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:30:38'!
 test14CanNotImportExistingCustomerWithoutSupplier
-	| stream |
-	stream := ReadStream on: 'EC,Pepe, Sanchez, D, 122333444'.
-	self should: [SupplierImporter valueFrom: stream into: system]
+	self should: [SupplierImporter valueFrom: self existingCustomerWithoutSupplier into: system]
 	raise: Error
 	withExceptionDo: [ :anError | 
-			self assert: anError messageText equals: SupplierImporter cannotImportCustomerWithoutSupplier .
+			self assert: anError messageText equals: SupplierImporter cannotImportWithoutCustomer .
 		].! !
 
-!ImportTest methodsFor: 'tests-suppliers' stamp: 'jgv 11/23/2023 21:24:32'!
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 13:39:33'!
 test15ValidSupplierWithAddressDataIsImportedCorrectly
-	| stream supplier address |
 	
-	stream := ReadStream on: 'S,Supplier1,D,123
-A,San Martin,3322,Olivos,1636,BsAs'.
+	SupplierImporter valueFrom: self validSupplierWithAddressData into: system.
+	self assertAddressOfSupplierWithId123At: 'San Martin' withNumber: 3322 town: 'Olivos' zipCode: 1636 province: 'BsAs'.! !
 
-	SupplierImporter valueFrom: stream into: system.
-	supplier := system supplierWithIdentificationType: 'D' number: '123'.
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:39:38'!
+test16DoesNotImportRecordsStartingWithAButMoreCharacters
+	self 
+		shouldFailImporting: self invalidAddressRecordForSupplierStartData
+		usingImporter: SupplierImporter 
+		messageText: SupplierImporter invalidRecordTypeErrorDescription
+		asserting: [		self assertImportedOneSupplierWithoutAddresses		].! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:40:56'!
+test17CanNotImportAddressRecordWithLessThanSixFields
 	
-	address := supplier addressAt: 'San Martin' ifNone: [self fail].
-	self assert: address streetName equals: 'San Martin'.
-	self assert: address streetNumber equals: 3322.
-	self assert: address town equals: 'Olivos'.
-	self assert: address zipCode equals: 1636.
-	self assert: address province equals: 'BsAs'.
-	! !
+	self
+		shouldFailImporting: self addressRecordForSupplierWithLessThanSixFields
+		usingImporter: SupplierImporter 
+		messageText: SupplierImporter invalidAddressRecordErrorDescription
+		asserting: [		self assertImportedOneSupplierWithoutAddresses		].! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:42:07'!
+test18CanNotImportAddressRecordWithMoreThanSixFields
+	self
+		shouldFailImporting: self addressRecordForSupplierWithMoreThanSixFields 
+		usingImporter: SupplierImporter
+		messageText: SupplierImporter invalidAddressRecordErrorDescription
+		asserting: [	self assertImportedOneSupplierWithoutAddresses.]! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:42:31'!
+test19CanNotImportAddressWithoutSupplier
+	self 
+		should: [SupplierImporter valueFrom: self addressWithoutSupplier into: system]
+		raise: Error
+		withExceptionDo: [ :anError | 			
+			self assert: anError messageText equals: SupplierImporter cannotImportWithoutCustomer.
+			]! !
+
+!ImportTest methodsFor: 'tests-suppliers' stamp: 'joaco 11/26/2023 14:43:40'!
+test20CanNotImportEmptyLine
+	self 
+		should: [SupplierImporter valueFrom: self emptyLine into: system]
+		raise: Error
+		withExceptionDo: [ :anError | 			
+			self assert: anError messageText equals: SupplierImporter invalidRecordTypeErrorDescription
+			]! !
 
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 21:15:52'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/26/2023 13:47:44'!
 test01ValidDataIsImportedCorrectly
 
-	CustomerImporter valueFrom: self validImportData into: system..
+	self importValidCustomers.
 
 	self assertImportedRightNumberOfCustomers.
 	self assertPepeSanchezWasImportedCorrecty.
@@ -291,72 +275,73 @@ test02CanNotImportAddressWithoutCustomer
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 19:56:58'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:07:28'!
 test03DoesNotImportRecordsStartingWithCButMoreCharacters
 
 	self
 		shouldFailImporting: self invalidCustomerRecordStartData
+		usingImporter: CustomerImporter 
 		messageText: CustomerImporter invalidRecordTypeErrorDescription
 		asserting: [ self assertNoCustomerWasImported ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 19:49:03'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:00:06'!
 test04DoesNotImportRecordsStartingWithAButMoreCharacters
 
 	self
 		shouldFailImporting: self invalidAddressRecordStartData
-		messageText: CustomerImporter invalidRecordTypeErrorDescription
+		usingImporter: CustomerImporter messageText: CustomerImporter invalidRecordTypeErrorDescription
 		asserting: [ self assertImportedOneCustomerWithoutAddress ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 19:49:36'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:00:06'!
 test05CanNotImportAddressRecordWithLessThanSixFields
 
 	self
 		shouldFailImporting: self addressRecordWithLessThanSixFields
-		messageText: CustomerImporter invalidAddressRecordErrorDescription
+		usingImporter: CustomerImporter messageText: CustomerImporter invalidAddressRecordErrorDescription
 		asserting: [ self assertImportedOneCustomerWithoutAddress ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 19:51:14'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:00:06'!
 test06CanNotImportAddressRecordWithMoreThanSixFields
 
 	self
 		shouldFailImporting: self addressRecordWithMoreThanSixFields
-		messageText: CustomerImporter invalidAddressRecordErrorDescription
+		usingImporter: CustomerImporter messageText: CustomerImporter invalidAddressRecordErrorDescription
 		asserting: [ self assertImportedOneCustomerWithoutAddress ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 19:56:58'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:00:06'!
 test07CanNotImportCustomerRecordWithLessThanFiveFields
 
 	self
 		shouldFailImporting: self customerRecordWithLessThanFiveFields
-		messageText: CustomerImporter invalidCustomerRecordErrorDescription
+		usingImporter: CustomerImporter messageText: CustomerImporter invalidCustomerRecordErrorDescription
 		asserting: [ self assertNoCustomerWasImported ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 19:56:58'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:00:06'!
 test08CanNotImportCustomerRecordWithMoreThanFiveFields
 
 	self
 		shouldFailImporting: self customerRecordWithMoreThanFiveFields
-		messageText: CustomerImporter invalidCustomerRecordErrorDescription
+		usingImporter: CustomerImporter messageText: CustomerImporter invalidCustomerRecordErrorDescription
 		asserting: [ self assertNoCustomerWasImported ]
 
 	! !
 
-!ImportTest methodsFor: 'tests' stamp: 'HAW 5/22/2022 20:01:43'!
+!ImportTest methodsFor: 'tests' stamp: 'joaco 11/25/2023 19:00:06'!
 test09CannotImportEmptyLine
 
 	self
 		shouldFailImporting: self emptyLine
-		messageText: CustomerImporter invalidRecordTypeErrorDescription
+		usingImporter: CustomerImporter messageText: CustomerImporter invalidRecordTypeErrorDescription
 		asserting: [ self assertNoCustomerWasImported ]
 
 	! !
@@ -375,6 +360,32 @@ assertAddressOf: importedCustomer at: aStreetName hasNumber: aNumber town: aTown
 	self assert: aProvince equals: importedAddress province.
 
 	! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/26/2023 13:39:00'!
+assertAddressOfSupplierWithId123At: aStreetName withNumber: aStreetNumber town: aTown zipCode: aZipCode province: aProvince    
+
+	| supplier address |
+	
+	supplier := system supplierWithIdentificationType: 'D' number: '123'.
+	
+	address := supplier addressAt: aStreetName ifNone: [self fail].
+	self assert: address streetName equals: aStreetName.
+	self assert: address streetNumber equals: aStreetNumber.
+	self assert: address town equals: aTown.
+	self assert: address zipCode equals: aZipCode.
+	self assert: address province equals: aProvince! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/25/2023 19:30:46'!
+assertCustomerOf: aSupplier withName: aCustomerName lastName: aCustomerLastName identificationType: anIdentificationType identificationNumber: anIdentificationNumber   
+
+	| customer |
+
+	customer := aSupplier customerWithIdentificationType: anIdentificationType number: anIdentificationNumber ifNone: [self fail].
+	
+	self assert: customer firstName equals: aCustomerName.
+	self assert: customer lastName equals: aCustomerLastName.
+	self assert: customer identificationType equals: anIdentificationType.
+	self assert: customer identificationNumber equals: anIdentificationNumber! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 21:34:30'!
 assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: aFirstName lastName: aLastName
@@ -402,10 +413,38 @@ assertImportedOneCustomerWithoutAddress
 	self assert: importedCustomer isAddressesEmpty
 	! !
 
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/26/2023 12:55:27'!
+assertImportedOneNewCustomersForSupplier
+
+	^ self assert: 1 equals: system numberOfCustomers! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/26/2023 13:22:23'!
+assertImportedOneSupplierWithoutCustomer
+
+	|supplier|
+		
+			self assertImporterdRightNumberOfSuppliers.
+			supplier := system supplierWithIdentificationType: 'D' number: '123'.
+			self assertNoCustomerWasImported.
+			self assert: supplier isCustomersEmpty! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/26/2023 13:23:36'!
+assertImportedOneSupplierWithoutExistingCustomer
+
+	|supplier|
+		self assertImporterdRightNumberOfSuppliers.
+			supplier := system supplierWithIdentificationType: 'D' number: '123'.
+			self assert: supplier isCustomersEmpty! !
+
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 21:33:18'!
 assertImportedRightNumberOfCustomers
 
 	^ self assert: 2 equals: system numberOfCustomers! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/25/2023 18:57:01'!
+assertImporterdRightNumberOfSuppliers
+
+	^ self assert: system numberOfSuppliers equals: 1! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:45'!
 assertJuanPerezWasImportedCorrectly
@@ -421,6 +460,36 @@ assertNoCustomerWasImported
 
 	^ self assert: 0 equals: system numberOfCustomers! !
 
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/25/2023 19:05:16'!
+assertNoSupplierWasImported
+
+	^ self assert: system numberOfSuppliers equals: 0! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/26/2023 13:45:35'!
+assertPepeSanchezIsCustomerOfSupplierWithID123
+
+	|supplier|
+	
+	
+	
+	supplier := system supplierWithIdentificationType: 'D' number: '123'.
+	
+	
+	
+	self
+		assertCustomerOf: supplier 
+		withName: 'Pepe'
+		lastName: 'Sanchez' 
+		identificationType: 'D'
+		identificationNumber: '22333444'! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/26/2023 13:45:52'!
+assertPepeSanchezWasImportedAsCustomerOfSupplierWithID123
+	
+	self assertImportedOneNewCustomersForSupplier.
+	
+	self assertPepeSanchezIsCustomerOfSupplierWithID123.! !
+
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:05'!
 assertPepeSanchezWasImportedCorrecty
 
@@ -433,11 +502,22 @@ assertPepeSanchezWasImportedCorrecty
 
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 21:15:52'!
-shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAssertionBlock
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/25/2023 18:57:58'!
+assertSupplier1WasImportedCorrectly
+
+	| supplier |
+	
+	supplier := system supplierWithIdentificationType: 'D' number: '123'.
+	self assert: (supplier isNamed: 'Supplier1').
+	self assert: (supplier isIdentifiedAs: 'D' withNumber: '123').
+	self assert: (supplier isAddressesEmpty).
+	self assert: (supplier isCustomersEmpty)! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'joaco 11/25/2023 19:00:06'!
+shouldFailImporting: aReadStream usingImporter: aCSVImporter messageText: anErrorMessageText asserting: anAssertionBlock
 
 	self
-		should: [ CustomerImporter valueFrom: aReadStream into: system. ]
+		should: [ aCSVImporter valueFrom: aReadStream into: system. ]
 		raise: Error - MessageNotUnderstood
 		withExceptionDo: [ :anError |
 			self assert: anErrorMessageText equals: anError messageText.
@@ -495,6 +575,23 @@ emptyLine
 	^ReadStream on: '
 '! !
 
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:28:43'!
+existingCustomerForSupplierWithMoreThanThreeFields
+
+	^ ReadStream on: 'S,Supplier1,D,123
+EC,Pepe,Sanchez,D,22333444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:25:32'!
+existingCustomerRecordForSupplierWithLessThanThreeFields
+
+	^ ReadStream on: 'S,Supplier1,D,123
+EC,22333444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:30:35'!
+existingCustomerWithoutSupplier
+
+	^ ReadStream on: 'EC,Pepe, Sanchez, D, 122333444'! !
+
 !ImportTest methodsFor: 'test data' stamp: 'HAW 5/22/2022 19:34:25'!
 invalidAddressRecordStartData
 
@@ -506,6 +603,50 @@ invalidCustomerRecordStartData
 
 	^ReadStream on: 'CC,Pepe,Sanchez,D,22333444'! !
 
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:17:31'!
+invalidExistingCustomerRecordStartData
+
+	^ ReadStream on: 'S,Supplier1,D,123
+ECustomer,D,22333444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 12:46:32'!
+invalidNewCustomerRecordStartData
+
+	^ ReadStream on: 'S,Supplier1,D,123
+NCustomer,Pepe,Sanchez,D,22333444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/25/2023 19:02:48'!
+invalidSupplierRecordStartData
+
+	^ ReadStream on: 'Supplier,Supplier1,D,123'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 12:58:18'!
+newCustomerRecordForSupplierWithLessThanFiveFields
+
+	^ ReadStream on: 'S,Supplier1,D,123
+NC,Pepe,Sanchez'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:00:48'!
+newCustomerRecordForSupplierWithMoreThanFiveFields
+
+	^ ReadStream on: 'S,Supplier1,D,123
+NC,Pepe,Sanchez, D, 122333444, Alias: Pepoide'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:06:53'!
+newCustomerWithoutSupplier
+
+	^ ReadStream on: 'NC,Pepe,Sanchez, D, 122333444'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/25/2023 19:08:53'!
+supplierRecordWithLessThanFourFields
+
+	^ ReadStream on: 'S,Supplier1'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/25/2023 19:10:41'!
+supplierRecordWithMoreThanFourFields
+
+	^ ReadStream on: 'S,Supplier1,D,123,Fravega'! !
+
 !ImportTest methodsFor: 'test data' stamp: 'HAW 5/22/2022 18:08:08'!
 validImportData
 
@@ -515,6 +656,31 @@ A,San Martin,3322,Olivos,1636,BsAs
 A,Maipu,888,Florida,1122,Buenos Aires
 C,Juan,Perez,C,23-25666777-9
 A,Alem,1122,CABA,1001,CABA'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/25/2023 18:55:19'!
+validSupplierImportData
+
+	^ ReadStream on: 'S,Supplier1,D,123'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:31:02'!
+validSupplierWithAddressData
+
+	^ ReadStream on: 'S,Supplier1,D,123
+A,San Martin,3322,Olivos,1636,BsAs'! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/26/2023 13:47:44'!
+validSupplierWithExistingCustomerData
+
+	self importValidCustomers.
+	
+	SupplierImporter valueFrom: ( ReadStream on: 'S,Supplier1,D,123
+EC,D,22333444') into: system! !
+
+!ImportTest methodsFor: 'test data' stamp: 'joaco 11/25/2023 19:15:07'!
+validSupplierWithNewCustomerData
+
+	^ ReadStream on: 'S,Supplier1,D,123
+NC,Pepe,Sanchez,D,22333444'! !
 
 
 !classDefinition: #Address category: 'CustomerImporter'!
@@ -582,6 +748,42 @@ zipCode
 zipCode: aZipCode
 
 	zipCode := aZipCode! !
+
+
+!classDefinition: #AddressMapper category: 'CustomerImporter'!
+Object subclass: #AddressMapper
+	instanceVariableNames: 'record'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!AddressMapper methodsFor: 'initialization' stamp: 'joaco 11/25/2023 18:13:34'!
+initializeFrom: aRecord
+	record := aRecord.! !
+
+
+!AddressMapper methodsFor: 'evaluating' stamp: 'joaco 11/25/2023 18:14:35'!
+map
+	|newAddress|
+	
+	newAddress := Address new.
+	newAddress streetName: record second.
+	newAddress streetNumber: record third asNumber .
+	newAddress town: record fourth.
+	newAddress zipCode: record fifth asNumber .
+	newAddress province: record sixth.
+	
+	^newAddress.! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'AddressMapper class' category: 'CustomerImporter'!
+AddressMapper class
+	instanceVariableNames: ''!
+
+!AddressMapper class methodsFor: 'instance creation' stamp: 'joaco 11/25/2023 18:13:34'!
+from: aRecord
+	^self new initializeFrom: aRecord! !
 
 
 !classDefinition: #CSVImporter category: 'CustomerImporter'!
@@ -687,7 +889,7 @@ assertValidAddressRecord
 
 	^ record size ~= 6 ifTrue: [ self error: self class invalidAddressRecordErrorDescription ]! !
 
-!CustomerImporter methodsFor: 'address' stamp: 'HAW 5/22/2022 19:59:12'!
+!CustomerImporter methodsFor: 'address' stamp: 'joaco 11/25/2023 18:47:18'!
 importAddress
 
 	| newAddress |
@@ -695,18 +897,18 @@ importAddress
 	self assertCustomerWasImported.
 	self assertValidAddressRecord.
 
-	newAddress := Address new.
-	newCustomer addAddress: newAddress.
-	newAddress streetName: record second.
-	newAddress streetNumber: record third asNumber .
-	newAddress town: record fourth.
-	newAddress zipCode: record fifth asNumber .
-	newAddress province: record sixth! !
+	newAddress := self mapAddressFromRecord.
+	
+	newCustomer addAddress: newAddress.! !
 
 !CustomerImporter methodsFor: 'address' stamp: 'HAW 5/22/2022 19:37:45'!
 isAddressRecord
 
 	^ record first = 'A'! !
+
+!CustomerImporter methodsFor: 'address' stamp: 'joaco 11/25/2023 18:46:48'!
+mapAddressFromRecord
+	^(AddressMapper from: record) map.! !
 
 
 !CustomerImporter methodsFor: 'evaluating - private' stamp: 'jgv 11/23/2023 19:13:38'!
@@ -753,6 +955,11 @@ CSVImporter subclass: #SupplierImporter
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
+!SupplierImporter methodsFor: 'supplier' stamp: 'joaco 11/25/2023 18:21:03'!
+assertSupplierWasImported
+
+	^ newSupplier isNil ifTrue: [self error: SupplierImporter cannotImportWithoutCustomer ].! !
+
 !SupplierImporter methodsFor: 'supplier' stamp: 'jgv 11/23/2023 20:40:55'!
 assertValidSupplierRecord
 
@@ -784,11 +991,6 @@ assertIsValidExistingCustomer
 assertIsValidNewCustomerRecord
 
 	^ record size ~= 5 ifTrue: [self error: SupplierImporter invalidCustomerRecordErrorDescription ]! !
-
-!SupplierImporter methodsFor: 'customer' stamp: 'jgv 11/23/2023 21:14:18'!
-assertSupplierWasImported
-
-	^ newSupplier isNil ifTrue: [self error: SupplierImporter cannotImportCustomerWithoutSupplier ]! !
 
 !SupplierImporter methodsFor: 'customer' stamp: 'jgv 11/23/2023 21:12:39'!
 importExistingCustomer
@@ -822,37 +1024,46 @@ isNewCustomerRecord
 	^ record first = 'NC'! !
 
 
-!SupplierImporter methodsFor: 'evaluating - private' stamp: 'jgv 11/23/2023 21:21:35'!
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'joaco 11/25/2023 18:43:56'!
 importRecord
 	
-	(self isSupplierRecord) ifTrue: [
-			^self importSupplier.
-		].
-	(self isNewCustomerRecord) ifTrue: [
-			^self importNewCustomer.
-		].
-	(self isExistingCustomerRecord) ifTrue: [
-			^self importExistingCustomer.
-		].
-	(record first = 'A') ifTrue: [
-			^self importAddress.
-		].
+	self assertRecordNotEmpty.
+		
+	self isSupplierRecord ifTrue: [			^self importSupplier].
+	self isNewCustomerRecord ifTrue: [			^self importNewCustomer		].
+	self isExistingCustomerRecord ifTrue: [			^self importExistingCustomer		].
+	self isAddressRecord ifTrue: [			^self importAddress		].
+	
 	self error: SupplierImporter invalidRecordTypeErrorDescription.
 	! !
 
+!SupplierImporter methodsFor: 'evaluating - private' stamp: 'joaco 11/25/2023 17:32:55'!
+isAddressRecord
 
-!SupplierImporter methodsFor: 'address' stamp: 'jgv 11/23/2023 21:22:12'!
+	^ record first = 'A'! !
+
+
+!SupplierImporter methodsFor: 'address' stamp: 'joaco 11/25/2023 17:32:01'!
+assertIsValidAddressRecord
+
+	^ record size ~= 6 ifTrue: [self error: SupplierImporter invalidAddressRecordErrorDescription]! !
+
+!SupplierImporter methodsFor: 'address' stamp: 'joaco 11/25/2023 18:15:27'!
 importAddress
 
-	| newAddress |
-
-	newAddress := Address new.
+	|newAddress|	 
+	
+	self assertSupplierWasImported.
+	self assertIsValidAddressRecord.
+	
+	newAddress := self mapAddressFromRecord.
+	
 	newSupplier addAddress: newAddress.
-	newAddress streetName: record second.
-	newAddress streetNumber: record third asNumber .
-	newAddress town: record fourth.
-	newAddress zipCode: record fifth asNumber .
-	newAddress province: record sixth! !
+! !
+
+!SupplierImporter methodsFor: 'address' stamp: 'joaco 11/25/2023 18:15:38'!
+mapAddressFromRecord
+	^(AddressMapper from: record) map! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
@@ -860,9 +1071,26 @@ importAddress
 SupplierImporter class
 	instanceVariableNames: ''!
 
+!SupplierImporter class methodsFor: 'error description' stamp: 'joaco 11/25/2023 18:18:58'!
+cannotImportAddressWithoutSupplier
+	^'can not import address without supplier!!'! !
+
 !SupplierImporter class methodsFor: 'error description' stamp: 'jgv 11/23/2023 21:14:18'!
 cannotImportCustomerWithoutSupplier
 	^'Cannot import new customer without supplier'! !
+
+!SupplierImporter class methodsFor: 'error description' stamp: 'joaco 11/25/2023 18:43:23'!
+cannotImportFromEmptyStream
+	^'Can not import from empty stream!!'! !
+
+!SupplierImporter class methodsFor: 'error description' stamp: 'joaco 11/25/2023 18:22:11'!
+cannotImportWithoutCustomer
+	^'Can not import without a customer record first!!'! !
+
+!SupplierImporter class methodsFor: 'error description' stamp: 'joaco 11/25/2023 17:24:49'!
+invalidAddressRecordErrorDescription
+	^'invalid address record'.
+	! !
 
 !SupplierImporter class methodsFor: 'error description' stamp: 'jgv 11/23/2023 20:29:32'!
 invalidCustomerRecordErrorDescription
