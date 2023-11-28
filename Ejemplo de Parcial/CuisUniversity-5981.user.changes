@@ -1,0 +1,3910 @@
+
+
+----QUIT----(13 August 2023 19:14:09) CuisUniversity-5981.image priorSource: 5713367!
+
+----STARTUP---- (13 August 2023 19:14:10) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5981.image!
+
+
+----QUIT----(13 August 2023 19:14:10) CuisUniversity-5981.image priorSource: 10197065!
+
+----STARTUP---- (18 September 2023 20:36:46) as /home/clinux01/Escritorio/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/clinux01/Escritorio/linux64/1erParcial/ISW1-2022-1C-Parcial-1.st----!
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 20:52:14'!
+PASSED!
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:03:21'!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | element |
+		element := unaColeccion at: ix.
+		self relocate: element after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:03:55' prior: 50651396!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:04:53' prior: 50650962!
+advance: aTimeLapse
+	
+	| ix cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:01' prior: 50651419!
+advance: aTimeLapse
+	
+	|  cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:07' prior: 50651430!
+advance: aTimeLapse
+	
+	|  cars |
+	
+	cars := track cars asOrderedCollection.
+	^self recorrer: cars verificando: aTimeLapse .
+	
+	"ix := 1.
+	[ix <= cars size] whileTrue: [ | car |
+		car := cars at: ix.
+		self relocate: car after: aTimeLapse.
+		ix := ix + 1.
+	]"
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:41' prior: 50651408!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar un closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:05:42' prior: 50651452!
+recorrer: unaColeccion verificando: unaCondicion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		self relocate: car after: unaCondicion.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:06:36'!
+recorrer: unaColeccion realizando: unaAccion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | car |
+		car := unaColeccion at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	]
+! !
+!GrandPrix methodsFor: 'simulation' stamp: 'avb 9/18/2023 21:06:51' prior: 50651478!
+recorrer: unaColeccion realizando: unaAccion
+	| ix  |
+	"el metodo relocate es para autoss, pero quizas puedo pasar uns closure"
+	"cars := track cars asOrderedCollection."
+	ix := 1.
+
+	[ix <= unaColeccion size] whileTrue: [ | elem |
+		elem := unaColeccion at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	]
+! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:07:45' prior: 50651248!
+cars
+	| allCars ix |
+	
+	allCars := Set new.
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars
+	! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:07:50'!
+PASSED!
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:08:04'!
+PASSED!
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:09:39' prior: 50651503!
+cars
+	| allCars ix |
+	
+	allCars := Set new.
+	self usar: allCars yRealizar: [allCars addAll: 1].
+	"ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	]."
+
+	^ allCars
+	! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:11:48'!
+usar: allCars yRealizar: unaAccion
+	|ix|
+	 [allCars addAll: 1].
+
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	].
+
+	^ allCars
+	! !
+!Track methodsFor: 'accessing' stamp: 'avb 9/18/2023 21:12:37' prior: 50651700!
+usar: unaColeccion yRealizar: unaAccion
+	|ix|
+	 "[allCars addAll: 1]."
+
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		unaAccion value.
+		ix := ix + 1.
+	].
+
+	
+	! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:13:07'!
+ERROR!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:13:07'!
+PASSED!
+
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car activated timesActivated'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #Turbo category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:13'!
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car activated timesActivated'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car '
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #Turbo category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:50'!
+FormulaOneCar subclass: #Turbo
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+FormulaOneCar subclass: #TurboActivado
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classDefinition: #TurboActivado category: 'ISW1-2022-1C-Parcial-1' stamp: 'avb 9/18/2023 21:19:57'!
+FormulaOneCar subclass: #TurboActivado
+	instanceVariableNames: 'car'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2022-1C-Parcial-1'!
+
+!classRenamed: #Turbo as: #TurboDesactivado stamp: 'avb 9/18/2023 21:20:05'!
+Smalltalk renameClassNamed: #Turbo as: #TurboDesactivado!
+!TurboActivado methodsFor: 'no messages' stamp: 'avb 9/18/2023 21:20:20'!
+dd 
+self error: self turboAlreadyActivatedErrorDescription ! !
+!TurboActivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:20:36' overrides: 50650872!
+activateTurbo
+	self error: self turboAlreadyActivatedErrorDescription ! !
+
+!methodRemoval: TurboActivado #dd stamp: 'avb 9/18/2023 21:20:41'!
+dd 
+self error: self turboAlreadyActivatedErrorDescription !
+!TurboDesactivado methodsFor: 'nil' stamp: 'avb 9/18/2023 21:21:08'!
+activateTurboTo: unAuto
+! !
+!TurboDesactivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:21:44' prior: 50651864!
+activateTurboTo: unAuto
+	(unAuto currentSector) activateTurboTo: unAuto .! !
+!TurboDesactivado methodsFor: 'as yet unclassified' stamp: 'avb 9/18/2023 21:22:27' prior: 50651869!
+activateTurboTo: unAuto
+	^ currentSector activateTurboTo: unAuto .! !
+!FormulaOneCar methodsFor: 'turbo' stamp: 'avb 9/18/2023 21:23:05' prior: 50650872!
+activateTurbo
+
+	"turboActivated ifTrue: [ self error: self turboAlreadyActivatedErrorDescription ].
+	
+	currentSector activateTurboTo: self."
+
+	self subclassResponsibility .! !
+
+!testRun: #FormulaOneTest #test01SectorLengthMustBePositive stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test02ACarCanNotBePlacedInAKilometerGreaterThanSectorLength stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test03CarCannotActivateTurboInNonTurboSector stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test04CarCannotActivateTurboWhenNoCarAhead stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test05CarCanActivateTurboWhenLessThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test06CarCannotActivateTurboWhenMoreThanASecondBehindAnotherCar stamp: 'avb 9/18/2023 21:23:11'!
+FAILURE!
+
+!testRun: #FormulaOneTest #test07TrackMustHaveSectors stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test08TheLengthOfATrackShouldBeTheSumOfItsSectors stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test09ACarCanNotBePlacedInAKilometerGreaterThanTrackLength stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test10TrackShouldPlaceCarInKilometerWithinSector stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test11TrackShouldKnowCarsInRunning stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test12CarCannotBeInMoreThanOneSectorAtATime stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test13GrandPrixLengthShouldBeTrackLengthTimesNumberOfLaps stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test14TwoCarsCanBeAtTheSameDistanceFromStart stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test15ACarStoppedShouldNotMoveAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test16ACarSpeedingShouldMoveAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test17GrandPrixKnowsSectorOfCar stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+
+!testRun: #FormulaOneTest #test18GrandPrixKnowsSectorOfCarAfterSomeTime stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test19GrandPrixMovesCarsBetweenSectors stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test20FirstTurboIncrementsSpeedByTwentyPercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test21SecondTurboSpeedsByTenPercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test22ThirdTurboSpeedsByFivePercent stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test23AfterThridTurbo_TurboIsExhausted stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test24CanNotActivateTurboWhenTurboIsActivated stamp: 'avb 9/18/2023 21:23:11'!
+ERROR!
+
+!testRun: #FormulaOneTest #test25CanNotDeactivateTurboWhenIsDeactivated stamp: 'avb 9/18/2023 21:23:11'!
+PASSED!
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:27:28'!
+codigosRepetidos
+
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:27:59' prior: 50651977!
+codigosRepetidos
+"sector if none"
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:28:28' prior: 50651987!
+codigosRepetidos
+"sector if none"
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value.
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:28:41' prior: 50651997!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:29:11' prior: 50652014!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:29:49' prior: 50652031!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:30:32' prior: 50652057!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"
+
+"cars
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars"! !
+!Track methodsFor: 'car position' stamp: 'avb 9/18/2023 21:32:41' prior: 50652089!
+codigosRepetidos
+"sector if none
+	 | ix aBlock |
+	
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | sector aCar |
+		sector :=	sectors at: ix.
+		(sector includes: aCar) ifTrue: [ ^ sector ].
+		ix := ix + 1.
+	].
+
+	^ aBlock value."
+	"  put at
+		ix := 1.
+	sector := sectors at: ix. 
+	acc := 0 * kilometer.
+
+	[aPosition > (acc +  sector length)] whileTrue: [
+		acc := acc + sector length.
+		ix := ix + 1.
+		sector := sectors at: ix.
+	]."
+
+"	position of	
+	ix := 1.
+	sector := (sectors at: ix).
+	accumulatedLength := 0 * kilometer.
+
+	[sector includes: aCar] whileFalse: [
+		accumulatedLength := accumulatedLength + sector length.
+		ix := ix + 1.
+		sector := (sectors at: ix).
+	].
+
+	^ accumulatedLength + (sector positionOf: aCar)."
+	
+	" lenght
+		| acc ix |
+
+	acc := 0 * kilometer.
+	ix := 1.
+	
+	[ix <= sectors size] whileTrue: [ | sector |
+		sector := sectors at: ix.
+		acc := acc + sector length.
+		ix := ix + 1.		
+	].
+"
+
+"cars
+	ix := 1.
+	[ix <= sectors size] whileTrue: [ | s |
+		s := sectors at: ix.
+		allCars addAll: s cars.
+		ix := ix + 1.
+	].
+
+	^ allCars"
+	
+	" includes
+		| inc ix sector |
+	inc := false.
+	ix := 1.
+	
+	(sectors size = 0) ifTrue: [ ^ inc ].
+	
+	sector := sectors at: ix.
+	(sector includes: aCar) 
+		ifTrue: [ inc := true]
+		ifFalse: [
+			ix := ix +1.
+			[ix <= sectors size] whileTrue: [ | s |
+				s := sectors at: ix.
+				(s includes: aCar) ifTrue: [ ^ true ].
+				ix := ix + 1
+			]	
+		]. 
+	^ inc"! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+
+----STARTUP---- (27 November 2023 18:54:19) as /home/clinux01/Escritorio/linux64/CuisUniversity-5981.image!
+
+
+----End fileIn of /home/clinux01/Descargas/ISW1-2021-1C-2doParcial.st----!
+
+TestCase subclass: #RondaDeTrucoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #RondaDeTrucoTest category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 19:08:19'!
+TestCase subclass: #RondaDeTrucoTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTrucoTest methodsFor: 'no messages' stamp: 'jgv 11/27/2023 19:13:58'!
+test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 19:17:34'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTrucoTest methodsFor: 'as yet unclassified' stamp: 'jgv 11/27/2023 19:17:23' prior: 50650852!
+test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: OrderedCollection.
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:17:56'!
+ERROR!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:18:02'!
+cartasDeLaMano: aRenameMe1 cartasDelPie: OrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeCartasDeLaMano: aRenameMe1 cartasDelPie: OrderedCollection ! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:18:25' prior: 50650883!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: OrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: OrderedCollection ! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:18:34' prior: 50650894!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco ! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:18:42' prior: 50650905!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco ! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:19:13' prior: 50650916!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:19:22'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:19:37'!
+noSePuedeCrearRondaSinCartasRepartidas
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:19:56' prior: 50650938!
+noSePuedeCrearRondaSinCartasRepartidas
+	^'No se puede crear la ronda sin cartas repartidas!!'! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:19:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:19:56'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:20:03'!
+test02NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: OrderedCollection.
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:20:19'!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: OrderedCollection.
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].! !
+
+!methodRemoval: RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:20:19'!
+test02NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: OrderedCollection.
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:22:13' prior: 50650971!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeBasto) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:22:44' prior: 50650999!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeBasto) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:22:47'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:22:52'!
+noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:23:28' prior: 50651034!
+noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano
+	^'No se puede crear una ronda de truco sin repartir cartas a La Mano'! !
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:23:29'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:24:35' prior: 50650924!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	unaManoDeTruco isEmpty ifTrue: [ self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano ].
+	self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:24:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:24:37'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:24:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:24:37'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:24:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:24:43'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:24:43'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:24:43'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:25:44' prior: 50651052!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:25:46'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:26:08' prior: 50651014!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeBasto) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:26:56' prior: 50651117!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:26:59'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:26:59'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:26:59'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:26:59'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:27:30' prior: 50650865!
+test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: OrderedCollection new.
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].! !
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:27:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:27:32'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:27:32'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:27:32'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:27:46'!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:27:54'!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+
+!methodRemoval: RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:27:54'!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:28:40' prior: 50651210!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:28:46' prior: 50651242!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:28:49'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:28:53'!
+noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:29:58' prior: 50651278!
+noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie
+	^'No se puede crear una ronda de truco sin repartir cartas a La Mano'! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:29:59'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:29:59'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:29:59'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:29:59'!
+PASSED!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:30:29' prior: 50651099!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:30:57'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:30:57'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:30:57'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:30:57'!
+PASSED!
+
+self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.
+		].!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:31:35'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:31:57' prior: 50651258!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano .
+		].! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:31:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:31:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:31:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:31:58'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:32:01' prior: 50651354!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:32:13' prior: 50651386!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:33:05' prior: 50651402!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self halt.
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].! !
+
+RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:33:50' prior: 50651284!
+noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie
+	^'No se puede crear una ronda de truco sin repartir cartas al Pie'! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:34:02' prior: 50651418!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:34:03'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:35:28' prior: 50651308!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:35:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:35:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:35:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:35:29'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:36:41'!
+test03NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:36:51'!
+test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].! !
+
+!methodRemoval: RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:36:51'!
+test03NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:37:58' prior: 50651513!
+test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:38:52' prior: 50651546!
+test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartas.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:39:03' prior: 50651563!
+test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:39:07'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:39:12'!
+noSePuedenRepartirMenosDeTresCartasACadaJugador
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:39:32' prior: 50651600!
+noSePuedenRepartirMenosDeTresCartasACadaJugador
+	^'No se pueden repartir menos de tres cartas a los jugadores!!'! !
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:39:32'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:40:51' prior: 50651464!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:40:53'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:40:53'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:40:53'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:40:53'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:40:53'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:41:22'!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:43:10' prior: 50651661!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+						   cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:43:26' prior: 50651678!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+						   cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:43:41' prior: 50651697!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco 
+			cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+			cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:43:51' prior: 50651717!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+				cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:43:58' prior: 50651737!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+				cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:43:59'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:44:04'!
+noSePuedenRepartirMasDeTresCartasACadaJugador
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:44:23' prior: 50651782!
+noSePuedenRepartirMasDeTresCartasACadaJugador
+	^'No se pueden repartir más de tres cartas a cada jugador!!'! !
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:44:23'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:45:29' prior: 50651618!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco < 3ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:45:30'!
+ERROR!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:45:41' prior: 50651800!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size < 3ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:45:41'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:45:41'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:45:41'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:45:41'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:45:41'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:45:41'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:45:51'!
+test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+				cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:46:05'!
+test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+				cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+
+!methodRemoval: RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:46:05'!
+test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+				cartasDelPie: (OrderedCollection with: CartaDeTruco anchoDeEspada).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:46:24' prior: 50651900!
+test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: CartaDeTruco anchoDeEspada)
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:46:26'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:46:58' prior: 50651830!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size ~= 3 ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:47:02'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:47:16' prior: 50651966!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size ~= 3 ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:47:17'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:47:40'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:49:02' prior: 50651941!
+test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:49:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:49:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:49:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:49:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:49:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:49:04'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:49:04'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:49:04'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:49:18'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:49:18'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:49:18'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:49:18'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:49:18'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:49:18'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:49:18'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:49:18'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:45:41' prior: 50651996!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size < 3ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:45:41' prior: 50652123!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size < 3ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:45:41' prior: 50652148!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size < 3ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:45:41' prior: 50652173!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	unaManoDeTruco size < 3ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:50:29'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:50:31'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:51:09'!
+test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:51:21' prior: 50652257!
+test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:51:24' prior: 50652279!
+test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:51:25'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:52:04' prior: 50652198!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:52:06'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:52:06'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:52:06'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:52:12'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:52:12'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:52:12'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:53:25'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:53:25'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:53:25'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:53:25'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:53:25'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:53:25'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:53:25'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:53:25'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:53:44' prior: 50651757!
+test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro)
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:53:45'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:53:50'!
+PASSED!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:54:35' prior: 50652322!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:54:43' prior: 50652520!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco isEmpty and: otraManoDeTruco isEmpty) ifTrue: [ self error: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas].
+	unaManoDeTruco isEmpty ifTrue:  [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.].
+	(otraManoDeTruco isEmpty) ifTrue: [self error: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie.].
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 19:56:09' prior: 50652546!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!methodRemoval: RondaDeTrucoTest #test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas stamp: 'jgv 11/27/2023 19:56:22'!
+test01NoSePuedeCrearUnaRondaDeTrucoSinManosRepartidas
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: OrderedCollection new.
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearRondaSinCartasRepartidas
+		].!
+
+!methodRemoval: RondaDeTrucoTest #test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano stamp: 'jgv 11/27/2023 19:56:23'!
+test02NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaLaMano
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: OrderedCollection new cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) 
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasALaMano.
+		].!
+
+!methodRemoval: RondaDeTrucoTest #test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie stamp: 'jgv 11/27/2023 19:56:25'!
+test03NoSePuedeCrearUnaRondaDeTrucoSinCartasRepartidasParaElPie
+	self 
+	should: [
+			RondaDeTruco cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto)) cartasDelPie: OrderedCollection new
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeCrearUnaRondaDeTrucoSinRepartirCartasAlPie .
+		].!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:56:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 19:56:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:56:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 19:56:30'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:57:27'!
+test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:57:32'!
+test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+
+!methodRemoval: RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 19:57:32'!
+test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada) with: CartaDeTruco sieteDeOro).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:57:49' prior: 50652674!
+test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto ) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:57:51' prior: 50652720!
+test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 19:58:18' prior: 50652741!
+test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores
+	self 
+	should: [
+			RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeRepartirUnaMismaCartaAAmbosJugadores.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 19:58:21'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:58:25'!
+noSePuedeRepartirUnaMismaCartaAAmbosJugadores
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 19:58:43' prior: 50652788!
+noSePuedeRepartirUnaMismaCartaAAmbosJugadores
+	^'No se puede repartir una misma carta a ambors jugadores!!'! !
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 19:58:44'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 20:00:22' prior: 50652572!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	(unaManoDeTruco size > 3 or: [otraManoDeTruco size > 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.]
+	
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+----End fileIn of /home/clinux01/Escritorio/linux64/Packages/TerseGuide.pck.st----!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 20:02:37' prior: 50652806!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	(unaManoDeTruco size > 3 or: [otraManoDeTruco size > 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.].
+	unaManoDeTruco anySatisfy: [ :unaCartaDeTruco | otraManoDeTruco includes: unaCartaDeTruco].
+	
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:02:38'!
+FAILURE!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 20:03:54' prior: 50655742!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	(unaManoDeTruco size > 3 or: [otraManoDeTruco size > 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.].
+	(unaManoDeTruco anySatisfy: [ :unaCartaDeTruco | otraManoDeTruco includes: unaCartaDeTruco]) ifTrue: [
+			self error: RondaDeTruco noSePuedeRepartirUnaMismaCartaAAmbosJugadores.
+		].
+	
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:03:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:03:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:03:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:03:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:03:58'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:03:58'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:08:03'!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeRepartirUnaMismaCartaAAmbosJugadores.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:08:15' prior: 50655816!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noSePuedeRepartirUnaMismaCartaAAmbosJugadores.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:09:44' prior: 50655839!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeComenzarLaRonda.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:13:22' prior: 50655862!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeComenzarLaRonda.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:13:30'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:13:53' prior: 50655884!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeComenzarLaRonda.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:13:54'!
+ERROR!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 20:14:45' prior: 50655767!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	(unaManoDeTruco size > 3 or: [otraManoDeTruco size > 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.].
+	(unaManoDeTruco anySatisfy: [ :unaCartaDeTruco | otraManoDeTruco includes: unaCartaDeTruco]) ifTrue: [
+			self error: RondaDeTruco noSePuedeRepartirUnaMismaCartaAAmbosJugadores.
+		].
+	^self new.
+	
+	"^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco "! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:14:47'!
+ERROR!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:15:01'!
+pieJuega: aRenameMe1 
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:15:15' prior: 50655965!
+pieJuega: unaCartaDeTruco 
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:15:55' prior: 50655970!
+pieJuega: unaCartaDeTruco 
+	self error: RondaDeTruco elPieNoPuedeComenzarLaRonda.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:15:56'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:16:01'!
+elPieNoPuedeComenzarLaRonda
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:16:17' prior: 50655984!
+elPieNoPuedeComenzarLaRonda
+	^'El Pie no puede ser el jugador que comienze la ronda'.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:16:18'!
+ERROR!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:16:27'!
+cartasEnManoDelPie
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:16:37' prior: 50655999!
+cartasEnManoDelPie
+	| pie |
+	pie size.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:17:06'!
+ERROR!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:17:25'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pi'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:17:23' prior: 50656004!
+cartasEnManoDelPie
+	pi size.! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:17:31'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pie'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'as yet unclassified' stamp: 'jgv 11/27/2023 20:17:31' prior: 50656020!
+cartasEnManoDelPie
+	pie size.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:17:34'!
+ERROR!
+!RondaDeTruco class methodsFor: 'instance creation' stamp: 'jgv 11/27/2023 20:17:57' prior: 50655939!
+cartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco
+	(unaManoDeTruco size < 3 or: [otraManoDeTruco size < 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMenosDeTresCartasACadaJugador].
+	(unaManoDeTruco size > 3 or: [otraManoDeTruco size > 3]) ifTrue: [self error: RondaDeTruco noSePuedenRepartirMasDeTresCartasACadaJugador.].
+	(unaManoDeTruco anySatisfy: [ :unaCartaDeTruco | otraManoDeTruco includes: unaCartaDeTruco]) ifTrue: [
+			self error: RondaDeTruco noSePuedeRepartirUnaMismaCartaAAmbosJugadores.
+		].
+	
+	^self new initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:18:01'!
+ERROR!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:18:08'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pie manoDeTruco'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:18:08'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pie manoDeTruco otraManoDeTruco_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'initialization' stamp: 'jgv 11/27/2023 20:18:08'!
+initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	self shouldBeImplemented.
+	manoDeTruco := unaManoDeTruco.
+	otraManoDeTruco_CHANGE_ME := otraManoDeTruco.! !
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:18:31'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pie mano otraManoDeTruco_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'as yet unclassified' stamp: 'jgv 11/27/2023 20:18:31' prior: 50656083!
+initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	self shouldBeImplemented.
+	mano := unaManoDeTruco.
+	otraManoDeTruco_CHANGE_ME := otraManoDeTruco.! !
+!RondaDeTruco methodsFor: 'initialization' stamp: 'jgv 11/27/2023 20:18:44' prior: 50656101!
+initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	self shouldBeImplemented.
+	mano := unaManoDeTruco.
+	pie := otraManoDeTruco.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:18:44'!
+ERROR!
+!RondaDeTruco methodsFor: 'initialization' stamp: 'jgv 11/27/2023 20:18:51' prior: 50656110!
+initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	mano := unaManoDeTruco.
+	pie := otraManoDeTruco.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:18:52'!
+FAILURE!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:19:12' prior: 50656032!
+cartasEnManoDelPie
+	^pie size.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:19:13'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:21:30'!
+test09LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:21:37'!
+test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial! !
+
+!methodRemoval: RondaDeTrucoTest #test09LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial stamp: 'jgv 11/27/2023 20:21:37'!
+test09LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:22:53' prior: 50656172!
+test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeComenzarLaRonda.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:23:31' prior: 50656183!
+test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeComenzarLaRonda.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:24:27' prior: 50656207!
+test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noLeTocaJugarALaMano.
+			self assert: ronda cartasEnManoDeLaMano equals: 3.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial stamp: 'jgv 11/27/2023 20:24:31'!
+ERROR!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:24:37'!
+manoJuega: aRenameMe1 
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:25:21' prior: 50656262!
+manoJuega: unaCartaDeTruco 
+	mano remove: unaCartaDeTruco.! !
+
+!testRun: #RondaDeTrucoTest #test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial stamp: 'jgv 11/27/2023 20:25:26'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:26:18' prior: 50656233!
+test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noLeTocaJugarALaMano.
+			self assert: ronda cartasEnManoDeLaMano equals: 2.
+		].! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:27:29'!
+test10CuandoLaManoJuegaTieneUnCartaMenosEnMano	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noLeTocaJugarALaMano.
+			self assert: ronda cartasEnManoDeLaMano equals: 2.
+		].! !
+
+!methodRemoval: RondaDeTrucoTest #test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial stamp: 'jgv 11/27/2023 20:27:29'!
+test10LaManoNoPuedeJugarOtraCartaLuegoDeJugarLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco noLeTocaJugarALaMano.
+			self assert: ronda cartasEnManoDeLaMano equals: 2.
+		].!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:28:03' prior: 50656301!
+test10CuandoLaManoJuegaTieneUnCartaMenosEnMano	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 3).
+	self assert: ronda cartasEnManoDeLaMano equals: 2.! !
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:28:10'!
+ERROR!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:28:14'!
+cartasEnManoDeLaMano
+	self shouldBeImplemented.! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:28:20' prior: 50656374!
+cartasEnManoDeLaMano
+	^mano size.! !
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:28:21'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:28:44'!
+test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 3).
+	self assert: ronda cartasEnManoDeLaMano equals: 2.! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:32:00' prior: 50656417!
+test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco laManoNoPuedeJugarEnEsteMomento.
+					self assert: ronda cartasEnManoDeLaMano equals: 2.
+				].
+			! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:32:07'!
+FAILURE!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:33:54'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pie mano otraManoDeTruco_CHANGE_ME laManoPuedeJugar'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:33:47' prior: 50656267!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	mano remove: unaCartaDeTruco.! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:34:06' prior: 50656474!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	mano remove: unaCartaDeTruco.! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:34:23' prior: 50656481!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	mano remove: unaCartaDeTruco.! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:34:44'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:34:55'!
+laManoNoPuedeJugarEnEsteMomento
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:35:04' prior: 50656500!
+laManoNoPuedeJugarEnEsteMomento
+	'La mano no puede jugar en este momento!!'! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:35:05'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:35:23'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:35:43'!
+FAILURE!
+!RondaDeTruco methodsFor: 'initialization' stamp: 'jgv 11/27/2023 20:36:15' prior: 50656122!
+initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	mano := unaManoDeTruco.
+	pie := otraManoDeTruco.
+	laManoPuedeJugar := true.! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:36:22'!
+FAILURE!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:36:55' prior: 50656488!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	laManoPuedeJugar := laManoPuedeJugar negated.
+	mano remove: unaCartaDeTruco.! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:37:00' prior: 50656536!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	laManoPuedeJugar := laManoPuedeJugar not.
+	mano remove: unaCartaDeTruco.! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:37:07' prior: 50656545!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	
+	mano remove: unaCartaDeTruco.
+	
+	laManoPuedeJugar := laManoPuedeJugar not.! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:37:08'!
+FAILURE!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:37:37' prior: 50656554!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ self error: RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	
+	mano remove: unaCartaDeTruco.
+	
+	laManoPuedeJugar := laManoPuedeJugar not.! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:37:38'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:38:23'!
+test11LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 3).
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco laManoNoPuedeJugarEnEsteMomento.
+					self assert: ronda cartasEnManoDeLaMano equals: 2.
+				].
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:38:32' prior: 50656614!
+test11LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco laManoNoPuedeJugarEnEsteMomento.
+					self assert: ronda cartasEnManoDeLaMano equals: 2.
+				].
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:38:36' prior: 50656640!
+test11LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco laManoNoPuedeJugarEnEsteMomento.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:39:02' prior: 50656664!
+test11LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:39:06'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:39:10'!
+elJugadorNoTieneEsaCartaEnMano
+	self shouldBeImplemented.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:39:20' prior: 50656716!
+elJugadorNoTieneEsaCartaEnMano
+	^'El jugador no tiene esa carta en mano'! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:39:21'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:39:41'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:39:53'!
+FAILURE!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:40:17' prior: 50656567!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ self error: RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	
+	mano remove: unaCartaDeTruco ifAbsent: [ self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].
+	
+	laManoPuedeJugar := laManoPuedeJugar not.! !
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:40:19'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:40:27'!
+test12LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			! !
+
+!methodRemoval: RondaDeTrucoTest #test11LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:40:27'!
+test11LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:40:35'!
+test13LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:42:20'!
+test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco anchoDeBasto ).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:42:48' prior: 50656862!
+test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:43:05' prior: 50656887!
+test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:44:15' prior: 50656838!
+test13LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	
+	self 
+		should: [
+			ronda manoJuega: (CartaDeTruco bastoCon: 2).
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+
+		] 
+		raise: Error - MessageNotUnderstood
+	 	withExceptionDo: [ :anError |
+					self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+					self assert: ronda cartasEnManoDeLaMano equals: 3.
+				].
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:45:09' prior: 50656922!
+test13LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+	
+	self assert: ronda cartasEnManoDelPie equals: 3.
+
+		
+			! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:46:02' prior: 50656904!
+test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+	self assert: ronda cartasEnManoDelPie equals: 2.! !
+
+!methodRemoval: RondaDeTrucoTest #test13LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:46:05'!
+test13LaManoNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+	
+	self assert: ronda cartasEnManoDelPie equals: 3.
+
+		
+			!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:46:08'!
+ERROR!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:46:20' prior: 50655975!
+pieJuega: unaCartaDeTruco
+	self error: RondaDeTruco elPieNoPuedeComenzarLaRonda.! !
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:47:04'!
+ElPieNoPuedeJugarEnEsteMomento
+	'El pie no puede jugar en este momento!!'! !
+
+!methodRemoval: RondaDeTruco class #elPieNoPuedeComenzarLaRonda stamp: 'jgv 11/27/2023 20:47:09'!
+elPieNoPuedeComenzarLaRonda
+	^'El Pie no puede ser el jugador que comienze la ronda'.!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:47:20' prior: 50655911!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco laManoNoPuedeJugarEnEsteMomento.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:47:21'!
+ERROR!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:47:29' prior: 50657010!
+pieJuega: unaCartaDeTruco
+	self error: RondaDeTruco laManoNoPuedeJugarEnEsteMomento.! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:47:30'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:30'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:30'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:30'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:31'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:32'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:47:37'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:37'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:37'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:47:37'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:48:00' prior: 50657027!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco ElPieNoPuedeJugarEnEsteMomento.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:48:02'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:48:02'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:48:02'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:48:02'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:48:21'!
+elPieNoPuedeJugarEnEsteMomento
+	'El pie no puede jugar en este momento!!'! !
+
+!methodRemoval: RondaDeTruco class #ElPieNoPuedeJugarEnEsteMomento stamp: 'jgv 11/27/2023 20:48:21'!
+ElPieNoPuedeJugarEnEsteMomento
+	'El pie no puede jugar en este momento!!'!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:48:35' prior: 50657252!
+elPieNoPuedeJugarEnEsteMomento
+	^'El pie no puede jugar en este momento!!'! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:49:05' prior: 50657175!
+test09ElPieNoPuedeComenzarLaRondaDeTruco
+	
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+				
+
+	self 
+	should: [
+			ronda pieJuega: (CartaDeTruco anchoDeBasto).
+		]
+	 raise: Error - MessageNotUnderstood
+	 withExceptionDo: [ :anError | 
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeJugarEnEsteMomento.
+			self assert: ronda cartasEnManoDelPie equals: 3.
+		].! !
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:49:07'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:49:27'!
+FAILURE!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:49:51' prior: 50657054!
+pieJuega: unaCartaDeTruco
+	self error: RondaDeTruco elPieNoPuedeJugarEnEsteMomento .! !
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:49:52'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:49:52'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:49:52'!
+ERROR!
+!RondaDeTruco class methodsFor: 'error-descriptions' stamp: 'jgv 11/27/2023 20:50:06' prior: 50656506!
+laManoNoPuedeJugarEnEsteMomento
+	^'La mano no puede jugar en este momento!!'! !
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:50:14'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:50:21'!
+ERROR!
+
+!classDefinition: #RondaDeTruco category: 'ISW1-2021-1C-2doParcial' stamp: 'jgv 11/27/2023 20:51:28'!
+Object subclass: #RondaDeTruco
+	instanceVariableNames: 'pie mano otraManoDeTruco_CHANGE_ME laManoPuedeJugar elPiePuedeJugar'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'ISW1-2021-1C-2doParcial'!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:51:27' prior: 50657301!
+pieJuega: unaCartaDeTruco
+	elPiePuedeJugar ifFalse: [	self error: RondaDeTruco elPieNoPuedeJugarEnEsteMomento].
+	
+	pie remove: unaCartaDeTruco.! !
+!RondaDeTruco methodsFor: 'initialization' stamp: 'jgv 11/27/2023 20:51:45' prior: 50656524!
+initializeCartasDeLaMano: unaManoDeTruco cartasDelPie: otraManoDeTruco 
+	mano := unaManoDeTruco.
+	pie := otraManoDeTruco.
+	laManoPuedeJugar := true.
+	elPiePuedeJugar := false.! !
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:51:50'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:51:59'!
+ERROR!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 20:52:14' prior: 50656738!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ self error: RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	
+	mano remove: unaCartaDeTruco ifAbsent: [ self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].
+	
+	laManoPuedeJugar := laManoPuedeJugar not.
+	elPiePuedeJugar := elPiePuedeJugar not.! !
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:52:19'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:52:32'!
+test14ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+	self assert: ronda cartasEnManoDelPie equals: 2.! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:52:58'!
+test14ElPieNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+	self assert: ronda cartasEnManoDelPie equals: 2.! !
+
+!methodRemoval: RondaDeTrucoTest #test14ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:52:58'!
+test14ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+		
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+	self assert: ronda cartasEnManoDelPie equals: 2.!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:54:26' prior: 50657479!
+test14ElPieNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.			
+		].
+	
+! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:54:50' prior: 50657519!
+test14ElPieNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:54:52'!
+FAILURE!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:55:22' prior: 50657541!
+test14ElPieNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:55:23'!
+FAILURE!
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:55:26'!
+FAILURE!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 20:55:54' prior: 50657377!
+pieJuega: unaCartaDeTruco
+	elPiePuedeJugar ifFalse: [	self error: RondaDeTruco elPieNoPuedeJugarEnEsteMomento].
+	
+	pie remove: unaCartaDeTruco ifAbsent: [self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].! !
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 20:55:56'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:56:45'!
+test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:57:58' prior: 50657658!
+test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:58:35' prior: 50657684!
+test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	ronda manoJuega: (CartaDeTruco anchoDeEspada).
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 20:58:37'!
+ERROR!
+
+!testRun: #RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 20:58:43'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 20:59:40' prior: 50657711!
+test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self shouldnt: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error.
+	
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 20:59:42'!
+FAILURE!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 21:01:10' prior: 50657600!
+pieJuega: unaCartaDeTruco
+	elPiePuedeJugar ifFalse: [	self error: RondaDeTruco elPieNoPuedeJugarEnEsteMomento].
+	
+	pie remove: unaCartaDeTruco ifAbsent: [self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].
+	
+	elPiePuedeJugar := elPiePuedeJugar not.
+	laManoPuedeJugar := laManoPuedeJugar not.! !
+
+!testRun: #RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 21:01:14'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:01:40'!
+test14CuandoElPieJugaTienUnaCartaMenosEnMano
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:02:02' prior: 50657829!
+test14CuandoElPieJugaTienUnaCartaMenosEnMano
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco bastoCon: 2).
+
+	self assert: ronda cartasEnManoDelPie equals: 2.
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test14CuandoElPieJugaTienUnaCartaMenosEnMano stamp: 'jgv 11/27/2023 21:02:07'!
+ERROR!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:02:21' prior: 50657854!
+test14CuandoElPieJugaTienUnaCartaMenosEnMano
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	ronda pieJuega: (CartaDeTruco anchoDeBasto).
+
+	self assert: ronda cartasEnManoDelPie equals: 2.
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test14CuandoElPieJugaTienUnaCartaMenosEnMano stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test04NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test05NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaLaMano stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test06NoSePuedeCrearUnaRondaDeTrucoRepartiendoMenosDeTresCartasParaElPie stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test07NoSePuedeCrearUnaRondaDeTrucoRepartiendoMasDeTresCartasParaElPie stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test08NoSePuedeCrearUnaRondaDeTrucoRepartiendoUnaMismaCartaAAmbosJugadores stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test09ElPieNoPuedeComenzarLaRondaDeTruco stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test10CuandoLaManoJuegaTieneUnCartaMenosEnMano stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test11LaManoNoPuedeJugarLuegoDeHaberJugadoLaCartaInicial stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test12LaManoNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test13ElPiePuedeJugarLuegoDeQueLaManoHayaJugadoLaCartaInicial stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test14CuandoElPieJugaTienUnaCartaMenosEnMano stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+
+!testRun: #RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 21:02:22'!
+PASSED!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:02:31'!
+test15ElPieNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+! !
+
+!methodRemoval: RondaDeTrucoTest #test14ElPieNoPuedeJugarUnaCartaQueNoPosea stamp: 'jgv 11/27/2023 21:02:31'!
+test14ElPieNoPuedeJugarUnaCartaQueNoPosea
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada)).
+				
+	ronda manoJuega: (CartaDeTruco bastoCon: 2).
+	
+	self should: [
+			ronda pieJuega: (CartaDeTruco bastoCon: 2).
+		] 
+	raise: Error - MessageNotUnderstood  
+	withExceptionDo: [ :anError |
+			self assert: anError messageText equals: RondaDeTruco elJugadorNoTieneEsaCartaEnMano.
+			self assert: ronda cartasEnManoDelPie equals: 3			
+		].
+	
+!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:02:39'!
+test16SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self shouldnt: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error.
+	
+	
+! !
+
+!methodRemoval: RondaDeTrucoTest #test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta stamp: 'jgv 11/27/2023 21:02:39'!
+test15SiLaManoGanaLaVueltaPuedeContinuarJugandoOtraCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self shouldnt: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error.
+	
+	
+!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:03:47'!
+test16SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self shouldnt: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error.
+	
+	
+! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:03:52'!
+test17SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self shouldnt: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error.
+	
+	
+! !
+
+!methodRemoval: RondaDeTrucoTest #test16SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta stamp: 'jgv 11/27/2023 21:03:52'!
+test16SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self shouldnt: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error.
+	
+	
+!
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:05:35' prior: 50658066!
+test17SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self should: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeJugarEnEsteMomento.
+		].
+	
+	
+! !
+!RondaDeTrucoTest methodsFor: 'tests' stamp: 'jgv 11/27/2023 21:05:52' prior: 50658110!
+test17SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta
+
+	| ronda |
+	
+	ronda := RondaDeTruco 
+				cartasDeLaMano: (OrderedCollection with: (CartaDeTruco anchoDeBasto) with: (CartaDeTruco anchoDeEspada) with: (CartaDeTruco sieteDeEspada))
+				cartasDelPie: (OrderedCollection with: (CartaDeTruco bastoCon: 2) with: (CartaDeTruco bastoCon: 3) with: (CartaDeTruco bastoCon: 4)).
+				
+	ronda manoJuega: (CartaDeTruco anchoDeBasto).
+	ronda pieJuega: (CartaDeTruco bastoCon: 4).
+	
+	self should: [ ronda manoJuega: (CartaDeTruco anchoDeEspada). ]
+	raise: Error
+	withExceptionDo: [:anError |
+			self assert: anError messageText equals: RondaDeTruco elPieNoPuedeJugarEnEsteMomento.
+			self assert: ronda cartasEnManoDelPie equals: 2.
+		].
+	
+	
+! !
+
+!testRun: #RondaDeTrucoTest #test17SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta stamp: 'jgv 11/27/2023 21:13:20'!
+FAILURE!
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 21:16:39' prior: 50657402!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ self error: RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	
+	mano remove: unaCartaDeTruco ifAbsent: [ self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].
+	
+	mano last size = 2 ifTrue: [ 
+			(mano last first mataA: mano last second) ifTrue: [
+					laManoPuedeJugar := laManoPuedeJugar not.
+					elPiePuedeJugar := elPiePuedeJugar not.
+	
+				]
+		]
+	
+	! !
+!RondaDeTruco methodsFor: 'mano' stamp: 'jgv 11/27/2023 21:17:54' prior: 50658166!
+manoJuega: unaCartaDeTruco 
+	laManoPuedeJugar ifFalse: [ self error: RondaDeTruco laManoNoPuedeJugarEnEsteMomento ].
+	
+	mano remove: unaCartaDeTruco ifAbsent: [ self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].
+	
+	mano last size = 2 ifTrue: [ 
+			(mano last first mataA: mano last second) ifTrue: [ 	
+				laManoPuedeJugar := laManoPuedeJugar not.
+				elPiePuedeJugar := elPiePuedeJugar not.]
+		]
+
+	
+	! !
+
+!testRun: #RondaDeTrucoTest #test17SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta stamp: 'jgv 11/27/2023 21:18:25'!
+ERROR!
+!RondaDeTruco methodsFor: 'pie' stamp: 'jgv 11/27/2023 21:18:36' prior: 50657764!
+pieJuega: unaCartaDeTruco
+	elPiePuedeJugar ifFalse: [	self error: RondaDeTruco elPieNoPuedeJugarEnEsteMomento].
+	
+	pie remove: unaCartaDeTruco ifAbsent: [self error: RondaDeTruco elJugadorNoTieneEsaCartaEnMano].
+	
+	mano last size = 2 ifTrue: [ 
+		(mano last first mataA: mano last second) ifTrue: [ 	
+			laManoPuedeJugar := laManoPuedeJugar not.
+			elPiePuedeJugar := elPiePuedeJugar not.]
+	].! !
+
+!testRun: #RondaDeTrucoTest #test17SiLaManoGanaLaVueltaElPieNoPuedeJugarAntesQueLaManoVuelvaATirarCarta stamp: 'jgv 11/27/2023 21:18:37'!
+ERROR!
+
+----QUIT----(27 November 2023 21:31:44) CuisUniversity-5981.image priorSource: 10197292!
